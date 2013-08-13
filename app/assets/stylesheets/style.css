@@ -1,0 +1,12 @@
+@charset "utf-8";
+/* CSS Document */
+
+.redStart {color: red; float: left; margin-left: 2px;}
+
+.footerFront p {text-align:center !important;}
+
+.searchRight { float: right; font-size: 20px; margin: -50px 30px 0px 0px; }
+
+.fRight { float: right; font-size: 16px; }
+
+.text-message { float: left; margin: -25px 0 0 230px; font-weight: bold;}
