@@ -7,6 +7,7 @@ class RoomsController < ApplicationController
   # GET /rooms.json
   def index
     @o_all = get_records(params[:room], params[:page])
+    @search_fields = ['name']
     session[:room] = params[:room] if params[:room]
   end
 

@@ -4,9 +4,9 @@ class CreateRows < ActiveRecord::Migration
       t.references :cemetery
       t.references :area
       t.references :section
-      t.string   "row_name"
-      t.string   "row_user"
-      t.string   "row_map_path"
+      t.string   "name"
+      t.string   "user"
+      t.string   "map_path"
       t.boolean  "is_active",                 default: true
       t.timestamps
     end

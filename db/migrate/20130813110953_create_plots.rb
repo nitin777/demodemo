@@ -5,12 +5,12 @@ class CreatePlots < ActiveRecord::Migration
       t.references :area
       t.references :section
       t.references :row      
-      t.string   "plot_name"
-      t.string   "plot_user"
+      t.string   "name"
+      t.string   "user"
       t.string   "length"
       t.string   "width"
       t.string   "depth"
-      t.string   "plot_map_path"
+      t.string   "map_path"
       t.boolean  "is_active",                 default: true
       t.timestamps
     end

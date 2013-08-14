@@ -7,6 +7,7 @@ class CoffinsController < ApplicationController
   # GET /coffins.json
   def index
     @o_all = get_records(params[:coffin], params[:page])
+    @search_fields = ['name']
     session[:coffin] = params[:coffin] if params[:coffin]
   end
 

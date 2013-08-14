@@ -1,4 +1,4 @@
-<%- model_class = Country -%>
+<%- model_class = StoneMason -%>
 <%= hidden_field_tag :direction, params[:direction] %>
 <%= hidden_field_tag :sort, params[:sort] %>
     
@@ -7,10 +7,10 @@
 </div>
 
 <div class="searchRight">
-	<%= link_to 'Search', show_country_search_path(true), :remote => true, :class => 'btn btn-primary' %>&nbsp;
+	<%= link_to 'Search', show_search_box_path(true, model_class, @search_fields.join(',')), :remote => true, :class => 'btn btn-primary' %>&nbsp;
 	
 	<%= link_to t('.new', :default => t("helpers.links.new")),
-	            new_country_path,
+	            new_stone_mason_path,
 	            :class => 'btn btn-primary' %>
 </div>	
 

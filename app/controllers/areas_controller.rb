@@ -7,6 +7,7 @@ class AreasController < ApplicationController
   # GET /areas.json
   def index
     @o_all = get_records(params[:area], params[:page])
+    @search_fields = ['name']
     session[:area] = params[:area] if params[:area]
   end
 

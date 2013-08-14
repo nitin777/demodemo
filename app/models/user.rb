@@ -21,6 +21,9 @@ class User < ActiveRecord::Base
 	has_one :user_role, :dependent => :destroy
 	has_one :role, :through => :user_role
 	
+	has_many :grantee_graves
+	has_many :bookings
+	
 
 	def user_name
 		return self.first_name.blank? ? self.username : (self.first_name.to_s + " " + self.last_name.to_s)

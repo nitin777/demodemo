@@ -7,6 +7,7 @@ class IdentitiesController < ApplicationController
   # GET /identities.json
   def index
     @o_all = get_records(params[:identity], params[:page])
+    @search_fields = ['name']
     session[:identity] = params[:identity] if params[:identity]
   end
 

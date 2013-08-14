@@ -7,6 +7,7 @@ class RowsController < ApplicationController
   # GET /rows.json
   def index
     @o_all = get_records(params[:row], params[:page])
+    @search_fields = ['name']
     session[:row] = params[:row] if params[:row]
   end
 

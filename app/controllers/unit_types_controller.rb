@@ -7,6 +7,7 @@ class UnitTypesController < ApplicationController
   # GET /unit_types.json
   def index
     @o_all = get_records(params[:unit_type], params[:page])
+    @search_fields = ['name']
     session[:unit_type] = params[:unit_type] if params[:unit_type]
   end
 

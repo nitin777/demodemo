@@ -9,8 +9,8 @@ class CreateGraves < ActiveRecord::Migration
       t.references :grave_status
       t.references :stonemason
       t.string   "grave_number"
-      t.string   "grave_image1"
-      t.string   "grave_image2"
+      t.string   "image1"
+      t.string   "image2"
       t.string   "length"
       t.string   "width"
       t.string   "height"

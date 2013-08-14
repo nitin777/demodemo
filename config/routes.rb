@@ -40,7 +40,7 @@ Ocms::Application.routes.draw do
   match '/forgot_password' => 'fronts#forgot_password', :as => :forgot_password, via: [:get, :post]
   match '/change_password' => 'fronts#change_password', :as => :change_password, via: [:get, :post, :patch]
     
-  get '/show_country_search/:toggle' => 'countries#show_country_search', :as => :show_country_search
+  get '/show_search_box/:toggle/:model/:pm' => 'fronts#show_search_box', :as => :show_search_box
   get '/search/:toggle' => 'users#search', :as => :search
   
   root 'user_sessions#new'    

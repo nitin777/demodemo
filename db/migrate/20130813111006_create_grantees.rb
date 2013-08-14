@@ -3,9 +3,9 @@ class CreateGrantees < ActiveRecord::Migration
     create_table :grantees do |t|
       t.references :cemetery
       t.string   "title"
-      t.string   "first_name",  null: false
+      t.string   "first_name"
       t.string   "middle_name"
-      t.string   "surname",     null: false
+      t.string   "surname"
       t.string   "grantee_unique_id"
       t.references :denomination
       t.text     "address"

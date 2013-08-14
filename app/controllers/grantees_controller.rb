@@ -7,6 +7,7 @@ class GranteesController < ApplicationController
   # GET /grantees.json
   def index
     @o_all = get_records(params[:grantee], params[:page])
+    @search_fields = ['first_name']
     session[:grantee] = params[:grantee] if params[:grantee]
   end
 
@@ -77,7 +78,7 @@ class GranteesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def grantee_params
-      params.require(:grantee).permit(:name, :is_active)
+      params.require(:grantee).permit(:first_name, :is_active)
     end
     
     #fetch search records

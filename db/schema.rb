@@ -15,13 +15,13 @@ ActiveRecord::Schema.define(version: 20130813175310) do
 
   create_table "areas", force: true do |t|
     t.integer  "cemetery_id"
-    t.string   "area_code"
-    t.text     "area_description"
-    t.string   "area_control_number"
-    t.string   "area_name"
-    t.string   "area_user"
-    t.string   "area_map_path"
-    t.boolean  "is_active",           default: true
+    t.string   "code"
+    t.text     "description"
+    t.string   "control_number"
+    t.string   "name"
+    t.string   "user"
+    t.string   "map_path"
+    t.boolean  "is_active",      default: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -293,8 +293,8 @@ ActiveRecord::Schema.define(version: 20130813175310) do
     t.integer  "grave_status_id"
     t.integer  "stonemason_id"
     t.string   "grave_number"
-    t.string   "grave_image1"
-    t.string   "grave_image2"
+    t.string   "image1"
+    t.string   "image2"
     t.string   "length"
     t.string   "width"
     t.string   "height"
@@ -334,13 +334,13 @@ ActiveRecord::Schema.define(version: 20130813175310) do
     t.integer  "area_id"
     t.integer  "section_id"
     t.integer  "row_id"
-    t.string   "plot_name"
-    t.string   "plot_user"
+    t.string   "name"
+    t.string   "user"
     t.string   "length"
     t.string   "width"
     t.string   "depth"
-    t.string   "plot_map_path"
-    t.boolean  "is_active",     default: true
+    t.string   "map_path"
+    t.boolean  "is_active",   default: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -364,10 +364,10 @@ ActiveRecord::Schema.define(version: 20130813175310) do
     t.integer  "cemetery_id"
     t.integer  "area_id"
     t.integer  "section_id"
-    t.string   "row_name"
-    t.string   "row_user"
-    t.string   "row_map_path"
-    t.boolean  "is_active",    default: true
+    t.string   "name"
+    t.string   "user"
+    t.string   "map_path"
+    t.boolean  "is_active",   default: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -375,13 +375,13 @@ ActiveRecord::Schema.define(version: 20130813175310) do
   create_table "sections", force: true do |t|
     t.integer  "cemetery_id"
     t.integer  "area_id"
-    t.string   "section_code"
-    t.string   "section_name"
+    t.string   "code"
+    t.string   "name"
     t.integer  "first_grave"
     t.integer  "last_grave"
-    t.string   "section_user"
-    t.string   "section_map_path"
-    t.boolean  "is_active",        default: true
+    t.string   "user"
+    t.string   "map_path"
+    t.boolean  "is_active",   default: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end

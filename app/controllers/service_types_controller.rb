@@ -7,6 +7,7 @@ class ServiceTypesController < ApplicationController
   # GET /service_types.json
   def index
     @o_all = get_records(params[:service_type], params[:page])
+    @search_fields = ['name']
     session[:service_type] = params[:service_type] if params[:service_type]
   end
 

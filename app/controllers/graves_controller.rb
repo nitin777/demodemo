@@ -7,6 +7,7 @@ class GravesController < ApplicationController
   # GET /graves.json
   def index
     @o_all = get_records(params[:grave], params[:page])
+    @search_fields = ['grave_number']
     session[:grave] = params[:grave] if params[:grave]
   end
 
@@ -77,7 +78,7 @@ class GravesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def grave_params
-      params.require(:grave).permit(:name, :is_active)
+      params.require(:grave).permit(:grave_number, :is_active)
     end
     
     #fetch search records

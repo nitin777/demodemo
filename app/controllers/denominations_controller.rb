@@ -7,6 +7,7 @@ class DenominationsController < ApplicationController
   # GET /denominations.json
   def index
     @o_all = get_records(params[:denomination], params[:page])
+    @search_fields = ['name']
     session[:denomination] = params[:denomination] if params[:denomination]
   end
 

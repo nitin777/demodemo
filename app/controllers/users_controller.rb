@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     @o_all = get_records(params[:user], params[:page])
+    @search_fields = ['username, email']
     session[:user] = params[:user] if params[:user]
   end
   

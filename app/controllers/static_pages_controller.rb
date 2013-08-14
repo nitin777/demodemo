@@ -7,6 +7,7 @@ class StaticPagesController < ApplicationController
   # GET /static_pages.json
   def index
     @o_all = get_records(params[:search], params[:page])
+    @search_fields = ['name']
   end
 
   # GET /static_pages/1

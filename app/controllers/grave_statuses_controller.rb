@@ -7,6 +7,7 @@ class GraveStatusesController < ApplicationController
   # GET /grave_statuses.json
   def index
     @o_all = get_records(params[:grave_status], params[:page])
+    @search_fields = ['name']
     session[:grave_status] = params[:grave_status] if params[:grave_status]
   end
 

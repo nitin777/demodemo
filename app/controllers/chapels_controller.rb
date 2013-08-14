@@ -7,6 +7,7 @@ class ChapelsController < ApplicationController
   # GET /chapels.json
   def index
     @o_all = get_records(params[:chapel], params[:page])
+    @search_fields = ['name']
     session[:chapel] = params[:chapel] if params[:chapel]
   end
 

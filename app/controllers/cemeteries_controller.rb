@@ -7,6 +7,7 @@ class CemeteriesController < ApplicationController
   # GET /cemeteries.json
   def index
     @o_all = get_records(params[:cemetery], params[:page])
+    @search_fields = ['name']
     session[:cemetery] = params[:cemetery] if params[:cemetery]
   end
 

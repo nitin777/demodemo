@@ -7,6 +7,7 @@ class SectionsController < ApplicationController
   # GET /sections.json
   def index
     @o_all = get_records(params[:section], params[:page])
+    @search_fields = ['name']
     session[:section] = params[:section] if params[:section]
   end
 

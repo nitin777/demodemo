@@ -7,6 +7,7 @@ class PaymentStatusesController < ApplicationController
   # GET /payment_statuses.json
   def index
     @o_all = get_records(params[:payment_status], params[:page])
+    @search_fields = ['name']
     session[:payment_status] = params[:payment_status] if params[:payment_status]
   end
 
