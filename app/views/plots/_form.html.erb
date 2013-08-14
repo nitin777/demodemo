@@ -1,7 +1,29 @@
 <%= form_for @o_single, :html => { :class => 'form-horizontal' } do |f| %>
   <fieldset>
     <legend></legend>
- 
+		<%= f.hidden_field :cemetery_id, :value => session[:cemetery_id] %>
+		
+   	<div class="control-group">
+      <%= f.label :area_id, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.select :area_id, options_for_select(get_model_data_code("Area", true), (@o_single.area.id unless @o_single.area.nil?))  %>
+      </div>
+    </div>
+    
+   	<div class="control-group">
+      <%= f.label :section_id, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.select :section_id, options_for_select(get_model_data_code("Section", true), (@o_single.section.id unless @o_single.section.nil?))  %>
+      </div>
+    </div>
+    
+   	<div class="control-group">
+      <%= f.label :row_id, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.select :row_id, options_for_select(get_model_data("Row", true), (@o_single.row.id unless @o_single.row.nil?))  %>
+      </div>
+    </div>    		
+		 
     <div class="control-group">
       <%= f.label :name, :class => 'control-label' %><span class="redStart">*</span>
       <div class="controls">
@@ -11,6 +33,9 @@
       	<% end %> 
       </div>
     </div>
+ 
+  	<div class="control-group"><%= f.label :user, :class => 'control-label' %><div class="controls"><%= f.text_field :user, :class => 'text_field' %></div></div>
+		<div class="control-group"><%= f.label :map, :class => 'control-label' %><div class="controls"><%= f.file_field :map, :class => 'text_field' %></div></div>
  
     <div class="control-group">
       <%= f.label :is_active, :class => 'control-label' %>

@@ -9,8 +9,8 @@ class CreateGraves < ActiveRecord::Migration
       t.references :grave_status
       t.references :stonemason
       t.string   "grave_number"
-      t.string   "image1"
-      t.string   "image2"
+      t.string   "image_1"
+      t.string   "image_2"
       t.string   "length"
       t.string   "width"
       t.string   "height"
@@ -24,8 +24,8 @@ class CreateGraves < ActiveRecord::Migration
       t.string   "monuments_length"
       t.string   "latitude"
       t.string   "longitude"
-      t.text     "comment1"
-      t.text     "comment2"
+      t.text     "comment_1"
+      t.text     "comment_2"
       t.boolean  "is_active",                          default: true
       t.timestamps
     end

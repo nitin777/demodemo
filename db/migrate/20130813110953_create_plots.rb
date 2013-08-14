@@ -10,7 +10,7 @@ class CreatePlots < ActiveRecord::Migration
       t.string   "length"
       t.string   "width"
       t.string   "depth"
-      t.string   "map_path"
+      t.string   "map"
       t.boolean  "is_active",                 default: true
       t.timestamps
     end

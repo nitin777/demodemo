@@ -8,7 +8,7 @@ class CreateSections < ActiveRecord::Migration
       t.integer  "first_grave"
       t.integer  "last_grave"
       t.string   "user"
-      t.string   "map_path"
+      t.string   "map"
       t.boolean  "is_active",                  default: true
       t.timestamps
     end

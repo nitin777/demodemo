@@ -9,6 +9,13 @@ class Cemetery < ActiveRecord::Base
   has_many :chapels, :dependent => :destroy
   has_many :rooms, :dependent => :destroy
   has_many :stone_masons, :dependent => :destroy
+  
   validates :name, :presence => true
-  include SearchHandler  
+  validates :country_id, :presence => true
+  
+  mount_uploader :map, ImageUploader
+  
+  include SearchHandler
+  
+  scope :active, -> {where(:is_active => true)}  
 end

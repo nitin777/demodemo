@@ -8,14 +8,14 @@ class CreateCemeteries < ActiveRecord::Migration
       t.string   "address"
       t.string   "suburb_town"
       t.string   "state"
-      t.string   "postcode"
-      t.string   "area_code"
+      t.string   "postal_code"
+      t.string   "phone_area_code"
       t.string   "phone"
       t.string   "fax_area_code"
       t.string   "fax"
       t.string   "email"
-      t.string   "gmap_code",         limit: 2000
-      t.string   "cemetery_map_path"
+      t.text     "gmap_code"
+      t.string   "map"
       t.string   "latitude"
       t.string   "longitude"
       t.boolean  "is_active",                     default: true

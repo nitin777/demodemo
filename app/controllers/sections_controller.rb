@@ -7,7 +7,7 @@ class SectionsController < ApplicationController
   # GET /sections.json
   def index
     @o_all = get_records(params[:section], params[:page])
-    @search_fields = ['name']
+    @search_fields = ['name', 'code']
     session[:section] = params[:section] if params[:section]
   end
 
@@ -78,12 +78,12 @@ class SectionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def section_params
-      params.require(:section).permit(:name, :is_active)
+      params.require(:section).permit!
     end
     
     #fetch search records
     def get_records(search, page)
-      section_query = Section.search(search)
+      section_query = @cemetery.sections.search(search)
       section_query.order(sort_column + " " + sort_direction).paginate(:per_page => 10, :page => page)
     end    
     

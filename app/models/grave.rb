@@ -8,6 +8,13 @@ class Grave < ActiveRecord::Base
   belongs_to :stone_mason  
   belongs_to :unit_type
   has_many :grantee_graves, :dependent => :destroy
+  
   validates :grave_number, :presence => true
-  include SearchHandler  
+  
+  include SearchHandler
+  
+  mount_uploader :image_1, ImageUploader
+  mount_uploader :image_2, ImageUploader
+  
+  scope :active, -> {where(:is_active => true)}  
 end

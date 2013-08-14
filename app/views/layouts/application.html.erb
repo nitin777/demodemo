@@ -12,14 +12,48 @@
 </head>
 <body>
 	<%= render 'layouts/header' %>
-
+  <%-
+      current_controller_name = controller.controller_name
+      current_action = controller.action_name
+      
+      cem_contollers_arr = %w(areas sections rows plots graves grantees chapels rooms stone_masons cemeteries)
+      unless cem_contollers_arr.include?(current_controller_name)
+      	puts current_controller_name
+      	puts 'hiiiiiiiiiiiiiiiiiiiiiiiiiii'
+      	session[:cemetery_id] = nil
+      end
+  %>
+  
 	<div class="container">
 	  <% if flash[:notice] %>
 	    <div class="alert-success" id="notice"><%= flash[:notice] %></div>
 	    <% flash[:notice] = nil %>
 	  <% end %>				
 	  <div class="row">
-	    <div class="span12"><%= yield %></div>
+	    <div class="span12">
+	    	<% if session[:cemetery_id] and current_user %>
+					<div class="span2">
+						<ul class="nav nav-pills nav-stacked">
+							<li class="<%= 'active' if current_controller_name == 'areas' %>"><%= link_to t("general.areas"), areas_path %></li>
+							<li class="<%= 'active' if current_controller_name == 'sections' %>"><%= link_to t("general.sections"), sections_path %></li>
+							<li class="<%= 'active' if current_controller_name == 'rows' %>"><%= link_to t("general.rows"), rows_path %></li>
+							<li class="<%= 'active' if current_controller_name == 'plots' %>"><%= link_to t("general.plots"), plots_path %></li>
+							<li class="<%= 'active' if current_controller_name == 'graves' %>"><%= link_to t("general.graves"), graves_path %></li>
+							<li class="<%= 'active' if current_controller_name == 'grantees' %>"><%= link_to t("general.grantees"), grantees_path %></li>
+							<li class="<%= 'active' if current_controller_name == 'chapels' %>"><%= link_to t("general.chapels"), chapels_path %></li>
+							<li class="<%= 'active' if current_controller_name == 'rooms' %>"><%= link_to t("general.rooms"), rooms_path %></li>
+							<li class="<%= 'active' if current_controller_name == 'stone_masons' %>"><%= link_to t("general.stone_masons"), stone_masons_path %></li> 
+						</ul>  
+					</div>  
+					<div class="span9">
+						<%= yield %>
+					</div>
+				<% else %>	
+					<div class="span12">
+						<%= yield %>
+					</div>				
+				<% end %>
+	    </div>
 	  </div>
 	</div>  
 </body>

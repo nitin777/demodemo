@@ -12,44 +12,30 @@
         <ul class="nav">
           <% if current_user %>
             <li class=""><%= link_to t("general.users"), users_path %></li>
-						<li class="dropdown">
-          		<a href="#" class="dropdown-toggle" data-toggle="dropdown"><Dropdown><%= t("general.admin_setup") %> <b class="caret"></b></a>
-          		<ul class="dropdown-menu">
-								<li class=""><%= link_to t("general.countries"), countries_path %></li>
-								<li class=""><%= link_to t("general.denominations"), denominations_path %></li>
-								<li class=""><%= link_to t("general.diseases"), diseases_path %></li>
-								<li class=""><%= link_to t("general.grave_statuses"), grave_statuses_path %></li>
-								<li class=""><%= link_to t("general.identities"), identities_path %></li>
-								<li class=""><%= link_to t("general.service_types"), service_types_path %></li>
-								<li class=""><%= link_to t("general.unit_types"), unit_types_path %></li>
-								<li class=""><%= link_to t("general.coffins"), coffins_path %></li>
-								<li class=""><%= link_to t("general.payment_statuses"), payment_statuses_path %></li>
-								<li class=""><%= link_to t("general.stone_mason_work_types"), stone_mason_work_types_path %></li>
-          		</ul>
-          	</li>
-          	
-          	
-						<li class="dropdown">
-          		<a href="#" class="dropdown-toggle" data-toggle="dropdown"><Dropdown><%= t("general.cemetery_setup") %> <b class="caret"></b></a>
-          		<ul class="dropdown-menu">
-								<li class=""><%= link_to t("general.cemeteries"), cemeteries_path %></li>
-								<li class=""><%= link_to t("general.areas"), areas_path %></li>
-								<li class=""><%= link_to t("general.sections"), sections_path %></li>
-								<li class=""><%= link_to t("general.rows"), rows_path %></li>
-								<li class=""><%= link_to t("general.plots"), plots_path %></li>
-								<li class=""><%= link_to t("general.graves"), graves_path %></li>
-								<li class=""><%= link_to t("general.grantees"), grantees_path %></li>
-								<li class=""><%= link_to t("general.chapels"), chapels_path %></li>
-								<li class=""><%= link_to t("general.rooms"), rooms_path %></li>
-								<li class=""><%= link_to t("general.stone_masons"), stone_masons_path %></li>
-          		</ul>
-          	</li>          	
-          	
+         	  <li class=""><%= link_to t("general.cemeteries"), cemeteries_path %></li>
           <% end %>
         </ul>
         
         <ul class="nav pull-right">
         	<% if current_user %>
+        		<% if is_admin? %>
+							<li class="dropdown">
+	          		<a href="#" class="dropdown-toggle" data-toggle="dropdown"><Dropdown><%= t("general.admin_setup") %> <b class="caret"></b></a>
+	          		<ul class="dropdown-menu">
+									<li class=""><%= link_to t("general.countries"), countries_path %></li>
+									<li class=""><%= link_to t("general.denominations"), denominations_path %></li>
+									<li class=""><%= link_to t("general.diseases"), diseases_path %></li>
+									<li class=""><%= link_to t("general.grave_statuses"), grave_statuses_path %></li>
+									<li class=""><%= link_to t("general.identities"), identities_path %></li>
+									<li class=""><%= link_to t("general.service_types"), service_types_path %></li>
+									<li class=""><%= link_to t("general.unit_types"), unit_types_path %></li>
+									<li class=""><%= link_to t("general.coffins"), coffins_path %></li>
+									<li class=""><%= link_to t("general.payment_statuses"), payment_statuses_path %></li>
+									<li class=""><%= link_to t("general.stone_mason_work_types"), stone_mason_work_types_path %></li>
+	          		</ul>
+	          	</li> 
+	          <% end %>	       	
+        	
 						<li class="dropdown">
           		<a href="#" class="dropdown-toggle" data-toggle="dropdown"><Dropdown><%= current_user.username %> <b class="caret"></b></a>
           		<ul class="dropdown-menu">

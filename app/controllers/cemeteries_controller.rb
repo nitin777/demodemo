@@ -6,6 +6,7 @@ class CemeteriesController < ApplicationController
   # GET /cemeteries
   # GET /cemeteries.json
   def index
+    session[:cemetery_id] = nil
     @o_all = get_records(params[:cemetery], params[:page])
     @search_fields = ['name']
     session[:cemetery] = params[:cemetery] if params[:cemetery]
@@ -18,6 +19,7 @@ class CemeteriesController < ApplicationController
   # GET /cemeteries/1
   # GET /cemeteries/1.json
   def show
+    session[:cemetery_id] = params[:id] if params[:id]
   end
 
   # GET /cemeteries/new
@@ -78,7 +80,7 @@ class CemeteriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def cemetery_params
-      params.require(:cemetery).permit(:name, :is_active)
+      params.require(:cemetery).permit!
     end
     
     #fetch search records

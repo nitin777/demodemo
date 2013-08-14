@@ -58,7 +58,7 @@
 		<% end %> 
 		
     <div class="control-group">
-      <%= f.label :role_id, :class => 'control-label' %><span class="redStart">*</span>
+      <%= f.label :role_id, :class => 'control-label' %>
       <div class="controls">
         <%= select_tag "role_id", options_for_select(Role.all.collect {|r| [r.role_type, r.id]}, (@o_single.role.id unless @o_single.role.nil?))  %>
       </div>

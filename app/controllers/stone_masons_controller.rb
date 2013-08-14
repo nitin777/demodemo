@@ -78,7 +78,7 @@ class StoneMasonsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def stone_mason_params
-      params.require(:stone_mason).permit(:bond, :is_active)
+      params.require(:stone_mason).permit!
     end
     
     #fetch search records

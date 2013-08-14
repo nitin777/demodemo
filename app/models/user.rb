@@ -24,6 +24,7 @@ class User < ActiveRecord::Base
 	has_many :grantee_graves
 	has_many :bookings
 	
+	scope :active, -> {where(:is_active => true)}
 
 	def user_name
 		return self.first_name.blank? ? self.username : (self.first_name.to_s + " " + self.last_name.to_s)

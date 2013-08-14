@@ -78,12 +78,12 @@ class PlotsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def plot_params
-      params.require(:plot).permit(:name, :is_active)
+      params.require(:plot).permit!
     end
     
     #fetch search records
     def get_records(search, page)
-      plot_query = Plot.search(search)
+      plot_query = @cemetery.plots.search(search)
       plot_query.order(sort_column + " " + sort_direction).paginate(:per_page => 10, :page => page)
     end    
     

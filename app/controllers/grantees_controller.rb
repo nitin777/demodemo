@@ -78,12 +78,12 @@ class GranteesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def grantee_params
-      params.require(:grantee).permit(:first_name, :is_active)
+      params.require(:grantee).permit!
     end
     
     #fetch search records
     def get_records(search, page)
-      grantee_query = Grantee.search(search)
+      grantee_query = @cemetery.grantees.search(search)
       grantee_query.order(sort_column + " " + sort_direction).paginate(:per_page => 10, :page => page)
     end    
     

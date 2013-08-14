@@ -2,6 +2,14 @@
   <fieldset>
     <legend></legend>
  
+ 		<%= f.hidden_field :cemetery_id, :value => session[:cemetery_id] %>	
+     <div class="control-group">
+      <%= f.label :area_id, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.select :area_id, options_for_select(get_model_data_code("Area", true), (@o_single.area.id unless @o_single.area.nil?))  %>
+      </div>
+    </div>
+ 
     <div class="control-group">
       <%= f.label :name, :class => 'control-label' %><span class="redStart">*</span>
       <div class="controls">
@@ -11,6 +19,19 @@
       	<% end %> 
       </div>
     </div>
+
+    <div class="control-group">
+      <%= f.label :code, :class => 'control-label' %><span class="redStart">*</span>
+      <div class="controls">
+        <%= f.text_field :code, :class => 'text_field' %>
+       	<% if @o_single.errors[:code].any? %>
+        	<span class="text-error text-message"><%= @o_single.errors[:code].first %></span>
+      	<% end %> 
+      </div>
+    </div>
+    
+		<div class="control-group"><%= f.label :user, :class => 'control-label' %><div class="controls"><%= f.text_field :user, :class => 'text_field' %></div></div>
+		<div class="control-group"><%= f.label :map, :class => 'control-label' %><div class="controls"><%= f.file_field :map, :class => 'text_field' %></div></div>
  
     <div class="control-group">
       <%= f.label :is_active, :class => 'control-label' %>

@@ -78,12 +78,12 @@ class RoomsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def room_params
-      params.require(:room).permit(:name, :is_active)
+      params.require(:room).permit!
     end
     
     #fetch search records
     def get_records(search, page)
-      room_query = Room.search(search)
+      room_query = @cemetery.rooms.search(search)
       room_query.order(sort_column + " " + sort_direction).paginate(:per_page => 10, :page => page)
     end    
     

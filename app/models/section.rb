@@ -4,7 +4,14 @@ class Section < ActiveRecord::Base
   
   has_many :rows, :dependent => :destroy
   has_many :plots, :dependent => :destroy
-  has_many :graves, :dependent => :destroy    
+  has_many :graves, :dependent => :destroy
+      
   validates :name, :presence => true
-  include SearchHandler  
+  validates :code, :presence => true
+  
+  include SearchHandler
+  
+  mount_uploader :map, ImageUploader
+  
+  scope :active, -> {where(:is_active => true)}  
 end

@@ -7,7 +7,7 @@ class CreateAreas < ActiveRecord::Migration
       t.string   "control_number"
       t.string   "name"
       t.string   "user"
-      t.string   "map_path"
+      t.string   "map"
       t.boolean  "is_active",                      default: true
       t.timestamps
     end

@@ -78,12 +78,12 @@ class GravesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def grave_params
-      params.require(:grave).permit(:grave_number, :is_active)
+      params.require(:grave).permit!
     end
     
     #fetch search records
     def get_records(search, page)
-      grave_query = Grave.search(search)
+      grave_query = @cemetery.graves.search(search)
       grave_query.order(sort_column + " " + sort_direction).paginate(:per_page => 10, :page => page)
     end    
     

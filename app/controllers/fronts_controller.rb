@@ -13,6 +13,10 @@ class FrontsController < ApplicationController
   def show_search_box
     @o_single = params[:model].constantize.new
     @params_arr = params[:pm].split(',')
+  end
+  
+  def get_area
+    
   end  
   
 	#forgot password

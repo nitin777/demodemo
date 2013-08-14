@@ -37,6 +37,8 @@ Ocms::Application.routes.draw do
   
   get 'dashboard' => 'fronts#dashboard', :as => :dashboard
   get '/other/:page_id' => 'fronts#other', :as => :other
+  get '/get_area' => 'fronts#get_area', :as => :get_area
+  
   match '/forgot_password' => 'fronts#forgot_password', :as => :forgot_password, via: [:get, :post]
   match '/change_password' => 'fronts#change_password', :as => :change_password, via: [:get, :post, :patch]
     

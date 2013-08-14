@@ -13,7 +13,7 @@ class CreateUsers < ActiveRecord::Migration
       t.references :cemetery
       t.string :organization
       t.text :address      
-      t.text :subrub
+      t.text :suburb_town
       t.string :state
       t.string :postal_code
       t.string :phone_area_code

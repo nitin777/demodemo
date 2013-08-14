@@ -78,12 +78,12 @@ class RowsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def row_params
-      params.require(:row).permit(:name, :is_active)
+      params.require(:row).permit!
     end
     
     #fetch search records
     def get_records(search, page)
-      row_query = Row.search(search)
+      row_query = @cemetery.rows.search(search)
       row_query.order(sort_column + " " + sort_direction).paginate(:per_page => 10, :page => page)
     end    
     

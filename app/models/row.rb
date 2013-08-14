@@ -7,5 +7,10 @@ class Row < ActiveRecord::Base
   has_many :graves, :dependent => :destroy  
     
   validates :name, :presence => true
-  include SearchHandler  
+  
+  include SearchHandler
+  
+  mount_uploader :map, ImageUploader
+  
+  scope :active, -> {where(:is_active => true)}  
 end

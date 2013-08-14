@@ -7,7 +7,7 @@ class AreasController < ApplicationController
   # GET /areas.json
   def index
     @o_all = get_records(params[:area], params[:page])
-    @search_fields = ['name']
+    @search_fields = ['name', 'code']
     session[:area] = params[:area] if params[:area]
   end
 
@@ -78,12 +78,12 @@ class AreasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def area_params
-      params.require(:area).permit(:name, :is_active)
+      params.require(:area).permit!
     end
     
     #fetch search records
     def get_records(search, page)
-      area_query = Area.search(search)
+      area_query = @cemetery.areas.search(search)
       area_query.order(sort_column + " " + sort_direction).paginate(:per_page => 10, :page => page)
     end    
     

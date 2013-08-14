@@ -10,4 +10,21 @@ module ApplicationHelper
   def get_all_pages
 		StaticPage.footer	
   end
+  
+  def get_model_data(m, cemetery=false)
+    if cemetery
+      [["Select", ""]] + m.constantize.active.where(:cemetery_id => @cemetery.id).collect {|r| [r.name, r.id]}
+    else
+      [["Select", ""]] + m.constantize.active.collect {|r| [r.name, r.id]}
+    end    
+  end
+  
+  def get_model_data_code(m, cemetery=false)
+    if cemetery
+      [["Select", ""]] + m.constantize.active.where(:cemetery_id => @cemetery.id).collect {|r| [r.code, r.id]}
+    else
+      [["Select", ""]] + m.constantize.active.collect {|r| [r.code, r.id]}
+    end    
+  end  
+  
 end

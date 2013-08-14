@@ -78,12 +78,12 @@ class ChapelsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def chapel_params
-      params.require(:chapel).permit(:name, :is_active)
+      params.require(:chapel).permit!
     end
     
     #fetch search records
     def get_records(search, page)
-      chapel_query = Chapel.search(search)
+      chapel_query = @cemetery.chapels.search(search)
       chapel_query.order(sort_column + " " + sort_direction).paginate(:per_page => 10, :page => page)
     end    
     
