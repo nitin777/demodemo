@@ -15,9 +15,61 @@ class FrontsController < ApplicationController
     @params_arr = params[:pm].split(',')
   end
   
-  def get_area
-    
-  end  
+  def get_section_from_area
+    unless params[:row][:area_id].blank?
+      @sections = Section.where(:area_id => params[:row][:area_id])
+    else
+      @sections = @cemetery.sections.active
+    end
+  end 
+  
+  def get_section_row_from_area
+    unless params[:plot][:area_id].blank?
+      @sections = Section.where(:area_id => params[:plot][:area_id])
+      @rows = Row.where(:area_id => params[:plot][:area_id])
+    else
+      @sections = @cemetery.sections.active
+      @rows = @cemetery.rows.active
+    end    
+  end 
+  
+  def get_row_from_section
+    unless params[:plot][:section_id].blank?
+      @rows = Row.where(:section_id => params[:plot][:section_id])
+    else
+      @rows = @cemetery.rows.active
+    end   
+  end
+  
+  def get_section_row_plot_from_area
+    unless params[:grafe][:area_id].blank?
+      @sections = Section.where(:area_id => params[:grafe][:area_id])
+      @rows = Row.where(:area_id => params[:grafe][:area_id])
+      @plots = Plot.where(:area_id => params[:grafe][:area_id])
+    else
+      @sections = @cemetery.sections.active
+      @rows = @cemetery.rows.active
+      @plots = @cemetery.plots.active
+    end    
+  end
+  
+  def get_row_plot_from_section
+    unless params[:grafe][:section_id].blank?
+      @rows = Row.where(:section_id => params[:grafe][:section_id])
+      @plots = Plot.where(:section_id => params[:grafe][:section_id])
+    else
+      @rows = @cemetery.rows.active
+      @plots = @cemetery.plots.active
+    end    
+  end
+  
+  def get_plot_from_row
+    unless params[:grafe][:row_id].blank?
+      @plots = Plot.where(:row_id => params[:grafe][:row_id])
+    else
+      @plots = @cemetery.plots.active
+    end    
+  end
   
 	#forgot password
   def forgot_password

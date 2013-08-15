@@ -6,23 +6,33 @@
    	<div class="control-group">
       <%= f.label :area_id, :class => 'control-label' %>
       <div class="controls">
-        <%= f.select :area_id, options_for_select(get_model_data_code("Area", true), (@o_single.area.id unless @o_single.area.nil?))  %>
+        <%= select_tag "plot[area_id]", options_for_select(get_model_data_code("Area", true), (@o_single.area.id unless @o_single.area.nil?)),
+        							:data => { :remote => true, :url => url_for(:controller => "fronts", 
+                                 :action => "get_section_row_from_area"
+                                 ) } %>
       </div>
     </div>
     
-   	<div class="control-group">
-      <%= f.label :section_id, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.select :section_id, options_for_select(get_model_data_code("Section", true), (@o_single.section.id unless @o_single.section.nil?))  %>
-      </div>
-    </div>
-    
-   	<div class="control-group">
-      <%= f.label :row_id, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.select :row_id, options_for_select(get_model_data("Row", true), (@o_single.row.id unless @o_single.row.nil?))  %>
-      </div>
-    </div>    		
+    <div id="div_update_section_row">
+	   	<div class="control-group">
+	      <%= f.label :section_id, :class => 'control-label' %>
+	      <div class="controls">
+	        <%= select_tag "plot[section_id]", options_for_select(get_model_data_code("Section", true), (@o_single.section.id unless @o_single.section.nil?)),
+	        							:data => { :remote => true, :url => url_for(:controller => "fronts", 
+	                                 :action => "get_row_from_section"
+	                                 ) } %>
+	      </div>                           
+     	</div>	      
+	  
+			<div id="div_update_row">
+		   	<div class="control-group">
+		      <%= f.label :row_id, :class => 'control-label' %>
+		      <div class="controls">
+		        <%= f.select :row_id, options_for_select(get_model_data("Row", true), (@o_single.row.id unless @o_single.row.nil?))  %>
+		      </div>
+		    </div>  
+		  </div>    		
+		</div>
 		 
     <div class="control-group">
       <%= f.label :name, :class => 'control-label' %><span class="redStart">*</span>
@@ -52,3 +62,9 @@
   </fieldset>
      
 <% end %>
+
+<script>
+$("#plot_area_id").change(function () {
+  $("#spinner").show();
+});
+</script>

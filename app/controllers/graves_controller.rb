@@ -6,13 +6,13 @@ class GravesController < ApplicationController
   # GET /graves
   # GET /graves.json
   def index
-    @o_all = get_records(params[:grave], params[:page])
+    @o_all = get_records(params[:grafe], params[:page])
     @search_fields = ['grave_number']
-    session[:grave] = params[:grave] if params[:grave]
+    session[:grafe] = params[:grafe] if params[:grafe]
   end
 
   def show_grave_search
-    @o_single = Grave.new
+    @o_single = Grafe.new
   end
 
   # GET /graves/1
@@ -22,7 +22,7 @@ class GravesController < ApplicationController
 
   # GET /graves/new
   def new
-    @o_single = Grave.new
+    @o_single = Grafe.new
   end
 
   # GET /graves/1/edit
@@ -32,7 +32,7 @@ class GravesController < ApplicationController
   # POST /graves
   # POST /graves.json
   def create
-    @o_single = Grave.new(grave_params)
+    @o_single = Grafe.new(grave_params)
 
     respond_to do |format|
       if @o_single.save
@@ -73,12 +73,12 @@ class GravesController < ApplicationController
   
     # Use callbacks to share common setup or constraints between actions.
     def set_grave
-      @o_single = Grave.find(params[:id])
+      @o_single = Grafe.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def grave_params
-      params.require(:grave).permit!
+      params.require(:grafe).permit!
     end
     
     #fetch search records
@@ -94,7 +94,7 @@ class GravesController < ApplicationController
     
     #column sort
     def sort_column
-      Grave.column_names.include?(params[:sort]) ? params[:sort] : "id"
+      Grafe.column_names.include?(params[:sort]) ? params[:sort] : "id"
     end
   
     #column sort

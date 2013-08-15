@@ -1,7 +1,57 @@
 <%= form_for @o_single, :html => { :class => 'form-horizontal' } do |f| %>
   <fieldset>
     <legend></legend>
- 
+		<%= f.hidden_field :cemetery_id, :value => session[:cemetery_id] %>
+		
+   	<div class="control-group">
+      <%= f.label :area_id, :class => 'control-label' %>
+      <div class="controls">
+        <%= select_tag "grafe[area_id]", options_for_select(get_model_data_code("Area", true), (@o_single.area.id unless @o_single.area.nil?)),
+        							:data => { :remote => true, :url => url_for(:controller => "fronts", 
+                                 :action => "get_section_row_plot_from_area"
+                                 ) } %>
+      </div>
+    </div>
+    
+    <div id="div_update_section_row_plot">
+    	
+	   	<div class="control-group">
+	      <%= f.label :section_id, :class => 'control-label' %>
+	      <div class="controls">
+	        <%= select_tag "grafe[section_id]", options_for_select(get_model_data_code("Section", true), (@o_single.section.id unless @o_single.section.nil?)),
+	        							:data => { :remote => true, :url => url_for(:controller => "fronts", 
+	                                 :action => "get_row_plot_from_section"
+	                                 ) } %>
+	      </div>                           
+     	</div>	      
+	  
+			<div id="div_update_row_plot">
+				
+		   	<div class="control-group">
+		      <%= f.label :row_id, :class => 'control-label' %>
+		      <div class="controls">
+		        <%= select_tag "grafe[row_id]", options_for_select(get_model_data("Row", true), (@o_single.row.id unless @o_single.row.nil?)), 
+	        							:data => { :remote => true, :url => url_for(:controller => "fronts", 
+	                                 :action => "get_plot_from_row"
+	                                 ) } %>
+		      </div>
+		    </div>
+		  	
+		  	<div id="div_update_plot">
+		  		
+			   	<div class="control-group">
+			      <%= f.label :plot_id, :class => 'control-label' %>
+			      <div class="controls">
+			        <%= f.select :plot_id, options_for_select(get_model_data("Plot", true), (@o_single.plot.id unless @o_single.plot.nil?))  %>
+			      </div>
+			    </div>
+			   
+			  </div>  
+		    
+		  </div>
+		      		
+		</div>
+		 
     <div class="control-group">
       <%= f.label :grave_number, :class => 'control-label' %><span class="redStart">*</span>
       <div class="controls">
@@ -11,6 +61,14 @@
       	<% end %> 
       </div>
     </div>
+ 		<div class="control-group"><%= f.label :details, :class => 'control-label' %><div class="controls"><%= f.text_area :details, :class => 'text_field' %></div></div>
+    <div class="control-group"><%= f.label :latitude, :class => 'control-label' %><div class="controls"><%= f.text_field :latitude, :class => 'text_field' %></div></div>
+    <div class="control-group"><%= f.label :longitude, :class => 'control-label' %><div class="controls"><%= f.text_field :longitude, :class => 'text_field' %></div></div>
+    <div class="control-group"><%= f.label :image_1, :class => 'control-label' %><div class="controls"><%= f.file_field :image_1, :class => 'text_field' %></div></div>
+		<div class="control-group"><div class="controls"><% if @o_single.image_1? %><%= image_tag @o_single.image_1_url(:logo) %><% end %></div></div>     
+    <div class="control-group"><%= f.label :image_2, :class => 'control-label' %><div class="controls"><%= f.file_field :image_2, :class => 'text_field' %></div></div>
+    <div class="control-group"><div class="controls"><% if @o_single.image_2? %><%= image_tag @o_single.image_2_url(:logo) %><% end %></div></div>    
+ 
  
     <div class="control-group">
       <%= f.label :is_active, :class => 'control-label' %>

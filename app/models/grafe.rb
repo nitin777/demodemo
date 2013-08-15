@@ -1,4 +1,4 @@
-class Grave < ActiveRecord::Base
+class Grafe < ActiveRecord::Base
   belongs_to :cemetery
   belongs_to :area
   belongs_to :section

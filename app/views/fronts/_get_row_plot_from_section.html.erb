@@ -1,0 +1,20 @@
+<div class="control-group">
+  <label class="control-label"><%= "Row" %></label>
+  <div class="controls">
+    <%= select_tag "grafe[row_id]", options_for_select([["Select", ""]] + @rows.collect {|r| [r.name, r.id]}),
+  							:data => { :remote => true, :url => url_for(:controller => "fronts", 
+                           :action => "get_plot_from_row"
+                           ) } %>
+  </div>
+</div>
+
+<div id="div_update_plot">
+	
+ 	<div class="control-group">
+    <label class="control-label"><%= "Plot" %></label>
+    <div class="controls">
+      <%= select_tag "grafe[plot_id]", options_for_select([["Select", ""]] + @plots.collect {|r| [r.name, r.id]})  %>
+    </div>
+  </div>
+ 
+</div>  

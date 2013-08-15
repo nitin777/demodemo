@@ -1,0 +1,6 @@
+<div class="control-group">
+  <label class="control-label"><%= "Section" %></label>
+  <div class="controls">
+    <%= select_tag "row[section_id]", options_for_select([["Select", ""]] + @sections.collect {|r| [r.code, r.id]})  %>
+  </div>
+</div>

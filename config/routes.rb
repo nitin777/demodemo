@@ -37,7 +37,16 @@ Ocms::Application.routes.draw do
   
   get 'dashboard' => 'fronts#dashboard', :as => :dashboard
   get '/other/:page_id' => 'fronts#other', :as => :other
-  get '/get_area' => 'fronts#get_area', :as => :get_area
+  get '/get_section_from_area' => 'fronts#get_section_from_area', :as => :get_section_from_area
+  get '/get_section_row_from_area' => 'fronts#get_section_row_from_area', :as => :get_section_row_from_area  
+  get '/get_row_from_section' => 'fronts#get_row_from_section', :as => :get_row_from_section
+  get '/get_section_row_plot_from_area' => 'fronts#get_section_row_plot_from_area', :as => :get_section_row_plot_from_area
+  get '/get_row_plot_from_section' => 'fronts#get_row_plot_from_section', :as => :get_row_plot_from_section
+  get '/get_plot_from_row' => 'fronts#get_plot_from_row', :as => :get_plot_from_row
+  
+  
+  
+
   
   match '/forgot_password' => 'fronts#forgot_password', :as => :forgot_password, via: [:get, :post]
   match '/change_password' => 'fronts#change_password', :as => :change_password, via: [:get, :post, :patch]
