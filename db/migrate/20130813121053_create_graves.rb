@@ -7,7 +7,8 @@ class CreateGraves < ActiveRecord::Migration
       t.references :row 
       t.references :plot
       t.references :grave_status
-      t.references :stonemason
+      t.references :stone_mason
+      t.references :monument
       t.string   "grave_number"
       t.string   "image_1"
       t.string   "image_2"
@@ -16,16 +17,8 @@ class CreateGraves < ActiveRecord::Migration
       t.string   "height"
       t.references :unit_type
       t.text     "details"
-      t.string   "monument"
-      t.string   "monuments_grave_position"
-      t.integer  "monuments_unit_type_id"
-      t.string   "monuments_depth"
-      t.string   "monuments_width"
-      t.string   "monuments_length"
       t.string   "latitude"
       t.string   "longitude"
-      t.text     "comment_1"
-      t.text     "comment_2"
       t.boolean  "is_active",                          default: true
       t.timestamps
     end

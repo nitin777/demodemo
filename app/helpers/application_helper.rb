@@ -11,6 +11,22 @@ module ApplicationHelper
 		StaticPage.footer	
   end
   
+  def get_stone_masons
+    if @cemetery
+      [["Select", ""]] + @cemetery.users.all_stone_masons.active.collect {|r| [r.username, r.id]}
+    else
+      [["Select", ""]] + User.all_stone_masons.active.collect {|r| [r.username, r.id]}
+    end     
+  end
+  
+  def get_cemetery_data(country)
+    if country
+      [["Select", ""]] + country.cemeteries.active.collect {|r| [r.name, r.id]}
+    else
+      [["Select", ""]]
+    end     
+  end
+  
   def get_model_data(m, cemetery=false)
     if cemetery
       [["Select", ""]] + m.constantize.active.where(:cemetery_id => @cemetery.id).collect {|r| [r.name, r.id]}

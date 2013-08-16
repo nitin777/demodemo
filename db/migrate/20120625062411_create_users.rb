@@ -10,6 +10,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :crypted_password, :null => true
       t.string :password_salt, :null => true
       t.string :persistence_token, :null => true
+      t.references :country
       t.references :cemetery
       t.string :organization
       t.text :address      

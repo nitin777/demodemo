@@ -1,8 +1,11 @@
 <table class="table table-striped">
  <thead> 
   <tr>
-    <th width="90%"><%= sortable "first_name", t("general.first_name") %></th>
-    <th width="10%"><%= t("general.actions") %></th>
+  	
+  	<th width="20%"><%= sortable "grantee_unique_id", t("general.grantee_unique_id") %></th>
+  	<th width="20%"><%= sortable "surname", t("general.surname") %></th>
+    <th width="20%"><%= sortable "first_name", t("general.first_name") %></th>
+    <th width="15%"><%= t("general.actions") %></th>
   </tr>
  </thead> 
   
@@ -10,6 +13,8 @@
     <% if @o_all.size > 0 %>
       <% @o_all.each do |o_row| %>
         <tr>
+        	<td><%= o_row.grantee_unique_id %></td>
+        	<td><%= o_row.surname %></td>
           <td><%= o_row.first_name %></td>
           <td> 
 			      <%= link_to t('.edit', :default => t("helpers.links.edit")),

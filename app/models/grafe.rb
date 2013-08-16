@@ -5,9 +5,10 @@ class Grafe < ActiveRecord::Base
   belongs_to :row
   belongs_to :plot
   belongs_to :grave_status
-  belongs_to :stone_mason  
+  belongs_to :monument
   belongs_to :unit_type
   has_many :grantee_graves, :dependent => :destroy
+  belongs_to :stone_mason, class_name: 'User'
   
   validates :grave_number, :presence => true
   

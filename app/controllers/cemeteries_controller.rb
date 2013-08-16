@@ -20,6 +20,7 @@ class CemeteriesController < ApplicationController
   # GET /cemeteries/1.json
   def show
     session[:cemetery_id] = params[:id] if params[:id]
+    redirect_to areas_url
   end
 
   # GET /cemeteries/new

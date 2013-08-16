@@ -1,4 +1,5 @@
 <%= form_for @user_session, :html => { :class => 'form-horizontal' } do |f| %>
+<h2 class="form-signin-heading"><%= t("general.login") %></h2>
   <fieldset>
   	<legend></legend>
 	  <% if @user_session.errors.any? %>

@@ -1,0 +1,64 @@
+		<%= f.hidden_field :cemetery_id, :value => session[:cemetery_id] %>
+		<%= f.hidden_field :user_id, :value => current_user.id %>
+		 
+    <div class="control-group">
+      <%= f.label :is_private, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.check_box :is_private, :class => 'check_box' %>
+      </div>
+    </div>		 
+    
+    <div class="control-group">
+      <%= f.label :service_type_id, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.select :service_type_id, options_for_select(get_model_data("ServiceType"), (@o_single.service_type.id unless @o_single.service_type.nil?))  %>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <%= f.label :catalog_id, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.select :catalog_id, options_for_select(get_model_data("Catalog"), (@o_single.catalog.id unless @o_single.catalog.nil?))  %>
+      </div>
+    </div> 
+    
+    <div class="control-group">
+      <%= f.label :payment_status_id, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.select :payment_status_id, options_for_select(get_model_data("PaymentStatus"), (@o_single.payment_status.id unless @o_single.payment_status.nil?))  %>
+      </div>
+    </div>             
+		 
+    <div class="control-group">
+      <%= f.label :deceased_title, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :deceased_title, :class => 'text_field' %>
+      </div>
+    </div>		 
+		 
+    <div class="control-group">
+      <%= f.label :deceased_surname, :class => 'control-label' %><span class="redStart">*</span>
+      <div class="controls">
+        <%= f.text_field :deceased_surname, :class => 'text_field' %>
+       	<% if @o_single.errors[:deceased_surname].any? %>
+        	<span class="text-error text-message"><%= @o_single.errors[:deceased_surname].first %></span>
+      	<% end %> 
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <%= f.label :deceased_first_name, :class => 'control-label' %><span class="redStart">*</span>
+      <div class="controls">
+        <%= f.text_field :deceased_first_name, :class => 'text_field' %>
+       	<% if @o_single.errors[:deceased_first_name].any? %>
+        	<span class="text-error text-message"><%= @o_single.errors[:deceased_first_name].first %></span>
+      	<% end %> 
+      </div>
+    </div>    
+ 
+     <div class="control-group">
+      <%= f.label :deceased_middle_name, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :deceased_middle_name, :class => 'text_field' %>
+      </div>
+    </div>

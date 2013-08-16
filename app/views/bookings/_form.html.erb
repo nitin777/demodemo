@@ -1,0 +1,41 @@
+<%= form_for @o_single, :html => { :class => 'form-horizontal' } do |f| %>
+  <fieldset>
+    <legend></legend>
+    
+		<ul class="nav nav-tabs" id="myTab">
+			<li class="active"><a href="#booking"><%= t("general.booking") %></a></li>
+			<li><a href="#allocation"><%= t("general.allocation") %></a></li>
+			<li><a href="#checklist"><%= t("general.checklist") %></a></li>
+			<li><a href="#deceased"><%= t("general.deceased") %></a></li>
+			<li><a href="#applicant"><%= t("general.applicant") %></a></li>
+			<li><a href="#letters"><%= t("general.letters") %></a></li>
+		</ul>    
+    
+		<div class="tab-content">
+			<div class="tab-pane active" id="booking"><%= render "bookings/details/booking", :f => f %></div>
+			<div class="tab-pane" id="allocation"><%= render "bookings/details/allocation", :f => f %></div>
+			<div class="tab-pane" id="checklist"><%= render "bookings/details/checklist", :f => f %></div>
+			<div class="tab-pane" id="deceased"><%= render "bookings/details/deceased", :f => f %></div>
+			<div class="tab-pane" id="applicant"><%= render "bookings/details/applicant", :f => f %></div>
+			<div class="tab-pane" id="letters"><%= render "bookings/details/letters", :f => f %></div>
+		</div>    
+    
+    
+    <div class="form-actions">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to 'Cancel', bookings_url, :class => 'btn' %>
+    </div>
+    
+  </fieldset>
+     
+<% end %>
+<script>
+    $('#myTab a').click(function (e) {
+    e.preventDefault();
+    $(this).tab('show');
+    })
+    
+ $(function () {
+$('#myTab a:first').tab('show');
+})    
+</script>    

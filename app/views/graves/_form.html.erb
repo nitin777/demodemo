@@ -61,7 +61,40 @@
       	<% end %> 
       </div>
     </div>
+    
+   	<div class="control-group">
+      <%= f.label :grave_status_id, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.select :grave_status_id, options_for_select(get_model_data("GraveStatus"), (@o_single.grave_status.id unless @o_single.grave_status.nil?)) %>
+      </div>
+    </div>    
+
+    <div class="control-group"><%= f.label :length, :class => 'control-label' %><div class="controls"><%= f.text_field :length, :class => 'text_field' %></div></div>
+    <div class="control-group"><%= f.label :width, :class => 'control-label' %><div class="controls"><%= f.text_field :width, :class => 'text_field' %></div></div>
+    <div class="control-group"><%= f.label :height, :class => 'control-label' %><div class="controls"><%= f.text_field :height, :class => 'text_field' %></div></div>
+    
+   	<div class="control-group">
+      <%= f.label :unit_type_id, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.select :unit_type_id, options_for_select(get_model_data("UnitType"), (@o_single.unit_type.id unless @o_single.unit_type.nil?)) %>
+      </div>
+    </div>
+    
  		<div class="control-group"><%= f.label :details, :class => 'control-label' %><div class="controls"><%= f.text_area :details, :class => 'text_field' %></div></div>
+  
+   	<div class="control-group">
+      <%= f.label :stone_mason_id, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.select :stone_mason_id, options_for_select(get_stone_masons, (@o_single.stone_mason.id unless @o_single.stone_mason.nil?)) %>
+      </div>
+    </div>  
+   	<div class="control-group">
+      <%= f.label :monument_id, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.select :monument_id, options_for_select(get_model_data("Monument", true), (@o_single.monument.id unless @o_single.monument.nil?)) %>
+      </div>
+    </div>
+
     <div class="control-group"><%= f.label :latitude, :class => 'control-label' %><div class="controls"><%= f.text_field :latitude, :class => 'text_field' %></div></div>
     <div class="control-group"><%= f.label :longitude, :class => 'control-label' %><div class="controls"><%= f.text_field :longitude, :class => 'text_field' %></div></div>
     <div class="control-group"><%= f.label :image_1, :class => 'control-label' %><div class="controls"><%= f.file_field :image_1, :class => 'text_field' %></div></div>

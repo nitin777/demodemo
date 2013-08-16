@@ -71,6 +71,14 @@ class FrontsController < ApplicationController
     end    
   end
   
+  def get_cemetery_from_country
+    unless params[:user][:country_id].blank?
+      @cemeteries = Cemetery.where(:country_id => params[:user][:country_id])
+    else
+      @cemeteries = nil
+    end     
+  end
+  
 	#forgot password
   def forgot_password
 		@user = User.new

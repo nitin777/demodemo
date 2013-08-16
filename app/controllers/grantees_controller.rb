@@ -7,7 +7,7 @@ class GranteesController < ApplicationController
   # GET /grantees.json
   def index
     @o_all = get_records(params[:grantee], params[:page])
-    @search_fields = ['first_name']
+    @search_fields = ['surname', 'first_name']
     session[:grantee] = params[:grantee] if params[:grantee]
   end
 
@@ -36,6 +36,8 @@ class GranteesController < ApplicationController
 
     respond_to do |format|
       if @o_single.save
+        @o_single.grantee_unique_id = @o_single.id.to_s + SecureRandom.hex(10).to_s + @o_single.id.to_s 
+        @o_single.save
         format.html { redirect_to grantees_url, notice: t("general.successfully_created") }
         format.json { render action: 'show', status: :created, location: @o_single }
       else

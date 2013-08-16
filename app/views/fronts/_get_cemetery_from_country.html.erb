@@ -1,0 +1,10 @@
+<div class="control-group">
+  <label class="control-label"><%= "Cemetery" %></label><span class="redStart">*</span>
+  <div class="controls">
+  	<% if @cemeteries %>
+    	<%= select_tag "user[cemetery_id]", options_for_select([["Select", ""]] + @cemeteries.collect {|r| [r.name, r.id]})  %>
+    <% else %>
+    	<%= select_tag "user[cemetery_id]", options_for_select([["Select", ""]])  %>
+    <% end %>	
+  </div>
+</div>

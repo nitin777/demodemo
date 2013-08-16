@@ -19,6 +19,7 @@ Ocms::Application.routes.draw do
   resources :grantee_graves
   resources :graves
   resources :grave_statuses
+  resources :monuments
   
   resources :identities
   resources :payment_statuses
@@ -27,7 +28,6 @@ Ocms::Application.routes.draw do
   resources :rows
   resources :sections
   resources :service_types
-  resources :stone_masons
   resources :stone_mason_work_types
   resources :unit_types
   
@@ -43,6 +43,7 @@ Ocms::Application.routes.draw do
   get '/get_section_row_plot_from_area' => 'fronts#get_section_row_plot_from_area', :as => :get_section_row_plot_from_area
   get '/get_row_plot_from_section' => 'fronts#get_row_plot_from_section', :as => :get_row_plot_from_section
   get '/get_plot_from_row' => 'fronts#get_plot_from_row', :as => :get_plot_from_row
+  get '/get_cemetery_from_country' => 'fronts#get_cemetery_from_country', :as => :get_cemetery_from_country
   
   
   

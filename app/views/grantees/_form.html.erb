@@ -1,7 +1,9 @@
 <%= form_for @o_single, :html => { :class => 'form-horizontal' } do |f| %>
   <fieldset>
     <legend></legend>
- 
+
+		<%= f.hidden_field :cemetery_id, :value => session[:cemetery_id] %>
+		<div class="control-group"><%= f.label :title, :class => 'control-label' %><div class="controls"><%= f.text_field :title, :class => 'text_field' %></div></div>
     <div class="control-group">
       <%= f.label :first_name, :class => 'control-label' %><span class="redStart">*</span>
       <div class="controls">
@@ -10,8 +12,31 @@
         	<span class="text-error text-message"><%= @o_single.errors[:first_name].first %></span>
       	<% end %> 
       </div>
+    </div>		 
+    <div class="control-group">
+      <%= f.label :surname, :class => 'control-label' %><span class="redStart">*</span>
+      <div class="controls">
+        <%= f.text_field :surname, :class => 'text_field' %>
+       	<% if @o_single.errors[:surname].any? %>
+        	<span class="text-error text-message"><%= @o_single.errors[:surname].first %></span>
+      	<% end %> 
+      </div>
     </div>
- 
+ 		<div class="control-group"><%= f.label :middle_name, :class => 'control-label' %><div class="controls"><%= f.text_field :middle_name, :class => 'text_field' %></div></div>
+ 		<div class="control-group"><%= f.label :date_of_birth, :class => 'control-label' %><div class="controls"><%= f.text_field :date_of_birth, :class => 'text_field' %></div></div>
+    <div class="control-group"><%= f.label :address, :class => 'control-label' %><div class="controls"><%= f.text_field :address, :class => 'text_field' %></div></div>
+    <div class="control-group"><%= f.label :town, :class => 'control-label' %><div class="controls"><%= f.text_field :town, :class => 'text_field' %></div></div>
+    <div class="control-group"><%= f.label :state, :class => 'control-label' %><div class="controls"><%= f.text_field :state, :class => 'text_field' %></div></div>
+    <div class="control-group"><%= f.label :postal_code, :class => 'control-label' %><div class="controls"><%= f.text_field :postal_code, :class => 'text_field' %></div></div>
+    <div class="control-group"><%= f.label :phone_area_code, :class => 'control-label' %><div class="controls"><%= f.text_field :phone_area_code, :class => 'text_field' %></div></div>
+    <div class="control-group"><%= f.label :phone, :class => 'control-label' %><div class="controls"><%= f.text_field :phone, :class => 'text_field' %></div></div>
+    <div class="control-group"><%= f.label :fax_area_code, :class => 'control-label' %><div class="controls"><%= f.text_field :fax_area_code, :class => 'text_field' %></div></div>
+    <div class="control-group"><%= f.label :fax, :class => 'control-label' %><div class="controls"><%= f.text_field :fax, :class => 'text_field' %></div></div>    
+    <div class="control-group"><%= f.label :email, :class => 'control-label' %><div class="controls"><%= f.text_field :email, :class => 'text_field' %></div></div>
+		<div class="control-group"><%= f.label :remarks_1, :class => 'control-label' %><div class="controls"><%= f.text_area :remarks_1, :class => 'text_field' %></div></div>		
+		<div class="control-group"><%= f.label :remarks_2, :class => 'control-label' %><div class="controls"><%= f.text_area :remarks_2, :class => 'text_field' %></div></div>
+    
+
 
     <div class="form-actions">
       <%= f.submit nil, :class => 'btn btn-primary' %>

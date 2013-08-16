@@ -8,7 +8,11 @@ class Cemetery < ActiveRecord::Base
   has_many :grantees, :dependent => :destroy
   has_many :chapels, :dependent => :destroy
   has_many :rooms, :dependent => :destroy
-  has_many :stone_masons, :dependent => :destroy
+  has_many :monuments, :dependent => :destroy
+  has_many :catalogs, :dependent => :destroy  
+  has_many :bookings, :dependent => :destroy  
+  
+  has_many :users, :dependent => :destroy
   
   validates :name, :presence => true
   validates :country_id, :presence => true

@@ -1,0 +1,44 @@
+<%= form_for @o_single, :html => { :class => 'form-horizontal' } do |f| %>
+  <fieldset>
+    <legend></legend>
+		<%= f.hidden_field :cemetery_id, :value => session[:cemetery_id] %> 
+    <div class="control-group">
+      <%= f.label :name, :class => 'control-label' %><span class="redStart">*</span>
+      <div class="controls">
+        <%= f.text_field :name, :class => 'text_field' %>
+       	<% if @o_single.errors[:name].any? %>
+        	<span class="text-error text-message"><%= @o_single.errors[:name].first %></span>
+      	<% end %> 
+      </div>
+    </div>
+    
+    <div class="control-group"><%= f.label :grave_position, :class => 'control-label' %><div class="controls"><%= f.text_field :grave_position, :class => 'text_field' %></div></div>
+    <div class="control-group"><%= f.label :depth, :class => 'control-label' %><div class="controls"><%= f.text_field :depth, :class => 'text_field' %></div></div>
+    <div class="control-group"><%= f.label :width, :class => 'control-label' %><div class="controls"><%= f.text_field :width, :class => 'text_field' %></div></div>
+    <div class="control-group"><%= f.label :length, :class => 'control-label' %><div class="controls"><%= f.text_field :length, :class => 'text_field' %></div></div>
+    
+   	<div class="control-group">
+      <%= f.label :unit_type_id, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.select :unit_type_id, options_for_select(get_model_data("UnitType"), (@o_single.unit_type.id unless @o_single.unit_type.nil?)) %>
+      </div>
+    </div>
+    
+		<div class="control-group"><%= f.label :comment_1, :class => 'control-label' %><div class="controls"><%= f.text_area :comment_1, :class => 'text_field' %></div></div>
+		<div class="control-group"><%= f.label :comment_2, :class => 'control-label' %><div class="controls"><%= f.text_area :comment_2, :class => 'text_field' %></div></div>        
+ 
+    <div class="control-group">
+      <%= f.label :is_active, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.check_box :is_active, :class => 'check_box' %>
+      </div>
+    </div> 
+ 
+    <div class="form-actions">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to 'Cancel', monuments_url, :class => 'btn' %>
+    </div>
+    
+  </fieldset>
+     
+<% end %>

@@ -37,9 +37,9 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @o_single.save
 				@o_single.role = Role.find(params[:role_id])
-			  body = render_to_string(:partial => "common/registration_mail", :locals => { :username => @o_single.username, :password => params[:password] }, :formats => [:html])
-			  body = body.html_safe
-			  UserMailer.registration_confirmation(@o_single.email, body).deliver      	
+			  #body = render_to_string(:partial => "common/registration_mail", :locals => { :username => @o_single.username, :password => params[:password] }, :formats => [:html])
+			  #body = body.html_safe
+			  #UserMailer.registration_confirmation(@o_single.email, body).deliver      	
         format.html { redirect_to users_url, notice: t("general.successfully_created") }
         format.json { render action: 'show', status: :created, location: @o_single }
       else

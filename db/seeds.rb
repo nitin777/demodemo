@@ -8,7 +8,8 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 puts 'load super admin'
-@admin = User.create(:username => 'admin', :first_name => 'admin', :password => 'admin', :password_confirmation => 'admin', :last_name => 'admin', :email => 'admin@economyofone.com', :is_active => 1)
+@admin = User.new(:username => 'admin', :first_name => 'admin', :password => 'admin', :password_confirmation => 'admin', :last_name => 'admin', :email => 'admin@economyofone.com', :is_active => 1)
+@admin.save(:validate => false)
 
 
 puts 'load user roles'

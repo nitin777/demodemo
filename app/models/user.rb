@@ -18,13 +18,23 @@ class User < ActiveRecord::Base
   
 	validates_uniqueness_of :username
 	validates :email, :presence => true
+	validates :country_id, :presence => true
+	validates :cemetery_id, :presence => true
 	has_one :user_role, :dependent => :destroy
 	has_one :role, :through => :user_role
+	
+	belongs_to :cemetery
+	
+	belongs_to :country
 	
 	has_many :grantee_graves
 	has_many :bookings
 	
+	scope :all_stone_masons, joins(:role).where(:roles => { :role_type => "StoneMason" })
+	
 	scope :active, -> {where(:is_active => true)}
+	
+	mount_uploader :image, ImageUploader
 
 	def user_name
 		return self.first_name.blank? ? self.username : (self.first_name.to_s + " " + self.last_name.to_s)
