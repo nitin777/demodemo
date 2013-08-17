@@ -1,0 +1,139 @@
+    <div class="control-group">
+      <%= f.label :interment_date, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :interment_date, :class => 'text_field' %>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <%= f.label :deceased_country_id_death, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.select :deceased_country_id_death, options_for_select(get_model_data("Country"), (@o_single.deceased_country_id_death unless @o_single.deceased_country_id_death.nil?))  %>
+      </div>
+    </div>      
+
+    <div class="control-group">
+      <%= f.label :deceased_country_id_birth, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.select :deceased_country_id_birth, options_for_select(get_model_data("Country"), (@o_single.deceased_country_id_birth unless @o_single.deceased_country_id_birth.nil?))  %>
+      </div>
+    </div>  
+    
+    <div class="control-group">
+      <%= f.label :deceased_country_id, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.select :deceased_country_id, options_for_select(get_model_data("Country"), (@o_single.deceased_country_id unless @o_single.deceased_country_id.nil?))  %>
+      </div>
+    </div>      
+    
+    <div class="control-group">
+      <%= f.label :deceased_place_of_death, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :deceased_place_of_death, :class => 'text_field' %>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <%= f.label :deceased_date_death, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :deceased_date_death, :class => 'text_field' %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :deceased_place_birth, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :deceased_place_birth, :class => 'text_field' %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :deceased_date_birth, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :deceased_date_birth, :class => 'text_field' %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :deceased_age, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :deceased_age, :class => 'text_field' %>
+      </div>
+    </div> 
+    <div class="control-group">
+      <%= f.label :deceased_finageuom, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :deceased_finageuom, :class => 'text_field' %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :deceased_address, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :deceased_address, :class => 'text_field' %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :deceased_suburb, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :deceased_suburb, :class => 'text_field' %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :deceased_state, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :deceased_state, :class => 'text_field' %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :deceased_postal_code, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :deceased_postal_code, :class => 'text_field' %>
+      </div>
+    </div> 
+    
+    <div class="control-group">
+      <%= f.label :deceased_marital_status, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.select :deceased_marital_status, options_for_select(get_marital_status, (@o_single.deceased_marital_status unless @o_single.deceased_marital_status.nil?))  %>
+      </div>
+    </div>  
+        
+    <div class="control-group">
+      <%= f.label :deceased_marital_status, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :deceased_marital_status, :class => 'text_field' %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :deceased_partner_name, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :deceased_partner_name, :class => 'text_field' %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :deceased_partner_surname, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :deceased_partner_surname, :class => 'text_field' %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :deceased_father_name, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :deceased_father_name, :class => 'text_field' %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :deceased_father_surname, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :deceased_father_surname, :class => 'text_field' %>
+      </div>
+    </div>                    
+    <div class="control-group">
+      <%= f.label :deceased_mother_name, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :deceased_mother_name, :class => 'text_field' %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :deceased_mother_maiden_surname, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :deceased_mother_maiden_surname, :class => 'text_field' %>
+      </div>
+    </div>        

@@ -1,0 +1,38 @@
+    <div class="control-group">
+      <%= f.label :coffin_id, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.select :coffin_id, options_for_select(get_model_data("Coffin"), (@o_single.coffin.id unless @o_single.coffin.nil?))  %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :coffin_length, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :coffin_length, :class => 'text_field' %>
+      </div>
+    </div>	
+    <div class="control-group">
+      <%= f.label :coffin_width, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :coffin_width, :class => 'text_field' %>
+      </div>
+    </div>	
+    <div class="control-group">
+      <%= f.label :coffin_height, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :coffin_height, :class => 'text_field' %>
+      </div>
+    </div>	
+    
+    <div class="control-group">
+      <%= f.label :unit_type_id, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.select :unit_type_id, options_for_select(get_model_data("UnitType"), (@o_single.unit_type.id unless @o_single.unit_type.nil?))  %>
+      </div>
+    </div>    
+                
+    <div class="control-group">
+      <%= f.label :coffin_surcharge, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.check_box :coffin_surcharge, :class => 'check_box' %>
+      </div>
+    </div>	

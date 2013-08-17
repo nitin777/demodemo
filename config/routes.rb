@@ -45,8 +45,10 @@ Ocms::Application.routes.draw do
   get '/get_plot_from_row' => 'fronts#get_plot_from_row', :as => :get_plot_from_row
   get '/get_cemetery_from_country' => 'fronts#get_cemetery_from_country', :as => :get_cemetery_from_country
   
-  
-  
+  get '/get_section_row_plot_grave_from_area' => 'fronts#get_section_row_plot_grave_from_area', :as => :get_section_row_plot_grave_from_area
+  get '/get_row_plot_grave_from_section' => 'fronts#get_row_plot_grave_from_section', :as => :get_row_plot_grave_from_section
+  get '/get_plot_grave_from_row' => 'fronts#get_plot_grave_from_row', :as => :get_plot_grave_from_row
+  get '/get_grave_from_plot' => 'fronts#get_grave_from_plot', :as => :get_grave_from_plot
 
   
   match '/forgot_password' => 'fronts#forgot_password', :as => :forgot_password, via: [:get, :post]

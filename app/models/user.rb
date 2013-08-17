@@ -31,6 +31,7 @@ class User < ActiveRecord::Base
 	has_many :bookings
 	
 	scope :all_stone_masons, joins(:role).where(:roles => { :role_type => "StoneMason" })
+	scope :all_funeral_directors, joins(:role).where(:roles => { :role_type => "FuneralDirector" })
 	
 	scope :active, -> {where(:is_active => true)}
 	

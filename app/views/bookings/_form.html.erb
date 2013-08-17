@@ -1,4 +1,4 @@
-<%= form_for @o_single, :html => { :class => 'form-horizontal' } do |f| %>
+<%= form_for setup_booking(@o_single), :html => { :class => 'form-horizontal' } do |f| %>
   <fieldset>
     <legend></legend>
     
@@ -8,7 +8,10 @@
 			<li><a href="#checklist"><%= t("general.checklist") %></a></li>
 			<li><a href="#deceased"><%= t("general.deceased") %></a></li>
 			<li><a href="#applicant"><%= t("general.applicant") %></a></li>
+			<li><a href="#coffin"><%= t("general.coffin") %></a></li>
+			<li><a href="#others"><%= t("general.others") %></a></li>
 			<li><a href="#letters"><%= t("general.letters") %></a></li>
+			
 		</ul>    
     
 		<div class="tab-content">
@@ -17,6 +20,8 @@
 			<div class="tab-pane" id="checklist"><%= render "bookings/details/checklist", :f => f %></div>
 			<div class="tab-pane" id="deceased"><%= render "bookings/details/deceased", :f => f %></div>
 			<div class="tab-pane" id="applicant"><%= render "bookings/details/applicant", :f => f %></div>
+			<div class="tab-pane" id="coffin"><%= render "bookings/details/coffin", :f => f %></div>
+			<div class="tab-pane" id="others"><%= render "bookings/details/others", :f => f %></div>
 			<div class="tab-pane" id="letters"><%= render "bookings/details/letters", :f => f %></div>
 		</div>    
     

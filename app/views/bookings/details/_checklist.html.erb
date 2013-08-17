@@ -1,0 +1,27 @@
+<%= f.fields_for :booking_checklist do |ff| %>
+	<div class="control-group">
+	  <%= ff.label :file_location, :class => 'control-label' %>
+	  <div class="controls">
+	    <%= ff.text_field :file_location, :class => 'text_field' %>
+	  </div>
+	</div>
+  
+  <% 
+  	b_checklist = BookingChecklist.column_names
+  	pop_checklist = ['id', 'booking_id', 'file_location', 'created_at', 'updated_at']
+  	b_checklist = b_checklist - pop_checklist
+  %>
+  
+  <% b_checklist.each do |c| %>
+		<div class="control-group">
+			<%= ff.label c, :class => 'control-label' %>
+			<div class="controls fRight">
+			  <%= ff.radio_button c, 1 %> <span class="mar20"><%= t("general.completed") %></span> 
+			  <%= ff.radio_button c, 2 %> <span class="mar20"><%= t("general.pending") %></span>
+			  <%= ff.radio_button c, 3 %> <span class="mar20"><%= t("general.N/A") %></span>
+			</div>
+		</div>
+	<% end %>	
+	
+	 
+<% end %>

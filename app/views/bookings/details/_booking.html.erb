@@ -6,7 +6,14 @@
       <div class="controls">
         <%= f.check_box :is_private, :class => 'check_box' %>
       </div>
-    </div>		 
+    </div>
+    
+    <div class="control-group">
+      <%= f.label :is_confirmed, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.check_box :is_confirmed, :class => 'check_box' %>
+      </div>
+    </div>		     		 
     
     <div class="control-group">
       <%= f.label :service_type_id, :class => 'control-label' %>
@@ -27,7 +34,51 @@
       <div class="controls">
         <%= f.select :payment_status_id, options_for_select(get_model_data("PaymentStatus"), (@o_single.payment_status.id unless @o_single.payment_status.nil?))  %>
       </div>
-    </div>             
+    </div>         
+    
+    <div class="control-group">
+      <%= f.label :funeral_director_id, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.select :payment_status_id, options_for_select(get_funeral_directors, (@o_single.funeral_director.id unless @o_single.funeral_director.nil?))  %>
+      </div>
+    </div>  
+    
+    <div class="control-group">
+      <%= f.label :date_notified, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :date_notified, :class => 'text_field' %>
+      </div>
+    </div>	
+    
+    <div class="control-group">
+      <%= f.label :service_date1, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :service_date1, :class => 'text_field' %>
+      </div>
+    </div>	
+    
+    <div class="control-group">
+      <%= f.label :service_date2, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :service_date2, :class => 'text_field' %>
+      </div>
+    </div>	
+    
+    <div class="control-group">
+      <%= f.label :service_date3, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :service_date3, :class => 'text_field' %>
+      </div>
+    </div>	  
+    
+    <div class="control-group">
+      <%= f.label :consultant, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :consultant, :class => 'text_field' %>
+      </div>
+    </div>	                   
+    
+           
 		 
     <div class="control-group">
       <%= f.label :deceased_title, :class => 'control-label' %>
@@ -61,4 +112,13 @@
       <div class="controls">
         <%= f.text_field :deceased_middle_name, :class => 'text_field' %>
       </div>
-    </div>
+     </div>
+     
+     <div class="control-group">
+      <%= f.label :deceased_gender, :class => 'control-label' %>
+      <div class="controls">
+			  <%= f.radio_button :deceased_gender, 'Male' %> <%= t("general.male") %> 
+			  <%= f.radio_button :deceased_gender, 'Female' %> <%= t("general.female") %>
+			  <%= f.radio_button :deceased_gender, 'Trans-Gender' %> <%= t("general.trans_gender") %>
+      </div>
+     </div>

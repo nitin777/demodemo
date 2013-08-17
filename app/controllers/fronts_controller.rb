@@ -79,6 +79,50 @@ class FrontsController < ApplicationController
     end     
   end
   
+  def get_section_row_plot_grave_from_area
+    unless params[:area_id].blank?
+      @sections = Section.where(:area_id => params[:area_id])
+      @rows = Row.where(:area_id => params[:area_id])
+      @plots = Plot.where(:area_id => params[:area_id])
+      @graves = Grafe.where(:area_id => params[:area_id])
+    else
+      @sections = @cemetery.sections.active
+      @rows = @cemetery.rows.active
+      @plots = @cemetery.plots.active
+      @graves = @cemetery.graves.active
+    end      
+  end
+  
+  def get_row_plot_grave_from_section
+    unless params[:section_id].blank?
+      @rows = Row.where(:section_id => params[:section_id])
+      @plots = Plot.where(:section_id => params[:section_id])
+      @graves = Grafe.where(:section_id => params[:section_id])
+    else
+      @rows = @cemetery.rows.active
+      @plots = @cemetery.plots.active
+      @graves = @cemetery.graves.active
+    end     
+  end
+  
+  def get_plot_grave_from_row
+    unless params[:row_id].blank?
+      @plots = Plot.where(:row_id => params[:row_id])
+      @graves = Grafe.where(:row_id => params[:row_id])
+    else
+      @plots = @cemetery.plots.active
+      @graves = @cemetery.graves.active
+    end     
+  end
+  
+  def get_grave_from_plot
+    unless params[:plot_id].blank?
+      @graves = Grafe.where(:plot_id => params[:plot_id])
+    else
+      @graves = @cemetery.graves.active
+    end       
+  end
+  
 	#forgot password
   def forgot_password
 		@user = User.new

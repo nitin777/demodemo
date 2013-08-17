@@ -1,0 +1,97 @@
+    <div class="control-group">
+      <%= f.label :relationship_to_deceased, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :relationship_to_deceased, :class => 'text_field' %>
+      </div>
+    </div> 
+    <div class="control-group">
+      <%= f.label :informant_title, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :informant_title, :class => 'text_field' %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :informant_surname, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :informant_surname, :class => 'text_field' %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :informant_first_name, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :informant_first_name, :class => 'text_field' %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :informant_middle_name, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :informant_middle_name, :class => 'text_field' %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :informant_fax_area_code, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :informant_fax_area_code, :class => 'text_field' %>
+      </div>
+    </div>  
+    <div class="control-group">
+      <%= f.label :informant_fax, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :informant_fax, :class => 'text_field' %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :informant_email, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :informant_email, :class => 'text_field' %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :informant_telephone_area_code, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :informant_telephone_area_code, :class => 'text_field' %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :informant_telephone, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :informant_telephone, :class => 'text_field' %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :informant_mobile, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :informant_mobile, :class => 'text_field' %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :informant_address, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :informant_address, :class => 'text_field' %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :informant_suburb, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :informant_suburb, :class => 'text_field' %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :informant_state, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :informant_state, :class => 'text_field' %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :informant_postal_code, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :informant_postal_code, :class => 'text_field' %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :informant_country_id, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.select :informant_country_id, options_for_select(get_model_data("Country"), (@o_single.informant_country_id unless @o_single.informant_country_id.nil?))  %>
+      </div>
+    </div>   

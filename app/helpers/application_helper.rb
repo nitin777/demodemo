@@ -10,12 +10,24 @@ module ApplicationHelper
   def get_all_pages
 		StaticPage.footer	
   end
-  
+    
+  def get_marital_status
+    [["Select", ""]] + [["Never Married", "Never Married"]] + [["Married", "Married"]] + [["Widow/Widower", "Widow/Widower"]] + [["Separated but not divorced", "Separated but not divorced"]] + [["Divorced", "Divorced"]] + [["De facto", "De facto"]] + [["Unknow", "Unknow"]] 
+  end
+      
   def get_stone_masons
     if @cemetery
       [["Select", ""]] + @cemetery.users.all_stone_masons.active.collect {|r| [r.username, r.id]}
     else
       [["Select", ""]] + User.all_stone_masons.active.collect {|r| [r.username, r.id]}
+    end     
+  end
+
+  def get_funeral_directors
+    if @cemetery
+      [["Select", ""]] + @cemetery.users.all_funeral_directors.active.collect {|r| [r.username, r.id]}
+    else
+      [["Select", ""]] + User.all_funeral_directors.active.collect {|r| [r.username, r.id]}
     end     
   end
   
@@ -40,6 +52,14 @@ module ApplicationHelper
       [["Select", ""]] + m.constantize.active.where(:cemetery_id => @cemetery.id).collect {|r| [r.code, r.id]}
     else
       [["Select", ""]] + m.constantize.active.collect {|r| [r.code, r.id]}
+    end    
+  end  
+  
+  def get_grave_data(m, cemetery=false)
+    if cemetery
+      [["Select", ""]] + m.constantize.active.where(:cemetery_id => @cemetery.id).collect {|r| [r.grave_number, r.id]}
+    else
+      [["Select", ""]] + m.constantize.active.collect {|r| [r.grave_number, r.id]}
     end    
   end  
   

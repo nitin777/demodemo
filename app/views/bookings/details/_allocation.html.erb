@@ -1,0 +1,58 @@
+<div class="control-group">
+  <%= f.label :area_id, :class => 'control-label' %>
+  <div class="controls">
+    <%= select_tag "area_id", options_for_select(get_model_data_code("Area", true)),
+    							:data => { :remote => true, :url => url_for(:controller => "fronts", 
+                             :action => "get_section_row_plot_grave_from_area"
+                             ) } %>
+  </div>
+</div>
+
+<div id="div_update_section_row_plot_grave">
+	
+ 	<div class="control-group">
+    <%= f.label :section_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= select_tag "section_id", options_for_select(get_model_data_code("Section", true)),
+      							:data => { :remote => true, :url => url_for(:controller => "fronts", 
+                               :action => "get_row_plot_grave_from_section"
+                               ) } %>
+    </div>                           
+ 	</div>	      
+
+	<div id="div_update_row_plot_grave">
+		
+   	<div class="control-group">
+      <%= f.label :row_id, :class => 'control-label' %>
+      <div class="controls">
+        <%= select_tag "row_id", options_for_select(get_model_data("Row", true)), 
+      							:data => { :remote => true, :url => url_for(:controller => "fronts", 
+                               :action => "get_plot_grave_from_row"
+                               ) } %>
+      </div>
+    </div>
+  	
+  	<div id="div_update_plot_grave">
+  		
+	   	<div class="control-group">
+	      <%= f.label :plot_id, :class => 'control-label' %>
+	      <div class="controls">
+	        <%= select_tag "plot_id", options_for_select(get_model_data("Plot", true)), 
+        							:data => { :remote => true, :url => url_for(:controller => "fronts", 
+                                 :action => "get_grave_from_plot"
+                                 ) } %>
+	      </div>
+	    </div>
+	  	
+	  	<div id="div_update_grave">
+		   	<div class="control-group">
+		      <%= f.label :grave_id, :class => 'control-label' %>
+		      <div class="controls">
+		        <%= f.select :grave_id, options_for_select(get_grave_data("Grafe", true), (@o_single.grave_id unless @o_single.grave_id.nil?))  %>
+		      </div>
+		    </div>
+		  </div>  	    
+    
+  	</div>
+	</div>      		
+</div>

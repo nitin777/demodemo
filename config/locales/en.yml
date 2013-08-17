@@ -144,3 +144,6 @@ en:
     search: "Search"
     admin_setup: "Admin Setup"
     cemetery_setup: "Cemetery Setup"
+    completed: "Completed"
+    pending: "Pending"
+    N/A: "N/A"
