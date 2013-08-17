@@ -72,7 +72,11 @@ ActiveRecord::Schema.define(version: 20130816102220) do
   create_table "bookings", force: true do |t|
     t.integer  "cemetery_id"
     t.integer  "user_id"
-    t.integer  "grave_id"
+    t.integer  "area_id"
+    t.integer  "section_id"
+    t.integer  "row_id"
+    t.integer  "plot_id"
+    t.integer  "grafe_id"
     t.integer  "gratee_id"
     t.integer  "service_type_id"
     t.integer  "catalog_id"

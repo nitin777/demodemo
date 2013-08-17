@@ -19,7 +19,7 @@ class FrontsController < ApplicationController
     unless params[:row][:area_id].blank?
       @sections = Section.where(:area_id => params[:row][:area_id])
     else
-      @sections = @cemetery.sections.active
+      @sections = @cemetery.sections.in_cemetery.active
     end
   end 
   
@@ -29,7 +29,7 @@ class FrontsController < ApplicationController
       @rows = Row.where(:area_id => params[:plot][:area_id])
     else
       @sections = @cemetery.sections.active
-      @rows = @cemetery.rows.active
+      @rows = @cemetery.rows.in_cemetery.active
     end    
   end 
   
@@ -37,7 +37,7 @@ class FrontsController < ApplicationController
     unless params[:plot][:section_id].blank?
       @rows = Row.where(:section_id => params[:plot][:section_id])
     else
-      @rows = @cemetery.rows.active
+      @rows = @cemetery.rows.in_cemetery.active
     end   
   end
   
@@ -47,9 +47,9 @@ class FrontsController < ApplicationController
       @rows = Row.where(:area_id => params[:grafe][:area_id])
       @plots = Plot.where(:area_id => params[:grafe][:area_id])
     else
-      @sections = @cemetery.sections.active
-      @rows = @cemetery.rows.active
-      @plots = @cemetery.plots.active
+      @sections = @cemetery.sections.in_cemetery.active
+      @rows = @cemetery.rows.in_cemetery.active
+      @plots = @cemetery.plots.in_cemetery.active
     end    
   end
   
@@ -58,8 +58,8 @@ class FrontsController < ApplicationController
       @rows = Row.where(:section_id => params[:grafe][:section_id])
       @plots = Plot.where(:section_id => params[:grafe][:section_id])
     else
-      @rows = @cemetery.rows.active
-      @plots = @cemetery.plots.active
+      @rows = @cemetery.rows.in_cemetery.active
+      @plots = @cemetery.plots.in_cemetery.active
     end    
   end
   
@@ -67,7 +67,7 @@ class FrontsController < ApplicationController
     unless params[:grafe][:row_id].blank?
       @plots = Plot.where(:row_id => params[:grafe][:row_id])
     else
-      @plots = @cemetery.plots.active
+      @plots = @cemetery.plots.in_cemetery.active
     end    
   end
   
@@ -80,46 +80,46 @@ class FrontsController < ApplicationController
   end
   
   def get_section_row_plot_grave_from_area
-    unless params[:area_id].blank?
-      @sections = Section.where(:area_id => params[:area_id])
-      @rows = Row.where(:area_id => params[:area_id])
-      @plots = Plot.where(:area_id => params[:area_id])
-      @graves = Grafe.where(:area_id => params[:area_id])
+    unless params[:booking][:area_id].blank?
+      @sections = Section.where(:area_id => params[:booking][:area_id])
+      @rows = Row.where(:area_id => params[:booking][:area_id])
+      @plots = Plot.where(:area_id => params[:booking][:area_id])
+      @graves = Grafe.where(:area_id => params[:booking][:area_id])
     else
-      @sections = @cemetery.sections.active
-      @rows = @cemetery.rows.active
-      @plots = @cemetery.plots.active
-      @graves = @cemetery.graves.active
+      @sections = @cemetery.sections.in_cemetery.active
+      @rows = @cemetery.rows.in_cemetery.active
+      @plots = @cemetery.plots.in_cemetery.active
+      @graves = @cemetery.graves.in_cemetery.active
     end      
   end
   
   def get_row_plot_grave_from_section
-    unless params[:section_id].blank?
-      @rows = Row.where(:section_id => params[:section_id])
-      @plots = Plot.where(:section_id => params[:section_id])
-      @graves = Grafe.where(:section_id => params[:section_id])
+    unless params[:booking][:section_id].blank?
+      @rows = Row.where(:section_id => params[:booking][:section_id])
+      @plots = Plot.where(:section_id => params[:booking][:section_id])
+      @graves = Grafe.where(:section_id => params[:booking][:section_id])
     else
-      @rows = @cemetery.rows.active
-      @plots = @cemetery.plots.active
-      @graves = @cemetery.graves.active
+      @rows = @cemetery.rows.in_cemetery.active
+      @plots = @cemetery.plots.in_cemetery.active
+      @graves = @cemetery.graves.in_cemetery.active
     end     
   end
   
   def get_plot_grave_from_row
-    unless params[:row_id].blank?
-      @plots = Plot.where(:row_id => params[:row_id])
-      @graves = Grafe.where(:row_id => params[:row_id])
+    unless params[:booking][:row_id].blank?
+      @plots = Plot.where(:row_id => params[:booking][:row_id])
+      @graves = Grafe.where(:row_id => params[:booking][:row_id])
     else
-      @plots = @cemetery.plots.active
-      @graves = @cemetery.graves.active
+      @plots = @cemetery.plots.in_cemetery.active
+      @graves = @cemetery.graves.in_cemetery.active
     end     
   end
   
   def get_grave_from_plot
-    unless params[:plot_id].blank?
-      @graves = Grafe.where(:plot_id => params[:plot_id])
+    unless params[:booking][:plot_id].blank?
+      @graves = Grafe.where(:plot_id => params[:booking][:plot_id])
     else
-      @graves = @cemetery.graves.active
+      @graves = @cemetery.graves.in_cemetery.active
     end       
   end
   
@@ -169,7 +169,7 @@ class FrontsController < ApplicationController
   
 	#footer and other static pages
   def other
-  	@o_single = StaticPage.where(page_route: params[:fp]).first
+  	@o_single = StaticPage.where(page_route: params[:page_id]).first
   end
   
 

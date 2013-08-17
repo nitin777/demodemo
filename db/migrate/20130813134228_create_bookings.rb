@@ -3,7 +3,11 @@ class CreateBookings < ActiveRecord::Migration
     create_table :bookings do |t|
       t.references :cemetery      
       t.references :user
-      t.references :grave
+      t.references :area
+      t.references :section
+      t.references :row
+      t.references :plot
+      t.references :grafe
       t.references :gratee
       t.references :service_type
       t.references :catalog

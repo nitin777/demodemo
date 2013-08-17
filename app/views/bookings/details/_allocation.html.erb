@@ -1,7 +1,7 @@
 <div class="control-group">
   <%= f.label :area_id, :class => 'control-label' %>
   <div class="controls">
-    <%= select_tag "area_id", options_for_select(get_model_data_code("Area", true)),
+    <%= select_tag "booking[area_id]", options_for_select(get_area_data, (@o_single.area.id unless @o_single.area.nil?)),
     							:data => { :remote => true, :url => url_for(:controller => "fronts", 
                              :action => "get_section_row_plot_grave_from_area"
                              ) } %>
@@ -13,7 +13,7 @@
  	<div class="control-group">
     <%= f.label :section_id, :class => 'control-label' %>
     <div class="controls">
-      <%= select_tag "section_id", options_for_select(get_model_data_code("Section", true)),
+      <%= select_tag "booking[section_id]", options_for_select(get_section_data(@o_single), (@o_single.section.id unless @o_single.section.nil?)),
       							:data => { :remote => true, :url => url_for(:controller => "fronts", 
                                :action => "get_row_plot_grave_from_section"
                                ) } %>
@@ -25,7 +25,7 @@
    	<div class="control-group">
       <%= f.label :row_id, :class => 'control-label' %>
       <div class="controls">
-        <%= select_tag "row_id", options_for_select(get_model_data("Row", true)), 
+        <%= select_tag "booking[row_id]", options_for_select(get_row_data(@o_single), (@o_single.row.id unless @o_single.row.nil?)), 
       							:data => { :remote => true, :url => url_for(:controller => "fronts", 
                                :action => "get_plot_grave_from_row"
                                ) } %>
@@ -37,7 +37,7 @@
 	   	<div class="control-group">
 	      <%= f.label :plot_id, :class => 'control-label' %>
 	      <div class="controls">
-	        <%= select_tag "plot_id", options_for_select(get_model_data("Plot", true)), 
+	        <%= select_tag "booking[plot_id]", options_for_select(get_plot_data(@o_single), (@o_single.plot.id unless @o_single.plot.nil?)), 
         							:data => { :remote => true, :url => url_for(:controller => "fronts", 
                                  :action => "get_grave_from_plot"
                                  ) } %>
@@ -46,9 +46,9 @@
 	  	
 	  	<div id="div_update_grave">
 		   	<div class="control-group">
-		      <%= f.label :grave_id, :class => 'control-label' %>
+		      <label class="control-label"><%= "Grave" %></label>
 		      <div class="controls">
-		        <%= f.select :grave_id, options_for_select(get_grave_data("Grafe", true), (@o_single.grave_id unless @o_single.grave_id.nil?))  %>
+		        <%= f.select :grafe_id, options_for_select(get_grave_data(@o_single), (@o_single.grafe.id unless @o_single.grafe.nil?))  %>
 		      </div>
 		    </div>
 		  </div>  	    

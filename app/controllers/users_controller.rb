@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   helper_method :sort_column, :sort_direction
-  before_action :require_admin
+  before_action :require_user
   before_action :set_header_menu_active
   # GET /users
   # GET /users.json
@@ -56,7 +56,7 @@ class UsersController < ApplicationController
       if @o_single.update_attributes(user_params)
       	role = Role.find(params[:role_id])
       	@o_single.role = Role.find(params[:role_id])
-        format.html { redirect_to (is_admin? ? users_url : root_url), notice: t("general.successfully_updated") }
+        format.html { redirect_to users_url, notice: t("general.successfully_updated") }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -87,7 +87,11 @@ class UsersController < ApplicationController
     end
     
 	  def get_records(search, page)
-			user_query = User.search(search)
+	    if current_user.is_super_admin?
+			 user_query = User.search(search)
+			else
+			  user_query = current_user.cemetery.users.search(search)
+			end 
 	  	user_query.order(sort_column + " " + sort_direction).paginate(:per_page => 10, :page => page)
 	  end    
     

@@ -18,5 +18,7 @@ class Grafe < ActiveRecord::Base
   mount_uploader :image_1, ImageUploader
   mount_uploader :image_2, ImageUploader
   
-  scope :active, -> {where(:is_active => true)}  
+  scope :active, -> {where(:is_active => true)}
+  
+  scope :in_cemetery, -> {where("area_id IS NULL and section_id IS NULL and row_id IS NULL and plot_id IS NULL")}  
 end

@@ -1,6 +1,10 @@
 class Booking < ActiveRecord::Base
   belongs_to :cemetery
   belongs_to :user
+  belongs_to :area
+  belongs_to :section
+  belongs_to :row
+  belongs_to :plot
   belongs_to :grafe
   belongs_to :grantee
   belongs_to :service_type

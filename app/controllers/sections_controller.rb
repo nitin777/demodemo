@@ -1,7 +1,7 @@
 class SectionsController < ApplicationController
   before_action :set_section, only: [:show, :edit, :update, :destroy]
   helper_method :sort_column, :sort_direction
-  before_action :require_admin
+  before_action :require_user
   before_action :set_header_menu_active
   # GET /sections
   # GET /sections.json

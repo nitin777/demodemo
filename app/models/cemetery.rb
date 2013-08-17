@@ -12,7 +12,7 @@ class Cemetery < ActiveRecord::Base
   has_many :catalogs, :dependent => :destroy  
   has_many :bookings, :dependent => :destroy  
   
-  has_many :users, :dependent => :destroy
+  has_many :users
   
   validates :name, :presence => true
   validates :country_id, :presence => true

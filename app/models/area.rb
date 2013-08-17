@@ -5,6 +5,7 @@ class Area < ActiveRecord::Base
   has_many :rows, :dependent => :destroy
   has_many :plots, :dependent => :destroy
   has_many :graves, :dependent => :destroy
+  has_many :bookings, :dependent => :destroy
     
   validates :code, :presence => true
   validates :name, :presence => true

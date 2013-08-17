@@ -25,6 +25,10 @@ class UserSessionsController < ApplicationController
       if @user_session.save
 				session[:user_id] = current_user.id
 				session[:user_role] = current_user.role.role_type
+				unless current_user.is_super_admin?
+				  session[:cemetery_id] = current_user.cemetery_id
+				  session[:country_id] = current_user.country_id
+				end
 				format.html { redirect_to(dashboard_path, :notice => t("general.login_successful")) }
 				format.xml { render :xml => @user_session, :status => :created, :location => @user_session }
       else
