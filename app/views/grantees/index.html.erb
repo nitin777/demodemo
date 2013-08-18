@@ -6,13 +6,19 @@
   <h4><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %> (<span id="count_records"><%= @o_all.count %></span>)</h4>
 </div>
 
-<div class="searchRight">
-	<%= link_to 'Search', show_search_box_path(true, model_class, @search_fields.join(',')), :remote => true, :class => 'btn btn-primary' %>&nbsp;
-	
-	<%= link_to t('.new', :default => t("helpers.links.new")),
-	            new_grantee_path,
-	            :class => 'btn btn-primary' %>
-</div>	
+
+	<div class="searchRight">
+		<% unless params[:grave_id] %>
+			<%= link_to 'Search', show_search_box_path(true, model_class, @search_fields.join(',')), :remote => true, :class => 'btn btn-primary' %>&nbsp;
+			
+			<%= link_to t('.new', :default => t("helpers.links.new")),
+			            new_grantee_path,
+			            :class => 'btn btn-primary' %>
+		<% else %>
+			<%= link_to 'Back', graves_url, :class => 'btn btn-primary' %>
+		<% end %>			            
+	</div>	
+
 
 
 <div id="div_update_search"></div>

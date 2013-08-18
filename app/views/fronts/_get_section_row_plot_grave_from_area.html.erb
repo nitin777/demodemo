@@ -1,7 +1,7 @@
  	<div class="control-group">
     <label class="control-label"><%= "Section" %></label>
     <div class="controls">
-      <%= select_tag "booking[section_id]", options_for_select([["Select", ""]] + @sections.collect {|r| [r.code, r.id]}),
+      <%= select_tag (params[:booking] ? "booking[section_id]" : "grantee_grafe[section_id]"), options_for_select([["Select", ""]] + @sections.collect {|r| [r.code, r.id]}),
       							:data => { :remote => true, :url => url_for(:controller => "fronts", 
                                :action => "get_row_plot_grave_from_section"
                                ) } %>
@@ -13,7 +13,7 @@
    	<div class="control-group">
       <label class="control-label"><%= "Row" %></label>
       <div class="controls">
-        <%= select_tag "booking[row_id]", options_for_select([["Select", ""]] + @rows.collect {|r| [r.name, r.id]}), 
+        <%= select_tag (params[:booking] ? "booking[row_id]" : "grantee_grafe[row_id]"), options_for_select([["Select", ""]] + @rows.collect {|r| [r.name, r.id]}), 
       							:data => { :remote => true, :url => url_for(:controller => "fronts", 
                                :action => "get_plot_grave_from_row"
                                ) } %>
@@ -25,7 +25,7 @@
 	   	<div class="control-group">
 	      <label class="control-label"><%= "Plot" %></label>
 	      <div class="controls">
-	        <%= select_tag "booking[plot_id]", options_for_select([["Select", ""]] + @plots.collect {|r| [r.name, r.id]}), 
+	        <%= select_tag (params[:booking] ? "booking[plot_id]" : "grantee_grafe[plot_id]"), options_for_select([["Select", ""]] + @plots.collect {|r| [r.name, r.id]}), 
         							:data => { :remote => true, :url => url_for(:controller => "fronts", 
                                  :action => "get_grave_from_plot"
                                  ) } %>
@@ -36,7 +36,7 @@
 		   	<div class="control-group">
 		      <label class="control-label"><%= "Grave" %></label>
 		      <div class="controls">
-		        <%= select_tag "booking[grafe_id]", options_for_select([["Select", ""]] + @graves.collect {|r| [r.grave_number, r.id]}) %>
+		        <%= select_tag (params[:booking] ? "booking[grafe_id]" : "grantee_grafe[grafe_id]"), options_for_select([["Select", ""]] + @graves.collect {|r| [r.grave_number, r.id]}) %>
 		      </div>
 		    </div>
 		  </div>  	    

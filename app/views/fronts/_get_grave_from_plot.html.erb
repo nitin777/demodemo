@@ -1,7 +1,7 @@
 <div class="control-group">
   <label class="control-label"><%= "Grave" %></label>
   <div class="controls">
-    <%= select_tag "booking[grafe_id]", options_for_select([["Select", ""]] + @graves.collect {|r| [r.grave_number, r.id]})  %>
+    <%= select_tag (params[:booking] ? "booking[grafe_id]" : "grantee_grafe[grafe_id]"), options_for_select([["Select", ""]] + @graves.collect {|r| [r.grave_number, r.id]}) %>
   </div>
 </div>
   

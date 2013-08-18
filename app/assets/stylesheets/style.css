@@ -3,6 +3,8 @@
 
 .redStart {color: red; float: left; margin-left: 2px;}
 
+.redStartSelect {color: red; float: left;}
+
 .footerFront p {text-align:center !important;}
 
 .searchRight { float: right; font-size: 20px; margin: -50px 30px 0px 0px; }

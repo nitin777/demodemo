@@ -11,10 +11,12 @@
       	
         <ul class="nav">
           <% if current_user %>
-            <li class=""><%= link_to t("general.users"), users_path %></li>
             <% if is_admin? %>
+            	<li class=""><%= link_to t("general.users"), users_path %></li>
          	  	<li class=""><%= link_to t("general.cemeteries"), cemeteries_path %></li>
          	  <% else %>
+         	  	<li class=""><%= link_to t("general.dashboard"), dashboard_path %></li>
+         	  	<li class=""><%= link_to t("general.users"), users_path %></li>
          	  	<li class=""><%= link_to t("general.manage_cemetery"), areas_path %></li>
          	  <% end %>	
          	  <%# unless @cemetery.nil? %>

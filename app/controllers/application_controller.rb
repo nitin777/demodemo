@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
 
   def require_user
     unless current_user
-      redirect_to :controller => "fronts", :action => "subscribe"
+      redirect_to :controller => "user_sessions", :action => "new"
     end
   end
   

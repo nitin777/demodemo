@@ -78,8 +78,8 @@ Ocms::Application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
   
-  BASE_URL = "http://localhost:3007"
-  BASE_URL_DOMAIN = "localhost:3007"
+  BASE_URL = "http://ocms.herokuapp.com"
+  BASE_URL_DOMAIN = "ocms.herokuapp.com"
   
   MAIL_USER_NAME = "nbarai77@gmail.com"
   MAIL_PASSWORD = "nitin777"

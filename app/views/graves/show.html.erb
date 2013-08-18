@@ -1,0 +1,18 @@
+<div class="page-header">
+  <h4><%= @o_single.grave_number %></p></h4>
+</div>
+
+<p><%= @o_single.description %></p>    
+<p><strong><%= "Address" %></strong>:&nbsp;&nbsp;&nbsp;&nbsp;<%= @o_single.address  %></p>
+<p><strong><%= "Suburb Town" %></strong>:&nbsp;&nbsp;&nbsp;&nbsp;<%= @o_single.suburb_town  %></p>
+<p><strong><%= "State" %></strong>:&nbsp;&nbsp;&nbsp;&nbsp;<%= @o_single.state  %></p>
+<p><strong><%= "Postal Code" %></strong>:&nbsp;&nbsp;&nbsp;&nbsp;<%= @o_single.postal_code  %></p>
+<p><strong><%= "Phone Area Code" %></strong>:&nbsp;&nbsp;&nbsp;&nbsp;<%= @o_single.phone_area_code  %></p>
+<p><strong><%= "Phone" %></strong>:&nbsp;&nbsp;&nbsp;&nbsp;<%= @o_single.phone  %></p>
+<p><strong><%= "Fax Area Code" %></strong>:&nbsp;&nbsp;&nbsp;&nbsp;<%= @o_single.fax_area_code  %></p>
+<p><strong><%= "fax" %></strong>:&nbsp;&nbsp;&nbsp;&nbsp;<%= @o_single.fax  %></p>    
+<p><strong><%= "Email" %></strong>:&nbsp;&nbsp;&nbsp;&nbsp;<%= @o_single.email  %></p>
+
+  <div class="form-actions">
+    <%= link_to 'Back', graves_url, :class => 'btn' %>
+  </div>

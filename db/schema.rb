@@ -241,7 +241,11 @@ ActiveRecord::Schema.define(version: 20130816102220) do
   create_table "grantee_graves", force: true do |t|
     t.integer  "user_id"
     t.integer  "grantee_id"
-    t.integer  "grave_id"
+    t.integer  "area_id"
+    t.integer  "section_id"
+    t.integer  "row_id"
+    t.integer  "plot_id"
+    t.integer  "grafe_id"
     t.integer  "identity_id"
     t.integer  "catalog_id"
     t.integer  "payment_status_id"

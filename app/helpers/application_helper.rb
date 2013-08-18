@@ -69,6 +69,10 @@ module ApplicationHelper
     [["Select", ""]] + @cemetery.areas.active.collect {|r| [r.code, r.id]}
   end
   
+  def get_grantee_data
+    [["Select", ""]] + @cemetery.grantees.collect {|r| [(r.surname + " " + r.first_name) , r.id]}
+  end  
+  
   def get_section_data(single)
     if single.area
       [["Select", ""]] + Section.active.where(:area_id => single.area.id).collect {|r| [r.code, r.id]}

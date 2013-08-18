@@ -4,5 +4,9 @@ class Grantee < ActiveRecord::Base
   has_many :grantee_graves, :dependent => :destroy
   validates :first_name, :presence => true
   validates :surname, :presence => true
-  include SearchHandler  
+  include SearchHandler
+  
+  def name
+    self.surname + " " + self.first_name
+  end  
 end

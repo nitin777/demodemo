@@ -6,7 +6,7 @@ class GranteesController < ApplicationController
   # GET /grantees
   # GET /grantees.json
   def index
-    @o_all = get_records(params[:grantee], params[:page])
+    @o_all = get_records(params[:grantee], params[:page], params[:grave_id])
     @search_fields = ['surname', 'first_name']
     session[:grantee] = params[:grantee] if params[:grantee]
   end
@@ -84,8 +84,12 @@ class GranteesController < ApplicationController
     end
     
     #fetch search records
-    def get_records(search, page)
-      grantee_query = @cemetery.grantees.search(search)
+    def get_records(search, page, grave)
+      if grave
+        grantee_query = @cemetery.grantees.joins(:grantee_graves).where(:grantee_graves => { :grafe_id => params[:grave_id] }).search(search)
+      else  
+        grantee_query = @cemetery.grantees.search(search)
+      end  
       grantee_query.order(sort_column + " " + sort_direction).paginate(:per_page => 10, :page => page)
     end    
     

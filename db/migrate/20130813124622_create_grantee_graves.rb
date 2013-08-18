@@ -3,7 +3,11 @@ class CreateGranteeGraves < ActiveRecord::Migration
     create_table :grantee_graves do |t|
       t.references :user
       t.references :grantee
-      t.references :grave
+      t.references :area
+      t.references :section
+      t.references :row
+      t.references :plot      
+      t.references :grafe
       t.references :identity
       t.references :catalog
       t.references :payment_status
