@@ -16,7 +16,7 @@
       current_controller_name = controller.controller_name
       current_action = controller.action_name
       
-      cem_contollers_arr = %w(areas sections rows plots graves grantees chapels rooms cemeteries monuments catalogs bookings grantee_graves grantee_graves)
+      cem_contollers_arr = %w(users areas sections rows plots graves grantees chapels rooms cemeteries monuments catalogs bookings grantee_graves grantee_graves)
       
       admin_contollers_arr = %w(countries denominations diseases grave_statuses identities service_types unit_types coffins payment_statuses stone_mason_work_types)
       
@@ -36,6 +36,8 @@
 	    	<% if session[:cemetery_id] and current_user and cem_contollers_arr.include?(current_controller_name) %>
 					<div class="span2">
 						<ul class="nav nav-pills nav-stacked">
+							<li class="<%= 'active' if current_controller_name == 'users' %>"><%= link_to t("general.users"), users_path %></li>
+							<li class="<%= 'active' if current_controller_name == 'bookings' %>"><%= link_to t("general.bookings"), bookings_path %></li>
 							<li class="<%= 'active' if current_controller_name == 'areas' %>"><%= link_to t("general.areas"), areas_path %></li>
 							<li class="<%= 'active' if current_controller_name == 'sections' %>"><%= link_to t("general.sections"), sections_path %></li>
 							<li class="<%= 'active' if current_controller_name == 'rows' %>"><%= link_to t("general.rows"), rows_path %></li>
@@ -47,7 +49,6 @@
 							<li class="<%= 'active' if current_controller_name == 'rooms' %>"><%= link_to t("general.rooms"), rooms_path %></li>
 							<li class="<%= 'active' if current_controller_name == 'monuments' %>"><%= link_to t("general.monuments"), monuments_path %></li>
 							<li class="<%= 'active' if current_controller_name == 'catalogs' %>"><%= link_to t("general.catalogs"), catalogs_path %></li>
-							<li class="<%= 'active' if current_controller_name == 'bookings' %>"><%= link_to t("general.bookings"), bookings_path %></li>
 						</ul>  
 					</div>  
 					<div class="span10">
