@@ -22,9 +22,6 @@
          	  <% if session[:cemetery_id] %>
          	  	<li class=""><%= link_to "( " + @cemetery.name + " )", "#" %></li>
          	  <% end %>	
-         	  <%# unless @cemetery.nil? %>
-         	  	<!--<li class="active"><%#= link_to @cemetery.name, "#" %></li>-->
-         	  <%# end %>
           <% end %>
         </ul>
         

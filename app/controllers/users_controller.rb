@@ -6,6 +6,8 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
+    puts session[:cemetery_id]
+    puts 'ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss'
     @o_all = get_records(params[:user], params[:page])
     @search_fields = ['username, email']
     session[:user] = params[:user] if params[:user]

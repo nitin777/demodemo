@@ -20,9 +20,18 @@ class GranteeGravesController < ApplicationController
   # GET /grantee_graves/new
   def new
     @o_single = GranteeGrafe.new
+    
     if params[:new_purchase]
       session[:grantee_id] = nil
-    end  
+    end
+    
+    if params[:grave_id]
+      session[:grantee_id] = nil
+      session[:grave_id] = params[:grave_id]
+      @grave = Grafe.find(session[:grave_id])
+    else
+      session[:grave_id] = nil
+    end    
   end
 
   # GET /grantee_graves/1/edit
@@ -36,9 +45,13 @@ class GranteeGravesController < ApplicationController
 
     respond_to do |format|
       if @o_single.save
+        session[:grave_id] = nil
         format.html { redirect_to grantee_graves_url, notice: t("general.successfully_created") }
         format.json { render action: 'show', status: :created, location: @o_single }
       else
+        if session[:grave_id]
+          @grave = Grafe.find(session[:grave_id])
+        end
         format.html { render action: 'new' }
         format.json { render json: @o_single.errors, status: :unprocessable_entity }
       end

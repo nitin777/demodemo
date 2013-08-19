@@ -18,67 +18,81 @@
     
 		<%= f.hidden_field :user_id, :value => current_user.id %>
 		
-		<div class="control-group">
-		  <label class="control-label"><%= "Area" %></label>
-		  <div class="controls">
-		    <%= select_tag "grantee_grafe[area_id]", options_for_select(get_area_data, (@o_single.area.id unless @o_single.area.nil?)),
-		    							:data => { :remote => true, :url => url_for(:controller => "fronts", 
-		                             :action => "get_section_row_plot_grave_from_area"
-		                             ) } %>
-		  </div>
-		</div>
-		
-		<div id="div_update_section_row_plot_grave">
+		<% if session[:grave_id] %>
+			<%= f.hidden_field :area_id, :value => @grave.area.id if @grave.area %>
+			<%= f.hidden_field :section_id, :value => @grave.section.id if @grave.section %>
+			<%= f.hidden_field :row_id, :value => @grave.row.id if @grave.row %>
+			<%= f.hidden_field :plot_id, :value => @grave.plot.id if @grave.plot %>
+			<%= f.hidden_field :grafe_id, :value => @grave.id %>
+	   	<div class="control-group">
+	      <label class="control-label"><%= "Grave" %></label>
+	      <div class="controls">
+	        <strong style="margin-top: 4px; float: left;"><%= @grave.grave_number %></strong>
+	      </div>
+	    </div>			
+		<% else %>
+			<div class="control-group">
+			  <label class="control-label"><%= "Area" %></label>
+			  <div class="controls">
+			    <%= select_tag "grantee_grafe[area_id]", options_for_select(get_area_data, (@o_single.area.id unless @o_single.area.nil?)),
+			    							:data => { :remote => true, :url => url_for(:controller => "fronts", 
+			                             :action => "get_section_row_plot_grave_from_area"
+			                             ) } %>
+			  </div>
+			</div>
 			
-		 	<div class="control-group">
-		    <label class="control-label"><%= "Section" %></label>
-		    <div class="controls">
-		      <%= select_tag "grantee_grafe[section_id]", options_for_select(get_section_data(@o_single), (@o_single.section.id unless @o_single.section.nil?)),
-		      							:data => { :remote => true, :url => url_for(:controller => "fronts", 
-		                               :action => "get_row_plot_grave_from_section"
-		                               ) } %>
-		    </div>                           
-		 	</div>	      
-		
-			<div id="div_update_row_plot_grave">
+			<div id="div_update_section_row_plot_grave">
 				
-		   	<div class="control-group">
-		      <label class="control-label"><%= "Row" %></label>
-		      <div class="controls">
-		        <%= select_tag "grantee_grafe[row_id]", options_for_select(get_row_data(@o_single), (@o_single.row.id unless @o_single.row.nil?)), 
-		      							:data => { :remote => true, :url => url_for(:controller => "fronts", 
-		                               :action => "get_plot_grave_from_row"
-		                               ) } %>
-		      </div>
-		    </div>
-		  	
-		  	<div id="div_update_plot_grave">
-		  		
+			 	<div class="control-group">
+			    <label class="control-label"><%= "Section" %></label>
+			    <div class="controls">
+			      <%= select_tag "grantee_grafe[section_id]", options_for_select(get_section_data(@o_single), (@o_single.section.id unless @o_single.section.nil?)),
+			      							:data => { :remote => true, :url => url_for(:controller => "fronts", 
+			                               :action => "get_row_plot_grave_from_section"
+			                               ) } %>
+			    </div>                           
+			 	</div>	      
+			
+				<div id="div_update_row_plot_grave">
+					
 			   	<div class="control-group">
-			      <label class="control-label"><%= "Plot" %></label>
+			      <label class="control-label"><%= "Row" %></label>
 			      <div class="controls">
-			        <%= select_tag "grantee_grafe[plot_id]", options_for_select(get_plot_data(@o_single), (@o_single.plot.id unless @o_single.plot.nil?)), 
-		        							:data => { :remote => true, :url => url_for(:controller => "fronts", 
-		                                 :action => "get_grave_from_plot"
-		                                 ) } %>
+			        <%= select_tag "grantee_grafe[row_id]", options_for_select(get_row_data(@o_single), (@o_single.row.id unless @o_single.row.nil?)), 
+			      							:data => { :remote => true, :url => url_for(:controller => "fronts", 
+			                               :action => "get_plot_grave_from_row"
+			                               ) } %>
 			      </div>
 			    </div>
 			  	
-			  	<div id="div_update_grave">
+			  	<div id="div_update_plot_grave">
+			  		
 				   	<div class="control-group">
-				      <label class="control-label"><%= "Grave" %></label>
+				      <label class="control-label"><%= "Plot" %></label>
 				      <div class="controls">
-				        <%= f.select :grafe_id, options_for_select(get_grave_data(@o_single), (@o_single.grafe.id unless @o_single.grafe.nil?))  %>
-				       	<% if @o_single.errors[:grafe_id].any? %>
-				        	<span class="text-error text-message"><%= @o_single.errors[:grafe_id].first %></span>
-				      	<% end %> 				        
+				        <%= select_tag "grantee_grafe[plot_id]", options_for_select(get_plot_data(@o_single), (@o_single.plot.id unless @o_single.plot.nil?)), 
+			        							:data => { :remote => true, :url => url_for(:controller => "fronts", 
+			                                 :action => "get_grave_from_plot"
+			                                 ) } %>
 				      </div>
 				    </div>
-				  </div>  	    
-		    
-		  	</div>
-			</div>      		
-		</div>
+				  	
+				  	<div id="div_update_grave">
+					   	<div class="control-group">
+					      <label class="control-label"><%= "Grave" %></label>
+					      <div class="controls">
+					        <%= f.select :grafe_id, options_for_select(get_grave_data(@o_single), (@o_single.grafe.id unless @o_single.grafe.nil?))  %>
+					       	<% if @o_single.errors[:grafe_id].any? %>
+					        	<span class="text-error text-message"><%= @o_single.errors[:grafe_id].first %></span>
+					      	<% end %> 				        
+					      </div>
+					    </div>
+					  </div>  	    
+			    
+			  	</div>
+				</div>      		
+			</div>
+		<% end %>	
 		 
    	<div class="control-group">
       <%= f.label :identity_id, :class => 'control-label' %>
@@ -128,27 +142,40 @@
         <%= f.text_field :invoice_number, :class => 'text_field' %>
       </div>
     </div>
-    <div class="control-group">
-      <%= f.label :date_of_purchase, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.text_field :date_of_purchase, :class => 'text_field' %>
-      </div>
-    </div>
+    
     <div class="control-group">
       <%= f.label :cost, :class => 'control-label' %>
       <div class="controls">
         <%= f.text_field :cost, :class => 'text_field' %>
       </div>
+    </div>    
+    
+    <div class="control-group">
+      <%= f.label :date_of_purchase, :class => 'control-label' %>
+      <div class="controls">
+	 			<div id="date_of_purchase" class="input-append">
+	 				<%= f.text_field :date_of_purchase, :class => 'text_field' %>
+			    <span class="add-on">
+			      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+			      </i>
+			    </span> 				
+	 			</div>	        
+      </div>
     </div>
+
     <div class="control-group">
       <%= f.label :tenure_expiry_date, :class => 'control-label' %>
       <div class="controls">
-        <%= f.text_field :tenure_expiry_date, :class => 'text_field' %>
+	 			<div id="tenure_expiry_date" class="input-append">
+	 				<%= f.text_field :tenure_expiry_date, :class => 'text_field' %>
+			    <span class="add-on">
+			      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+			      </i>
+			    </span> 				
+	 			</div>	        
       </div>
-    </div>     
-                
+    </div>
     
-
     <div class="form-actions">
       <%= f.submit nil, :class => 'btn btn-primary' %>
       <%= link_to 'Cancel', grantee_graves_url, :class => 'btn' %>
@@ -157,3 +184,18 @@
   </fieldset>
      
 <% end %>
+
+<script type="text/javascript">
+$(function() {
+  $('#date_of_purchase').datetimepicker({
+    language: 'en',
+    pickTime: false,
+    format: "yyyy-MM-dd"
+  });	
+  $('#tenure_expiry_date').datetimepicker({
+    language: 'en',
+    pickTime: false,
+    format: "yyyy-MM-dd"
+  });
+});
+</script>

@@ -23,7 +23,18 @@
       </div>
     </div>
  		<div class="control-group"><%= f.label :middle_name, :class => 'control-label' %><div class="controls"><%= f.text_field :middle_name, :class => 'text_field' %></div></div>
- 		<div class="control-group"><%= f.label :date_of_birth, :class => 'control-label' %><div class="controls"><%= f.text_field :date_of_birth, :class => 'text_field' %></div></div>
+ 		<div class="control-group">
+ 			<%= f.label :date_of_birth, :class => 'control-label' %>
+ 			<div class="controls">
+	 			<div id="datepicker2" class="input-append">
+	 				<%= f.text_field :date_of_birth, :class => 'text_field' %>
+			    <span class="add-on">
+			      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+			      </i>
+			    </span> 				
+	 			</div>	
+	 		</div>
+	 	</div>
     <div class="control-group"><%= f.label :address, :class => 'control-label' %><div class="controls"><%= f.text_field :address, :class => 'text_field' %></div></div>
     <div class="control-group"><%= f.label :town, :class => 'control-label' %><div class="controls"><%= f.text_field :town, :class => 'text_field' %></div></div>
     <div class="control-group"><%= f.label :state, :class => 'control-label' %><div class="controls"><%= f.text_field :state, :class => 'text_field' %></div></div>
@@ -46,3 +57,13 @@
   </fieldset>
      
 <% end %>
+
+<script type="text/javascript">
+$(function() {
+  $('#datepicker2').datetimepicker({
+    language: 'en',
+    pickTime: false,
+    format: "yyyy-MM-dd"
+  });
+});
+</script>

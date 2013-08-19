@@ -30,6 +30,7 @@ GEM
     authlogic (3.3.0)
       activerecord (>= 3.2)
       activesupport (>= 3.2)
+    bootstrap-datetimepicker-rails (0.0.11)
     builder (3.1.4)
     carrierwave (0.9.0)
       activemodel (>= 3.2.0)
@@ -154,6 +155,7 @@ PLATFORMS
 
 DEPENDENCIES
   authlogic
+  bootstrap-datetimepicker-rails
   carrierwave
   coffee-rails (~> 4.0.0)
   debugger

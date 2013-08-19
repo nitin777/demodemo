@@ -42,5 +42,59 @@
     
  $(function () {
 $('#myTab a:first').tab('show');
-})    
-</script>    
+})  
+
+
+$(function() {
+//https://github.com/lubieniebieski/bootstrap-datetimepicker-rails	
+  $('#date_notified').datetimepicker({
+    language: 'en',
+    pickTime: false,
+    format: "yyyy-MM-dd"
+  });	
+  $('#service_date1').datetimepicker({
+    language: 'en',
+    format: "yyyy-MM-dd hh:mm:ss"
+  });
+  $('#service_date2').datetimepicker({
+    language: 'en',
+    format: "yyyy-MM-dd hh:mm:ss"
+  });
+  $('#service_date3').datetimepicker({
+    language: 'en',
+    format: "yyyy-MM-dd hh:mm:ss"
+  });    
+  $('#interment_date').datetimepicker({
+    language: 'en',
+    pickTime: false,
+    format: "yyyy-MM-dd"
+  });
+  $('#deceased_date_death').datetimepicker({
+    language: 'en',
+    pickTime: false,
+    format: "yyyy-MM-dd"
+  });	
+  $('#deceased_date_birth').datetimepicker({
+    language: 'en',
+    pickTime: false,
+    format: "yyyy-MM-dd"
+  });
+  $('#chapel_time_from').datetimepicker({
+    language: 'en',
+    format: "yyyy-MM-dd hh:mm:ss"
+  });   
+  $('#chapel_time_to').datetimepicker({
+    language: 'en',
+    format: "yyyy-MM-dd hh:mm:ss"
+  });   
+  $('#room_time_from').datetimepicker({
+    language: 'en',
+    format: "yyyy-MM-dd hh:mm:ss"
+  });   
+  $('#room_time_to').datetimepicker({
+    language: 'en',
+    format: "yyyy-MM-dd hh:mm:ss"
+  });           	    	  
+});
+
+</script>  

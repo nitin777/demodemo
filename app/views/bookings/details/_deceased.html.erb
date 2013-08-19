@@ -36,7 +36,13 @@
     <div class="control-group">
       <%= f.label :deceased_date_death, :class => 'control-label' %>
       <div class="controls">
-        <%= f.text_field :deceased_date_death, :class => 'text_field' %>
+	 			<div id="deceased_date_death" class="input-append">
+	 				<%= f.text_field :deceased_date_death, :class => 'text_field' %>
+			    <span class="add-on">
+			      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+			      </i>
+			    </span> 				
+	 			</div>	        
       </div>
     </div>
     <div class="control-group">
@@ -48,7 +54,13 @@
     <div class="control-group">
       <%= f.label :deceased_date_birth, :class => 'control-label' %>
       <div class="controls">
-        <%= f.text_field :deceased_date_birth, :class => 'text_field' %>
+	 			<div id="deceased_date_birth" class="input-append">
+	 				<%= f.text_field :deceased_date_birth, :class => 'text_field' %>
+			    <span class="add-on">
+			      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+			      </i>
+			    </span> 				
+	 			</div>	        
       </div>
     </div>
     <div class="control-group">

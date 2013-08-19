@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   helper_method :current_user, :is_admin?, :is_user?, :is_provider_user?
-  before_action :set_cemetery
+  before_action :set_cemetery_record
 	SUPER_ADMIN = "SuperAdmin"
 	USER = "User"
 
@@ -85,7 +85,7 @@ class ApplicationController < ActionController::Base
   	end
   end
   
-  def set_cemetery
+  def set_cemetery_record
     @cemetery = session[:cemetery_id].nil? ? nil : (Cemetery.find(session[:cemetery_id]))
   end
   

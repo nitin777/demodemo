@@ -40,6 +40,7 @@ group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
+
 gem 'libv8'
 gem "therubyracer"
 gem "less-rails"
@@ -69,6 +70,9 @@ gem 'debugger'
 
 #google chart
 gem "google_visualr", ">= 2.1"
+
+#calender
+gem 'bootstrap-datetimepicker-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

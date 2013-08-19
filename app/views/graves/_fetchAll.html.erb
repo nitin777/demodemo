@@ -1,14 +1,14 @@
 <table class="table table-striped">
  <thead> 
   <tr>
-    <th width="15%"><%= sortable "grave_number", t("general.grave_number") %></th>
+    <th width="20%"><%= sortable "grave_number", t("general.grave_number") %></th>
     <th width="10%"><%= sortable "area_id", t("general.area") %></th>
     <th width="10%"><%= sortable "section_id", t("general.section") %></th>    
-    <th width="15%"><%= sortable "row_id", t("general.row") %></th>    
-    <th width="15%"><%= sortable "plot_id", t("general.plot") %></th>
+    <th width="10%"><%= sortable "row_id", t("general.row") %></th>    
+    <th width="10%"><%= sortable "plot_id", t("general.plot") %></th>
     <th width="10%"><%= sortable "grave_status_id", t("general.status") %></th>
     <th width="5%"><%= sortable "is_active", t("general.is_active") %></th>
-    <th width="20%"><%= t("general.actions") %></th>
+    <th width="25%"><%= t("general.actions") %></th>
   </tr>
  </thead> 
   
@@ -31,9 +31,13 @@
 			                  :method => :delete,
 			                  :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
 			                  :class => 'btn btn-mini btn-danger' %>
-						<%= link_to "Grantees",
+						<%= link_to "Entities",
 						            grantees_path(:grave_id => o_row.id),
-						            :class => 'btn btn-primary btn-mini' %>			                  
+						            :class => 'btn btn-primary btn-mini' %>
+						            
+						<%= link_to t("general.purchase"), 
+												new_grantee_grafe_path(:grave_id => o_row.id),
+												 :class => 'btn btn-primary btn-mini' %>
           </td>
         </tr>
       <% end %>
