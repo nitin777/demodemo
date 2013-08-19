@@ -40,7 +40,7 @@ group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
-#gem 'bootstrap_helper'
+gem 'libv8'
 gem "therubyracer"
 gem "less-rails"
 gem 'twitter-bootstrap-rails'
