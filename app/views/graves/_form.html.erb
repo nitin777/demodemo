@@ -111,7 +111,7 @@
     </div> 
  
     <div class="form-actions">
-      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= f.submit (@o_single.new_record? ? "Create Grave" : "Update Grave"), :class => 'btn btn-primary' %>
       <%= link_to 'Cancel', graves_url, :class => 'btn' %>
     </div>
     

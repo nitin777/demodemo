@@ -1,7 +1,16 @@
+<div class="span2">&nbsp;</div>
+<div class="span4">
 <%= form_for @user_session, :html => { :class => 'form-horizontal' } do |f| %>
-<h2 class="form-signin-heading"><%= t("general.login") %></h2>
+
+<div class="loginfom">
   <fieldset>
   	<legend></legend>
+  	
+    <div class="control-group">
+    	<div class="controls">
+    		<%= image_tag "logo.png" %>
+	    </div>	  
+    </div>  	
 	  <% if @user_session.errors.any? %>
 	    <div class="control-group">
 	    	<div class="controls">
@@ -33,5 +42,7 @@
     </div>
     
   </fieldset>
-     
+</div>     
 <% end %>
+</div>
+<div class="span5">&nbsp;</div>

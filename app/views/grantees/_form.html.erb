@@ -39,7 +39,7 @@
 
 
     <div class="form-actions">
-      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= f.submit (@o_single.new_record? ? "Create Entity" : "Update Entity"), :class => 'btn btn-primary' %>
       <%= link_to 'Cancel', grantees_url, :class => 'btn' %>
     </div>
     
