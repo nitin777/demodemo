@@ -6,7 +6,7 @@
     	<%= f.hidden_field :grantee_id, :value => session[:grantee_id] %>
     <% else %>
 			<div class="control-group">
-			  <label class="control-label"><%= "Grantee" %></label>
+			  <label class="control-label"><%= "Entity" %></label>
 			  <div class="controls">
 			    <%= f.select :grantee_id, options_for_select(get_grantee_data, (@o_single.grantee.id unless @o_single.grantee.nil?)) %>
 	       	<% if @o_single.errors[:grantee_id].any? %>
