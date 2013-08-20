@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130816102220) do
+ActiveRecord::Schema.define(version: 20130820051339) do
 
   create_table "areas", force: true do |t|
     t.integer  "cemetery_id"
@@ -318,6 +318,17 @@ ActiveRecord::Schema.define(version: 20130816102220) do
   create_table "identities", force: true do |t|
     t.string   "name"
     t.boolean  "is_active",  default: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "letters", force: true do |t|
+    t.integer  "cemetery_id"
+    t.string   "subject"
+    t.text     "content"
+    t.boolean  "is_certificate",   default: false
+    t.string   "certificate_name"
+    t.boolean  "is_active",        default: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -14,6 +14,24 @@ class BookingsController < ApplicationController
   def show_booking_search
     @o_single = Booking.new
   end
+  
+  def print_letter
+    letter = Letter.find(params[:id])
+    
+    content = letter.content.html_safe
+    
+    subject = letter.subject
+    subject = subject.gsub(" ", "_")
+    subject = subject.to_s + ".pdf"
+    
+    #content to pdf
+    kit = PDFKit.new(content)
+    pdf = kit.to_pdf
+    
+    #download pdf
+    send_data pdf, :filename => subject, :type => "application/pdf"
+    
+  end
 
   # GET /bookings/1
   # GET /bookings/1.json

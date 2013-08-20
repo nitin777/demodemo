@@ -14,5 +14,6 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require bootstrap-datetimepicker
+//= require bootstrap-wysihtml5
 //= require turbolinks
 //= require_tree .

@@ -1,0 +1,58 @@
+<%= form_for @o_single, :html => { :class => 'form-horizontal' } do |f| %>
+  <fieldset>
+    <legend></legend>
+		<%= f.hidden_field :cemetery_id, :value => session[:cemetery_id] %> 
+    <div class="control-group">
+      <%= f.label :subject, :class => 'control-label' %><span class="redStart">*</span>
+      <div class="controls">
+        <%= f.text_field :subject, :class => 'text_field' %>
+       	<% if @o_single.errors[:subject].any? %>
+        	<span class="text-error text-message"><%= @o_single.errors[:subject].first %></span>
+      	<% end %> 
+      </div>
+    </div>
+    
+    <% if @o_single.errors[:content].any? %>
+	  	<div class="control-group">
+	      <div class="controls">
+	        <span class="text-error" style="font-weight: bold;"><%= @o_single.errors[:content].first %></span>
+	      </div>
+	  	</div>
+   <% end %>       
+    
+    
+    <div class="control-group">
+      <%= f.label :content, :class => 'control-label' %><span class="redStart">*</span>
+      <div class="controls">
+        <%= f.text_area :content, :class => 'wysihtml5', :placeholder => "Enter text ..." %>
+      </div>
+    </div>    
+ 
+    <div class="control-group">
+      <%= f.label :is_certificate, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.check_box :is_certificate, :class => 'check_box' %>
+      </div>
+    </div>  
+ 
+    <div class="control-group">
+      <%= f.label :is_active, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.check_box :is_active, :class => 'check_box' %>
+      </div>
+    </div> 
+ 
+    <div class="form-actions">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to 'Cancel', letters_url, :class => 'btn' %>
+    </div>
+    
+  </fieldset>
+     
+<% end %>
+
+<script type="text/javascript">
+  $('.wysihtml5').each(function(i, elem) {
+    $(elem).wysihtml5();
+  });
+</script>

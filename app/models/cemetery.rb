@@ -11,6 +11,7 @@ class Cemetery < ActiveRecord::Base
   has_many :monuments, :dependent => :destroy
   has_many :catalogs, :dependent => :destroy  
   has_many :bookings, :dependent => :destroy  
+  has_many :letters, :dependent => :destroy
   
   has_many :users
   

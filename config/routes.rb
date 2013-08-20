@@ -20,6 +20,7 @@ Ocms::Application.routes.draw do
   resources :graves
   resources :grave_statuses
   resources :monuments
+  resources :letters
   
   resources :identities
   resources :payment_statuses
@@ -56,6 +57,9 @@ Ocms::Application.routes.draw do
     
   get '/show_search_box/:toggle/:model/:pm' => 'fronts#show_search_box', :as => :show_search_box
   get '/search/:toggle' => 'users#search', :as => :search
+  
+  
+  get 'print_letter/:id' => 'bookings#print_letter', :as => :print_letter
   
   root 'user_sessions#new'    
     

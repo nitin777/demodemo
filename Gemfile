@@ -74,6 +74,17 @@ gem "google_visualr", ">= 2.1"
 #calender
 gem 'bootstrap-datetimepicker-rails'
 
+#textarea editor
+gem "bootstrap-wysihtml5-rails"
+
+#pdf to html
+gem 'pdfkit'
+
+group :development do
+  # only need this in dev, on production we use the file in the bin folder
+  gem "wkhtmltopdf-binary"
+end
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
