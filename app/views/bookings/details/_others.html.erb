@@ -37,7 +37,7 @@
       <%= f.label :chapel_time_from, :class => 'control-label' %>
       <div class="controls">
 	 			<div id="chapel_time_from" class="input-append">
-	 				<%= f.text_field :chapel_time_from, :class => 'text_field' %>
+	 				<%= f.text_field :chapel_time_from, :value => (@o_single.chapel_time_from.to_s(:pretty_time) if @o_single.chapel_time_from), :class => 'text_field' %>
 			    <span class="add-on">
 			      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
 			      </i>
@@ -49,7 +49,7 @@
       <%= f.label :chapel_time_to, :class => 'control-label' %>
       <div class="controls">
 	 			<div id="chapel_time_to" class="input-append">
-	 				<%= f.text_field :chapel_time_to, :class => 'text_field' %>
+	 				<%= f.text_field :chapel_time_to, :value => (@o_single.chapel_time_to.to_s(:pretty_time) if @o_single.chapel_time_to), :class => 'text_field' %>
 			    <span class="add-on">
 			      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
 			      </i>
@@ -69,7 +69,7 @@
       <%= f.label :room_time_from, :class => 'control-label' %>
       <div class="controls">
 	 			<div id="room_time_from" class="input-append">
-	 				<%= f.text_field :room_time_from, :class => 'text_field' %>
+	 				<%= f.text_field :room_time_from, :value => (@o_single.room_time_from.to_s(:pretty_time) if @o_single.room_time_from), :class => 'text_field' %>
 			    <span class="add-on">
 			      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
 			      </i>
@@ -81,7 +81,7 @@
       <%= f.label :room_time_to, :class => 'control-label' %>
       <div class="controls">
 	 			<div id="room_time_to" class="input-append">
-	 				<%= f.text_field :room_time_to, :class => 'text_field' %>
+	 				<%= f.text_field :room_time_to, :value => (@o_single.room_time_to.to_s(:pretty_time) if @o_single.room_time_to), :class => 'text_field' %>
 			    <span class="add-on">
 			      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
 			      </i>

@@ -9,13 +9,13 @@
 
 	<div class="searchRight">
 		<% unless params[:grave_id] %>
-			<%= link_to 'Search', show_search_box_path(true, model_class, @search_fields.join(',')), :remote => true, :class => 'btn btn-primary' %>&nbsp;
+			<%= link_to 'Search', show_search_box_path(true, model_class, @search_fields.join(',')), :remote => true, :class => 'btn btn-primary btn-small' %>&nbsp;
 			
 			<%= link_to t('.new', :default => t("helpers.links.new")),
 			            new_grantee_path,
-			            :class => 'btn btn-primary' %>
+			            :class => 'btn btn-primary btn-small' %>
 		<% else %>
-			<%= link_to 'Back', graves_url, :class => 'btn btn-primary' %>
+			<%= link_to 'Back', graves_url, :class => 'btn btn-primary btn-small' %>
 		<% end %>			            
 	</div>	
 

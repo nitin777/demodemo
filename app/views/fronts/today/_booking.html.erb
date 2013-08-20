@@ -1,0 +1,37 @@
+<% bookings = service_type.bookings.where(:service_date => today_date) %>
+
+<table class="table table-striped">
+ <thead> 
+  <tr>
+    <th width="5%"><a><%= t("general.from") %></a></th>
+    <th width="5%"><a><%= t("general.to") %></a></th>
+    <th width="20%"><a><%= t("general.service_of") %></a></th>
+    <th width="20%"><a><%= t("general.funeral_director") %></a></th>
+    <th width="10%"><a><%= t("general.area") %></a></th>
+    <th width="10%"><a><%= t("general.section") %></a></th>    
+    <th width="10%"><a><%= t("general.row") %></a></th>    
+    <th width="10%"><a><%= t("general.plot") %></a></th>
+    <th width="10%"><a><%= t("general.grave_no") %></a></th>
+  </tr>
+ </thead> 
+  
+  <tbody>
+    <% if bookings.size > 0 %>
+      <% bookings.each do |o_row| %>
+        <tr>
+          <td><%= o_row.service_time_from.to_s(:pretty_time) if o_row.service_time_from %></td>
+          <td><%= o_row.service_time_to.to_s(:pretty_time) if o_row.service_time_to %></td>
+          <td><%= o_row.deceased_name %></td>
+          <td><%= o_row.funeral_director.name unless o_row.funeral_director.nil? %></td>
+          <td><%= o_row.area.code unless o_row.area_id.nil? %></td>
+          <td><%= o_row.section.code unless o_row.section_id.nil? %></td>
+          <td><%= o_row.row.name unless o_row.row_id.nil? %></td>
+          <td><%= o_row.plot.name unless o_row.plot_id.nil? %></td>          
+          <td><%= o_row.grafe.grave_number unless o_row.grafe.nil? %></td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr><th colspan=9"><%= t("general.record_not_found") %></th></tr>
+    <% end %>      
+  </tbody>
+</table>

@@ -1,0 +1,27 @@
+<table class="table table-striped">
+ <thead> 
+  <tr>
+    <th width="10%"><a><%= t("general.from") %></a></th>
+    <th width="10%"><a><%= t("general.to") %></a></th>
+    <th width="30%"><a><%= t("general.service_of") %></a></th>
+    <th width="25%"><a><%= t("general.location") %></a></th>
+    <th width="25%"><a><%= t("general.Informant") %></a></th>
+  </tr>
+ </thead> 
+  
+  <tbody>
+    <% if @rooms.size > 0 %>
+      <% @rooms.each do |o_row| %>
+        <tr>
+          <td><%= o_row.room_time_from.to_s(:pretty_time) if o_row.room_time_from %></td>
+          <td><%= o_row.room_time_to.to_s(:pretty_time) if o_row.room_time_to %></td>
+          <td><%= o_row.deceased_name %></td>
+          <td><%= o_row.room.name unless o_row.room.nil? %></td>
+          <td><%= o_row.informant_surname.to_s + " " + o_row.informant_first_name.to_s %></td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr><th colspan=5"><%= t("general.record_not_found") %></th></tr>
+    <% end %>      
+  </tbody>
+</table>

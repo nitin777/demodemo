@@ -27,6 +27,13 @@ class Booking < ActiveRecord::Base
   
   scope :finalized, -> {where(:is_finalized => true)}
   
+  def deceased_name(shorten=true)
+    unless deceased_first_name.nil? && deceased_surname.nil? or deceased_first_name.empty? && deceased_surname.empty?
+      [deceased_surname, deceased_first_name].join(" ")
+    end
+  end  
   
+  scope :chapels, -> {where("chapel_id IS NOT NULL")}
+  scope :rooms, -> {where("room_id IS NOT NULL")}
     
 end

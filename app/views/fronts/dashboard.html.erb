@@ -1,2 +1,71 @@
+<div class="page-header">
+  <h4><%= t("today's_activity") %></h4>
+</div>
+<div class="fRight" style="margin-top: -45px;">
+	<%= form_for @o_booking, :url => dashboard_path, :html => { :class => 'form-horizontal' } do |f| %>
+	
+		  <div class="control-group">
+	      <%= f.label :service_date, :class => 'control-label' %>
+	      <div class="controls">
+		 			<div id="service_date" class="input-append">
+		 				<%= f.text_field :service_date, :value => @today_date, :class => 'text_field' %>
+				    <span class="add-on">
+				      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+				      </i>
+				    </span>
+		 			</div>
+		 			<%= f.submit t("general.show"), :class => 'btn-primary' %> 		
+	      </div>
+	    </div>        
+	<% end %>
+</div>	
+<div class="clearb"></div>
+  <fieldset>
+    <legend></legend>
+    
+		<ul class="nav nav-tabs" id="myTab">
+			<% @service_types.each do |o_row| %>
+				<li><a href="#<%= o_row.name %>"><%= o_row.name %></a></li>
+			<% end %>
+			<li><a href="#chapel"><%= t("general.chapel") %></a></li>
+			<li><a href="#room"><%= t("general.room") %></a></li>
+		</ul>    
+    
+		<div class="tab-content">
+			<% @service_types.each do |o_row| %>
+				<div class="tab-pane" id="<%= o_row.name %>">
+					<%= render "fronts/today/booking", :service_type => o_row, :today_date => @today_date %>
+				</div>
+			<% end %>
+			<div class="tab-pane" id="chapel">
+				<%= render "fronts/today/chapel", :chapels => @chapels %>
+			</div>		
+			<div class="tab-pane" id="room">
+				<%= render "fronts/today/room", :rooms => @rooms %>
+			</div>
+    </div>
+    
+  </fieldset>
+     
 
-<h2 style="text-align: center; font-family: Comic Sans MS;">Online Cemetery Management System</h2>
+<script>
+    $('#myTab a').click(function (e) {
+    e.preventDefault();
+    $(this).tab('show');
+    })
+    
+ $(function () {
+$('#myTab a:first').tab('show');
+})  
+
+
+$(function() {
+//https://github.com/lubieniebieski/bootstrap-datetimepicker-rails	
+  $('#service_date').datetimepicker({
+    language: 'en',
+    pickTime: false,
+    format: "yyyy-MM-dd"
+  });   	    	  
+});
+
+</script>  

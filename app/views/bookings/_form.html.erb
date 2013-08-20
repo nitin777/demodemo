@@ -55,7 +55,12 @@ $(function() {
     language: 'en',
     pickTime: false,
     format: "yyyy-MM-dd"
-  });	
+  });
+  $('#service_date').datetimepicker({
+    language: 'en',
+    pickTime: false,
+    format: "yyyy-MM-dd"
+  });  	
   $('#service_date1').datetimepicker({
     language: 'en',
     format: "yyyy-MM-dd hh:mm:ss"
@@ -85,20 +90,34 @@ $(function() {
   });
   $('#chapel_time_from').datetimepicker({
     language: 'en',
-    format: "yyyy-MM-dd hh:mm:ss"
+    pickDate: false,
+    format: "hh:mm:ss"
   });   
   $('#chapel_time_to').datetimepicker({
     language: 'en',
-    format: "yyyy-MM-dd hh:mm:ss"
+    pickDate: false,
+    format: "hh:mm:ss"
   });   
   $('#room_time_from').datetimepicker({
     language: 'en',
-    format: "yyyy-MM-dd hh:mm:ss"
+    pickDate: false,
+    format: "hh:mm:ss"
   });   
   $('#room_time_to').datetimepicker({
     language: 'en',
-    format: "yyyy-MM-dd hh:mm:ss"
-  });           	    	  
+    pickDate: false,
+    format: "hh:mm:ss"
+  });      
+  $('#service_time_from').datetimepicker({
+    language: 'en',
+    pickDate: false,
+    format: "hh:mm:ss"
+  });  
+  $('#service_time_to').datetimepicker({
+    language: 'en',
+    pickDate: false,
+    format: "hh:mm:ss"
+  });       	    	  
 });
 
 </script>  

@@ -36,7 +36,7 @@ Ocms::Application.routes.draw do
   get 'logout' => 'user_sessions#destroy', :as => :logout
   get 'login' => 'user_sessions#new', :as => :login
   
-  get 'dashboard' => 'fronts#dashboard', :as => :dashboard
+  match 'dashboard' => 'fronts#dashboard', :as => :dashboard, via: [:get, :post]
   get '/other/:page_id' => 'fronts#other', :as => :other
   get '/get_section_from_area' => 'fronts#get_section_from_area', :as => :get_section_from_area
   get '/get_section_row_from_area' => 'fronts#get_section_row_from_area', :as => :get_section_row_from_area  

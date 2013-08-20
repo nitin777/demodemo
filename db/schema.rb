@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130820051339) do
+ActiveRecord::Schema.define(version: 20130820185832) do
 
   create_table "areas", force: true do |t|
     t.integer  "cemetery_id"
@@ -165,6 +165,9 @@ ActiveRecord::Schema.define(version: 20130820051339) do
     t.boolean  "is_finalized",                   default: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.date     "service_date"
+    t.time     "service_time_from"
+    t.time     "service_time_to"
   end
 
   create_table "catalogs", force: true do |t|
