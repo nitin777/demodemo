@@ -25,7 +25,8 @@ class Booking < ActiveRecord::Base
   validates :deceased_surname, :presence => true
   validates :deceased_first_name, :presence => true
   
-  scope :finalized, -> {where(:is_finalized => true)}
+  scope :finalize, -> {where(:is_finalized => true)}
+  scope :unfinalize, -> {where(:is_finalized => false)}
   
   def deceased_name(shorten=true)
     unless deceased_first_name.nil? && deceased_surname.nil? or deceased_first_name.empty? && deceased_surname.empty?

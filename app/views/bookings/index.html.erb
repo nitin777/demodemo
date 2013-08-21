@@ -3,16 +3,18 @@
 <%= hidden_field_tag :sort, params[:sort] %>
     
 <div class="page-header">
-  <h4><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %> (<span id="count_records"><%= @o_all.count %></span>)</h4>
+  <h4><%= session[:bookings] ? t("general.bookings") : t("general.interments") %> (<span id="count_records"><%= @o_all.count %></span>)</h4>
 </div>
 
-<div class="searchRight">
-	<%= link_to 'Search', show_search_box_path(true, model_class, @search_fields.join(',')), :remote => true, :class => 'btn btn-primary btn-small' %>&nbsp;
-	
-	<%= link_to t('.new', :default => t("helpers.links.new")),
-	            new_booking_path,
-	            :class => 'btn btn-primary btn-small' %>
-</div>	
+<% if session[:bookings] %>
+	<div class="searchRight">
+		<%= link_to 'Search', show_search_box_path(true, model_class, @search_fields.join(',')), :remote => true, :class => 'btn btn-primary btn-small' %>&nbsp;
+		
+		<%= link_to t('.new', :default => t("helpers.links.new")),
+		            new_booking_path,
+		            :class => 'btn btn-primary btn-small' %>
+	</div>	
+<% end %>	
 
 
 <div id="div_update_search"></div>

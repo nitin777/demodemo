@@ -6,9 +6,38 @@ class BookingsController < ApplicationController
   # GET /bookings
   # GET /bookings.json
   def index
-    @o_all = get_records(params[:booking], params[:page])
+    
+    session[:bookings] = params[:bookings] if params[:bookings]
+    if session[:bookings]
+      session[:interments] = nil
+      @o_all = get_bookings(params[:booking], params[:page])
+    end
+    
+    session[:interments] = params[:interments] if params[:interments]
+    if session[:interments]
+      session[:bookings] = nil
+      @o_all = get_interments(params[:booking], params[:page])
+    end    
+    
     @search_fields = ['deceased_surname', 'deceased_first_name']
+    
     session[:booking] = params[:booking] if params[:booking]
+
+       
+    if params[:id]
+      booking = Booking.find(params[:id])
+      if booking
+        if booking.is_finalized
+          finalize = false
+          flash[:notice] = t("general.successfully_moved_to_bookings")
+        else
+         finalize = true
+         flash[:notice] = t("general.successfully_finalized")
+        end
+        booking.is_finalized = finalize
+        booking.save
+      end
+    end
   end
 
   def show_booking_search
@@ -100,10 +129,16 @@ class BookingsController < ApplicationController
     end
     
     #fetch search records
-    def get_records(search, page)
-      booking_query = @cemetery.bookings.search(search)
+    def get_bookings(search, page)
+      booking_query = @cemetery.bookings.unfinalize.search(search)
       booking_query.order(sort_column + " " + sort_direction).paginate(:per_page => 10, :page => page)
-    end    
+    end   
+    
+    #fetch search records
+    def get_interments(search, page)
+      booking_query = @cemetery.bookings.finalize.search(search)
+      booking_query.order(sort_column + " " + sort_direction).paginate(:per_page => 10, :page => page)
+    end     
     
     #set header menu active
     def set_header_menu_active

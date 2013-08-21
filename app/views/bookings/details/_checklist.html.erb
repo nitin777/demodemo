@@ -8,14 +8,14 @@
   
   <% 
   	b_checklist = BookingChecklist.column_names
-  	pop_checklist = ['id', 'booking_id', 'file_location', 'created_at', 'updated_at']
+  	pop_checklist = ['id', 'booking_id', 'file_location', 'other', 'created_at', 'updated_at']
   	b_checklist = b_checklist - pop_checklist
   %>
   
   <% b_checklist.each do |c| %>
 		<div class="control-group">
-			<%= ff.label c, :class => 'control-label' %>
-			<div class="controls fRight">
+			<lable class='control-label' style="width: 250px;"><%= t(c) %></lable>
+			<div class="controls fRightChecklist">
 			  <%= ff.radio_button c, 1 %> <span class="mar20"><%= t("general.completed") %></span> 
 			  <%= ff.radio_button c, 2 %> <span class="mar20"><%= t("general.pending") %></span>
 			  <%= ff.radio_button c, 3 %> <span class="mar20"><%= t("general.N/A") %></span>
@@ -23,5 +23,11 @@
 		</div>
 	<% end %>	
 	
+    <div class="control-group">
+      <%= ff.label :other, :class => 'control-label' %>
+      <div class="controls">
+        <%= ff.text_area :other, :class => 'text_field text-area-fixed-width' %>
+      </div>
+    </div>		
 	 
 <% end %>

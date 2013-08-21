@@ -37,7 +37,8 @@
 					<div class="span2">
 						<ul class="nav nav-pills nav-stacked">
 							<li class="<%= 'active' if current_controller_name == 'users' %>"><%= link_to t("general.users"), users_path %></li>
-							<li class="<%= 'active' if current_controller_name == 'bookings' %>"><%= link_to t("general.bookings"), bookings_path %></li>
+							<li class="<%= 'active' if ((current_controller_name == 'bookings' and session[:bookings]) or params[:bookings]) %>"><%= link_to t("general.bookings"), bookings_path(:bookings => true) %></li>
+							<li class="<%= 'active' if ((current_controller_name == 'bookings' and session[:interments]) or params[:interments]) %>"><%= link_to t("general.interments"), bookings_path(:interments => true) %></li>
 							<li class="<%= 'active' if current_controller_name == 'letters' %>"><%= link_to t("general.letters"), letters_path %></li>
 							<li class="<%= 'active' if current_controller_name == 'areas' %>"><%= link_to t("general.areas"), areas_path %></li>
 							<li class="<%= 'active' if current_controller_name == 'sections' %>"><%= link_to t("general.sections"), sections_path %></li>

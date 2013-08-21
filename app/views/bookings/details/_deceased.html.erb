@@ -6,35 +6,35 @@
     </div>
     
     <div class="control-group">
-      <%= f.label :deceased_country_id_death, :class => 'control-label' %>
+      <lable class='control-label'><%= t("general.country_of_death") %></lable>
       <div class="controls">
         <%= f.select :deceased_country_id_death, options_for_select(get_model_data("Country"), (@o_single.deceased_country_id_death unless @o_single.deceased_country_id_death.nil?))  %>
       </div>
     </div>      
 
     <div class="control-group">
-      <%= f.label :deceased_country_id_birth, :class => 'control-label' %>
+      <lable class='control-label'><%= t("general.country_of_birth") %></lable>
       <div class="controls">
         <%= f.select :deceased_country_id_birth, options_for_select(get_model_data("Country"), (@o_single.deceased_country_id_birth unless @o_single.deceased_country_id_birth.nil?))  %>
       </div>
     </div>  
     
     <div class="control-group">
-      <%= f.label :deceased_country_id, :class => 'control-label' %>
+      <lable class='control-label'><%= t("general.country") %></lable>
       <div class="controls">
         <%= f.select :deceased_country_id, options_for_select(get_model_data("Country"), (@o_single.deceased_country_id unless @o_single.deceased_country_id.nil?))  %>
       </div>
     </div>      
     
     <div class="control-group">
-      <%= f.label :deceased_place_of_death, :class => 'control-label' %>
+      <lable class='control-label'><%= t("general.place_of_death") %></lable>
       <div class="controls">
         <%= f.text_field :deceased_place_of_death, :class => 'text_field' %>
       </div>
     </div>
     
     <div class="control-group">
-      <%= f.label :deceased_date_death, :class => 'control-label' %>
+      <lable class='control-label'><%= t("general.date_of_death") %></lable>
       <div class="controls">
 	 			<div id="deceased_date_death" class="input-append">
 	 				<%= f.text_field :deceased_date_death, :class => 'text_field' %>
@@ -46,13 +46,13 @@
       </div>
     </div>
     <div class="control-group">
-      <%= f.label :deceased_place_birth, :class => 'control-label' %>
+      <lable class='control-label'><%= t("general.place_of_birth") %></lable>
       <div class="controls">
         <%= f.text_field :deceased_place_birth, :class => 'text_field' %>
       </div>
     </div>
     <div class="control-group">
-      <%= f.label :deceased_date_birth, :class => 'control-label' %>
+      <lable class='control-label'><%= t("general.date_of_birth") %></lable>
       <div class="controls">
 	 			<div id="deceased_date_birth" class="input-append">
 	 				<%= f.text_field :deceased_date_birth, :class => 'text_field' %>
@@ -64,87 +64,77 @@
       </div>
     </div>
     <div class="control-group">
-      <%= f.label :deceased_age, :class => 'control-label' %>
+      <lable class='control-label'><%= t("general.age") %></lable>
       <div class="controls">
         <%= f.text_field :deceased_age, :class => 'text_field' %>
+        <%= f.select :deceased_finageuom, options_for_select(get_finageuom, @o_single.deceased_finageuom)  %>
       </div>
     </div> 
+
     <div class="control-group">
-      <%= f.label :deceased_finageuom, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.text_field :deceased_finageuom, :class => 'text_field' %>
-      </div>
-    </div>
-    <div class="control-group">
-      <%= f.label :deceased_address, :class => 'control-label' %>
+      <lable class='control-label'><%= t("general.address") %></lable>
       <div class="controls">
         <%= f.text_field :deceased_address, :class => 'text_field' %>
       </div>
     </div>
     <div class="control-group">
-      <%= f.label :deceased_suburb, :class => 'control-label' %>
+      <lable class='control-label'><%= t("general.suburb") %></lable>
       <div class="controls">
         <%= f.text_field :deceased_suburb, :class => 'text_field' %>
       </div>
     </div>
     <div class="control-group">
-      <%= f.label :deceased_state, :class => 'control-label' %>
+      <lable class='control-label'><%= t("general.state") %></lable>
       <div class="controls">
         <%= f.text_field :deceased_state, :class => 'text_field' %>
       </div>
     </div>
     <div class="control-group">
-      <%= f.label :deceased_postal_code, :class => 'control-label' %>
+      <lable class='control-label'><%= t("general.postal_code") %></lable>
       <div class="controls">
         <%= f.text_field :deceased_postal_code, :class => 'text_field' %>
       </div>
     </div> 
     
     <div class="control-group">
-      <%= f.label :deceased_marital_status, :class => 'control-label' %>
+      <lable class='control-label'><%= t("general.marital_status") %></lable>
       <div class="controls">
         <%= f.select :deceased_marital_status, options_for_select(get_marital_status, (@o_single.deceased_marital_status unless @o_single.deceased_marital_status.nil?))  %>
       </div>
     </div>  
         
     <div class="control-group">
-      <%= f.label :deceased_marital_status, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.text_field :deceased_marital_status, :class => 'text_field' %>
-      </div>
-    </div>
-    <div class="control-group">
-      <%= f.label :deceased_partner_name, :class => 'control-label' %>
+      <lable class='control-label'><%= t("general.partner_name") %></lable>
       <div class="controls">
         <%= f.text_field :deceased_partner_name, :class => 'text_field' %>
       </div>
     </div>
     <div class="control-group">
-      <%= f.label :deceased_partner_surname, :class => 'control-label' %>
+      <lable class='control-label'><%= t("general.partner_surname") %></lable>
       <div class="controls">
         <%= f.text_field :deceased_partner_surname, :class => 'text_field' %>
       </div>
     </div>
     <div class="control-group">
-      <%= f.label :deceased_father_name, :class => 'control-label' %>
+      <lable class='control-label'><%= t("general.father_name") %></lable>
       <div class="controls">
         <%= f.text_field :deceased_father_name, :class => 'text_field' %>
       </div>
     </div>
     <div class="control-group">
-      <%= f.label :deceased_father_surname, :class => 'control-label' %>
+      <lable class='control-label'><%= t("general.father_surname") %></lable>
       <div class="controls">
         <%= f.text_field :deceased_father_surname, :class => 'text_field' %>
       </div>
     </div>                    
     <div class="control-group">
-      <%= f.label :deceased_mother_name, :class => 'control-label' %>
+      <lable class='control-label'><%= t("general.mother_name") %></lable>
       <div class="controls">
         <%= f.text_field :deceased_mother_name, :class => 'text_field' %>
       </div>
     </div>
     <div class="control-group">
-      <%= f.label :deceased_mother_maiden_surname, :class => 'control-label' %>
+      <lable class='control-label'><%= t("general.mother_maiden_surname") %></lable>
       <div class="controls">
         <%= f.text_field :deceased_mother_maiden_surname, :class => 'text_field' %>
       </div>

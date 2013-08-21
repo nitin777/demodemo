@@ -31,7 +31,11 @@
     
     
     <div class="form-actions">
-      <%= f.submit nil, :class => 'btn btn-primary' %>
+    	<% if session[:bookings] %>
+      	<%= f.submit nil, :class => 'btn btn-primary' %>
+      <% else %>
+      	<%= f.submit t("general.update_interment"), :class => 'btn btn-primary' %>
+      <% end %>	
       <%= link_to 'Cancel', bookings_url, :class => 'btn' %>
     </div>
     

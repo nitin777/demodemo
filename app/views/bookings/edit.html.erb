@@ -1,5 +1,5 @@
 <%- model_class = Booking -%>
 <div class="page-header">
-  <h4><%=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize %></h4>
+  <h4><%= session[:bookings] ? t("general.edit_booking") : t("general.edit_interment") %></h4>
 </div>
 <%= render :partial => 'form' %>

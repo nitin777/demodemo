@@ -11,6 +11,8 @@
 
 .fRight { float: right; font-size: 16px; }
 
+.fRightChecklist { float: right; margin-right:150px;}
+
 .text-message { float: left; margin: -25px 0 0 275px; font-weight: bold;}
 
 .spinner {float: right; margin: -50px 385px 0 0;}
@@ -19,4 +21,5 @@
 
 .loginfom {background: none repeat scroll 0 0 #FFFFFF; border: 1px solid #CECECD; border-radius: 10px 10px 10px 10px; box-shadow: 0 0 3px 3px rgba(206, 206, 205, 0.5); margin: 10px auto; padding: 20px; width: 600px; }
 
+.text-area-fixed-width {width: 410px; height: 125px;}
 .clearb {clear:both;}

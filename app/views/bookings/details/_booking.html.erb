@@ -1,156 +1,184 @@
 		<%= f.hidden_field :cemetery_id, :value => session[:cemetery_id] %>
 		<%= f.hidden_field :user_id, :value => current_user.id %>
-
-		<div class="control-group">
-		  <%= f.label :is_finalized, :class => 'control-label' %>
-		  <div class="controls">
-		    <%= f.check_box :is_finalized, :class => 'check_box' %>
-		  </div>
-		</div>
-		 
-    <div class="control-group">
-      <%= f.label :is_private, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.check_box :is_private, :class => 'check_box' %>
-      </div>
-    </div>
-    
-    <div class="control-group">
-      <%= f.label :is_confirmed, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.check_box :is_confirmed, :class => 'check_box' %>
-      </div>
-    </div>		     		 
-    
-    <div class="control-group">
-      <%= f.label :service_type_id, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.select :service_type_id, options_for_select(get_model_data("ServiceType"), (@o_single.service_type.id unless @o_single.service_type.nil?))  %>
-      </div>
-    </div>
-    
-    <div class="control-group">
-      <%= f.label :catalog_id, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.select :catalog_id, options_for_select(get_model_data("Catalog"), (@o_single.catalog.id unless @o_single.catalog.nil?))  %>
-      </div>
-    </div> 
-    
-    <div class="control-group">
-      <%= f.label :payment_status_id, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.select :payment_status_id, options_for_select(get_model_data("PaymentStatus"), (@o_single.payment_status.id unless @o_single.payment_status.nil?))  %>
-      </div>
-    </div>         
-    
-    <div class="control-group">
-      <%= f.label :funeral_director_id, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.select :funeral_director_id, options_for_select(get_funeral_directors, (@o_single.funeral_director.id unless @o_single.funeral_director.nil?))  %>
-      </div>
-    </div>  
-    
-    <div class="control-group">
-      <%= f.label :date_notified, :class => 'control-label' %>
-      <div class="controls">
-	 			<div id="date_notified" class="input-append">
-	 				<%= f.text_field :date_notified, :class => 'text_field' %>
-			    <span class="add-on">
-			      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
-			      </i>
-			    </span> 				
-	 			</div>	      	
-      </div>
-    </div>	
-    
-    <div class="control-group">
-      <%= f.label :service_date, :class => 'control-label' %>
-      <div class="controls">
-	 			<div id="service_date" class="input-append">
-	 				<%= f.text_field :service_date, :class => 'text_field' %>
-			    <span class="add-on">
-			      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
-			      </i>
-			    </span> 				
-	 			</div>	
-      </div>
-    </div>	
-    
-    
-    <div class="control-group">
-      <label class="control-label"><%= t("general.from") %></label>
-      <div class="controls">
-	 			<div id="service_time_from" class="input-append">
-	 				<%= f.text_field :service_time_from, :value => (@o_single.service_time_from.to_s(:pretty_time) if @o_single.service_time_from), :class => 'text_field' %>
-			    <span class="add-on">
-			      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
-			      </i>
-			    </span> 				
-	 			</div>	
-      </div>
-    </div>	
-    
-    <div class="control-group">
-      <label class="control-label"><%= t("general.to") %></label>
-      <div class="controls">
-	 			<div id="service_time_to" class="input-append">
-	 				<%= f.text_field :service_time_to, :value => (@o_single.service_time_to.to_s(:pretty_time) if @o_single.service_time_to), :class => 'text_field' %>
-			    <span class="add-on">
-			      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
-			      </i>
-			    </span> 				
-	 			</div>	
-      </div>
-    </div>	  
-    
-    <div class="control-group">
-      <%= f.label :consultant, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.text_field :consultant, :class => 'text_field' %>
-      </div>
-    </div>	                   
-    
-           
-		 
-    <div class="control-group">
-      <%= f.label :deceased_title, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.text_field :deceased_title, :class => 'text_field' %>
-      </div>
-    </div>		 
-		 
-    <div class="control-group">
-      <%= f.label :deceased_surname, :class => 'control-label' %><span class="redStart">*</span>
-      <div class="controls">
-        <%= f.text_field :deceased_surname, :class => 'text_field' %>
-       	<% if @o_single.errors[:deceased_surname].any? %>
-        	<span class="text-error text-message"><%= @o_single.errors[:deceased_surname].first %></span>
-      	<% end %> 
-      </div>
-    </div>
-    
-    <div class="control-group">
-      <%= f.label :deceased_first_name, :class => 'control-label' %><span class="redStart">*</span>
-      <div class="controls">
-        <%= f.text_field :deceased_first_name, :class => 'text_field' %>
-       	<% if @o_single.errors[:deceased_first_name].any? %>
-        	<span class="text-error text-message"><%= @o_single.errors[:deceased_first_name].first %></span>
-      	<% end %> 
-      </div>
-    </div>    
+	 <table class="">
+	 	<tr>
+	 		<td>
+		    <div class="control-group">
+		      <%= f.label :is_private, :class => 'control-label' %>
+		      <div class="controls">
+		        <%= f.check_box :is_private, :class => 'check_box' %>
+		      </div>
+		    </div>
+    	</td>
+    	<td>
+		    <div class="control-group">
+		      <%= f.label :is_confirmed, :class => 'control-label' %>
+		      <div class="controls">
+		        <%= f.check_box :is_confirmed, :class => 'check_box' %>
+		      </div>
+		    </div>
+    	</td>	
+    </tr>
+	 	<tr>
+	 		<td>    
+		    <div class="control-group">
+		      <%= f.label :service_type_id, :class => 'control-label' %>
+		      <div class="controls">
+		        <%= f.select :service_type_id, options_for_select(get_model_data("ServiceType"), (@o_single.service_type.id unless @o_single.service_type.nil?))  %>
+		      </div>
+		    </div>
+    	</td>
+    	<td>		
+		    <div class="control-group">
+		      <%= f.label :funeral_director_id, :class => 'control-label' %>
+		      <div class="controls">
+		        <%= f.select :funeral_director_id, options_for_select(get_funeral_directors, (@o_single.funeral_director.id unless @o_single.funeral_director.nil?))  %>
+		      </div>
+		    </div>     		    
+      </td> 
+    </tr>
+    <tr>
+      <td>        
+		    <div class="control-group">
+		      <%= f.label :catalog_id, :class => 'control-label' %>
+		      <div class="controls">
+		        <%= f.select :catalog_id, options_for_select(get_model_data("Catalog"), (@o_single.catalog.id unless @o_single.catalog.nil?))  %>
+		      </div>
+		    </div> 
+      </td>
+      <td>		    
+		    <div class="control-group">
+		      <%= f.label :payment_status_id, :class => 'control-label' %>
+		      <div class="controls">
+		        <%= f.select :payment_status_id, options_for_select(get_model_data("PaymentStatus"), (@o_single.payment_status.id unless @o_single.payment_status.nil?))  %>
+		      </div>
+		    </div>         
+      </td> 
+    </tr>      
  
-     <div class="control-group">
-      <%= f.label :deceased_middle_name, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.text_field :deceased_middle_name, :class => 'text_field' %>
-      </div>
-     </div>
-     
-     <div class="control-group">
-      <%= f.label :deceased_gender, :class => 'control-label' %>
-      <div class="controls">
-			  <%= f.radio_button :deceased_gender, 'Male' %> <%= t("general.male") %> 
-			  <%= f.radio_button :deceased_gender, 'Female' %> <%= t("general.female") %>
-			  <%= f.radio_button :deceased_gender, 'Trans-Gender' %> <%= t("general.trans_gender") %>
-      </div>
-     </div>
+    <tr>
+      <td>    
+	    <div class="control-group">
+	      <%= f.label :date_notified, :class => 'control-label' %>
+	      <div class="controls">
+		 			<div id="date_notified" class="input-append">
+		 				<%= f.text_field :date_notified, :class => 'text_field' %>
+				    <span class="add-on">
+				      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+				      </i>
+				    </span> 				
+		 			</div>	      	
+	      </div>
+	    </div>	
+      </td>
+      <td>	    
+	    <div class="control-group">
+	      <%= f.label :service_date, :class => 'control-label' %>
+	      <div class="controls">
+		 			<div id="service_date" class="input-append">
+		 				<%= f.text_field :service_date, :class => 'text_field' %>
+				    <span class="add-on">
+				      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+				      </i>
+				    </span> 				
+		 			</div>	
+	      </div>
+	    </div>	
+      </td> 
+    </tr>      
+    <tr>
+      <td>    
+		    <div class="control-group">
+		      <label class="control-label"><%= t("general.from") %></label>
+		      <div class="controls">
+			 			<div id="service_time_from" class="input-append">
+			 				<%= f.text_field :service_time_from, :value => (@o_single.service_time_from.to_s(:pretty_time) if @o_single.service_time_from), :class => 'text_field' %>
+					    <span class="add-on">
+					      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+					      </i>
+					    </span> 				
+			 			</div>	
+		      </div>
+		    </div>	
+      </td>
+      <td>		    
+		    <div class="control-group">
+		      <label class="control-label"><%= t("general.to") %></label>
+		      <div class="controls">
+			 			<div id="service_time_to" class="input-append">
+			 				<%= f.text_field :service_time_to, :value => (@o_single.service_time_to.to_s(:pretty_time) if @o_single.service_time_to), :class => 'text_field' %>
+					    <span class="add-on">
+					      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+					      </i>
+					    </span> 				
+			 			</div>	
+		      </div>
+		    </div>	  
+      </td> 
+    </tr>  
+  		    
+    <tr>
+      <td>
+		    <div class="control-group">
+		      <%= f.label :deceased_title, :class => 'control-label' %>
+		      <div class="controls">
+		        <%= f.text_field :deceased_title, :class => 'text_field' %>
+		      </div>
+		    </div>		 
+      </td>
+      <td>				 
+		    <div class="control-group">
+		      <%= f.label :deceased_surname, :class => 'control-label' %><span class="redStart">*</span>
+		      <div class="controls">
+		        <%= f.text_field :deceased_surname, :class => 'text_field' %>
+		       	<% if @o_single.errors[:deceased_surname].any? %>
+		        	<span class="text-error"><%= @o_single.errors[:deceased_surname].first %></span>
+		      	<% end %> 
+		      </div>
+		    </div>
+      </td> 
+    </tr>  
+    <tr>
+      <td>    		    
+		    <div class="control-group">
+		      <%= f.label :deceased_first_name, :class => 'control-label' %><span class="redStart">*</span>
+		      <div class="controls">
+		        <%= f.text_field :deceased_first_name, :class => 'text_field' %>
+		       	<% if @o_single.errors[:deceased_first_name].any? %>
+		        	<span class="text-error"><%= @o_single.errors[:deceased_first_name].first %></span>
+		      	<% end %> 
+		      </div>
+		      
+		    </div>
+		        
+      </td>
+      <td>		 
+		     <div class="control-group">
+		      <%= f.label :deceased_middle_name, :class => 'control-label' %>
+		      <div class="controls">
+		        <%= f.text_field :deceased_middle_name, :class => 'text_field' %>
+		      </div>
+		     </div>
+      </td> 
+    </tr>  		
+    <tr>
+      <td>    		    
+		    <div class="control-group">
+		      <%= f.label :consultant, :class => 'control-label' %>
+		      <div class="controls">
+		        <%= f.text_field :consultant, :class => 'text_field' %>
+		      </div>
+		    </div>	                   
+      </td>
+      <td>        
+		     <div class="control-group">
+		      <%= f.label :deceased_gender, :class => 'control-label' %>
+		      <div class="controls">
+					  <%= f.radio_button :deceased_gender, 'Male' %> <%= t("general.male") %> 
+					  <%= f.radio_button :deceased_gender, 'Female' %> <%= t("general.female") %>
+					  <%= f.radio_button :deceased_gender, 'Trans-Gender' %> <%= t("general.trans_gender") %>
+		      </div>
+		     </div>
+      </td> 
+    </tr> 		     
+   </table>  

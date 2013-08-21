@@ -16,6 +16,10 @@ module ApplicationHelper
   def get_marital_status
     [["Select", ""]] + [["Never Married", "Never Married"]] + [["Married", "Married"]] + [["Widow/Widower", "Widow/Widower"]] + [["Separated but not divorced", "Separated but not divorced"]] + [["Divorced", "Divorced"]] + [["De facto", "De facto"]] + [["Unknow", "Unknow"]] 
   end
+  
+  def get_finageuom
+    [["Select Option", ""]] + [["Year", "Year"]] + [["Month", "Month"]] + [["Weeks", "Weeks"]] + [["Days", "Days"]] + [["Hours", "Hours"]] + [["Adault", "Adault"]] + [["Child", "Child"]] + [["Unborn", "Unborn"]]
+  end
 
   def super_admin_access_roles
     Role.all.collect {|r| [r.role_type, r.id]} 
