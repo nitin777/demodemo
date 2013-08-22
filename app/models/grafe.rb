@@ -8,6 +8,7 @@ class Grafe < ActiveRecord::Base
   belongs_to :monument
   belongs_to :unit_type
   has_many :grantee_graves, :dependent => :destroy
+  has_many :grantees, :through => :grantee_graves
   has_many :bookings
   belongs_to :stone_mason, class_name: 'User'
   

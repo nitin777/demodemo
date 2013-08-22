@@ -77,7 +77,7 @@ ActiveRecord::Schema.define(version: 20130820185832) do
     t.integer  "row_id"
     t.integer  "plot_id"
     t.integer  "grafe_id"
-    t.integer  "gratee_id"
+    t.integer  "grantee_id"
     t.integer  "service_type_id"
     t.integer  "catalog_id"
     t.integer  "payment_status_id"

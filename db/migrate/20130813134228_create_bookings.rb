@@ -8,7 +8,7 @@ class CreateBookings < ActiveRecord::Migration
       t.references :row
       t.references :plot
       t.references :grafe
-      t.references :gratee
+      t.references :grantee
       t.references :service_type
       t.references :catalog
       t.references :payment_status

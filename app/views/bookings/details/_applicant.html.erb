@@ -1,97 +1,146 @@
-    <div class="control-group">
-      <%= f.label :relationship_to_deceased, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.text_field :relationship_to_deceased, :class => 'text_field' %>
-      </div>
-    </div> 
-    <div class="control-group">
-      <lable class='control-label'><%= t("general.title") %></lable>
-      <div class="controls">
-        <%= f.text_field :informant_title, :class => 'text_field' %>
-      </div>
-    </div>
-    <div class="control-group">
-      <lable class='control-label'><%= t("general.surname") %></lable>
-      <div class="controls">
-        <%= f.text_field :informant_surname, :class => 'text_field' %>
-      </div>
-    </div>
-    <div class="control-group">
-      <lable class='control-label'><%= t("general.first_name") %></lable>
-      <div class="controls">
-        <%= f.text_field :informant_first_name, :class => 'text_field' %>
-      </div>
-    </div>
-    <div class="control-group">
-      <lable class='control-label'><%= t("general.middle_name") %></lable>
-      <div class="controls">
-        <%= f.text_field :informant_middle_name, :class => 'text_field' %>
-      </div>
-    </div>
-    <div class="control-group">
-      <lable class='control-label'><%= t("general.fax_area_code") %></lable>
-      <div class="controls">
-        <%= f.text_field :informant_fax_area_code, :class => 'text_field' %>
-      </div>
-    </div>  
-    <div class="control-group">
-      <lable class='control-label'><%= t("general.fax") %></lable>
-      <div class="controls">
-        <%= f.text_field :informant_fax, :class => 'text_field' %>
-      </div>
-    </div>
-    <div class="control-group">
-      <lable class='control-label'><%= t("general.email") %></lable>
-      <div class="controls">
-        <%= f.text_field :informant_email, :class => 'text_field' %>
-      </div>
-    </div>
-    <div class="control-group">
-      <lable class='control-label'><%= t("general.telephone_area_code") %></lable>
-      <div class="controls">
-        <%= f.text_field :informant_telephone_area_code, :class => 'text_field' %>
-      </div>
-    </div>
-    <div class="control-group">
-      <lable class='control-label'><%= t("general.telephone") %></lable>
-      <div class="controls">
-        <%= f.text_field :informant_telephone, :class => 'text_field' %>
-      </div>
-    </div>
-    <div class="control-group">
-      <lable class='control-label'><%= t("general.mobile") %></lable>
-      <div class="controls">
-        <%= f.text_field :informant_mobile, :class => 'text_field' %>
-      </div>
-    </div>
-    <div class="control-group">
-      <lable class='control-label'><%= t("general.address") %></lable>
-      <div class="controls">
-        <%= f.text_field :informant_address, :class => 'text_field' %>
-      </div>
-    </div>
-    <div class="control-group">
-      <lable class='control-label'><%= t("general.suburb") %></lable>
-      <div class="controls">
-        <%= f.text_field :informant_suburb, :class => 'text_field' %>
-      </div>
-    </div>
-    <div class="control-group">
-      <lable class='control-label'><%= t("general.state") %></lable>
-      <div class="controls">
-        <%= f.text_field :informant_state, :class => 'text_field' %>
-      </div>
-    </div>
-    <div class="control-group">
-      <lable class='control-label'><%= t("general.postal_code") %></lable>
-      <div class="controls">
-        <%= f.text_field :informant_postal_code, :class => 'text_field' %>
-      </div>
-    </div>
-
-    <div class="control-group">
-      <lable class='control-label'><%= t("general.country") %></lable>
-      <div class="controls">
-        <%= f.select :informant_country_id, options_for_select(get_model_data("Country"), (@o_single.informant_country_id unless @o_single.informant_country_id.nil?))  %>
-      </div>
-    </div>   
+<table>
+    <tr>
+      <td>	
+		    <div class="control-group">
+		      <%= f.label :relationship_to_deceased, :class => 'control-label' %>
+		      <div class="controls">
+		        <%= f.text_field :relationship_to_deceased, :class => 'text_field' %>
+		      </div>
+		    </div>
+      </td>
+      <td>		     
+		    <div class="control-group">
+		      <lable class='control-label'><%= t("general.title") %></lable>
+		      <div class="controls">
+		        <%= f.text_field :informant_title, :class => 'text_field' %>
+		      </div>
+		    </div>
+      </td> 
+    </tr>  
+    <tr>
+      <td>    		    
+		    <div class="control-group">
+		      <lable class='control-label'><%= t("general.surname") %></lable>
+		      <div class="controls">
+		        <%= f.text_field :informant_surname, :class => 'text_field' %>
+		      </div>
+		    </div>
+      </td>
+      <td>		    
+		    <div class="control-group">
+		      <lable class='control-label'><%= t("general.first_name") %></lable>
+		      <div class="controls">
+		        <%= f.text_field :informant_first_name, :class => 'text_field' %>
+		      </div>
+		    </div>
+      </td> 
+    </tr> 
+    <tr>
+      <td>		    
+		    <div class="control-group">
+		      <lable class='control-label'><%= t("general.middle_name") %></lable>
+		      <div class="controls">
+		        <%= f.text_field :informant_middle_name, :class => 'text_field' %>
+		      </div>
+		    </div>
+      </td>
+      <td>		    
+		    <div class="control-group">
+		      <lable class='control-label'><%= t("general.fax_area_code") %></lable>
+		      <div class="controls">
+		        <%= f.text_field :informant_fax_area_code, :class => 'text_field' %>
+		      </div>
+		    </div>
+      </td> 
+    </tr> 
+    <tr>
+      <td>		      
+		    <div class="control-group">
+		      <lable class='control-label'><%= t("general.fax") %></lable>
+		      <div class="controls">
+		        <%= f.text_field :informant_fax, :class => 'text_field' %>
+		      </div>
+		    </div>
+      </td>
+      <td>		    
+		    <div class="control-group">
+		      <lable class='control-label'><%= t("general.email") %></lable>
+		      <div class="controls">
+		        <%= f.text_field :informant_email, :class => 'text_field' %>
+		      </div>
+		    </div>
+      </td> 
+    </tr> 
+    <tr>
+      <td>		    
+		    <div class="control-group">
+		      <lable class='control-label'><%= t("general.telephone_area_code") %></lable>
+		      <div class="controls">
+		        <%= f.text_field :informant_telephone_area_code, :class => 'text_field' %>
+		      </div>
+		    </div>
+      </td>
+      <td>		    
+		    <div class="control-group">
+		      <lable class='control-label'><%= t("general.telephone") %></lable>
+		      <div class="controls">
+		        <%= f.text_field :informant_telephone, :class => 'text_field' %>
+		      </div>
+		    </div>
+      </td> 
+    </tr> 
+    <tr>
+      <td>		    
+		    <div class="control-group">
+		      <lable class='control-label'><%= t("general.mobile") %></lable>
+		      <div class="controls">
+		        <%= f.text_field :informant_mobile, :class => 'text_field' %>
+		      </div>
+		    </div>
+      </td>
+      <td>		    
+		    <div class="control-group">
+		      <lable class='control-label'><%= t("general.address") %></lable>
+		      <div class="controls">
+		        <%= f.text_field :informant_address, :class => 'text_field' %>
+		      </div>
+		    </div>
+      </td> 
+    </tr> 
+    <tr>
+      <td>		    
+		    <div class="control-group">
+		      <lable class='control-label'><%= t("general.suburb") %></lable>
+		      <div class="controls">
+		        <%= f.text_field :informant_suburb, :class => 'text_field' %>
+		      </div>
+		    </div>
+      </td>
+      <td>		    
+		    <div class="control-group">
+		      <lable class='control-label'><%= t("general.state") %></lable>
+		      <div class="controls">
+		        <%= f.text_field :informant_state, :class => 'text_field' %>
+		      </div>
+		    </div>
+      </td> 
+    </tr> 
+    <tr>
+      <td>		    
+		    <div class="control-group">
+		      <lable class='control-label'><%= t("general.postal_code") %></lable>
+		      <div class="controls">
+		        <%= f.text_field :informant_postal_code, :class => 'text_field' %>
+		      </div>
+		    </div>
+      </td>
+      <td>		
+		    <div class="control-group">
+		      <lable class='control-label'><%= t("general.country") %></lable>
+		      <div class="controls">
+		        <%= f.select :informant_country_id, options_for_select(get_model_data("Country"), (@o_single.informant_country_id unless @o_single.informant_country_id.nil?))  %>
+		      </div>
+		    </div>
+      </td> 
+    </tr> 		       
+</table>    

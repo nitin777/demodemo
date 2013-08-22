@@ -1,18 +1,49 @@
 <div class="page-header">
   <h4><%= @o_single.grave_number %></p></h4>
 </div>
+  <fieldset>
+    <legend></legend>
+    
+		<ul class="nav nav-tabs" id="myTab">
+			<li class="active"><a href="#detail"><%= t("general.detail") %></a></li>
+			<li><a href="#grantees"><%= t("general.grantees") %></a></li>
+			<li><a href="#interments"><%= t("general.interments") %></a></li>
+		</ul>    
+    
+		<div class="tab-content">
+			<div class="tab-pane active" id="detail">
+				<p><strong>Monument:</strong> <%= @o_single.monument.nil? ? "-" : @o_single.monument.name %></p>
+				<p><strong>Stone Mason:</strong> <%= @o_single.stone_mason.nil? ? "-" : @o_single.stone_mason.name %></p>
+				<p><strong>Length:</strong> <%= @o_single.length.blank? ? "-" : @o_single.length %></p>
+				<p><strong>Width:</strong> <%= @o_single.width.blank? ? "-" : @o_single.width %></p>
+				<p><strong>Height:</strong> <%= @o_single.height.blank? ? "-" : @o_single.height %></p>
+				<p><strong>Unit Type:</strong> <%= @o_single.unit_type.nil? ? "-" : @o_single.unit_type.name %></p>
+				<p><strong>Image-1:</strong> <% if @o_single.image_1 %><%= image_tag @o_single.image_1_url %><% end %></p>
+				<p><strong>Image-2:</strong> <% if @o_single.image_2 %><%= image_tag @o_single.image_2_url %><% end %></p>
+			</div>
+			<div class="tab-pane" id="grantees">
+				<% @o_single.grantees.each do |o_row| %>
+					<p><strong>Name:</strong> <%= o_row.name %></p>
+				<% end %>
+			</div>
+			<div class="tab-pane" id="interments">
+				<% @o_single.bookings.where(:is_finalized => true).each do |o_row| %>
+					<p><strong>Deceased Name:</strong> <%= o_row.deceased_name %></p>
+				<% end %>				
+			</div>
+		</div>    
+		<div class="form-actions">
+		  <%= link_to 'Back', graves_url, :class => 'btn' %>
+		</div>
+</fieldset>		
 
-<p><%= @o_single.description %></p>    
-<p><strong><%= "Address" %></strong>:&nbsp;&nbsp;&nbsp;&nbsp;<%= @o_single.address  %></p>
-<p><strong><%= "Suburb Town" %></strong>:&nbsp;&nbsp;&nbsp;&nbsp;<%= @o_single.suburb_town  %></p>
-<p><strong><%= "State" %></strong>:&nbsp;&nbsp;&nbsp;&nbsp;<%= @o_single.state  %></p>
-<p><strong><%= "Postal Code" %></strong>:&nbsp;&nbsp;&nbsp;&nbsp;<%= @o_single.postal_code  %></p>
-<p><strong><%= "Phone Area Code" %></strong>:&nbsp;&nbsp;&nbsp;&nbsp;<%= @o_single.phone_area_code  %></p>
-<p><strong><%= "Phone" %></strong>:&nbsp;&nbsp;&nbsp;&nbsp;<%= @o_single.phone  %></p>
-<p><strong><%= "Fax Area Code" %></strong>:&nbsp;&nbsp;&nbsp;&nbsp;<%= @o_single.fax_area_code  %></p>
-<p><strong><%= "fax" %></strong>:&nbsp;&nbsp;&nbsp;&nbsp;<%= @o_single.fax  %></p>    
-<p><strong><%= "Email" %></strong>:&nbsp;&nbsp;&nbsp;&nbsp;<%= @o_single.email  %></p>
-
-  <div class="form-actions">
-    <%= link_to 'Back', graves_url, :class => 'btn' %>
-  </div>
+<script>
+    $('#myTab a').click(function (e) {
+    e.preventDefault();
+    $(this).tab('show');
+    })
+    
+ $(function () {
+$('#myTab a:first').tab('show');
+})  
+</script>

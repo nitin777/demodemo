@@ -51,70 +51,107 @@
 		  </div>
 		      		
 		</div>
-		 
-    <div class="control-group">
-      <%= f.label :grave_number, :class => 'control-label' %><span class="redStart">*</span>
-      <div class="controls">
-        <%= f.text_field :grave_number, :class => 'text_field' %>
-       	<% if @o_single.errors[:grave_number].any? %>
-        	<span class="text-error text-message"><%= @o_single.errors[:grave_number].first %></span>
-      	<% end %> 
-      </div>
-    </div>
-    
-   	<div class="control-group">
-      <%= f.label :grave_status_id, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.select :grave_status_id, options_for_select(get_model_data("GraveStatus"), (@o_single.grave_status.id unless @o_single.grave_status.nil?)) %>
-      </div>
-    </div>    
-
-    <div class="control-group"><%= f.label :length, :class => 'control-label' %><div class="controls"><%= f.text_field :length, :class => 'text_field' %></div></div>
-    <div class="control-group"><%= f.label :width, :class => 'control-label' %><div class="controls"><%= f.text_field :width, :class => 'text_field' %></div></div>
-    <div class="control-group"><%= f.label :height, :class => 'control-label' %><div class="controls"><%= f.text_field :height, :class => 'text_field' %></div></div>
-    
-   	<div class="control-group">
-      <%= f.label :unit_type_id, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.select :unit_type_id, options_for_select(get_model_data("UnitType"), (@o_single.unit_type.id unless @o_single.unit_type.nil?)) %>
-      </div>
-    </div>
-    
- 		<div class="control-group"><%= f.label :details, :class => 'control-label' %><div class="controls"><%= f.text_area :details, :class => 'text_field' %></div></div>
-  
-   	<div class="control-group">
-      <%= f.label :stone_mason_id, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.select :stone_mason_id, options_for_select(get_stone_masons, (@o_single.stone_mason.id unless @o_single.stone_mason.nil?)) %>
-      </div>
-    </div>  
-   	<div class="control-group">
-      <%= f.label :monument_id, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.select :monument_id, options_for_select(get_model_data("Monument", true), (@o_single.monument.id unless @o_single.monument.nil?)) %>
-      </div>
-    </div>
-
-    <div class="control-group"><%= f.label :latitude, :class => 'control-label' %><div class="controls"><%= f.text_field :latitude, :class => 'text_field' %></div></div>
-    <div class="control-group"><%= f.label :longitude, :class => 'control-label' %><div class="controls"><%= f.text_field :longitude, :class => 'text_field' %></div></div>
-    <div class="control-group"><%= f.label :image_1, :class => 'control-label' %><div class="controls"><%= f.file_field :image_1, :class => 'text_field' %></div></div>
-		<div class="control-group"><div class="controls"><% if @o_single.image_1? %><%= image_tag @o_single.image_1_url(:logo) %><% end %></div></div>     
-    <div class="control-group"><%= f.label :image_2, :class => 'control-label' %><div class="controls"><%= f.file_field :image_2, :class => 'text_field' %></div></div>
-    <div class="control-group"><div class="controls"><% if @o_single.image_2? %><%= image_tag @o_single.image_2_url(:logo) %><% end %></div></div>    
+<table>		
+    <tr>
+      <td>	 
+		    <div class="control-group">
+		      <%= f.label :grave_number, :class => 'control-label' %><span class="redStart">*</span>
+		      <div class="controls">
+		        <%= f.text_field :grave_number, :class => 'text_field' %>
+		       	<% if @o_single.errors[:grave_number].any? %>
+		        	<span class="text-error text-message"><%= @o_single.errors[:grave_number].first %></span>
+		      	<% end %> 
+		      </div>
+		    </div>
+      </td>
+      <td>		    
+		   	<div class="control-group">
+		      <%= f.label :grave_status_id, :class => 'control-label' %>
+		      <div class="controls">
+		        <%= f.select :grave_status_id, options_for_select(get_model_data("GraveStatus"), (@o_single.grave_status.id unless @o_single.grave_status.nil?)) %>
+		      </div>
+		    </div>    
+      </td> 
+    </tr> 
+    <tr>
+      <td>		
+		    <div class="control-group"><%= f.label :length, :class => 'control-label' %><div class="controls"><%= f.text_field :length, :class => 'text_field' %></div></div>
+      </td>
+      <td>			    
+		    <div class="control-group"><%= f.label :width, :class => 'control-label' %><div class="controls"><%= f.text_field :width, :class => 'text_field' %></div></div>
+      </td> 
+    </tr> 
+    <tr>
+      <td>		    
+		    <div class="control-group"><%= f.label :height, :class => 'control-label' %><div class="controls"><%= f.text_field :height, :class => 'text_field' %></div></div>
+      </td>
+      <td>		    
+		   	<div class="control-group">
+		      <%= f.label :unit_type_id, :class => 'control-label' %>
+		      <div class="controls">
+		        <%= f.select :unit_type_id, options_for_select(get_model_data("UnitType"), (@o_single.unit_type.id unless @o_single.unit_type.nil?)) %>
+		      </div>
+		    </div>
+      </td> 
+    </tr> 
+    <tr>
+      <td>
+		   	<div class="control-group">
+		      <%= f.label :monument_id, :class => 'control-label' %>
+		      <div class="controls">
+		        <%= f.select :monument_id, options_for_select(get_model_data("Monument", true), (@o_single.monument.id unless @o_single.monument.nil?)) %>
+		      </div>
+		    </div>
+      </td>
+      <td>		  
+		   	<div class="control-group">
+		      <%= f.label :stone_mason_id, :class => 'control-label' %>
+		      <div class="controls">
+		        <%= f.select :stone_mason_id, options_for_select(get_stone_masons, (@o_single.stone_mason.id unless @o_single.stone_mason.nil?)) %>
+		      </div>
+		    </div>
+      </td> 
+    </tr> 
  
+    <tr>
+      <td>		    
+		    <div class="control-group"><%= f.label :longitude, :class => 'control-label' %><div class="controls"><%= f.text_field :longitude, :class => 'text_field' %></div></div>
+      </td>
+      <td>		
+		    <div class="control-group"><%= f.label :latitude, :class => 'control-label' %><div class="controls"><%= f.text_field :latitude, :class => 'text_field' %></div></div>
+      </td>      
  
-    <div class="control-group">
-      <%= f.label :is_active, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.check_box :is_active, :class => 'check_box' %>
-      </div>
-    </div> 
- 
-    <div class="form-actions">
-      <%= f.submit (@o_single.new_record? ? "Create Grave" : "Update Grave"), :class => 'btn btn-primary' %>
-      <%= link_to 'Cancel', graves_url, :class => 'btn' %>
-    </div>
-    
+    </tr> 
+    <tr>
+      <td>		    
+		    <div class="control-group"><%= f.label :image_1, :class => 'control-label' %><div class="controls"><%= f.file_field :image_1, :class => 'text_field' %></div></div>
+      </td>
+      <td>				     
+		    <div class="control-group"><%= f.label :image_2, :class => 'control-label' %><div class="controls"><%= f.file_field :image_2, :class => 'text_field' %></div></div>
+      </td> 
+    </tr> 
+    <tr>
+      <td>
+				<div class="control-group"><%= f.label :details, :class => 'control-label' %><div class="controls"><%= f.text_area :details, :style => 'width:256px;height:104px;' %></div></div>
+      </td>
+    </tr>
+        
+    <tr>
+      <td>
+		    <div class="control-group">
+		      <%= f.label :is_active, :class => 'control-label' %>
+		      <div class="controls">
+		        <%= f.check_box :is_active, :class => 'check_box' %>
+		      </div>
+		    </div> 
+      </td> 
+    </tr> 
+ 		    
+</table>
+		    <div class="form-actions">
+		      <%= f.submit (@o_single.new_record? ? "Create Grave" : "Update Grave"), :class => 'btn btn-primary' %>
+		      <%= link_to 'Cancel', graves_url, :class => 'btn' %>
+		    </div>    
   </fieldset>
      
 <% end %>

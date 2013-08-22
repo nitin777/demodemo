@@ -1,136 +1,195 @@
 <%= form_for @o_single, :html => { :class => 'form-horizontal' } do |f| %>
 	<fieldset>
 		<legend></legend>
-		
-		<div class="control-group"><%= f.label :title, :class => 'control-label' %><div class="controls"><%= f.text_field :title, :class => 'text_field' %></div></div>		
-		
-    <div class="control-group">
-      <%= f.label :first_name, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.text_field :first_name, :class => 'text_field' %>
-      </div>
-    </div>		
-		
-    <div class="control-group">
-      <%= f.label :last_name, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.text_field :last_name, :class => 'text_field' %>
-      </div>
-    </div>
-    
-    <div class="control-group">
-      <%= f.label :email, :class => 'control-label' %><span class="redStart">*</span>
-      <div class="controls">
-        <%= f.text_field :email, :class => 'text_field' %>
-       	<% if @o_single.errors[:email].any? %>
-        	<span class="text-error text-message"><%= @o_single.errors[:email].first %></span>
-      	<% end %>        
-      </div>
-    </div>
-    
-    <div class="control-group">
-      <%= f.label :username, :class => 'control-label' %><span class="redStart">*</span>
-      <div class="controls">
-        <%= f.text_field :username, :class => 'text_field' %>
-       	<% if @o_single.errors[:username].any? %>
-        	<span class="text-error text-message"><%= @o_single.errors[:username].first %></span>
-      	<% end %>                
-      </div>
-    </div>	
-    
-		<% if @o_single.new_record? %>
-	    <div class="control-group">
-	      <%= f.label :password, :class => 'control-label' %><span class="redStart">*</span>
-	      <div class="controls">
-	        <%= f.password_field :password, :class => 'text_field' %>
-	       	<% if @o_single.errors[:password].any? %>
-	        	<span class="text-error text-message"><%= @o_single.errors[:password].first %></span>
-	      	<% end %>        	        
-	      </div>
-	    </div>	
-	    
-	    <div class="control-group">
-	      <%= f.label :password_confirmation, :class => 'control-label' %><span class="redStart">*</span>
-	      <div class="controls">
-	        <%= f.password_field :password_confirmation, :class => 'text_field' %>
-		     	<% if @o_single.errors[:password_confirmation].any? %>
-		      	<span class="text-error text-message"><%= @o_single.errors[:password_confirmation].first %></span>
-		    	<% end %>        	        
-	      </div>
-	    </div>		    	
-		<% end %> 
-		
-		<% if current_user.is_super_admin? %>
-	   	<div class="control-group">
-	      <%= f.label :country_id, :class => 'control-label' %><span class="redStart">*</span>
-	      <div class="controls">
-	        <%= select_tag "user[country_id]", options_for_select(get_model_data("Country"), (@o_single.country.id unless @o_single.country.nil?)),
-	        							:data => { :remote => true, :url => url_for(:controller => "fronts", 
-	                                 :action => "get_cemetery_from_country"
-	                                 ) } %>
-			     	<% if @o_single.errors[:country_id].any? %>
-			      	<span class="text-error" style="font-weight:bold;margin-left: 5px;"><%= @o_single.errors[:country_id].first %></span>
-			    	<% end %>                                   
-	      </div>
-	    </div>
-	  
-	    <div id="div_update_cemetery">
-		   	<div class="control-group">
-		      <%= f.label :cemetery_id, :class => 'control-label' %><span class="redStart">*</span>
+<table>
+    <tr>
+      <td>			
+				<div class="control-group"><%= f.label :title, :class => 'control-label' %><div class="controls"><%= f.text_field :title, :class => 'text_field' %></div></div>		
+      </td>
+      <td>				
+		    <div class="control-group">
+		      <%= f.label :first_name, :class => 'control-label' %>
 		      <div class="controls">
-		      	<% country = @o_single.country.nil? ? nil : @o_single.country %>
-		        <%= f.select :cemetery_id, options_for_select(get_cemetery_data(country), (@o_single.cemetery.id unless @o_single.cemetery.nil?))  %>
-				   	<% if @o_single.errors[:cemetery_id].any? %>
-				    	<span class="text-error text-message"><%= @o_single.errors[:cemetery_id].first %></span>
-				  	<% end %> 	 	        
+		        <%= f.text_field :first_name, :class => 'text_field' %>
+		      </div>
+		    </div>		
+      </td> 
+    </tr> 
+    <tr>
+      <td>				
+		    <div class="control-group">
+		      <%= f.label :last_name, :class => 'control-label' %>
+		      <div class="controls">
+		        <%= f.text_field :last_name, :class => 'text_field' %>
 		      </div>
 		    </div>
-		  </div>
-	    <div class="control-group">
-	      <%= f.label :role_id, :class => 'control-label' %>
-	      <div class="controls">
-	        <%= select_tag "role_id", options_for_select(super_admin_access_roles, (@o_single.role.id unless @o_single.role.nil?))  %>
-	      </div>
-	    </div>		  
-		<% else %>
-			<%= f.hidden_field :cemetery_id, :value => session[:cemetery_id] %>  
-			<%= f.hidden_field :country_id, :value => session[:country_id] %>
-	    <div class="control-group">
-	      <%= f.label :role_id, :class => 'control-label' %>
-	      <div class="controls">
-	        <%= select_tag "role_id", options_for_select(manager_access_roles, (@o_single.role.id unless @o_single.role.nil?))  %>
-	      </div>
-	    </div>				
-		<% end %>  
- 
-		  
-	    		       	    		
-		 
-		 
-    <div class="control-group"><%= f.label :organization, :class => 'control-label' %><div class="controls"><%= f.text_field :organization, :class => 'text_field' %></div></div>
-    <div class="control-group"><%= f.label :address, :class => 'control-label' %><div class="controls"><%= f.text_field :address, :class => 'text_field' %></div></div>
-    <div class="control-group"><%= f.label :suburb_town, :class => 'control-label' %><div class="controls"><%= f.text_field :suburb_town, :class => 'text_field' %></div></div>
-    <div class="control-group"><%= f.label :state, :class => 'control-label' %><div class="controls"><%= f.text_field :state, :class => 'text_field' %></div></div>
-    <div class="control-group"><%= f.label :postal_code, :class => 'control-label' %><div class="controls"><%= f.text_field :postal_code, :class => 'text_field' %></div></div>
-    <div class="control-group"><%= f.label :phone_area_code, :class => 'control-label' %><div class="controls"><%= f.text_field :phone_area_code, :class => 'text_field' %></div></div>
-    <div class="control-group"><%= f.label :phone, :class => 'control-label' %><div class="controls"><%= f.text_field :phone, :class => 'text_field' %></div></div>
-    <div class="control-group"><%= f.label :fax_area_code, :class => 'control-label' %><div class="controls"><%= f.text_field :fax_area_code, :class => 'text_field' %></div></div>
-    <div class="control-group"><%= f.label :fax, :class => 'control-label' %><div class="controls"><%= f.text_field :fax, :class => 'text_field' %></div></div>		 
-    <div class="control-group"><%= f.label :image, :class => 'control-label' %><div class="controls"><%= f.file_field :image, :class => 'text_field' %></div></div>
-    <div class="control-group"><div class="controls"><% if @o_single.image? %><%= image_tag @o_single.image?_url(:logo) %><% end %></div></div>		 
-		 
-    <div class="control-group">
-      <%= f.label :is_active, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.check_box :is_active, :class => 'check_box' %>
-      </div>
-    </div>			 
-     
-    <div class="form-actions">
-      <%= f.submit nil, :class => 'btn btn-primary' %>
-      <%= link_to 'Cancel', users_url, :class => 'btn' %>
-    </div>
-    
+      </td>
+      <td>		    
+		    <div class="control-group">
+		      <%= f.label :email, :class => 'control-label' %><span class="redStart">*</span>
+		      <div class="controls">
+		        <%= f.text_field :email, :class => 'text_field' %>
+		       	<% if @o_single.errors[:email].any? %>
+		        	<span class="text-error text-message"><%= @o_single.errors[:email].first %></span>
+		      	<% end %>        
+		      </div>
+		    </div>
+      </td> 
+    </tr> 
+    <tr>
+      <td>		    
+		    <div class="control-group">
+		      <%= f.label :username, :class => 'control-label' %><span class="redStart">*</span>
+		      <div class="controls">
+		        <%= f.text_field :username, :class => 'text_field' %>
+		       	<% if @o_single.errors[:username].any? %>
+		        	<span class="text-error text-message"><%= @o_single.errors[:username].first %></span>
+		      	<% end %>                
+		      </div>
+		    </div>	
+      </td> 
+    </tr> 		    
+				<% if @o_single.new_record? %>
+		    <tr>
+		      <td>				
+			    <div class="control-group">
+			      <%= f.label :password, :class => 'control-label' %><span class="redStart">*</span>
+			      <div class="controls">
+			        <%= f.password_field :password, :class => 'text_field' %>
+			       	<% if @o_single.errors[:password].any? %>
+			        	<span class="text-error text-message"><%= @o_single.errors[:password].first %></span>
+			      	<% end %>        	        
+			      </div>
+			    </div>	
+	      </td>
+	      <td>			    
+			    <div class="control-group">
+			      <%= f.label :password_confirmation, :class => 'control-label' %><span class="redStart">*</span>
+			      <div class="controls">
+			        <%= f.password_field :password_confirmation, :class => 'text_field' %>
+				     	<% if @o_single.errors[:password_confirmation].any? %>
+				      	<span class="text-error text-message"><%= @o_single.errors[:password_confirmation].first %></span>
+				    	<% end %>        	        
+			      </div>
+			    </div>
+	      </td> 
+	    </tr>			    		    	
+				<% end %> 
+    <tr>
+      <td>				
+				<% if current_user.is_super_admin? %>
+			   	<div class="control-group">
+			      <%= f.label :country_id, :class => 'control-label' %><span class="redStart">*</span>
+			      <div class="controls">
+			        <%= select_tag "user[country_id]", options_for_select(get_model_data("Country"), (@o_single.country.id unless @o_single.country.nil?)),
+			        							:data => { :remote => true, :url => url_for(:controller => "fronts", 
+			                                 :action => "get_cemetery_from_country"
+			                                 ) } %>
+					     	<% if @o_single.errors[:country_id].any? %>
+					      	<span class="text-error" style="font-weight:bold;margin-left: 5px;"><%= @o_single.errors[:country_id].first %></span>
+					    	<% end %>                                   
+			      </div>
+			    </div>
+      </td>
+      <td>			  
+			    <div id="div_update_cemetery">
+				   	<div class="control-group">
+				      <%= f.label :cemetery_id, :class => 'control-label' %><span class="redStart">*</span>
+				      <div class="controls">
+				      	<% country = @o_single.country.nil? ? nil : @o_single.country %>
+				        <%= f.select :cemetery_id, options_for_select(get_cemetery_data(country), (@o_single.cemetery.id unless @o_single.cemetery.nil?))  %>
+						   	<% if @o_single.errors[:cemetery_id].any? %>
+						    	<span class="text-error text-message"><%= @o_single.errors[:cemetery_id].first %></span>
+						  	<% end %> 	 	        
+				      </div>
+				    </div>
+				  </div>
+      </td> 
+    </tr> 
+    <tr>
+      <td>				  
+			    <div class="control-group">
+			      <%= f.label :role_id, :class => 'control-label' %>
+			      <div class="controls">
+			        <%= select_tag "role_id", options_for_select(super_admin_access_roles, (@o_single.role.id unless @o_single.role.nil?))  %>
+			      </div>
+			    </div>
+      </td> 
+    </tr> 			    		  
+				<% else %>
+    <tr>
+      <td>				
+					<%= f.hidden_field :cemetery_id, :value => session[:cemetery_id] %>  
+					<%= f.hidden_field :country_id, :value => session[:country_id] %>
+			    <div class="control-group">
+			      <%= f.label :role_id, :class => 'control-label' %>
+			      <div class="controls">
+			        <%= select_tag "role_id", options_for_select(manager_access_roles, (@o_single.role.id unless @o_single.role.nil?))  %>
+			      </div>
+			    </div>
+      </td> 
+    </tr> 			    			
+				<% end %>  
+		 	 
+    <tr>
+      <td>				 
+		    <div class="control-group"><%= f.label :organization, :class => 'control-label' %><div class="controls"><%= f.text_field :organization, :class => 'text_field' %></div></div>
+      </td>
+      <td>		    
+		    <div class="control-group"><%= f.label :address, :class => 'control-label' %><div class="controls"><%= f.text_field :address, :class => 'text_field' %></div></div>
+      </td> 
+    </tr> 
+    <tr>
+      <td>		    
+		    <div class="control-group"><%= f.label :suburb_town, :class => 'control-label' %><div class="controls"><%= f.text_field :suburb_town, :class => 'text_field' %></div></div>
+      </td>
+      <td>		    
+		    <div class="control-group"><%= f.label :state, :class => 'control-label' %><div class="controls"><%= f.text_field :state, :class => 'text_field' %></div></div>
+      </td> 
+    </tr> 
+    <tr>
+      <td>		    
+		    <div class="control-group"><%= f.label :postal_code, :class => 'control-label' %><div class="controls"><%= f.text_field :postal_code, :class => 'text_field' %></div></div>
+      </td>
+      <td>		    
+		    <div class="control-group"><%= f.label :phone_area_code, :class => 'control-label' %><div class="controls"><%= f.text_field :phone_area_code, :class => 'text_field' %></div></div>
+      </td> 
+    </tr> 
+    <tr>
+      <td>		    
+		    <div class="control-group"><%= f.label :phone, :class => 'control-label' %><div class="controls"><%= f.text_field :phone, :class => 'text_field' %></div></div>
+      </td>
+      <td>		    
+		    <div class="control-group"><%= f.label :fax_area_code, :class => 'control-label' %><div class="controls"><%= f.text_field :fax_area_code, :class => 'text_field' %></div></div>
+      </td> 
+    </tr> 
+    <tr>
+      <td>		    
+		    <div class="control-group"><%= f.label :fax, :class => 'control-label' %><div class="controls"><%= f.text_field :fax, :class => 'text_field' %></div></div>
+      </td>
+      <td>		    		 
+		    <div class="control-group"><%= f.label :image, :class => 'control-label' %><div class="controls"><%= f.file_field :image, :class => 'text_field' %></div></div>
+      </td> 
+    </tr> 
+    <tr>
+      <td>		    
+		    <div class="control-group">
+		      <%= f.label :is_active, :class => 'control-label' %>
+		      <div class="controls">
+		        <%= f.check_box :is_active, :class => 'check_box' %>
+		      </div>
+		    </div>			    	 
+      </td>
+      <td>				 
+				<div class="control-group"><div class="controls"><% if @o_single.image? %><%= image_tag @o_single.image_url(:logo) %><% end %></div></div>
+      </td> 
+    </tr>
+</table> 
+		    <div class="form-actions">
+		      <%= f.submit nil, :class => 'btn btn-primary' %>
+		      <%= link_to 'Cancel', users_url, :class => 'btn' %>
+		    </div>   
   </fieldset>
+  
 <% end %>
 

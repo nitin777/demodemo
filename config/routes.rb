@@ -50,6 +50,9 @@ Ocms::Application.routes.draw do
   get '/get_row_plot_grave_from_section' => 'fronts#get_row_plot_grave_from_section', :as => :get_row_plot_grave_from_section
   get '/get_plot_grave_from_row' => 'fronts#get_plot_grave_from_row', :as => :get_plot_grave_from_row
   get '/get_grave_from_plot' => 'fronts#get_grave_from_plot', :as => :get_grave_from_plot
+  get '/get_grantee_from_grave' => 'fronts#get_grantee_from_grave', :as => :get_grantee_from_grave
+  
+  
 
   
   match '/forgot_password' => 'fronts#forgot_password', :as => :forgot_password, via: [:get, :post]
