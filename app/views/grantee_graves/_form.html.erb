@@ -1,10 +1,12 @@
 <%= form_for @o_single, :html => { :class => 'form-horizontal' } do |f| %>
   <fieldset>
     <legend></legend>
-    
+<table>    
     <% if session[:grantee_id] %>
     	<%= f.hidden_field :grantee_id, :value => session[:grantee_id] %>
     <% else %>
+    <tr>
+      <td>    
 			<div class="control-group">
 			  <label class="control-label"><%= "Entity" %></label>
 			  <div class="controls">
@@ -13,7 +15,9 @@
 	        	<span class="text-error text-message"><%= @o_single.errors[:grantee_id].first %></span>
 	      	<% end %> 			    
 			  </div>
-			</div>    	
+			</div>
+      </td> 
+    </tr> 			    	
     <% end %>	
     
 		<%= f.hidden_field :user_id, :value => current_user.id %>
@@ -24,12 +28,16 @@
 			<%= f.hidden_field :row_id, :value => @grave.row.id if @grave.row %>
 			<%= f.hidden_field :plot_id, :value => @grave.plot.id if @grave.plot %>
 			<%= f.hidden_field :grafe_id, :value => @grave.id %>
+    <tr>
+      <td>			
 	   	<div class="control-group">
 	      <label class="control-label"><%= "Grave" %></label>
 	      <div class="controls">
 	        <strong style="margin-top: 4px; float: left;"><%= @grave.grave_number %></strong>
 	      </div>
-	    </div>			
+	    </div>
+      </td> 
+    </tr> 	    			
 		<% else %>
 			<div class="control-group">
 			  <label class="control-label"><%= "Area" %></label>
@@ -94,88 +102,109 @@
 			</div>
 		<% end %>	
 		 
-   	<div class="control-group">
-      <%= f.label :identity_id, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.select :identity_id, options_for_select(get_model_data("Identity"), (@o_single.identity.id unless @o_single.identity.nil?)) %>
-      </div>
-    </div>
-		 
-    <div class="control-group">
-      <%= f.label :grantee_identity_number, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.text_field :grantee_identity_number, :class => 'text_field' %>
-      </div>
-    </div>
-    
-   	<div class="control-group">
-      <%= f.label :catalog_id, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.select :catalog_id, options_for_select(get_model_data("Catalog"), (@o_single.catalog.id unless @o_single.catalog.nil?)) %>
-      </div>
-    </div>
-    
-   	<div class="control-group">
-      <%= f.label :payment_status_id, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.select :payment_status_id, options_for_select(get_model_data("PaymentStatus"), (@o_single.payment_status.id unless @o_single.payment_status.nil?)) %>
-      </div>
-    </div>        
-    
-    
-    <div class="control-group">
-      <%= f.label :receipt_number, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.text_field :receipt_number, :class => 'text_field' %>
-      </div>
-    </div>
-    <div class="control-group">
-      <%= f.label :control_number, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.text_field :control_number, :class => 'text_field' %>
-      </div>
-    </div>
-   
-    <div class="control-group">
-      <%= f.label :invoice_number, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.text_field :invoice_number, :class => 'text_field' %>
-      </div>
-    </div>
-    
-    <div class="control-group">
-      <%= f.label :cost, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.text_field :cost, :class => 'text_field' %>
-      </div>
-    </div>    
-    
-    <div class="control-group">
-      <%= f.label :date_of_purchase, :class => 'control-label' %>
-      <div class="controls">
-	 			<div id="date_of_purchase" class="input-append">
-	 				<%= f.text_field :date_of_purchase, :class => 'text_field' %>
-			    <span class="add-on">
-			      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
-			      </i>
-			    </span> 				
-	 			</div>	        
-      </div>
-    </div>
-
-    <div class="control-group">
-      <%= f.label :tenure_expiry_date, :class => 'control-label' %>
-      <div class="controls">
-	 			<div id="tenure_expiry_date" class="input-append">
-	 				<%= f.text_field :tenure_expiry_date, :class => 'text_field' %>
-			    <span class="add-on">
-			      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
-			      </i>
-			    </span> 				
-	 			</div>	        
-      </div>
-    </div>
-    
+    <tr>
+      <td>		 
+		   	<div class="control-group">
+		      <%= f.label :identity_id, :class => 'control-label' %>
+		      <div class="controls">
+		        <%= f.select :identity_id, options_for_select(get_model_data("Identity"), (@o_single.identity.id unless @o_single.identity.nil?)) %>
+		      </div>
+		    </div>
+      </td>
+      <td>				 
+		    <div class="control-group">
+		      <%= f.label :grantee_identity_number, :class => 'control-label' %>
+		      <div class="controls">
+		        <%= f.text_field :grantee_identity_number, :class => 'text_field' %>
+		      </div>
+		    </div>
+      </td> 
+    </tr> 
+    <tr>
+      <td> 		    
+		   	<div class="control-group">
+		      <%= f.label :catalog_id, :class => 'control-label' %>
+		      <div class="controls">
+		        <%= f.select :catalog_id, options_for_select(get_model_data("Catalog"), (@o_single.catalog.id unless @o_single.catalog.nil?)) %>
+		      </div>
+		    </div>
+      </td>
+      <td>		    
+		   	<div class="control-group">
+		      <%= f.label :payment_status_id, :class => 'control-label' %>
+		      <div class="controls">
+		        <%= f.select :payment_status_id, options_for_select(get_model_data("PaymentStatus"), (@o_single.payment_status.id unless @o_single.payment_status.nil?)) %>
+		      </div>
+		    </div>        
+      </td> 
+    </tr> 
+    <tr>
+      <td> 
+		    <div class="control-group">
+		      <%= f.label :receipt_number, :class => 'control-label' %>
+		      <div class="controls">
+		        <%= f.text_field :receipt_number, :class => 'text_field' %>
+		      </div>
+		    </div>
+      </td>
+      <td>		    
+		    <div class="control-group">
+		      <%= f.label :control_number, :class => 'control-label' %>
+		      <div class="controls">
+		        <%= f.text_field :control_number, :class => 'text_field' %>
+		      </div>
+		    </div>
+      </td> 
+    </tr> 
+    <tr>
+      <td> 		   
+		    <div class="control-group">
+		      <%= f.label :invoice_number, :class => 'control-label' %>
+		      <div class="controls">
+		        <%= f.text_field :invoice_number, :class => 'text_field' %>
+		      </div>
+		    </div>
+      </td>
+      <td>		    
+		    <div class="control-group">
+		      <%= f.label :cost, :class => 'control-label' %>
+		      <div class="controls">
+		        <%= f.text_field :cost, :class => 'text_field' %>
+		      </div>
+		    </div>    
+      </td> 
+    </tr> 
+    <tr>
+      <td> 		    
+		    <div class="control-group">
+		      <%= f.label :date_of_purchase, :class => 'control-label' %>
+		      <div class="controls">
+			 			<div id="date_of_purchase" class="input-append">
+			 				<%= f.text_field :date_of_purchase, :class => 'text_field' %>
+					    <span class="add-on">
+					      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+					      </i>
+					    </span> 				
+			 			</div>	        
+		      </div>
+		    </div>
+      </td>
+      <td>		
+		    <div class="control-group">
+		      <%= f.label :tenure_expiry_date, :class => 'control-label' %>
+		      <div class="controls">
+			 			<div id="tenure_expiry_date" class="input-append">
+			 				<%= f.text_field :tenure_expiry_date, :class => 'text_field' %>
+					    <span class="add-on">
+					      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+					      </i>
+					    </span> 				
+			 			</div>	        
+		      </div>
+		    </div>
+      </td> 
+    </tr>     
+</table>    
     <div class="form-actions">
       <%= f.submit nil, :class => 'btn btn-primary' %>
       <%= link_to 'Cancel', grantee_graves_url, :class => 'btn' %>

@@ -14,8 +14,8 @@
   
   <% b_checklist.each do |c| %>
 		<div class="control-group">
-			<lable class='control-label' style="width: 250px;"><%= t(c) %></lable>
-			<div class="controls fRightChecklist">
+			<label class='control-label' style="width: 250px;"><%= t(c) %></label>
+			<div class="controls fRight">
 			  <%= ff.radio_button c, 1 %> <span class="mar20"><%= t("general.completed") %></span> 
 			  <%= ff.radio_button c, 2 %> <span class="mar20"><%= t("general.pending") %></span>
 			  <%= ff.radio_button c, 3 %> <span class="mar20"><%= t("general.N/A") %></span>

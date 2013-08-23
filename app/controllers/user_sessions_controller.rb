@@ -33,7 +33,7 @@ class UserSessionsController < ApplicationController
 				  session[:cemetery_id] = current_user.cemetery_id
 				  session[:country_id] = current_user.country_id
 				end
-				format.html { redirect_to(dashboard_path, :notice => t("general.login_successful")) }
+				format.html { redirect_to(is_admin? ? cemeteries_path : dashboard_path, :notice => t("general.login_successful")) }
 				format.xml { render :xml => @user_session, :status => :created, :location => @user_session }
       else
         format.html { render :action => "new" }

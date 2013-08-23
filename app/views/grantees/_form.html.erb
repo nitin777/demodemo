@@ -1,59 +1,104 @@
 <%= form_for @o_single, :html => { :class => 'form-horizontal' } do |f| %>
   <fieldset>
     <legend></legend>
-
-		<%= f.hidden_field :cemetery_id, :value => session[:cemetery_id] %>
-		<div class="control-group"><%= f.label :title, :class => 'control-label' %><div class="controls"><%= f.text_field :title, :class => 'text_field' %></div></div>
-    <div class="control-group">
-      <%= f.label :first_name, :class => 'control-label' %><span class="redStart">*</span>
-      <div class="controls">
-        <%= f.text_field :first_name, :class => 'text_field' %>
-       	<% if @o_single.errors[:first_name].any? %>
-        	<span class="text-error text-message"><%= @o_single.errors[:first_name].first %></span>
-      	<% end %> 
-      </div>
-    </div>		 
-    <div class="control-group">
-      <%= f.label :surname, :class => 'control-label' %><span class="redStart">*</span>
-      <div class="controls">
-        <%= f.text_field :surname, :class => 'text_field' %>
-       	<% if @o_single.errors[:surname].any? %>
-        	<span class="text-error text-message"><%= @o_single.errors[:surname].first %></span>
-      	<% end %> 
-      </div>
-    </div>
- 		<div class="control-group"><%= f.label :middle_name, :class => 'control-label' %><div class="controls"><%= f.text_field :middle_name, :class => 'text_field' %></div></div>
- 		<div class="control-group">
- 			<%= f.label :date_of_birth, :class => 'control-label' %>
- 			<div class="controls">
-	 			<div id="datepicker2" class="input-append">
-	 				<%= f.text_field :date_of_birth, :class => 'text_field' %>
-			    <span class="add-on">
-			      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
-			      </i>
-			    </span> 				
-	 			</div>	
-	 		</div>
-	 	</div>
-    <div class="control-group"><%= f.label :address, :class => 'control-label' %><div class="controls"><%= f.text_field :address, :class => 'text_field' %></div></div>
-    <div class="control-group"><%= f.label :town, :class => 'control-label' %><div class="controls"><%= f.text_field :town, :class => 'text_field' %></div></div>
-    <div class="control-group"><%= f.label :state, :class => 'control-label' %><div class="controls"><%= f.text_field :state, :class => 'text_field' %></div></div>
-    <div class="control-group"><%= f.label :postal_code, :class => 'control-label' %><div class="controls"><%= f.text_field :postal_code, :class => 'text_field' %></div></div>
-    <div class="control-group"><%= f.label :phone_area_code, :class => 'control-label' %><div class="controls"><%= f.text_field :phone_area_code, :class => 'text_field' %></div></div>
-    <div class="control-group"><%= f.label :phone, :class => 'control-label' %><div class="controls"><%= f.text_field :phone, :class => 'text_field' %></div></div>
-    <div class="control-group"><%= f.label :fax_area_code, :class => 'control-label' %><div class="controls"><%= f.text_field :fax_area_code, :class => 'text_field' %></div></div>
-    <div class="control-group"><%= f.label :fax, :class => 'control-label' %><div class="controls"><%= f.text_field :fax, :class => 'text_field' %></div></div>    
-    <div class="control-group"><%= f.label :email, :class => 'control-label' %><div class="controls"><%= f.text_field :email, :class => 'text_field' %></div></div>
-		<div class="control-group"><%= f.label :remarks_1, :class => 'control-label' %><div class="controls"><%= f.text_area :remarks_1, :class => 'text-area-fixed-width' %></div></div>		
-		<div class="control-group"><%= f.label :remarks_2, :class => 'control-label' %><div class="controls"><%= f.text_area :remarks_2, :class => 'text-area-fixed-width' %></div></div>
-    
-
-
-    <div class="form-actions">
-      <%= f.submit (@o_single.new_record? ? "Create Entity" : "Update Entity"), :class => 'btn btn-primary' %>
-      <%= link_to 'Cancel', grantees_url, :class => 'btn' %>
-    </div>
-    
+<table>
+    <tr>
+      <td>	
+				<%= f.hidden_field :cemetery_id, :value => session[:cemetery_id] %>
+				<div class="control-group"><%= f.label :title, :class => 'control-label' %><div class="controls"><%= f.text_field :title, :class => 'text_field' %></div></div>
+      </td>
+      <td>				
+		    <div class="control-group">
+		      <%= f.label :first_name, :class => 'control-label' %><span class="redStart">*</span>
+		      <div class="controls">
+		        <%= f.text_field :first_name, :class => 'text_field' %>
+		       	<% if @o_single.errors[:first_name].any? %>
+		        	<span class="text-error text-message"><%= @o_single.errors[:first_name].first %></span>
+		      	<% end %> 
+		      </div>
+		    </div>
+      </td> 
+    </tr> 
+    <tr>
+      <td>		    		 
+		    <div class="control-group">
+		      <%= f.label :surname, :class => 'control-label' %><span class="redStart">*</span>
+		      <div class="controls">
+		        <%= f.text_field :surname, :class => 'text_field' %>
+		       	<% if @o_single.errors[:surname].any? %>
+		        	<span class="text-error text-message"><%= @o_single.errors[:surname].first %></span>
+		      	<% end %> 
+		      </div>
+		    </div>
+      </td>
+      <td>		    
+		 		<div class="control-group"><%= f.label :middle_name, :class => 'control-label' %><div class="controls"><%= f.text_field :middle_name, :class => 'text_field' %></div></div>
+      </td> 
+    </tr> 
+    <tr>
+      <td>		 		
+		 		<div class="control-group">
+		 			<%= f.label :date_of_birth, :class => 'control-label' %>
+		 			<div class="controls">
+			 			<div id="datepicker2" class="input-append">
+			 				<%= f.text_field :date_of_birth, :class => 'text_field' %>
+					    <span class="add-on">
+					      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+					      </i>
+					    </span> 				
+			 			</div>	
+			 		</div>
+			 	</div>
+      </td>
+      <td>			 	
+		    <div class="control-group"><%= f.label :address, :class => 'control-label' %><div class="controls"><%= f.text_field :address, :class => 'text_field' %></div></div>
+      </td> 
+    </tr> 
+    <tr>
+      <td>		    
+		    <div class="control-group"><%= f.label :town, :class => 'control-label' %><div class="controls"><%= f.text_field :town, :class => 'text_field' %></div></div>
+      </td>
+      <td>		    
+		    <div class="control-group"><%= f.label :state, :class => 'control-label' %><div class="controls"><%= f.text_field :state, :class => 'text_field' %></div></div>
+      </td> 
+    </tr> 
+    <tr>
+      <td>		    
+		    <div class="control-group"><%= f.label :postal_code, :class => 'control-label' %><div class="controls"><%= f.text_field :postal_code, :class => 'text_field' %></div></div>
+      </td>
+      <td>		    
+		    <div class="control-group"><%= f.label :phone_area_code, :class => 'control-label' %><div class="controls"><%= f.text_field :phone_area_code, :class => 'text_field' %></div></div>
+      </td> 
+    </tr> 
+    <tr>
+      <td>		    
+		    <div class="control-group"><%= f.label :phone, :class => 'control-label' %><div class="controls"><%= f.text_field :phone, :class => 'text_field' %></div></div>
+      </td>
+      <td>		    
+		    <div class="control-group"><%= f.label :fax_area_code, :class => 'control-label' %><div class="controls"><%= f.text_field :fax_area_code, :class => 'text_field' %></div></div>
+      </td> 
+    </tr> 
+    <tr>
+      <td>		    
+		    <div class="control-group"><%= f.label :fax, :class => 'control-label' %><div class="controls"><%= f.text_field :fax, :class => 'text_field' %></div></div>
+		              </td>
+      <td>
+		    <div class="control-group"><%= f.label :email, :class => 'control-label' %><div class="controls"><%= f.text_field :email, :class => 'text_field' %></div></div>
+      </td> 
+    </tr> 
+    <tr>
+      <td>		    
+				<div class="control-group"><%= f.label :remarks_1, :class => 'control-label' %><div class="controls"><%= f.text_area :remarks_1, :class => 'text-area-fixed-width' %></div></div>
+      </td>
+      <td>						
+				<div class="control-group"><%= f.label :remarks_2, :class => 'control-label' %><div class="controls"><%= f.text_area :remarks_2, :class => 'text-area-fixed-width' %></div></div>
+      </td> 
+    </tr>
+</table> 
+		    <div class="form-actions">
+		      <%= f.submit (@o_single.new_record? ? "Create Entity" : "Update Entity"), :class => 'btn btn-primary' %>
+		      <%= link_to 'Cancel', grantees_url, :class => 'btn' %>
+		    </div>   
   </fieldset>
      
 <% end %>
