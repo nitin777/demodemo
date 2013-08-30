@@ -19,9 +19,6 @@
     <div class="controls">
       <%= f.submit t("general.search"), :class => 'btn btn-primary', :id => 'search_button_id' %>
       <span data-no-turbolink><%= link_to 'Cancel', search_path(false), :class => 'btn', :remote => true %></span>
-		  <span id="spinner" style="display: none;">
-		    <%= image_tag "loading.gif" %>
-		  </span>
     </div>
     
   </fieldset>

@@ -6,8 +6,6 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    puts session[:cemetery_id]
-    puts 'ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss'
     @o_all = get_records(params[:user], params[:page])
     @search_fields = ['username, email']
     session[:user] = params[:user] if params[:user]
@@ -90,7 +88,8 @@ class UsersController < ApplicationController
     
 	  def get_records(search, page)
 	    if current_user.is_super_admin?
-			 user_query = User.search(search)
+	     cemetery = Cemetery.find(session[:cemetery_id]) 
+			 user_query = cemetery.users.search(search)
 			else
 			  user_query = current_user.cemetery.users.search(search)
 			end 

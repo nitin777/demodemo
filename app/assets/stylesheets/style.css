@@ -42,7 +42,7 @@ img { border:0; outline:0;}
 .socialBlockCloud { width:100px; float:left; }
 
 .rightBlock { width:60%; float:left; }
-.profielView { padding-top:35px; font-size:12px; color:#4f4f4f;}
+.profielView { padding-top:5px; font-size:12px; color:#4f4f4f;}
 .profielView table tr td span { color:#0cae81; }
 .profielView table tr td.darkBorder { border-bottom:#c0eade solid 1px; }
 .profielView table tr td { border-bottom:#ddf4ed solid 1px; padding:6px 0 10px 0;}
@@ -67,20 +67,50 @@ background: linear-gradient(to bottom,  #0cb788 0%,#0b9c73 100%); /* W3C */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0cb788', endColorstr='#0b9c73',GradientType=0 ); /* IE6-9 */
  border:#10a57b solid 1px;  border-radius:7px; -web-border-radius:7px; -moz-border-radius:7px; height:27px; line-height:27px; color:#fff; font-size:13px; font-weight:bold; cursor:pointer; }
 
-
-
-
-
-
-
-
 .redStart {color: red; float: left; margin-left: 2px;}
 .redStartSelect {color: red; float: left;}
 .footerFront p {text-align:center !important;}
 .searchRight { float: right; font-size: 20px; margin: -50px 30px 0px 0px; }
+.searchRightFront { float: right; font-size: 20px; margin: -5px 0px 0px 0px; }
 .fRight { float: right; font-size: 16px; }
-.text-message { float: left; margin: -25px 0 0 275px; font-weight: bold;}
+.text-message { float: left; margin: 5px 0 0 25px;}
 .spinner {float: right; margin: -50px 385px 0 0;}
 .mar20{ margin: 0 20px 0 5px;}
-.loginfom {background: none repeat scroll 0 0 #FFFFFF; border: 5px solid #0CAE81; border-radius: 10px 10px 10px 10px; box-shadow: 0 0 3px 3px rgba(206, 206, 205, 0.5); margin: 10px auto; padding: 20px; width: 700px; }
+.loginfom {background: none repeat scroll 0 0 #FFFFFF; border: 2px solid #0CAE81; border-radius: 10px 10px 10px 10px; box-shadow: 0 0 3px 3px rgba(206, 206, 205, 0.5); margin: 10px auto; padding: 20px; }
 .marTop9 {margin-top: 9px;}
+.textArea { height: 250px; width: 700px; }
+.textAreaSmall { height: 230px; width: 245px; }
+
+.loaderimgText {
+    color: #FFFFFF;
+    height: 100%;
+    margin: 0 -20px;
+    padding-top: 20%;
+    position: fixed;
+    text-align: center;
+    top: 0;
+    width: 100%;
+    z-index: 2147483647;
+}
+
+
+.backTransparant {
+    background-color: #0CAE81;
+    height: 100%;
+    left: 0;
+    opacity: 0.5;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 99999999;
+}
+
+
+.span10 {
+    width: 1010px;
+}
+
+
+.span2 {
+    width: 130px;
+}

@@ -20,7 +20,7 @@ class Booking < ActiveRecord::Base
   has_one :booking_checklist, :dependent => :destroy
   accepts_nested_attributes_for :booking_checklist
   
-  include SearchHandler
+  #include SearchHandler
   
   validates :deceased_surname, :presence => true
   validates :deceased_first_name, :presence => true
@@ -36,5 +36,30 @@ class Booking < ActiveRecord::Base
   
   scope :chapels, -> {where("chapel_id IS NOT NULL")}
   scope :rooms, -> {where("room_id IS NOT NULL")}
+
+  def self.search(search)
+    if search
+      search_keys = ''
+      search_fields = ['deceased_surname', 'deceased_first_name', 'deceased_middle_name']
+      search.each do |k, v|
+        unless v.blank?
+          if search_fields.include? k
+            search_keys = "#{search_keys} #{k} LIKE '%#{v}%' AND"
+          else
+            search_keys = "#{search_keys} #{k} = '#{v}' AND"
+          end  
+        end  
+      end
+      
+      search_keys.strip!
+      3.times do search_keys.chop! end
+     
+      if search_keys
+        where(search_keys)
+      end
+    else
+      scoped
+    end
+  end 
     
 end

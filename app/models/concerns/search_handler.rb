@@ -5,8 +5,7 @@ module SearchHandler
     
     def self.search(search)
       if search
-        search_keys = '' 
-        search_values = ''
+        search_keys = ''
         search.each do |k, v|
           unless v.blank?
             search_keys = "#{search_keys} #{k} LIKE '%#{v}%' OR"

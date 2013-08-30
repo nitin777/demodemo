@@ -19,7 +19,7 @@ class BookingsController < ApplicationController
       @o_all = get_interments(params[:booking], params[:page])
     end    
     
-    @search_fields = ['deceased_surname', 'deceased_first_name']
+    @search_fields = ['deceased_surname', 'deceased_first_name', 'deceased_middle_name']
     
     session[:booking] = params[:booking] if params[:booking]
 

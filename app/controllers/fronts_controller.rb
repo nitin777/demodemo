@@ -20,6 +20,16 @@ class FrontsController < ApplicationController
     @params_arr = params[:pm].split(',')
   end
   
+  def grave_search_box
+    @o_single = params[:model].constantize.new
+    @params_arr = params[:pm].split(',')
+  end
+  
+  def booking_search_box
+    @o_single = params[:model].constantize.new
+    @params_arr = params[:pm].split(',')
+  end      
+  
   def get_section_from_area
     unless params[:row][:area_id].blank?
       @sections = Section.where(:area_id => params[:row][:area_id])
@@ -151,48 +161,71 @@ class FrontsController < ApplicationController
     end
   end
   
-	#forgot password
+  #forgot password
   def forgot_password
-		@user = User.new
-		if params[:user]
-			if user = authenticate_email(params[:user][:email])
-				new_pass = SecureRandom.hex(5)
-				user.password = user.password_confirmation = new_pass
-				user.save
-				body = render_to_string(:partial => "common/forgot_password_mail", :locals => { :username => user.username, :new_pass => new_pass }, :formats => [:html])
-				body = body.html_safe
-				UserMailer.forgot_password_confirmation(user.email, new_pass, body).deliver
-				@user_session = UserSession.find
-				if @user_session
-					@user_session.destroy
-				end
-				session[:user_id] = nil
-				flash[:notice] = t("general.password_has_been_sent_to_your_email_address")
-				redirect_to root_path 
-			else
-				flash[:forgot_pass_error] = t("general.no_user_exists_for_provided_email_address")
-				redirect_to :action => "forgot_password"
-			end
-		end	
+    @user = User.new
+    if params[:user]
+      if user = authenticate_email(params[:user][:email])
+        new_pass = SecureRandom.hex(5)
+        user.password = user.password_confirmation = new_pass
+        user.save
+        
+        #options
+        opts = { :username => user.name, :new_pass => new_pass }    
+        
+        #subject
+        subject = t("general.reset_password")
+        
+        #send mail
+        UserMailer.forgot_password_confirmation(user.email, subject, opts).deliver        
+        
+        @user_session = UserSession.find
+        if @user_session
+          @user_session.destroy
+        end
+        session[:user_id] = nil
+        flash[:notice] = t("general.password_has_been_sent_to_your_email_address")
+        redirect_to root_path 
+      else
+        flash[:forgot_pass_error] = t("general.no_user_exists_for_provided_email_address")
+        redirect_to :action => "forgot_password"
+      end
+    end 
   end
 
-	#change password
+  #change password
   def change_password
-  	@o_single = User.find(current_user.id)
-  	if params[:user]
-		  @o_single.password = params[:user][:password]
-		  @o_single.password_confirmation = params[:user][:password_confirmation]
-		  @o_single.password_required = true
-	    respond_to do |format|
-	      if @o_single.update_attributes(user_params)
-	        format.html { redirect_to users_url, notice: t("general.successfully_updated") }
-	        format.json { head :no_content }
-	      else
-	        format.html { render action: 'change_password' }
-	        format.json { render json: @o_single.errors, status: :unprocessable_entity }
-	      end
-	    end
-	  end  
+    @o_single = User.find(current_user.id)
+    if params[:user]
+      @o_single.password = params[:user][:password]
+      @o_single.password_confirmation = params[:user][:password_confirmation]
+      @o_single.password_required = true
+      respond_to do |format|
+        if @o_single.update_attributes(user_params)
+          format.html { redirect_to users_url, notice: t("general.password_successfully_updated") }
+          format.json { head :no_content }
+        else
+          format.html { render action: 'change_password' }
+          format.json { render json: @o_single.errors, status: :unprocessable_entity }
+        end
+      end
+    end  
+  end
+  
+  #profile
+  def profile
+    @o_single = User.find(current_user.id)
+    if params[:user]    
+      respond_to do |format|
+        if @o_single.update_attributes(user_params)
+          format.html { redirect_to profile_url, notice: t("general.successfully_updated") }
+          format.json { head :no_content }
+        else
+          format.html { render action: 'profile' }
+          format.json { render json: @o_single.errors, status: :unprocessable_entity }
+        end
+      end      
+    end
   end
   
 	#footer and other static pages

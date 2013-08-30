@@ -1,0 +1,136 @@
+<%= form_for @o_single, :url => profile_path, :html => { :class => 'form-horizontal' } do |f| %>
+<div class="loginfom">
+	<fieldset>
+		<legend></legend>
+			
+    <div class="control-group">
+      <div class="controls">
+				<div class="page-header">
+				  <h4><%= t("general.profile") %></h4>
+				</div>
+      </div>
+    </div>				
+			
+<table>
+    <tr>
+      <td>			
+				<div class="control-group"><%= f.label :title, :class => 'control-label' %><div class="controls"><%= f.text_field :title, :class => 'text_field' %></div></div>		
+      </td>
+      <td>				
+		    <div class="control-group">
+		      <%= f.label :first_name, :class => 'control-label' %>
+		      <div class="controls">
+		        <%= f.text_field :first_name, :class => 'text_field' %>
+		      </div>
+		    </div>		
+      </td> 
+    </tr> 
+    <tr>
+      <td>				
+		    <div class="control-group">
+		      <%= f.label :last_name, :class => 'control-label' %>
+		      <div class="controls">
+		        <%= f.text_field :last_name, :class => 'text_field' %>
+		      </div>
+		    </div>
+      </td>
+      <td>		    
+		    <div class="control-group">
+		      <%= f.label :email, :class => 'control-label' %><span class="redStart">*</span>
+		      <div class="controls">
+		        <%= f.text_field :email, :class => 'text_field' %>
+		       	<% if @o_single.errors[:email].any? %>
+		        	<span class="text-error text-message"><%= @o_single.errors[:email].first %></span>
+		      	<% end %>        
+		      </div>
+		    </div>
+      </td> 
+    </tr> 
+    <tr>
+      <td>		    
+		    <div class="control-group">
+		      <%= f.label :username, :class => 'control-label' %><span class="redStart">*</span>
+		      <div class="controls">
+		        <%= f.text_field :username, :class => 'text_field' %>
+		       	<% if @o_single.errors[:username].any? %>
+		        	<span class="text-error text-message"><%= @o_single.errors[:username].first %></span>
+		      	<% end %>                
+		      </div>
+		    </div>	
+      </td> 
+    </tr> 		    
+
+		 	 
+    <tr>
+      <td>				 
+		    <div class="control-group"><%= f.label :organization, :class => 'control-label' %><div class="controls"><%= f.text_field :organization, :class => 'text_field' %></div></div>
+      </td>
+      <td>		    
+		    <div class="control-group"><%= f.label :address, :class => 'control-label' %><div class="controls"><%= f.text_field :address, :class => 'text_field' %></div></div>
+      </td> 
+    </tr> 
+    <tr>
+      <td>		    
+		    <div class="control-group"><%= f.label :suburb_town, :class => 'control-label' %><div class="controls"><%= f.text_field :suburb_town, :class => 'text_field' %></div></div>
+      </td>
+      <td>		    
+		    <div class="control-group"><%= f.label :state, :class => 'control-label' %><div class="controls"><%= f.text_field :state, :class => 'text_field' %></div></div>
+      </td> 
+    </tr> 
+    <tr>
+      <td>		    
+		    <div class="control-group"><%= f.label :postal_code, :class => 'control-label' %><div class="controls"><%= f.text_field :postal_code, :class => 'text_field' %></div></div>
+      </td>
+      <td>		    
+		    <div class="control-group"><%= f.label :phone_area_code, :class => 'control-label' %><div class="controls"><%= f.text_field :phone_area_code, :class => 'text_field' %></div></div>
+      </td> 
+    </tr> 
+    <tr>
+      <td>		    
+		    <div class="control-group"><%= f.label :phone, :class => 'control-label' %><div class="controls"><%= f.text_field :phone, :class => 'text_field' %></div></div>
+      </td>
+      <td>		    
+		    <div class="control-group"><%= f.label :fax_area_code, :class => 'control-label' %><div class="controls"><%= f.text_field :fax_area_code, :class => 'text_field' %></div></div>
+      </td> 
+    </tr> 
+    <tr>
+      <td>		    
+		    <div class="control-group"><%= f.label :fax, :class => 'control-label' %><div class="controls"><%= f.text_field :fax, :class => 'text_field' %></div></div>
+      </td>
+      <td>		    		 
+		    <div class="control-group"><%= f.label :image, :class => 'control-label' %><div class="controls"><%= f.file_field :image, :class => 'text_field' %></div></div>
+      </td> 
+    </tr> 
+    <tr>
+      <td>		    
+		    <div class="control-group">
+		      <%= f.label :is_active, :class => 'control-label' %>
+		      <div class="controls">
+		        <%= f.check_box :is_active, :class => 'check_box' %>
+		      </div>
+		    </div>			    	 
+      </td>
+      <td>				 
+				<div class="control-group"><div class="controls"><% if @o_single.image? %><%= image_tag @o_single.image_url(:logo) %><% end %></div></div>
+      </td> 
+    </tr>
+</table>  
+     
+    <div class="form-actions">
+      <%= f.submit t("general.save"), :class => 'btn btn-primary' %>
+      <%= link_to 'Cancel', root_url, :class => 'btn' %>
+    </div>
+    
+  </fieldset>
+</div>  
+<% end %>
+
+<script type="text/javascript">
+$(function() {
+  $('#date_of_birth').datetimepicker({
+    language: 'en',
+    pickTime: false,
+    format: "yyyy-MM-dd"
+  });
+});
+</script>  

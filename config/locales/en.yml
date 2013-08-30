@@ -59,7 +59,9 @@ en:
   general:
     email: "Email"
     password_confirmation: "Password confirm"
+    Email_is_not_valid: "Email is not valid"
     sign_up: "Sign Up"
+    reset_password: "Reset Password"
     username: "Username"
     click_here_to_recover_your_account: "Forgot Password ?"
     credentials_not_valid: "Credentials you entered are not valid.Please check the spelling for both email and password"
@@ -96,8 +98,8 @@ en:
     successfully_registered: "Successfully Registered"
     profile_updated_successfully: "Profile Updated Successfully"
     email_required: "Email Required"
-    password_has_been_sent_to_your_email_address: "Password has been sent to your email address"
-    no_user_exists_for_provided_email_address: "No user exists for provided email address"
+    password_has_been_sent_to_your_email_address: "Password has been reset and sent e-mail on provided address."
+    no_user_exists_for_provided_email_address: "User not found."
     password_required: "Password Required"
     password_does_not_match: "Password does not match"
     password_successfully_updated: "Password successfully updated"
@@ -188,5 +190,4 @@ en:
     are_you_sure_to_unfinalize: "Are you sure to un-finalize a bookings ?"
     successfully_moved_to_bookings: "successfully moved to bookings"
     update_interment: "Update Interment"
-
-    
+    search: "Search"

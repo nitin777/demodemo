@@ -21,9 +21,6 @@
 	        <%= f.select :section_id, options_for_select(get_section_data(@o_single), (@o_single.section.id unless @o_single.section.nil?))  %>
 	      </div>
 	    </div>
-			  <span id="spinner" style="display: none;" class="spinner">
-			    <%= image_tag "loading.gif" %>
-			  </span>	      	    
 	  </div>  	    		
 		 
     <div class="control-group">

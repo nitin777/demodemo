@@ -7,7 +7,7 @@ class GranteesController < ApplicationController
   # GET /grantees.json
   def index
     @o_all = get_records(params[:grantee], params[:page], params[:grave_id])
-    @search_fields = ['surname', 'first_name']
+    @search_fields = ['surname', 'first_name', 'middle_name']
     session[:grantee] = params[:grantee] if params[:grantee]
   end
 

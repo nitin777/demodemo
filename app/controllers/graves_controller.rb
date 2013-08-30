@@ -7,7 +7,7 @@ class GravesController < ApplicationController
   # GET /graves.json
   def index
     @o_all = get_records(params[:grafe], params[:page])
-    @search_fields = ['grave_number']
+    @search_fields = ['grave_number', 'area_id', 'section_id', 'row_id', 'plot_id']
     session[:grafe] = params[:grafe] if params[:grafe]
   end
 

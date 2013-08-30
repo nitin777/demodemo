@@ -57,8 +57,12 @@ Ocms::Application.routes.draw do
   
   match '/forgot_password' => 'fronts#forgot_password', :as => :forgot_password, via: [:get, :post]
   match '/change_password' => 'fronts#change_password', :as => :change_password, via: [:get, :post, :patch]
+  match '/profile' => 'fronts#profile', :as => :profile, via: [:get, :post, :patch]
     
   get '/show_search_box/:toggle/:model/:pm' => 'fronts#show_search_box', :as => :show_search_box
+  get '/grave_search_box/:toggle/:model/:pm' => 'fronts#grave_search_box', :as => :grave_search_box
+  get '/booking_search_box/:toggle/:model/:pm' => 'fronts#booking_search_box', :as => :booking_search_box
+  
   get '/search/:toggle' => 'users#search', :as => :search
   
   

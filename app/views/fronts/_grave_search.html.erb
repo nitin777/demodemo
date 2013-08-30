@@ -1,0 +1,78 @@
+<%= form_for @o_single, :method => "get", :remote => true, :html => { :class => 'form-horizontal' } do |f| %>
+  <fieldset>
+    <legend></legend>
+ 
+   	<div class="control-group">
+      <%= f.label :area_id, :class => 'control-label' %>
+      <div class="controls">
+        <%= select_tag "grafe[area_id]", options_for_select(get_area_data, (@o_single.area.id unless @o_single.area.nil?)),
+        							:data => { :remote => true, :url => url_for(:controller => "fronts", 
+                                 :action => "get_section_row_plot_from_area"
+                                 ) } %>
+      </div>
+    </div>
+    
+    <div id="div_update_section_row_plot">
+    	
+	   	<div class="control-group">
+	      <%= f.label :section_id, :class => 'control-label' %>
+	      <div class="controls">
+	        <%= select_tag "grafe[section_id]", options_for_select(get_section_data(@o_single), (@o_single.section.id unless @o_single.section.nil?)),
+	        							:data => { :remote => true, :url => url_for(:controller => "fronts", 
+	                                 :action => "get_row_plot_from_section"
+	                                 ) } %>
+	      </div>                           
+     	</div>	      
+	  
+			<div id="div_update_row_plot">
+				
+		   	<div class="control-group">
+		      <%= f.label :row_id, :class => 'control-label' %>
+		      <div class="controls">
+		        <%= select_tag "grafe[row_id]", options_for_select(get_row_data(@o_single), (@o_single.row.id unless @o_single.row.nil?)), 
+	        							:data => { :remote => true, :url => url_for(:controller => "fronts", 
+	                                 :action => "get_plot_from_row"
+	                                 ) } %>
+		      </div>
+		    </div>
+		  	
+		  	<div id="div_update_plot">
+		  		
+			   	<div class="control-group">
+			      <%= f.label :plot_id, :class => 'control-label' %>
+			      <div class="controls">
+			        <%= f.select :plot_id, options_for_select(get_plot_data(@o_single), (@o_single.plot.id unless @o_single.plot.nil?))  %>
+			      </div>
+			    </div>
+			   
+			  </div>  
+		    
+		  </div>
+		      		
+		</div>
+		
+		
+		    <div class="control-group">
+		      <%= f.label :grave_number, :class => 'control-label' %>
+		      <div class="controls">
+		        <%= f.text_field :grave_number, :class => 'text_field' %>
+		      </div>
+		    </div>		
+   
+    <div class="controls">
+      <%= f.submit t("general.search"), :class => 'btn btn-primary', :id => 'search_button_id' %>
+      <span data-no-turbolink><%= link_to 'Cancel', grave_search_box_path(false, params[:model], true), :class => 'btn', :remote => true %></span>
+
+    </div>
+    
+  </fieldset>
+     
+<% end %>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  $('#search_button_id').click (function() {
+    $("#spinner").show();
+  });  
+});
+</script>

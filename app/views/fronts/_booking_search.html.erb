@@ -1,0 +1,87 @@
+<%= form_for @o_single, :method => "get", :remote => true, :html => { :class => 'form-horizontal' } do |f| %>
+  <fieldset>
+    <legend></legend>
+    
+ 		<% @params_arr.each do |p| %>
+	    <div class="control-group">
+	      <%= f.label p.capitalize, :class => 'control-label' %>
+	      <div class="controls">
+	      	<% model_name = params[:model].downcase %>
+	        <%= f.text_field p, :value => (session[model_name][p] unless session[model_name].nil?), :class => 'text_field' %>
+	      </div>
+	    </div>
+  	<% end %>
+  	 
+   	<div class="control-group">
+      <%= f.label :area_id, :class => 'control-label' %>
+      <div class="controls">
+        <%= select_tag "booking[area_id]", options_for_select(get_area_data, (@o_single.area.id unless @o_single.area.nil?)),
+        							:data => { :remote => true, :url => url_for(:controller => "fronts", 
+                                 :action => "get_section_row_plot_grave_from_area"
+                                 ) } %>
+      </div>
+    </div>  	 
+  	 
+<div id="div_update_section_row_plot_grave">  	 
+ 	<div class="control-group">
+    <label class="control-label"><%= "Section" %></label>
+    <div class="controls">
+      <%= select_tag "booking[section_id]", options_for_select(get_section_data(@o_single), (@o_single.section.id unless @o_single.section.nil?)),
+      							:data => { :remote => true, :url => url_for(:controller => "fronts", 
+                               :action => "get_row_plot_grave_from_section"
+                               ) } %>
+    </div>                           
+ 	</div>	      
+
+	<div id="div_update_row_plot_grave">
+		
+   	<div class="control-group">
+      <label class="control-label"><%= "Row" %></label>
+      <div class="controls">
+        <%= select_tag "booking[row_id]", options_for_select(get_row_data(@o_single), (@o_single.row.id unless @o_single.row.nil?)), 
+      							:data => { :remote => true, :url => url_for(:controller => "fronts", 
+                               :action => "get_plot_grave_from_row"
+                               ) } %>
+      </div>
+    </div>
+  	
+  	<div id="div_update_plot_grave">
+  		
+	   	<div class="control-group">
+	      <label class="control-label"><%= "Plot" %></label>
+	      <div class="controls">
+	        <%= select_tag "booking[plot_id]", options_for_select(get_plot_data(@o_single), (@o_single.plot.id unless @o_single.plot.nil?)), 
+        							:data => { :remote => true, :url => url_for(:controller => "fronts", 
+                                 :action => "get_grave_from_plot"
+                                 ) } %>
+	      </div>
+	    </div>
+	  	
+	  	<div id="div_update_grave">
+		   	<div class="control-group">
+		      <label class="control-label"><%= "Grave" %></label>
+		      <div class="controls">
+		        <%= select_tag "booking[grafe_id]", options_for_select(get_grave_data(@o_single), (@o_single.grafe.id unless @o_single.grafe.nil?))  %>
+		      </div>
+		    </div>
+		  </div>  	    
+    
+  	</div>
+	</div>	
+</div>  
+    <div class="controls">
+      <%= f.submit t("general.search"), :class => 'btn btn-primary', :id => 'search_button_id' %>
+      <span data-no-turbolink><%= link_to 'Cancel', booking_search_box_path(false, params[:model], true), :class => 'btn', :remote => true %></span>
+    </div>
+    
+  </fieldset>
+     
+<% end %>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  $('#search_button_id').click (function() {
+    $("#spinner").show();
+  });  
+});
+</script>
