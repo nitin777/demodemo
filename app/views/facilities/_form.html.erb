@@ -1,0 +1,217 @@
+<%= form_for @o_single, :html => { :class => 'form-horizontal' } do |f| %>
+  <fieldset>
+    <legend></legend>
+<table>
+    <tr>
+      <td>	
+				<%= f.hidden_field :cemetery_id, :value => session[:cemetery_id] %>
+				<%= f.hidden_field :user_id, :value => current_user.id %>
+				<div class="control-group"><%= f.label :title, :class => 'control-label' %><div class="controls"><%= f.text_field :title, :class => 'text_field' %></div></div>
+      </td>
+      <td>				
+		    <div class="control-group">
+		      <%= f.label :first_name, :class => 'control-label' %><span class="redStart">*</span>
+		      <div class="controls">
+		        <%= f.text_field :first_name, :class => 'text_field' %>
+		       	<% if @o_single.errors[:first_name].any? %>
+		        	<span class="text-error text-message"><%= @o_single.errors[:first_name].first %></span>
+		      	<% end %> 
+		      </div>
+		    </div>
+      </td> 
+    </tr> 
+    <tr>
+      <td>		    		 
+		    <div class="control-group">
+		      <%= f.label :surname, :class => 'control-label' %><span class="redStart">*</span>
+		      <div class="controls">
+		        <%= f.text_field :surname, :class => 'text_field' %>
+		       	<% if @o_single.errors[:surname].any? %>
+		        	<span class="text-error text-message"><%= @o_single.errors[:surname].first %></span>
+		      	<% end %> 
+		      </div>
+		    </div>
+      </td>
+      <td>		    
+		 		<div class="control-group"><%= f.label :middle_name, :class => 'control-label' %><div class="controls"><%= f.text_field :middle_name, :class => 'text_field' %></div></div>
+      </td> 
+    </tr> 
+    <tr>
+      <td>			 	
+		    <div class="control-group"><%= f.label :address, :class => 'control-label' %><div class="controls"><%= f.text_field :address, :class => 'text_field' %></div></div>
+      </td> 
+    </tr> 
+    <tr>
+      <td>		    
+		    <div class="control-group"><%= f.label :town, :class => 'control-label' %><div class="controls"><%= f.text_field :town, :class => 'text_field' %></div></div>
+      </td>
+      <td>		    
+		    <div class="control-group"><%= f.label :state, :class => 'control-label' %><div class="controls"><%= f.text_field :state, :class => 'text_field' %></div></div>
+      </td> 
+    </tr> 
+    <tr>
+      <td>		    
+		    <div class="control-group"><%= f.label :postal_code, :class => 'control-label' %><div class="controls"><%= f.text_field :postal_code, :class => 'text_field' %></div></div>
+      </td>
+      <td>		    
+		    <div class="control-group"><%= f.label :phone_area_code, :class => 'control-label' %><div class="controls"><%= f.text_field :phone_area_code, :class => 'text_field' %></div></div>
+      </td> 
+    </tr> 
+    <tr>
+      <td>		    
+		    <div class="control-group"><%= f.label :phone, :class => 'control-label' %><div class="controls"><%= f.text_field :phone, :class => 'text_field' %></div></div>
+      </td>
+      <td>		    
+		    <div class="control-group"><%= f.label :fax_area_code, :class => 'control-label' %><div class="controls"><%= f.text_field :fax_area_code, :class => 'text_field' %></div></div>
+      </td> 
+    </tr> 
+    <tr>
+      <td>		    
+		    <div class="control-group"><%= f.label :fax, :class => 'control-label' %><div class="controls"><%= f.text_field :fax, :class => 'text_field' %></div></div>
+		              </td>
+      <td>
+		    <div class="control-group"><%= f.label :email, :class => 'control-label' %><div class="controls"><%= f.text_field :email, :class => 'text_field' %></div></div>
+      </td> 
+    </tr> 
+    <tr>
+      <td>		    
+				<div class="control-group">
+					
+					<label class = 'control-label'><%= t("general.chapels")%></label>
+					<div class="controls">
+						<%= f.select :chapel_ids, options_for_select(get_chapel_data, (@o_single.chapel_ids.split(",") unless @o_single.chapel_ids.blank?)), {include_blank: true}, {:multiple => true}  %>
+					</div>
+				</div>
+      </td>
+      <td>						
+				<div class="control-group"><%= f.label :chapel_cost, :class => 'control-label' %><div class="controls"><%= f.text_field :chapel_cost, :class => 'text_field' %></div></div>
+      </td> 
+    </tr>
+   
+    <tr>
+      <td>		 		
+		 		<div class="control-group">
+		 			<%= f.label :chapel_time_from, :class => 'control-label' %>
+		 			<div class="controls">
+			 			<div id="chapel_time_from" class="input-append">
+			 				<%= f.text_field :chapel_time_from, :class => 'text_field' %>
+					    <span class="add-on">
+					      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+					      </i>
+					    </span> 				
+			 			</div>	
+			 		</div>
+			 	</div>
+      </td>
+      <td>			 	
+		 		<div class="control-group">
+		 			<%= f.label :chapel_time_to, :class => 'control-label' %>
+		 			<div class="controls">
+			 			<div id="chapel_time_to" class="input-append">
+			 				<%= f.text_field :chapel_time_to, :class => 'text_field' %>
+					    <span class="add-on">
+					      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+					      </i>
+					    </span> 				
+			 			</div>	
+			 		</div>
+			 	</div>
+      </td> 
+    </tr>  
+    
+    
+    <tr>
+      <td>		    
+				<div class="control-group"><%= f.label :room_ids, :class => 'control-label' %><div class="controls">
+					<%= f.select :room_ids, options_for_select(get_room_data, (@o_single.room_ids.split(",") unless @o_single.room_ids.blank?)), {include_blank: true}, {:multiple => true}  %>
+					</div></div>
+      </td>
+      <td>						
+				<div class="control-group"><%= f.label :room_cost, :class => 'control-label' %><div class="controls"><%= f.text_field :room_cost, :class => 'text_field' %></div></div>
+      </td> 
+    </tr>
+   
+    <tr>
+      <td>		 		
+		 		<div class="control-group">
+		 			<%= f.label :room_time_from, :class => 'control-label' %>
+		 			<div class="controls">
+			 			<div id="room_time_from" class="input-append">
+			 				<%= f.text_field :room_time_from, :class => 'text_field' %>
+					    <span class="add-on">
+					      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+					      </i>
+					    </span> 				
+			 			</div>	
+			 		</div>
+			 	</div>
+      </td>
+      <td>			 	
+		 		<div class="control-group">
+		 			<%= f.label :room_time_to, :class => 'control-label' %>
+		 			<div class="controls">
+			 			<div id="room_time_to" class="input-append">
+			 				<%= f.text_field :room_time_to, :class => 'text_field' %>
+					    <span class="add-on">
+					      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+					      </i>
+					    </span> 				
+			 			</div>	
+			 		</div>
+			 	</div>
+      </td> 
+    </tr>         
+       
+    <tr>
+      <td>		    
+				<div class="control-group"><%= f.label :no_of_rooms, :class => 'control-label' %><div class="controls"><%= f.text_field :no_of_rooms, :class => 'text_field' %></div></div>
+      </td>
+      <td>						
+				<div class="control-group"><%= f.label :special_instruction, :class => 'control-label' %><div class="controls"><%= f.text_field :special_instruction, :class => 'text_field' %></div></div>
+      </td> 
+    </tr>   
+    
+    <tr>
+      <td>		    
+				<div class="control-group"><%= f.label :receipt_number, :class => 'control-label' %><div class="controls"><%= f.text_field :receipt_number, :class => 'text_field' %></div></div>
+      </td>
+      <td>						
+		    <div class="control-group">
+		      <%= f.label :is_finalized, :class => 'control-label' %>
+		      <div class="controls">
+		        <%= f.check_box :is_finalized, :class => 'check_box' %>
+		      </div>
+		    </div> 				
+      </td> 
+    </tr>          
+        
+    
+</table> 
+		    <div class="form-actions">
+		      <%= f.submit nil, :class => 'btn btn-primary' %>
+		      <%= link_to 'Cancel', facilities_url, :class => 'btn' %>
+		    </div>   
+  </fieldset>
+     
+<% end %>
+
+<script type="text/javascript">
+$(function() {
+  $('#chapel_time_from').datetimepicker({
+    language: 'en',
+    format: "yyyy-MM-dd hh:mm:ss"
+  });
+  $('#chapel_time_to').datetimepicker({
+    language: 'en',
+    format: "yyyy-MM-dd hh:mm:ss"
+  });
+  $('#room_time_from').datetimepicker({
+    language: 'en',
+    format: "yyyy-MM-dd hh:mm:ss"
+  });
+  $('#room_time_to').datetimepicker({
+    language: 'en',
+    format: "yyyy-MM-dd hh:mm:ss"
+  });      
+});
+</script>

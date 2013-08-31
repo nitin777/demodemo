@@ -21,6 +21,7 @@ Ocms::Application.routes.draw do
   resources :grave_statuses
   resources :monuments
   resources :letters
+  resources :facilities
   
   resources :identities
   resources :payment_statuses

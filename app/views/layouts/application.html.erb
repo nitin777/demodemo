@@ -16,7 +16,7 @@
       current_controller_name = controller.controller_name
       current_action = controller.action_name
       
-      cem_contollers_arr = %w(users areas sections rows plots graves grantees chapels rooms cemeteries monuments catalogs bookings grantee_graves grantee_graves letters)
+      cem_contollers_arr = %w(users areas sections rows plots graves grantees chapels rooms cemeteries monuments catalogs bookings grantee_graves grantee_graves letters facilities)
       
       admin_contollers_arr = %w(countries denominations diseases grave_statuses identities service_types unit_types coffins payment_statuses stone_mason_work_types)
       
@@ -42,6 +42,7 @@
 							<li class="<%= 'active' if current_controller_name == 'users' %>"><%= link_to t("general.users"), users_path %></li>
 							<li class="<%= 'active' if ((current_controller_name == 'bookings' and session[:bookings]) or params[:bookings]) %>"><%= link_to t("general.bookings"), bookings_path(:bookings => true) %></li>
 							<li class="<%= 'active' if ((current_controller_name == 'bookings' and session[:interments]) or params[:interments]) %>"><%= link_to t("general.interments"), bookings_path(:interments => true) %></li>
+							<li class="<%= 'active' if current_controller_name == 'facilities' %>"><%= link_to t("general.facilities"), facilities_path %></li>
 							<li class="<%= 'active' if current_controller_name == 'letters' %>"><%= link_to t("general.letters"), letters_path %></li>
 							<li class="<%= 'active' if current_controller_name == 'areas' %>"><%= link_to t("general.areas"), areas_path %></li>
 							<li class="<%= 'active' if current_controller_name == 'sections' %>"><%= link_to t("general.sections"), sections_path %></li>

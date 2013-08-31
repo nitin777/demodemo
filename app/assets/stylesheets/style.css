@@ -114,3 +114,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0cb788', end
 .span2 {
     width: 130px;
 }
+
+#map_canvas {
+  width: 400px;
+  height: 300px;
+}

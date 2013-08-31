@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130820185832) do
+ActiveRecord::Schema.define(version: 20130831125856) do
 
   create_table "areas", force: true do |t|
     t.integer  "cemetery_id"
@@ -237,6 +237,38 @@ ActiveRecord::Schema.define(version: 20130820185832) do
   create_table "diseases", force: true do |t|
     t.string   "name"
     t.boolean  "is_active",  default: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "facilities", force: true do |t|
+    t.integer  "cemetery_id"
+    t.integer  "user_id"
+    t.string   "title"
+    t.string   "first_name"
+    t.string   "middle_name"
+    t.string   "surname"
+    t.text     "address"
+    t.string   "email"
+    t.string   "state"
+    t.string   "town"
+    t.string   "postal_code"
+    t.string   "phone_area_code"
+    t.string   "phone"
+    t.string   "fax_area_code"
+    t.string   "fax"
+    t.string   "chapel_ids"
+    t.datetime "chapel_time_from"
+    t.datetime "chapel_time_to"
+    t.integer  "chapel_cost"
+    t.string   "room_ids"
+    t.datetime "room_time_from"
+    t.datetime "room_time_to"
+    t.integer  "no_of_rooms"
+    t.integer  "room_cost"
+    t.string   "special_instruction"
+    t.string   "receipt_number"
+    t.boolean  "is_finalized",        default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

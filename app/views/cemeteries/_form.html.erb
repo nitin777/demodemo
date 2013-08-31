@@ -1,7 +1,9 @@
 <%= form_for @o_single, :html => { :class => 'form-horizontal' } do |f| %>
   <fieldset>
     <legend></legend>
- 
+<table>
+    <tr>
+      <td> 
     <div class="control-group">
       <%= f.label :name, :class => 'control-label' %><span class="redStart">*</span>
       <div class="controls">
@@ -9,7 +11,8 @@
        	<% if @o_single.errors[:name].any? %><span class="text-error text-message"><%= @o_single.errors[:name].first %></span><% end %> 
       </div>
     </div>
-
+      </td>
+      <td>	
     <div class="control-group">
       <%= f.label :country_id, :class => 'control-label' %><span class="redStart">*</span>
       <div class="controls">
@@ -17,28 +20,81 @@
         <% if @o_single.errors[:country_id].any? %><span class="text-error text-message"><%= @o_single.errors[:country_id].first %></span><% end %>
       </div>
     </div>
-    
-    <div class="control-group"><%= f.label :description, :class => 'control-label' %><div class="controls"><%= f.text_area :description, :class => 'text-area-fixed-width' %></div></div>    
+      </td> 
+    </tr> 
+    <tr>
+      <td>    
+    <div class="control-group"><%= f.label :description, :class => 'control-label' %><div class="controls"><%= f.text_area :description, :class => 'text-area-fixed-width' %></div></div>
+      </td>
+      <td>	        
     <div class="control-group"><%= f.label :url, :class => 'control-label' %><div class="controls"><%= f.text_field :url, :class => 'text_field' %></div></div>
+      </td> 
+    </tr> 
+    <tr>
+      <td>    
     <div class="control-group"><%= f.label :address, :class => 'control-label' %><div class="controls"><%= f.text_field :address, :class => 'text_field' %></div></div>
+      </td>
+      <td>	    
     <div class="control-group"><%= f.label :suburb_town, :class => 'control-label' %><div class="controls"><%= f.text_field :suburb_town, :class => 'text_field' %></div></div>
+      </td> 
+    </tr> 
+    <tr>
+      <td>    
     <div class="control-group"><%= f.label :state, :class => 'control-label' %><div class="controls"><%= f.text_field :state, :class => 'text_field' %></div></div>
+      </td>
+      <td>	    
     <div class="control-group"><%= f.label :postal_code, :class => 'control-label' %><div class="controls"><%= f.text_field :postal_code, :class => 'text_field' %></div></div>
+      </td> 
+    </tr> 
+    <tr>
+      <td>    
     <div class="control-group"><%= f.label :phone_area_code, :class => 'control-label' %><div class="controls"><%= f.text_field :phone_area_code, :class => 'text_field' %></div></div>
+      </td>
+      <td>	    
     <div class="control-group"><%= f.label :phone, :class => 'control-label' %><div class="controls"><%= f.text_field :phone, :class => 'text_field' %></div></div>
+      </td> 
+    </tr> 
+    <tr>
+      <td>    
     <div class="control-group"><%= f.label :fax_area_code, :class => 'control-label' %><div class="controls"><%= f.text_field :fax_area_code, :class => 'text_field' %></div></div>
-    <div class="control-group"><%= f.label :fax, :class => 'control-label' %><div class="controls"><%= f.text_field :fax, :class => 'text_field' %></div></div>    
+      </td>
+      <td>	    
+    <div class="control-group"><%= f.label :fax, :class => 'control-label' %><div class="controls"><%= f.text_field :fax, :class => 'text_field' %></div></div>
+      </td> 
+    </tr> 
+    <tr>
+      <td>        
     <div class="control-group"><%= f.label :email, :class => 'control-label' %><div class="controls"><%= f.text_field :email, :class => 'text_field' %></div></div>
+      </td>
+      <td>	    
     <div class="control-group"><%= f.label :gmap_code, :class => 'control-label' %><div class="controls"><%= f.text_area :gmap_code, :class => 'text-area-fixed-width' %></div></div>
+      </td> 
+    </tr> 
+    <tr>
+      <td>    
     <div class="control-group"><%= f.label :latitude, :class => 'control-label' %><div class="controls"><%= f.text_field :latitude, :class => 'text_field' %></div></div>
+      </td>
+      <td>	    
     <div class="control-group"><%= f.label :longitude, :class => 'control-label' %><div class="controls"><%= f.text_field :longitude, :class => 'text_field' %></div></div>
+      </td> 
+    </tr> 
+    <tr>
+      <td>    
     <div class="control-group"><%= f.label :map, :class => 'control-label' %><div class="controls"><%= f.file_field :map, :class => 'text_field' %></div></div>
+      </td>
+      <td>	    
     <div class="control-group"><div class="controls"><% if @o_single.map? %><%= image_tag @o_single.map_url(:logo) %><% end %></div></div>
+      </td> 
+    </tr> 
+    <tr>
+      <td>    
    	
     <div class="control-group"><%= f.label :is_active, :class => 'control-label' %><div class="controls"><%= f.check_box :is_active, :class => 'check_box' %></div></div> 
+       </td>
  
-    <div class="form-actions"><%= f.submit nil, :class => 'btn btn-primary' %><%= link_to 'Cancel', cemeteries_url, :class => 'btn' %></div>
-    
+    </tr> 
+</table>
+<div class="form-actions"><%= f.submit nil, :class => 'btn btn-primary' %><%= link_to 'Cancel', cemeteries_url, :class => 'btn' %></div>    
   </fieldset>
      
 <% end %>

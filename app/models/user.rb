@@ -35,6 +35,7 @@ class User < ActiveRecord::Base
 	
 	has_many :grantee_graves
 	has_many :bookings
+	has_many :facilities
 	
 	scope :all_stone_masons, joins(:role).where(:roles => { :role_type => "StoneMason" })
 	scope :all_funeral_directors, joins(:role).where(:roles => { :role_type => "FuneralDirector" })
