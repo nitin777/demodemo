@@ -36,6 +36,9 @@
 	    	<% if session[:cemetery_id] and current_user and cem_contollers_arr.include?(current_controller_name) %>
 					<div class="span2">
 						<ul class="nav nav-pills nav-stacked">
+							<% if is_funeral_director? or is_stone_mason? or is_normal_staff? %>
+								<li class="<%= 'active' if ((current_controller_name == 'bookings' and session[:bookings]) or params[:bookings]) %>"><%= link_to t("general.bookings"), bookings_path(:bookings => true) %></li>
+							<% else %>	
 							<li class="<%= 'active' if current_controller_name == 'users' %>"><%= link_to t("general.users"), users_path %></li>
 							<li class="<%= 'active' if ((current_controller_name == 'bookings' and session[:bookings]) or params[:bookings]) %>"><%= link_to t("general.bookings"), bookings_path(:bookings => true) %></li>
 							<li class="<%= 'active' if ((current_controller_name == 'bookings' and session[:interments]) or params[:interments]) %>"><%= link_to t("general.interments"), bookings_path(:interments => true) %></li>
@@ -51,6 +54,7 @@
 							<li class="<%= 'active' if current_controller_name == 'rooms' %>"><%= link_to t("general.rooms"), rooms_path %></li>
 							<li class="<%= 'active' if current_controller_name == 'monuments' %>"><%= link_to t("general.monuments"), monuments_path %></li>
 							<li class="<%= 'active' if current_controller_name == 'catalogs' %>"><%= link_to t("general.catalogs"), catalogs_path %></li>
+						<% end %>	
 						</ul>  
 					</div>  
 					<div class="span10">

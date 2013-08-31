@@ -1,5 +1,11 @@
 class User < ActiveRecord::Base
-
+  SUPER_ADMIN = "SuperAdmin"
+  MANAGER = "Manager"
+  STAFF = "Staff"
+  ADMIN_STAFF = "AdminStaff"
+  FUNERAL_DIRECTOR = "FuneralDirector"
+  STONE_MASON = "StoneMason"
+  NORMAL_STAFF = "NormalStaff"
   include SearchHandler	
 	include ActionView::Helpers::TextHelper
 	
@@ -45,25 +51,33 @@ class User < ActiveRecord::Base
     self.user_role.role.role_type == role
   end
   
-  def is_super_admin?
-    has_role?("SuperAdmin")
+  def is_admin?
+    has_role?(SUPER_ADMIN)
   end
   
-  def is_user?
-    has_role?("User")
+  def is_manager?
+   has_role?(MANAGER)
   end
   
-  def is_provider_user?
-    self.authorizations
+  def is_staff?
+   has_role?(STAFF)
+  end  
+
+  def is_admin_staff?
+   has_role?(ADMIN_STAFF)
   end  
   
-  def has_cv?
-  	self.cv	
+  def is_funeral_director?
+   has_role?(FUNERAL_DIRECTOR)
+  end  
+
+  def is_stone_mason?
+   has_role?(STONE_MASON)
   end
   
-  def is_not_invited_user(invited_user_id)
-  	self.id != invited_user_id
-  end
+  def is_normal_staff?
+   has_role?(NORMAL_STAFF)
+  end  
   
   def name(shorten=true)
     unless first_name.nil? && last_name.nil? or first_name.empty? && last_name.empty?

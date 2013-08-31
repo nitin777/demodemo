@@ -2,10 +2,16 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  helper_method :current_user, :is_admin?, :is_user?, :is_provider_user?
+  helper_method :current_user, :is_admin?, :is_manager?, :is_staff?, :is_funeral_director?, :is_admin_staff?, :is_stone_mason?, :is_normal_staff?
   before_action :set_cemetery_record
+  
 	SUPER_ADMIN = "SuperAdmin"
-	USER = "User"
+	MANAGER = "Manager"
+	STAFF = "Staff"
+	ADMIN_STAFF = "AdminStaff"
+	FUNERAL_DIRECTOR = "FuneralDirector"
+	STONE_MASON = "StoneMason"
+	NORMAL_STAFF = "NormalStaff"
 
   private
 
@@ -53,26 +59,29 @@ class ApplicationController < ActionController::Base
 		session[:user_role] == SUPER_ADMIN
 	end
 	
-  def is_user?
-	 session[:user_role] == USER
+  def is_manager?
+	 session[:user_role] == MANAGER
   end
   
-  def is_provider_user?
-    current_user.authorizations
+  def is_staff?
+   session[:user_role] == STAFF
+  end  
+
+  def is_admin_staff?
+   session[:user_role] == ADMIN_STAFF
+  end  
+  
+  def is_funeral_director?
+   session[:user_role] == FUNERAL_DIRECTOR
+  end  
+
+  def is_stone_mason?
+   session[:user_role] == STONE_MASON
   end
   
-  def invite_email_exists?(email)
-    user = User.find_by_email(email)
-    if user
-			user_invited_by_current_user = current_user.invitings.where(:invited_user_id => user.id).first
-			if user_invited_by_current_user
-				return {result: true, invited_date: user_invited_by_current_user.created_at.to_s(:default_date), is_user: true, user: user, invite: user_invited_by_current_user}
-			else
-				return {result: false, is_user: true, user: user}
-			end	
-	  end
-	  return {result: false, is_user: false}
-  end
+  def is_normal_staff?
+   session[:user_role] == NORMAL_STAFF
+  end  
   
   def get_host_name(email)
   	unless email.nil?

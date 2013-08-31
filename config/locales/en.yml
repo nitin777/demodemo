@@ -191,3 +191,6 @@ en:
     successfully_moved_to_bookings: "successfully moved to bookings"
     update_interment: "Update Interment"
     search: "Search"
+    grantees: "Entities"
+    grantee: "Entity"
+    grantee_identity_number: "Entity identity number"

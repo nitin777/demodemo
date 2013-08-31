@@ -87,7 +87,7 @@ class UsersController < ApplicationController
     end
     
 	  def get_records(search, page)
-	    if current_user.is_super_admin?
+	    if current_user.is_admin?
 	     cemetery = Cemetery.find(session[:cemetery_id]) 
 			 user_query = cemetery.users.search(search)
 			else

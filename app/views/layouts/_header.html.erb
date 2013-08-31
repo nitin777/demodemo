@@ -12,12 +12,14 @@
         <ul class="nav">
           <% if current_user %>
             <% if is_admin? %>
-            	<!--<li class=""><%#= link_to t("general.users"), users_path %></li>-->
          	  	<li class=""><%= link_to t("general.cemeteries"), cemeteries_path %></li>
          	  <% else %>
          	  	<li class=""><%= link_to t("general.dashboard"), dashboard_path %></li>
-         	  	<!--<li class=""><%#= link_to t("general.users"), users_path %></li>-->
-         	  	<li class=""><%= link_to t("general.manage_cemetery"), users_path %></li>
+         	  	<% if is_funeral_director? %>
+         	  		<li class=""><%= link_to t("general.booking"), bookings_path(:bookings => true) %></li>
+         	  	<% else %>	
+         	  		<li class=""><%= link_to t("general.manage_cemetery"), users_path %></li>
+         	  	<% end %>	
          	  <% end %>	
          	  <% if session[:cemetery_id] %>
          	  	<li class=""><%= link_to "( " + @cemetery.name + " )", "#" %></li>

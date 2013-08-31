@@ -1,9 +1,4 @@
-<div class="page-header">
-  <h4><%= @o_single.grave_number %></p></h4>
-</div>
-  <fieldset>
-    <legend></legend>
-    
+   
 		<ul class="nav nav-tabs" id="myTab">
 			<li class="active"><a href="#detail"><%= t("general.detail") %></a></li>
 			<li><a href="#grantees"><%= t("general.grantees") %></a></li>
@@ -12,30 +7,43 @@
     
 		<div class="tab-content">
 			<div class="tab-pane active" id="detail">
-				<p><strong>Monument:</strong> <%= @o_single.monument.nil? ? "-" : @o_single.monument.name %></p>
-				<p><strong>Stone Mason:</strong> <%= @o_single.stone_mason.nil? ? "-" : @o_single.stone_mason.name %></p>
-				<p><strong>Length:</strong> <%= @o_single.length.blank? ? "-" : @o_single.length %></p>
-				<p><strong>Width:</strong> <%= @o_single.width.blank? ? "-" : @o_single.width %></p>
-				<p><strong>Height:</strong> <%= @o_single.height.blank? ? "-" : @o_single.height %></p>
-				<p><strong>Unit Type:</strong> <%= @o_single.unit_type.nil? ? "-" : @o_single.unit_type.name %></p>
-				<p><strong>Image-1:</strong> <% if @o_single.image_1 %><%= image_tag @o_single.image_1_url %><% end %></p>
-				<p><strong>Image-2:</strong> <% if @o_single.image_2 %><%= image_tag @o_single.image_2_url %><% end %></p>
+				<div class="leftBlock marginRight">
+					<div class="profielView">
+				    	<h2><%= @o_single.grave_number %></h2>				
+							<p><strong>Monument:</strong> <%= @o_single.monument.nil? ? "-" : @o_single.monument.name %></p>
+							<p><strong>Stone Mason:</strong> <%= @o_single.stone_mason.nil? ? "-" : @o_single.stone_mason.name %></p>
+							<p><strong>Length:</strong> <%= @o_single.length.blank? ? "-" : @o_single.length %></p>
+							<p><strong>Width:</strong> <%= @o_single.width.blank? ? "-" : @o_single.width %></p>
+							<p><strong>Height:</strong> <%= @o_single.height.blank? ? "-" : @o_single.height %></p>
+							<p><strong>Unit Type:</strong> <%= @o_single.unit_type.nil? ? "-" : @o_single.unit_type.name %></p>
+					</div>
+				</div>
+				<div class="rightBlock width50">
+					<div class="profielView">							
+							<p><strong>Image-1:</strong> <% if @o_single.image_1 %><%= image_tag @o_single.image_1_url %><% end %></p>
+							<p><strong>Image-2:</strong> <% if @o_single.image_2 %><%= image_tag @o_single.image_2_url %><% end %></p>
+					</div>
+				</div>			
 			</div>
 			<div class="tab-pane" id="grantees">
-				<% @o_single.grantees.each do |o_row| %>
-					<p><strong>Name:</strong> <%= o_row.name %></p>
-				<% end %>
+				<div class="leftBlock marginRight">
+					<div class="profielView">				
+						<% @o_single.grantees.each do |o_row| %>
+				    	<h4><%= o_row.name %></h4>
+				    <% end %>	
+				  </div>
+				</div>
 			</div>
 			<div class="tab-pane" id="interments">
 				<% @o_single.bookings.where(:is_finalized => true).each do |o_row| %>
-					<p><strong>Deceased Name:</strong> <%= o_row.deceased_name %></p>
+					<p><strong>- Deceased Name:</strong> <%= o_row.deceased_name %></p>
 				<% end %>				
 			</div>
 		</div>    
 		<div class="form-actions">
 		  <%= link_to 'Back', graves_url, :class => 'btn' %>
 		</div>
-</fieldset>		
+		
 
 <script>
     $('#myTab a').click(function (e) {
