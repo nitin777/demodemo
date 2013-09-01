@@ -3,7 +3,8 @@
   <div class="controls">
     <%= select_tag "grafe[row_id]", options_for_select([["Select", ""]] + @rows.collect {|r| [r.name, r.id]}),
   							:data => { :remote => true, :url => url_for(:controller => "fronts", 
-                           :action => "get_plot_from_row"
+                           :action => "get_plot_from_row",
+                                 	 :class => 'selectField'
                            ) } %>
   </div>
 </div>

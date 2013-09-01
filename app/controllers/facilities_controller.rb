@@ -33,8 +33,8 @@ class FacilitiesController < ApplicationController
   # POST /facilities.json
   def create
     @o_single = Facility.new(facility_params)
-    chapel_ids = params[:facility][:chapel_ids].join(",")
-    room_ids = params[:facility][:room_ids].join(",")
+    chapel_ids = params[:facility][:chapel_ids].join(",").to_s
+    room_ids = params[:facility][:room_ids].join(",").to_s
     respond_to do |format|
       if @o_single.save
         @o_single.chapel_ids = chapel_ids
@@ -53,8 +53,8 @@ class FacilitiesController < ApplicationController
   # PATCH/PUT /facilities/1.json
   def update
     
-    chapel_ids = params[:facility][:chapel_ids].join(",")
-    room_ids = params[:facility][:room_ids].join(",")
+    chapel_ids = params[:facility][:chapel_ids].join(",").to_s
+    room_ids = params[:facility][:room_ids].join(",").to_s
     respond_to do |format|
       if @o_single.update(facility_params)
         @o_single.chapel_ids = chapel_ids

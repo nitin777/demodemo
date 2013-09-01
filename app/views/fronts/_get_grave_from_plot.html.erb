@@ -3,7 +3,8 @@
   <div class="controls">
     <%= select_tag (params[:booking] ? "booking[grafe_id]" : "grantee_grafe[grafe_id]"), options_for_select([["Select", ""]] + @graves.collect {|r| [r.grave_number, r.id]}), 
         							:data => { :remote => true, :url => url_for(:controller => "fronts", 
-                                 :action => "get_grantee_from_grave"
+                                 :action => "get_grantee_from_grave",
+                                 	 :class => 'selectField'
                                  ) }  %>
   </div>
 </div>

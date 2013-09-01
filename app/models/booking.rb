@@ -30,7 +30,7 @@ class Booking < ActiveRecord::Base
   
   def deceased_name(shorten=true)
     unless deceased_first_name.nil? && deceased_surname.nil? or deceased_first_name.empty? && deceased_surname.empty?
-      [deceased_surname, deceased_first_name].join(" ")
+      [deceased_title, deceased_surname, deceased_first_name].join(" ")
     end
   end  
   

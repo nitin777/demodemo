@@ -45,7 +45,7 @@ class User < ActiveRecord::Base
 	mount_uploader :image, ImageUploader
 
 	def user_name
-		return self.first_name.blank? ? self.username : (self.first_name.to_s + " " + self.last_name.to_s)
+		return self.first_name.blank? ? self.username : (self.title.to_s + " " + self.first_name.to_s + " " + self.last_name.to_s)
 	end
 	
   def has_role?(role)
@@ -82,7 +82,7 @@ class User < ActiveRecord::Base
   
   def name(shorten=true)
     unless first_name.nil? && last_name.nil? or first_name.empty? && last_name.empty?
-      [first_name, last_name].join(" ")
+      [title, first_name, last_name].join(" ")
     else
       shorten ? truncate(email, :omission => "..", :length => 20) : email
     end
@@ -90,7 +90,7 @@ class User < ActiveRecord::Base
 
   def user_name(shorten=true)
     unless first_name.nil? && last_name.nil? or first_name.empty? && last_name.empty?
-      [first_name, last_name].join("-")
+      [title, first_name, last_name].join("-")
     else
       shorten ? truncate(email, :omission => "..", :length => 20) : email
     end

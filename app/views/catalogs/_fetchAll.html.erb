@@ -14,8 +14,8 @@
       <% @o_all.each do |o_row| %>
         <tr>
           <td><%= o_row.name %></td>
-          <td><%= o_row.cost_price %></td>
-          <td><%= o_row.special_cost_price %></td>
+          <td>$<%= o_row.cost_price %></td>
+          <td>$<%= o_row.special_cost_price %></td>
           <td><%= o_row.is_active ? image_tag("Yes.gif") : image_tag("No.gif") %></td>
           <td> 
 			      <%= link_to t('.edit', :default => t("helpers.links.edit")),

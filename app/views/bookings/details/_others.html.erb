@@ -40,7 +40,7 @@
 		    <div class="control-group">
 		      <%= f.label :chapel_id, :class => 'control-label' %>
 		      <div class="controls">
-		        <%= f.select :chapel_id, options_for_select(get_model_data("Chapel", true), (@o_single.chapel.id unless @o_single.chapel.nil?))  %>
+		        <%= f.select :chapel_ids, options_for_select(get_chapel_data, (@o_single.chapel_ids.split(",") unless @o_single.chapel_ids.blank?)), {include_blank: true}, {:multiple => true}  %>
 		      </div>
 		    </div>  
 		
@@ -48,7 +48,7 @@
 		      <%= f.label :chapel_time_from, :class => 'control-label' %>
 		      <div class="controls">
 			 			<div id="chapel_time_from" class="input-append">
-			 				<%= f.text_field :chapel_time_from, :value => (@o_single.chapel_time_from.to_s(:pretty_time) if @o_single.chapel_time_from), :class => 'text_field' %>
+			 				<%= f.text_field :chapel_time_from, :value => (@o_single.chapel_time_from.to_s(:default_date_time) if @o_single.chapel_time_from), :class => 'text_field' %>
 					    <span class="add-on">
 					      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
 					      </i>
@@ -64,7 +64,7 @@
 		      <%= f.label :chapel_time_to, :class => 'control-label' %>
 		      <div class="controls">
 			 			<div id="chapel_time_to" class="input-append">
-			 				<%= f.text_field :chapel_time_to, :value => (@o_single.chapel_time_to.to_s(:pretty_time) if @o_single.chapel_time_to), :class => 'text_field' %>
+			 				<%= f.text_field :chapel_time_to, :value => (@o_single.chapel_time_to.to_s(:default_date_time) if @o_single.chapel_time_to), :class => 'text_field' %>
 					    <span class="add-on">
 					      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
 					      </i>
@@ -77,7 +77,7 @@
 		    <div class="control-group">
 		      <%= f.label :room_id, :class => 'control-label' %>
 		      <div class="controls">
-		        <%= f.select :room_id, options_for_select(get_model_data("Room", true), (@o_single.room.id unless @o_single.room.nil?))  %>
+		        <%= f.select :room_ids, options_for_select(get_room_data, (@o_single.room_ids.split(",") unless @o_single.room_ids.blank?)), {include_blank: true}, {:multiple => true}  %>
 		      </div>
 		    </div>        
       </td> 
@@ -88,7 +88,7 @@
 		      <%= f.label :room_time_from, :class => 'control-label' %>
 		      <div class="controls">
 			 			<div id="room_time_from" class="input-append">
-			 				<%= f.text_field :room_time_from, :value => (@o_single.room_time_from.to_s(:pretty_time) if @o_single.room_time_from), :class => 'text_field' %>
+			 				<%= f.text_field :room_time_from, :value => (@o_single.room_time_from.to_s(:default_date_time) if @o_single.room_time_from), :class => 'text_field' %>
 					    <span class="add-on">
 					      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
 					      </i>
@@ -102,7 +102,7 @@
 		      <%= f.label :room_time_to, :class => 'control-label' %>
 		      <div class="controls">
 			 			<div id="room_time_to" class="input-append">
-			 				<%= f.text_field :room_time_to, :value => (@o_single.room_time_to.to_s(:pretty_time) if @o_single.room_time_to), :class => 'text_field' %>
+			 				<%= f.text_field :room_time_to, :value => (@o_single.room_time_to.to_s(:default_date_time) if @o_single.room_time_to), :class => 'text_field' %>
 					    <span class="add-on">
 					      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
 					      </i>

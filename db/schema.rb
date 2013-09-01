@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130831125856) do
+ActiveRecord::Schema.define(version: 20130901063458) do
 
   create_table "areas", force: true do |t|
     t.integer  "cemetery_id"
@@ -142,10 +142,10 @@ ActiveRecord::Schema.define(version: 20130831125856) do
     t.boolean  "own_clergy",                     default: true
     t.boolean  "coffin_surcharge",               default: true
     t.string   "clergy_name"
-    t.integer  "chapel_id"
+    t.string   "chapel_ids"
     t.datetime "chapel_time_from"
     t.datetime "chapel_time_to"
-    t.integer  "room_id"
+    t.string   "room_ids"
     t.datetime "room_time_from"
     t.datetime "room_time_to"
     t.string   "burning_drum"

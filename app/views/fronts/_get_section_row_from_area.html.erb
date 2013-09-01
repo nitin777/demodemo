@@ -4,7 +4,7 @@
     <%= select_tag "plot[section_id]", options_for_select([["Select", ""]] + @sections.collect {|r| [r.code, r.id]}),
     							:data => { :remote => true, :url => url_for(:controller => "fronts", 
                              :action => "get_row_from_section"
-                             ) } %>
+                             ) },:class => 'selectField' %>
 	      
   </div>
 </div>

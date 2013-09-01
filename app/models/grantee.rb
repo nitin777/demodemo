@@ -7,6 +7,6 @@ class Grantee < ActiveRecord::Base
   include SearchHandler
   
   def name
-    self.surname + " " + self.first_name
+    self.title + " " + self.surname + " " + self.first_name
   end  
 end

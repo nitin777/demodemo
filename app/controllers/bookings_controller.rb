@@ -80,9 +80,13 @@ class BookingsController < ApplicationController
   # POST /bookings.json
   def create
     @o_single = Booking.new(booking_params)
-
+    chapel_ids = params[:booking][:chapel_ids].join(",").to_s
+    room_ids = params[:booking][:room_ids].join(",").to_s
     respond_to do |format|
       if @o_single.save
+        @o_single.chapel_ids = chapel_ids
+        @o_single.room_ids = room_ids
+        @o_single.save        
         format.html { redirect_to bookings_url, notice: t("general.successfully_created") }
         format.json { render action: 'show', status: :created, location: @o_single }
       else
@@ -96,7 +100,12 @@ class BookingsController < ApplicationController
   # PATCH/PUT /bookings/1.json
   def update
     respond_to do |format|
+      chapel_ids = params[:booking][:chapel_ids].join(",").to_s
+      room_ids = params[:booking][:room_ids].join(",").to_s      
       if @o_single.update(booking_params)
+        @o_single.chapel_ids = chapel_ids
+        @o_single.room_ids = room_ids
+        @o_single.save        
         format.html { redirect_to bookings_url, notice: t("general.successfully_updated") }
         format.json { head :no_content }
       else

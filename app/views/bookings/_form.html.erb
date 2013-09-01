@@ -9,7 +9,7 @@
 			<li><a href="#applicant"><%= t("general.applicant") %></a></li>
 			<li><a href="#checklist"><%= t("general.checklist") %></a></li>			
 			<li><a href="#coffin"><%= t("general.coffin") %></a></li>
-			<li><a href="#others"><%= t("general.others") %></a></li>
+			<li><a href="#other"><%= t("general.other") %></a></li>
 			<% unless @o_single.new_record? %>
 				<li><a href="#letters"><%= t("general.letters") %></a></li>
 			<% end %>	
@@ -23,7 +23,7 @@
 			<div class="tab-pane" id="applicant"><%= render "bookings/details/applicant", :f => f %></div>
 			<div class="tab-pane" id="checklist"><%= render "bookings/details/checklist", :f => f %></div>			
 			<div class="tab-pane" id="coffin"><%= render "bookings/details/coffin", :f => f %></div>
-			<div class="tab-pane" id="others"><%= render "bookings/details/others", :f => f %></div>
+			<div class="tab-pane" id="other"><%= render "bookings/details/others", :f => f %></div>
 			<% unless @o_single.new_record? %>
 				<div class="tab-pane" id="letters"><%= render "bookings/details/letters", :f => f %></div>
 			<% end %>	
@@ -94,23 +94,19 @@ $(function() {
   });
   $('#chapel_time_from').datetimepicker({
     language: 'en',
-    pickDate: false,
-    format: "hh:mm:ss"
+    format: "yyyy-MM-dd hh:mm:ss"
   });   
   $('#chapel_time_to').datetimepicker({
     language: 'en',
-    pickDate: false,
-    format: "hh:mm:ss"
+    format: "yyyy-MM-dd hh:mm:ss"
   });   
   $('#room_time_from').datetimepicker({
     language: 'en',
-    pickDate: false,
-    format: "hh:mm:ss"
+    format: "yyyy-MM-dd hh:mm:ss"
   });   
   $('#room_time_to').datetimepicker({
     language: 'en',
-    pickDate: false,
-    format: "hh:mm:ss"
+    format: "yyyy-MM-dd hh:mm:ss"
   });      
   $('#service_time_from').datetimepicker({
     language: 'en',

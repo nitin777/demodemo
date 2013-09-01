@@ -9,7 +9,8 @@
 	      <div class="controls">
 	        <%= select_tag "row[area_id]", options_for_select(get_area_data, (@o_single.area.id unless @o_single.area.nil?)),
 	        							:data => { :remote => true, :url => url_for(:controller => "fronts", 
-                                   :action => "get_section_from_area"
+                                   :action => "get_section_from_area",
+                                   :class => 'selectField'
                                    ) } %>
 	      </div>
 	    </div>
