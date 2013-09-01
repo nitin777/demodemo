@@ -1,3 +1,10 @@
+<script type="text/javascript">
+	$(document).ready(function() {
+	  $('.btn').click (function() {
+	    $("#spinner").show();
+	  });
+	});
+</script>
 <%= form_for @o_single, :method => "get", :remote => true, :html => { :class => 'form-horizontal' } do |f| %>
   <fieldset>
     <legend></legend>
