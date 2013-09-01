@@ -40,7 +40,7 @@
 		    <div class="control-group">
 		      <%= f.label :chapel_id, :class => 'control-label' %>
 		      <div class="controls">
-		        <%= f.select :chapel_ids, options_for_select(get_chapel_data, (@o_single.chapel_ids.split(",") unless @o_single.chapel_ids.blank?)), {include_blank: true}, {:multiple => true}  %>
+		        <%= select_tag "chapel_ids", options_for_select(get_chapel_data, (@o_single.chapel_ids.split(",") unless @o_single.chapel_ids.blank?)), :include_blank => true, :multiple => true  %>
 		      </div>
 		    </div>  
 		
@@ -77,7 +77,7 @@
 		    <div class="control-group">
 		      <%= f.label :room_id, :class => 'control-label' %>
 		      <div class="controls">
-		        <%= f.select :room_ids, options_for_select(get_room_data, (@o_single.room_ids.split(",") unless @o_single.room_ids.blank?)), {include_blank: true}, {:multiple => true}  %>
+		        <%= select_tag "room_ids", options_for_select(get_room_data, (@o_single.room_ids.split(",") unless @o_single.room_ids.blank?)), :include_blank => true, :multiple => true  %>
 		      </div>
 		    </div>        
       </td> 
