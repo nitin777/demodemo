@@ -8,8 +8,10 @@ class FrontsController < ApplicationController
     @o_booking = Booking.new
     @today_date = (params[:booking] and params[:booking][:service_date]) ? params[:booking][:service_date] : Date.today
     @service_types = ServiceType.all
-    @chapels = Booking.chapels.where(:service_date => @today_date)
-    @rooms = Booking.rooms.where(:service_date => @today_date)
+    #@chapels = Booking.chapels.where(:service_date => @today_date)
+    #@rooms = Booking.rooms.where(:service_date => @today_date)
+    @chapels = ""
+    @rooms = ""
   	if current_user
       @user = User.find(current_user.id)
   	end	

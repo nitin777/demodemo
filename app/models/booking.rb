@@ -12,8 +12,6 @@ class Booking < ActiveRecord::Base
   belongs_to :monument
   belongs_to :coffin
   belongs_to :unit_type
-  belongs_to :chapel
-  belongs_to :room
   belongs_to :catalog
   belongs_to :payment_status
   belongs_to :funeral_director, class_name: 'User', foreign_key: "funeral_director_id"  
