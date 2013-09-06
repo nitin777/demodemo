@@ -1,13 +1,13 @@
 class ChargesController < ApplicationController
   before_action :set_grave, only: [:show, :edit, :update, :destroy]
   helper_method :sort_column, :sort_direction
-  before_action :require_user
+  before_action :require_admin
   before_action :set_header_menu_active
   # GET /charges
   # GET /charges.json
   def index
     @o_all = get_records(params[:charge], params[:page])
-    @search_fields = ['interred_name']
+    @search_fields = ['work_type']
     session[:charge] = params[:charge] if params[:charge]
   end
 
@@ -78,12 +78,12 @@ class ChargesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def grave_params
-      params.require(:charge).charge!
+      params.require(:charge).permit!
     end
     
     #fetch search records
     def get_records(search, page)
-      grave_query = @cemetery.charges.search(search)
+      grave_query = Charge.search(search)
       grave_query.order(sort_column + " " + sort_direction).paginate(:per_page => 10, :page => page)
     end    
     

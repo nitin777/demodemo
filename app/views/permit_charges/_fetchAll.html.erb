@@ -1,13 +1,10 @@
 <table class="table table-striped">
  <thead> 
   <tr>
-    <th width="10%"><%= sortable "area_id", t("general.area") %></th>
-    <th width="10%"><%= sortable "section_id", t("general.section") %></th>    
-    <th width="10%"><%= sortable "row_id", t("general.row") %></th>    
-    <th width="10%"><%= sortable "plot_id", t("general.plot") %></th>
-    <th width="15%"><%= sortable "grave_id", t("general.grave") %></th>
-    <th width="15%"><%= sortable "interred_name", t("general.interred_name") %></th>
-    <th width="10%"><%= sortable "cancelled", t("general.cancelled") %></th>
+    <th width="20%"><%= sortable "permit_id", t("general.permit") %></th>
+    <th width="20%"><%= sortable "charge_id", t("general.charge") %></th>    
+    <th width="20%"><%= sortable "quantity", t("general.quantity") %></th>    
+    <th width="20%"><%= sortable "fee", t("general.fee") %></th>
     <th width="10%"><%= t("general.actions") %></th>
   </tr>
  </thead> 
@@ -16,18 +13,15 @@
     <% if @o_all.size > 0 %>
       <% @o_all.each do |o_row| %>
         <tr>
-          <td><%= o_row.area.code unless o_row.area_id.nil? %></td>
-          <td><%= o_row.section.code unless o_row.section_id.nil? %></td>
-          <td><%= o_row.row.name unless o_row.row_id.nil? %></td>
-          <td><%= o_row.plot.name unless o_row.plot_id.nil? %></td>          
-          <td><%= o_row.grafe.grave_number unless o_row.grafe.nil? %></td>
-          <td><%= o_row.interred_name %></td>
-          <td><%= o_row.cancelled ? image_tag("Yes.gif") : image_tag("No.gif") %></td>
+          <td><%= o_row.permit.permit_number unless o_row.permit_id.nil? %></td>
+          <td><%= o_row.charge.work_type unless o_row.charge_id.nil? %></td>
+          <td><%= o_row.quantity %></td>
+          <td>$<%= o_row.fee.blank? ? 0 : o_row.fee %></td>
           <td> 
 			      <%= link_to t('.edit', :default => t("helpers.links.edit")),
-			                  edit_maintenance_path(o_row), :class => 'btn btn-mini' %>
+			                  edit_permit_charge_path(o_row), :class => 'btn btn-mini' %>
 			      <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-			                  maintenance_path(o_row),
+			                  permit_charge_path(o_row),
 			                  :method => :delete,
 			                  :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
 			                  :class => 'btn btn-mini btn-danger' %>

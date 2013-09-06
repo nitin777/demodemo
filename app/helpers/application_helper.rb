@@ -29,6 +29,14 @@ module ApplicationHelper
     Role.all.collect {|r| [r.role_type, r.id]} 
   end
   
+  def get_permit_data
+    [["Select", ""]] + Permit.all.collect {|r| [r.permit_number, r.id]}
+  end
+  
+  def get_charge_data
+    [["Select", ""]] + Charge.all.collect {|r| [r.work_type, r.id]}
+  end  
+  
   def get_chapel_data
     @cemetery.chapels.collect {|r| [r.name, r.id]}
   end

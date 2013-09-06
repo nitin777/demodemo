@@ -1,0 +1,22 @@
+<div class="control-group">
+  <label class="control-label"><%= "Entity" %></label>
+  <div class="controls">
+  	<% if @grantees %>
+    	<%= select_tag "permit[grantee_id]", options_for_select([["Select", ""]] + @grantees.collect {|r| [r.name, r.id]}) %>
+    <% else %>
+    	<%= select_tag "permit[grantee_id]", options_for_select([["Select", ""]]) %>
+    <% end %>	
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label"><%= "Booking" %></label>
+  <div class="controls">
+  	<% if @bookings %>
+    	<%= select_tag "permit[booking_id]", options_for_select([["Select", ""]] + @bookings.collect {|r| [r.deceased_name, r.id]}) %>
+    <% else %>
+    	<%= select_tag "permit[booking_id]", options_for_select([["Select", ""]]) %>
+    <% end %>	
+  </div>
+</div>
+ 
+ 

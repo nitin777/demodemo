@@ -81,7 +81,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0cb788', end
 .textArea { height: 250px; width: 700px; }
 .textAreaSmall { height: 230px; width: 245px; }
 .textAreaMedium { height: 165px; width: 715px; }
-
 .loaderimgText {
     color: #FFFFFF;
     height: 100%;
@@ -93,8 +92,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0cb788', end
     width: 100%;
     z-index: 2147483647;
 }
-
-
 .backTransparant {
     background-color: #0CAE81;
     height: 100%;
@@ -105,18 +102,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0cb788', end
     width: 100%;
     z-index: 99999999;
 }
-
-
-.span10 {
-    width: 1010px;
-}
-
-
-.span2 {
-    width: 130px;
-}
-
-#map_canvas {
-  width: 400px;
-  height: 300px;
-}
+.span10 { width: 1010px; }
+.span2 { width: 130px; }
+#map_canvas { width: 400px; height: 300px; }
+.container {width: 100%; margin-left: 20px;}

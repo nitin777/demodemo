@@ -1,4 +1,4 @@
-<%- model_class = Country -%>
+<%- model_class = Charge -%>
 <%= hidden_field_tag :direction, params[:direction] %>
 <%= hidden_field_tag :sort, params[:sort] %>
     
@@ -10,7 +10,7 @@
 	<%= link_to 'Search', show_search_box_path(true, model_class, @search_fields.join(',')), :remote => true, :class => 'btn btn-primary btn-small' %>&nbsp;
 	
 	<%= link_to t('.new', :default => t("helpers.links.new")),
-	            new_country_path,
+	            new_charge_path,
 	            :class => 'btn btn-primary btn-small' %>
 </div>	
 

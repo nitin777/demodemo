@@ -1,5 +1,5 @@
-class PermitChargeChargesController < ApplicationController
-  before_action :set_grave, only: [:show, :edit, :update, :destroy]
+class PermitChargesController < ApplicationController
+  before_action :set_permit_charge, only: [:show, :edit, :update, :destroy]
   helper_method :sort_column, :sort_direction
   before_action :require_user
   before_action :set_header_menu_active
@@ -7,11 +7,11 @@ class PermitChargeChargesController < ApplicationController
   # GET /permit_charges.json
   def index
     @o_all = get_records(params[:permit_charge], params[:page])
-    @search_fields = ['interred_name']
+    @search_fields = ['name']
     session[:permit_charge] = params[:permit_charge] if params[:permit_charge]
   end
 
-  def show_grave_search
+  def show_permit_charge_search
     @o_single = PermitCharge.new
   end
 
@@ -32,7 +32,7 @@ class PermitChargeChargesController < ApplicationController
   # POST /permit_charges
   # POST /permit_charges.json
   def create
-    @o_single = PermitCharge.new(grave_params)
+    @o_single = PermitCharge.new(permit_charge_params)
 
     respond_to do |format|
       if @o_single.save
@@ -49,7 +49,7 @@ class PermitChargeChargesController < ApplicationController
   # PATCH/PUT /permit_charges/1.json
   def update
     respond_to do |format|
-      if @o_single.update(grave_params)
+      if @o_single.update(permit_charge_params)
         format.html { redirect_to permit_charges_url, notice: t("general.successfully_updated") }
         format.json { head :no_content }
       else
@@ -72,19 +72,19 @@ class PermitChargeChargesController < ApplicationController
   private
   
     # Use callbacks to share common setup or constraints between actions.
-    def set_grave
+    def set_permit_charge
       @o_single = PermitCharge.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def grave_params
-      params.require(:permit_charge).permit_charge!
+    def permit_charge_params
+      params.require(:permit_charge).permit!
     end
     
     #fetch search records
     def get_records(search, page)
-      grave_query = @cemetery.permit_charges.search(search)
-      grave_query.order(sort_column + " " + sort_direction).paginate(:per_page => 10, :page => page)
+      permit_charge_query = PermitCharge.search(search)
+      permit_charge_query.order(sort_column + " " + sort_direction).paginate(:per_page => 10, :page => page)
     end    
     
     #set header menu active
@@ -100,5 +100,5 @@ class PermitChargeChargesController < ApplicationController
     #column sort
     def sort_direction
       %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
-    end  
+    end       
 end

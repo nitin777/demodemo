@@ -108,7 +108,7 @@ class FrontsController < ApplicationController
       area_id = params[:permit][:area_id]      
     end
     
-    if area_id 
+    unless area_id.blank?
       area = Area.find(area_id)
       @sections = area.sections.active
       @rows = area.rows.active
@@ -134,7 +134,7 @@ class FrontsController < ApplicationController
       section_id = params[:permit][:section_id]      
     end
     
-    if section_id
+    unless section_id.blank?
       section = Section.find(section_id)
       @rows = section.rows.active
       @plots = section.plots.active
@@ -158,7 +158,7 @@ class FrontsController < ApplicationController
       row_id = params[:permit][:row_id]      
     end
     
-    if row_id
+    unless row_id.blank?
       row = Row.find(row_id)
       @plots = row.plots.active
       @graves = row.graves.active   
@@ -180,7 +180,7 @@ class FrontsController < ApplicationController
       plot_id =  params[:permit][:plot_id]      
     end
     
-    if plot_id
+    unless plot_id.blank?
       plot = Plot.find(plot_id)
       @graves = plot.graves.active        
     else
@@ -205,6 +205,18 @@ class FrontsController < ApplicationController
       @bookings = nil
     end
   end  
+
+  def get_grantee_booking_from_grave
+    if params[:permit] and params[:permit][:grafe_id] != ''
+      grave = Grafe.find(params[:permit][:grafe_id])
+      @bookings = grave.bookings
+      @grantees = grave.grantees
+    else
+      @bookings = nil
+      @grantees = nil
+    end    
+  end
+
   
   #forgot password
   def forgot_password

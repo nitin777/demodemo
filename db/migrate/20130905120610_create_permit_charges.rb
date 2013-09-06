@@ -4,7 +4,7 @@ class CreatePermitCharges < ActiveRecord::Migration
       t.references :permit
       t.references :charge
       t.integer "quantity"
-      t.float   "charge"
+      t.float   "fee"
       t.timestamps
     end
   end

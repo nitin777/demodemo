@@ -442,7 +442,7 @@ ActiveRecord::Schema.define(version: 20130905120622) do
     t.integer  "permit_id"
     t.integer  "charge_id"
     t.integer  "quantity"
-    t.float    "charge"
+    t.float    "fee"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -2,7 +2,7 @@
   <label class="control-label"><%= "Entity" %></label>
   <div class="controls">
   	<% if @grantees %>
-    	<%= select_tag "booking[grantee_id]", options_for_select([["Select", ""]] + @grantees.collect {|r| [r.surname + " " + r.first_name, r.id]}) %>
+    	<%= select_tag "booking[grantee_id]", options_for_select([["Select", ""]] + @grantees.collect {|r| [r.name, r.id]}) %>
     <% else %>
     	<%= select_tag "booking[grantee_id]", options_for_select([["Select", ""]]) %>
     <% end %>	

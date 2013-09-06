@@ -60,7 +60,7 @@
 		      <div class="controls">
 		        <%= f.select :grafe_id, options_for_select(get_grave_data(@o_single), (@o_single.grafe.id unless @o_single.grafe.nil?)), 
         							:data => { :remote => true, :url => url_for(:controller => "fronts", 
-                                 :action => "get_booking_from_grave",
+                                 :action => "get_grantee_booking_from_grave",
                                  :class => 'selectField'
                                  ) }   %>
 		      </div>
@@ -71,7 +71,13 @@
 	</div>      		
 </div>
 
-<div id="div_update_booking">
+<div id="div_update_grantee_booking">
+ 	<div class="control-group">
+    <label class="control-label"><%= "Entity" %></label>
+    <div class="controls">
+      <%= f.select :grantee_id, options_for_select(get_grantees_of_grave(@o_single.grafe), (@o_single.grantee.id unless @o_single.grantee.nil?)) %>
+    </div>
+  </div>	
  	<div class="control-group">
     <label class="control-label"><%= "Booking" %></label>
     <div class="controls">
