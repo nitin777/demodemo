@@ -97,16 +97,23 @@ class FrontsController < ApplicationController
   end
   
   def get_section_row_plot_grave_from_area
+    area_id = ''
     if params[:booking] and params[:booking][:area_id] != '' 
-      @sections = Section.where(:area_id => params[:booking][:area_id])
-      @rows = Row.where(:area_id => params[:booking][:area_id])
-      @plots = Plot.where(:area_id => params[:booking][:area_id])
-      @graves = Grafe.where(:area_id => params[:booking][:area_id])
+      area_id = params[:booking][:area_id]
     elsif params[:grantee_grafe] and params[:grantee_grafe][:area_id] != ''
-      @sections = Section.where(:area_id => params[:grantee_grafe][:area_id])
-      @rows = Row.where(:area_id => params[:grantee_grafe][:area_id])
-      @plots = Plot.where(:area_id => params[:grantee_grafe][:area_id])
-      @graves = Grafe.where(:area_id => params[:grantee_grafe][:area_id])      
+      area_id = params[:grantee_grafe][:area_id]      
+    elsif params[:maintenance] and params[:maintenance][:area_id] != ''
+      area_id = params[:maintenance][:area_id]
+    elsif params[:permit] and params[:permit][:area_id] != ''
+      area_id = params[:permit][:area_id]      
+    end
+    
+    if area_id 
+      area = Area.find(area_id)
+      @sections = area.sections.active
+      @rows = area.rows.active
+      @plots = area.plots.active
+      @graves = area.graves.active            
     else
       @sections = @cemetery.sections.in_cemetery.active
       @rows = @cemetery.rows.in_cemetery.active
@@ -116,14 +123,22 @@ class FrontsController < ApplicationController
   end
   
   def get_row_plot_grave_from_section
+    section_id = ''
     if params[:booking] and params[:booking][:section_id] != ''
-      @rows = Row.where(:section_id => params[:booking][:section_id])
-      @plots = Plot.where(:section_id => params[:booking][:section_id])
-      @graves = Grafe.where(:section_id => params[:booking][:section_id])
-    elsif params[:grantee_grafe] and params[:grantee_grafe][:area_id] != ''
-      @rows = Row.where(:section_id => params[:grantee_grafe][:section_id])
-      @plots = Plot.where(:section_id => params[:grantee_grafe][:section_id])
-      @graves = Grafe.where(:section_id => params[:grantee_grafe][:section_id])
+      section_id = params[:booking][:section_id]
+    elsif params[:grantee_grafe] and params[:grantee_grafe][:section_id] != ''
+      section_id = params[:grantee_grafe][:section_id]
+    elsif params[:maintenance] and params[:maintenance][:section_id] != ''
+      section_id = params[:maintenance][:section_id]
+    elsif params[:permit] and params[:permit][:section_id] != ''
+      section_id = params[:permit][:section_id]      
+    end
+    
+    if section_id
+      section = Section.find(section_id)
+      @rows = section.rows.active
+      @plots = section.plots.active
+      @graves = section.graves.active              
     else
       @rows = @cemetery.rows.in_cemetery.active
       @plots = @cemetery.plots.in_cemetery.active
@@ -132,12 +147,21 @@ class FrontsController < ApplicationController
   end
   
   def get_plot_grave_from_row
+    row_id = ''
     if params[:booking] and params[:booking][:row_id] != ''
-      @plots = Plot.where(:row_id => params[:booking][:row_id])
-      @graves = Grafe.where(:row_id => params[:booking][:row_id])
+      row_id = params[:booking][:row_id]
     elsif params[:grantee_grafe] and params[:grantee_grafe][:row_id] != ''
-      @plots = Plot.where(:row_id => params[:grantee_grafe][:row_id])
-      @graves = Grafe.where(:row_id => params[:grantee_grafe][:row_id])
+      row_id = params[:grantee_grafe][:row_id]
+    elsif params[:maintenance] and params[:maintenance][:row_id] != ''
+      row_id = params[:maintenance][:row_id]
+    elsif params[:permit] and params[:permit][:row_id] != ''
+      row_id = params[:permit][:row_id]      
+    end
+    
+    if row_id
+      row = Row.find(row_id)
+      @plots = row.plots.active
+      @graves = row.graves.active   
     else
       @plots = @cemetery.plots.in_cemetery.active
       @graves = @cemetery.graves.in_cemetery.active
@@ -145,10 +169,20 @@ class FrontsController < ApplicationController
   end
   
   def get_grave_from_plot
+    plot_id = ''
     if params[:booking] and params[:booking][:plot_id] != ''
-      @graves = Grafe.where(:plot_id => params[:booking][:plot_id])
+      plot_id =  params[:booking][:plot_id]
     elsif params[:grantee_grafe] and params[:grantee_grafe][:plot_id] != ''
-      @graves = Grafe.where(:plot_id => params[:grantee_grafe][:plot_id])
+      plot_id =  params[:grantee_grafe][:plot_id]
+    elsif params[:maintenance] and params[:maintenance][:plot_id] != ''
+      plot_id =  params[:maintenance][:plot_id]
+    elsif params[:permit] and params[:permit][:plot_id] != ''
+      plot_id =  params[:permit][:plot_id]      
+    end
+    
+    if plot_id
+      plot = Plot.find(plot_id)
+      @graves = plot.graves.active        
     else
       @graves = @cemetery.graves.in_cemetery.active
     end       
@@ -162,6 +196,15 @@ class FrontsController < ApplicationController
       @grantees = nil
     end
   end
+  
+  def get_booking_from_grave
+    if params[:permit] and params[:permit][:grafe_id] != ''
+      grave = Grafe.find(params[:permit][:grafe_id])
+      @bookings = grave.bookings
+    else
+      @bookings = nil
+    end
+  end  
   
   #forgot password
   def forgot_password

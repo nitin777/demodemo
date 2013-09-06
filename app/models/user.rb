@@ -30,11 +30,12 @@ class User < ActiveRecord::Base
 	has_one :role, :through => :user_role
 	
 	belongs_to :cemetery
-	
 	belongs_to :country
-	
 	has_many :grantee_graves
 	has_many :bookings
+  has_many :maintenances, :dependent => :destroy
+  has_many :maintenance_companies, :dependent => :destroy  
+  has_many :permits, :dependent => :destroy	
 	has_many :facilities
 	
 	scope :all_stone_masons, joins(:role).where(:roles => { :role_type => "StoneMason" })

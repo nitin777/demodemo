@@ -13,7 +13,9 @@ class Cemetery < ActiveRecord::Base
   has_many :bookings, :dependent => :destroy  
   has_many :letters, :dependent => :destroy
   has_many :facilities, :dependent => :destroy
-  
+  has_many :maintenances, :dependent => :destroy
+  has_many :permits, :dependent => :destroy
+  has_many :maintenance_companies, :dependent => :destroy  
   has_many :users
   
   validates :name, :presence => true

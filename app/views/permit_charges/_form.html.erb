@@ -1,0 +1,167 @@
+<%= form_for @o_single, :html => { :class => 'form-horizontal' } do |f| %>
+  <fieldset>
+    <legend></legend>
+		<%= f.hidden_field :cemetery_id, :value => session[:cemetery_id] %>
+		<%= f.hidden_field :user_id, :value => current_user.id %>
+		
+<div class="control-group">
+  <%= f.label :area_id, :class => 'control-label' %>
+  <div class="controls">
+    <%= select_tag "maintenance[area_id]", options_for_select(get_area_data, (@o_single.area.id unless @o_single.area.nil?)),
+    							:data => { :remote => true, :url => url_for(:controller => "fronts", 
+                             :action => "get_section_row_plot_grave_from_area",
+                             :class => 'selectField'
+                             ) } %>
+  </div>
+</div>
+
+<div id="div_update_section_row_plot_grave">
+	
+ 	<div class="control-group">
+    <%= f.label :section_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= select_tag "maintenance[section_id]", options_for_select(get_section_data(@o_single), (@o_single.section.id unless @o_single.section.nil?)),
+      							:data => { :remote => true, :url => url_for(:controller => "fronts", 
+                               :action => "get_row_plot_grave_from_section",
+                                 	 :class => 'selectField'
+                               ) } %>
+    </div>                           
+ 	</div>	      
+
+	<div id="div_update_row_plot_grave">
+		
+   	<div class="control-group">
+      <%= f.label :row_id, :class => 'control-label' %>
+      <div class="controls">
+        <%= select_tag "maintenance[row_id]", options_for_select(get_row_data(@o_single), (@o_single.row.id unless @o_single.row.nil?)), 
+      							:data => { :remote => true, :url => url_for(:controller => "fronts", 
+                               :action => "get_plot_grave_from_row",
+                                 	 :class => 'selectField'
+                               ) } %>
+      </div>
+    </div>
+  	
+  	<div id="div_update_plot_grave">
+  		
+	   	<div class="control-group">
+	      <%= f.label :plot_id, :class => 'control-label' %>
+	      <div class="controls">
+	        <%= select_tag "maintenance[plot_id]", options_for_select(get_plot_data(@o_single), (@o_single.plot.id unless @o_single.plot.nil?)), 
+        							:data => { :remote => true, :url => url_for(:controller => "fronts", 
+                                 :action => "get_grave_from_plot",
+                                 	 :class => 'selectField'
+                                 ) } %>
+	      </div>
+	    </div>
+	  	
+	  	<div id="div_update_grave">
+		   	<div class="control-group">
+		      <label class="control-label"><%= "Grave" %></label>
+		      <div class="controls">
+		        <%= f.select :grafe_id, options_for_select(get_grave_data(@o_single), (@o_single.grafe.id unless @o_single.grafe.nil?)), 
+        							:data => { :remote => true, :url => url_for(:controller => "fronts", 
+                                 :action => "get_grantee_from_grave",
+                                 	 :class => 'selectField'
+                                 ) }   %>
+		      </div>
+		    </div>
+		  </div>  	    
+    
+  	</div>
+	</div>      		
+</div>
+
+
+<table>		
+    <tr>
+      <td>	 
+		    <div class="control-group">
+		      <%= f.label :interred_name, :class => 'control-label' %>
+		      <div class="controls">
+		        <%= f.text_field :interred_name, :class => 'text_field' %>
+		      </div>
+		    </div>
+      </td>
+      
+      <td>	 
+		    <div class="control-group">
+		      <%= f.label :interred_surname, :class => 'control-label' %>
+		      <div class="controls">
+		        <%= f.text_field :interred_surname, :class => 'text_field' %>
+		      </div>
+		    </div>
+      </td>      
+    </tr>
+    <tr>
+      <td>	 
+		    <div class="control-group">
+		      <%= f.label :operational_notes, :class => 'control-label' %>
+		      <div class="controls">
+		        <%= f.text_field :operational_notes, :class => 'text_field' %>
+		      </div>
+		    </div>
+      </td>
+      <td>	 
+		    <div class="control-group">
+		      <%= f.label :notes, :class => 'control-label' %>
+		      <div class="controls">
+		        <%= f.text_field :notes, :class => 'text_field' %>
+		      </div>
+		    </div>
+      </td>
+    </tr> 
+    
+    <tr>
+      <td>	 	
+		    <div class="control-group">
+		      <%= f.label :cancelled_date, :class => 'control-label' %>
+		      <div class="controls">
+			 			<div id="cancelled_date" class="input-append">
+			 				<%= f.text_field :cancelled_date, :class => 'text_field' %>
+					    <span class="add-on">
+					      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+					      </i>
+					    </span> 				
+			 			</div>	
+		      </div>
+		    </div>
+      </td>
+      <td>
+		    <div class="control-group">
+		      <%= f.label :cancelled, :class => 'control-label' %>
+		      <div class="controls">
+		        <%= f.check_box :cancelled, :class => 'check_box' %>
+		      </div>
+		    </div> 
+      </td>        
+    </tr>    
+       
+    <tr>
+      <td>
+		    <div class="control-group">
+		      <%= f.label :send_invoice, :class => 'control-label' %>
+		      <div class="controls">
+		        <%= f.check_box :send_invoice, :class => 'check_box' %>
+		      </div>
+		    </div> 
+      </td> 
+    </tr> 
+ 		    
+</table>
+		    <div class="form-actions">
+		      <%= f.submit nil, :class => 'btn btn-primary' %>
+		      <%= link_to 'Cancel', maintenances_url, :class => 'btn' %>
+		    </div>    
+  </fieldset>
+     
+<% end %>
+
+<script>
+	$(function(){
+	  $('#cancelled_date').datetimepicker({
+	    language: 'en',
+	    pickTime: false,
+	    format: "yyyy-MM-dd"
+	  });		
+	});
+</script>

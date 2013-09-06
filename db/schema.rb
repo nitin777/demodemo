@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130901063458) do
+ActiveRecord::Schema.define(version: 20130905120622) do
 
   create_table "areas", force: true do |t|
     t.integer  "cemetery_id"
@@ -213,6 +213,14 @@ ActiveRecord::Schema.define(version: 20130901063458) do
     t.datetime "updated_at"
   end
 
+  create_table "charges", force: true do |t|
+    t.string   "work_type"
+    t.float    "fee"
+    t.boolean  "is_active",  default: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "coffins", force: true do |t|
     t.string   "name"
     t.boolean  "is_active",  default: true
@@ -368,6 +376,46 @@ ActiveRecord::Schema.define(version: 20130901063458) do
     t.datetime "updated_at"
   end
 
+  create_table "maintenance_companies", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "cemetery_id"
+    t.string   "name"
+    t.string   "email"
+    t.string   "address"
+    t.string   "suburb_town"
+    t.string   "state"
+    t.string   "postal_code"
+    t.string   "phone_area_code"
+    t.string   "phone"
+    t.string   "fax_area_code"
+    t.string   "fax"
+    t.string   "mobile"
+    t.string   "work_email"
+    t.string   "work_number"
+    t.boolean  "is_active",       default: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "maintenances", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "cemetery_id"
+    t.integer  "area_id"
+    t.integer  "section_id"
+    t.integer  "row_id"
+    t.integer  "plot_id"
+    t.integer  "grafe_id"
+    t.string   "interred_name"
+    t.string   "interred_surname"
+    t.text     "operational_notes"
+    t.text     "notes"
+    t.boolean  "cancelled",         default: false
+    t.date     "cancelled_date"
+    t.boolean  "send_invoice",      default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "monuments", force: true do |t|
     t.integer  "cemetery_id"
     t.string   "name"
@@ -386,6 +434,43 @@ ActiveRecord::Schema.define(version: 20130901063458) do
   create_table "payment_statuses", force: true do |t|
     t.string   "name"
     t.boolean  "is_active",  default: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "permit_charges", force: true do |t|
+    t.integer  "permit_id"
+    t.integer  "charge_id"
+    t.integer  "quantity"
+    t.float    "charge"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "permits", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "cemetery_id"
+    t.integer  "stonemason_id"
+    t.string   "permit_number"
+    t.string   "phone_number"
+    t.datetime "received_date"
+    t.string   "received_by"
+    t.integer  "area_id"
+    t.integer  "section_id"
+    t.integer  "row_id"
+    t.integer  "plot_id"
+    t.integer  "grafe_id"
+    t.integer  "booking_id"
+    t.string   "deceased_surname"
+    t.string   "deceased_first_name"
+    t.date     "deceased_date_death"
+    t.integer  "deceased_age"
+    t.integer  "grantee_id"
+    t.text     "comment"
+    t.boolean  "checklist_received",  default: false
+    t.boolean  "paperwork_correct",   default: false
+    t.boolean  "paperwork_return",    default: false
+    t.boolean  "is_active",           default: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end

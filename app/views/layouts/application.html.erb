@@ -17,9 +17,11 @@
       current_controller_name = controller.controller_name
       current_action = controller.action_name
       
-      cem_contollers_arr = %w(users areas sections rows plots graves grantees chapels rooms cemeteries monuments catalogs bookings grantee_graves grantee_graves letters facilities)
+      cem_contollers_arr = %w(users areas sections rows plots graves grantees chapels rooms cemeteries monuments catalogs bookings grantee_graves 
+      												grantee_graves letters facilities maintenances maintenance_companies permits permit_charges)
       
-      admin_contollers_arr = %w(countries denominations diseases grave_statuses identities service_types unit_types coffins payment_statuses stone_mason_work_types)
+      admin_contollers_arr = %w(countries denominations diseases grave_statuses identities service_types unit_types coffins payment_statuses 
+      													stone_mason_work_types charges)
       
       #unless cem_contollers_arr.include?(current_controller_name)
       	#session[:cemetery_id] = nil
@@ -54,6 +56,10 @@
 							<li class="<%= 'active' if current_controller_name == 'grantee_graves' %>"><%= link_to t("general.purchase_grave"), new_grantee_grafe_path(:new_purchase => true) %></li>
 							<li class="<%= 'active' if current_controller_name == 'chapels' %>"><%= link_to t("general.chapels"), chapels_path %></li>
 							<li class="<%= 'active' if current_controller_name == 'rooms' %>"><%= link_to t("general.rooms"), rooms_path %></li>
+							<li class="<%= 'active' if current_controller_name == 'maintenances' %>"><%= link_to t("general.maintenances"), maintenances_path %></li>
+							<li class="<%= 'active' if current_controller_name == 'maintenance_companies' %>"><%= link_to t("general.maintenance_companies"), maintenance_companies_path %></li>
+							<li class="<%= 'active' if current_controller_name == 'permits' %>"><%= link_to t("general.permits"), permits_path %></li>
+							<li class="<%= 'active' if current_controller_name == 'permit_charges' %>"><%= link_to t("general.permit_charges"), permit_charges_path %></li>
 							<li class="<%= 'active' if current_controller_name == 'monuments' %>"><%= link_to t("general.monuments"), monuments_path %></li>
 							<li class="<%= 'active' if current_controller_name == 'catalogs' %>"><%= link_to t("general.catalogs"), catalogs_path %></li>
 						<% end %>	
@@ -76,6 +82,7 @@
 							<li class="<%= 'active' if current_controller_name == 'coffins' %>"><%= link_to t("general.coffins"), coffins_path %></li>
 							<li class="<%= 'active' if current_controller_name == 'payment_statuses' %>"><%= link_to t("general.payment_status"), payment_statuses_path %></li>
 							<li class="<%= 'active' if current_controller_name == 'stone_mason_work_types' %>"><%= link_to t("general.work_types"), stone_mason_work_types_path %></li>
+							<li class="<%= 'active' if current_controller_name == 'charges' %>"><%= link_to t("general.charges"), charges_path %></li>
 						</ul>  
 					</div>  
 					<div class="span10">

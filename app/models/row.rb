@@ -5,7 +5,9 @@ class Row < ActiveRecord::Base
   
   has_many :plots, :dependent => :destroy
   has_many :graves, :dependent => :destroy
-  has_many :bookings, :dependent => :destroy  
+  has_many :bookings, :dependent => :destroy
+  has_many :maintenances, :dependent => :destroy
+  has_many :permits, :dependent => :destroy        
   has_many :grantee_graves, :dependent => :destroy    
   validates :name, :presence => true
   

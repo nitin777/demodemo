@@ -16,6 +16,7 @@ class Booking < ActiveRecord::Base
   belongs_to :payment_status
   belongs_to :funeral_director, class_name: 'User', foreign_key: "funeral_director_id"  
   has_one :booking_checklist, :dependent => :destroy
+  has_many :permits
   accepts_nested_attributes_for :booking_checklist
   
   #include SearchHandler

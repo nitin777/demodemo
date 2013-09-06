@@ -20,6 +20,10 @@ module ApplicationHelper
   def get_finageuom
     [["Select Option", ""]] + [["Year", "Year"]] + [["Month", "Month"]] + [["Weeks", "Weeks"]] + [["Days", "Days"]] + [["Hours", "Hours"]] + [["Adault", "Adault"]] + [["Child", "Child"]] + [["Unborn", "Unborn"]]
   end
+  
+  def get_permit_received_by
+    [["Select Option", ""]] + [["Mail", "Mail"]] + [["In Person", "In Person"]] + [["Faxed", "Faxed"]] + [["Online", "Online"]]
+  end  
 
   def super_admin_access_roles
     Role.all.collect {|r| [r.role_type, r.id]} 
@@ -88,6 +92,14 @@ module ApplicationHelper
   def get_grantees_of_grave(grave)
     if grave
       [["Select", ""]] + grave.grantees.collect {|r| [(r.surname + " " + r.first_name) , r.id]}
+    else
+      [["Select", ""]]
+    end
+  end
+  
+  def get_bookings_of_grave(grave)
+    if grave
+      [["Select", ""]] + grave.bookings.collect {|r| [r.deceased_name , r.id]}
     else
       [["Select", ""]]
     end

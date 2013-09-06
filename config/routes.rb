@@ -33,6 +33,11 @@ Ocms::Application.routes.draw do
   resources :stone_mason_work_types
   resources :unit_types
   
+  resources :maintenances
+  resources :maintenance_companies
+  resources :permits
+  resources :permit_charges
+  resources :charges
   
   get 'logout' => 'user_sessions#destroy', :as => :logout
   get 'login' => 'user_sessions#new', :as => :login
@@ -52,9 +57,7 @@ Ocms::Application.routes.draw do
   get '/get_plot_grave_from_row' => 'fronts#get_plot_grave_from_row', :as => :get_plot_grave_from_row
   get '/get_grave_from_plot' => 'fronts#get_grave_from_plot', :as => :get_grave_from_plot
   get '/get_grantee_from_grave' => 'fronts#get_grantee_from_grave', :as => :get_grantee_from_grave
-  
-  
-
+  get '/get_booking_from_grave' => 'fronts#get_booking_from_grave', :as => :get_booking_from_grave
   
   match '/forgot_password' => 'fronts#forgot_password', :as => :forgot_password, via: [:get, :post]
   match '/change_password' => 'fronts#change_password', :as => :change_password, via: [:get, :post, :patch]

@@ -1,7 +1,7 @@
  	<div class="control-group">
     <label class="control-label"><%= "Section" %></label>
     <div class="controls">
-      <%= select_tag (params[:booking] ? "booking[section_id]" : "grantee_grafe[section_id]"), options_for_select([["Select", ""]] + @sections.collect {|r| [r.code, r.id]}),
+      <%= select_tag (params[:booking] ? "booking[section_id]" : (params[:grantee_grafe] ? "grantee_grafe[section_id]" : (params[:maintenance] ? "maintenance[section_id]" : "permit[section_id]"))), options_for_select([["Select", ""]] + @sections.collect {|r| [r.code, r.id]}),
       							:data => { :remote => true, :url => url_for(:controller => "fronts", 
                                :action => "get_row_plot_grave_from_section",
                                  	 :class => 'selectField'
@@ -14,7 +14,7 @@
    	<div class="control-group">
       <label class="control-label"><%= "Row" %></label>
       <div class="controls">
-        <%= select_tag (params[:booking] ? "booking[row_id]" : "grantee_grafe[row_id]"), options_for_select([["Select", ""]] + @rows.collect {|r| [r.name, r.id]}), 
+        <%= select_tag (params[:booking] ? "booking[row_id]" : (params[:grantee_grafe] ? "grantee_grafe[row_id]" : (params[:maintenance] ? "maintenance[row_id]" : "permit[row_id]"))), options_for_select([["Select", ""]] + @rows.collect {|r| [r.name, r.id]}), 
       							:data => { :remote => true, :url => url_for(:controller => "fronts", 
                                :action => "get_plot_grave_from_row",
                                  	 :class => 'selectField'
@@ -27,7 +27,7 @@
 	   	<div class="control-group">
 	      <label class="control-label"><%= "Plot" %></label>
 	      <div class="controls">
-	        <%= select_tag (params[:booking] ? "booking[plot_id]" : "grantee_grafe[plot_id]"), options_for_select([["Select", ""]] + @plots.collect {|r| [r.name, r.id]}), 
+	        <%= select_tag (params[:booking] ? "booking[plot_id]" : (params[:grantee_grafe] ? "grantee_grafe[plot_id]" : (params[:maintenance] ? "maintenance[plot_id]" : "permit[plot_id]"))), options_for_select([["Select", ""]] + @plots.collect {|r| [r.name, r.id]}), 
         							:data => { :remote => true, :url => url_for(:controller => "fronts", 
                                  :action => "get_grave_from_plot",
                                  	 :class => 'selectField'
@@ -39,9 +39,9 @@
 		   	<div class="control-group">
 		      <label class="control-label"><%= "Grave" %></label>
 		      <div class="controls">
-		        <%= select_tag (params[:booking] ? "booking[grafe_id]" : "grantee_grafe[grafe_id]"), options_for_select([["Select", ""]] + @graves.collect {|r| [r.grave_number, r.id]}), 
+		        <%= select_tag (params[:booking] ? "booking[grafe_id]" : (params[:grantee_grafe] ? "grantee_grafe[grafe_id]" : (params[:maintenance] ? "maintenance[grafe_id]" : "permit[grafe_id]"))), options_for_select([["Select", ""]] + @graves.collect {|r| [r.grave_number, r.id]}), 
         							:data => { :remote => true, :url => url_for(:controller => "fronts", 
-                                 :action => "get_grantee_from_grave",
+                                 :action => ("get_grantee_from_grave"),
                                  	 :class => 'selectField'
                                  ) }  %>
 		      </div>
