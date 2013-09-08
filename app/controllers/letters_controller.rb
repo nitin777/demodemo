@@ -89,7 +89,7 @@ class LettersController < ApplicationController
     
     #set header menu active
     def set_header_menu_active
-      @letters = true
+      @cemetery_active = "active"
     end
     
     #column sort

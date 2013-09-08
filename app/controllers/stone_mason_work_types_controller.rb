@@ -89,7 +89,7 @@ class StoneMasonWorkTypesController < ApplicationController
     
     #set header menu active
     def set_header_menu_active
-      @stone_mason_work_types = true
+      @admin_active = "active"
     end
     
     #column sort

@@ -89,7 +89,7 @@ class RoomsController < ApplicationController
     
     #set header menu active
     def set_header_menu_active
-      @rooms = true
+      @booking_active = "active"
     end
     
     #column sort

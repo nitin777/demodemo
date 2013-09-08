@@ -21,6 +21,7 @@ Ocms::Application.routes.draw do
   resources :grave_statuses
   resources :monuments
   resources :letters
+  resources :letter_variables
   resources :facilities
   
   resources :identities
@@ -74,7 +75,7 @@ Ocms::Application.routes.draw do
   
   get 'print_letter/:id' => 'bookings#print_letter', :as => :print_letter
   
-  root 'user_sessions#new'    
+  root 'fronts#index'    
     
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

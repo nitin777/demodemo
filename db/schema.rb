@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130905120622) do
+ActiveRecord::Schema.define(version: 20130908075322) do
 
   create_table "areas", force: true do |t|
     t.integer  "cemetery_id"
@@ -365,13 +365,20 @@ ActiveRecord::Schema.define(version: 20130905120622) do
     t.datetime "updated_at"
   end
 
+  create_table "letter_variables", force: true do |t|
+    t.text     "content"
+    t.boolean  "is_certificate", default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "letters", force: true do |t|
     t.integer  "cemetery_id"
     t.string   "subject"
     t.text     "content"
-    t.boolean  "is_certificate",   default: false
-    t.string   "certificate_name"
-    t.boolean  "is_active",        default: true
+    t.boolean  "is_certificate", default: false
+    t.string   "letter_type"
+    t.boolean  "is_active",      default: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end

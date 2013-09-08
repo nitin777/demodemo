@@ -89,7 +89,7 @@ class ChargesController < ApplicationController
     
     #set header menu active
     def set_header_menu_active
-      @charges = true
+      @admin_active = "active"
     end
     
     #column sort

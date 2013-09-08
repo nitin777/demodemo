@@ -89,7 +89,7 @@ class MaintenancesController < ApplicationController
     
     #set header menu active
     def set_header_menu_active
-      @maintenances = true
+      @maintenance_active = "active"
     end
     
     #column sort

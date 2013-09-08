@@ -89,7 +89,7 @@ class DenominationsController < ApplicationController
     
     #set header menu active
     def set_header_menu_active
-      @denominations = true
+      @admin_active = "active"
     end
     
     #column sort

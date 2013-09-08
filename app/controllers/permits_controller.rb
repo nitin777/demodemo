@@ -89,7 +89,7 @@ class PermitsController < ApplicationController
     
     #set header menu active
     def set_header_menu_active
-      @permits = true
+      @maintenance_active = "active"
     end
     
     #column sort

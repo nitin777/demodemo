@@ -1,44 +1,21 @@
-<%= form_for @user_session, :html => { :class => 'form-horizontal' } do |f| %>
-
-<div class="loginfom">
-  <fieldset>
-  	<legend></legend>
-  	
-    <div class="control-group">
-    	<div class="controls">
-    		<%= image_tag "logo.png" %>
-	    </div>	  
-    </div>  	
-	  <% if @user_session.errors.any? %>
-	    <div class="control-group">
-	    	<div class="controls">
-	      	<% @user_session.errors.full_messages.each do |msg| %>
-	      		<% @msg_var = "general.#{msg.gsub(' ', "_")}" %>
-		      	<i class="text-error"><%= t(@msg_var) %></i>
-		    	<% end %>
-		    </div>	  
-	    </div>
-	  <% end %>
-  	
-    <div class="control-group">
-      <%= f.label :username, :class => 'control-label' %><span class="redStart">*</span>
-      <div class="controls">
-        <%= f.text_field :username, :class => 'text_field' %>
-      </div>
-    </div>
- 
-    <div class="control-group">
-      <%= f.label :password, :class => 'control-label' %><span class="redStart">*</span>
-      <div class="controls">
-        <%= f.password_field :password, :class => 'text_field' %>
-      </div>
-    </div> 
- 
-    <div class="form-actions">
-      <%= f.submit t("general.login"), :class => 'btn btn-primary' %>
-      <%= link_to t("general.click_here_to_recover_your_account"), forgot_password_path, :class => 'btn' %>
-    </div>
+<div class="login">
+  <h1>Login</h1>
+  <div class="clearBoth">&nbsp;</div>
+  <%= form_for @user_session, :html => { :class => 'form-horizontal' } do |f| %>
     
-  </fieldset>
-</div>     
-<% end %>
+      	<% @user_session.errors.full_messages.each do |msg| %>
+      		<% @msg_var = "general.#{msg.gsub(' ', "_")}" %>
+      		<p class="text-error">
+	      		<%= t(@msg_var) %>
+	      	</p>	
+	    	<% end %>
+    
+    <p><%= f.text_field :username, :placeholder => 'Username' %></p>
+    <p><%= f.password_field :password, :placeholder => 'Password' %></p>
+    <p class="submit"><%= f.submit t("general.login"), :class => '' %></p>
+  <% end %>
+</div>
+
+<div class="login-help">
+  <p><%= link_to t("general.click_here_to_recover_your_account"), forgot_password_path, :class => '' %></p>
+</div>

@@ -89,7 +89,7 @@ class DiseasesController < ApplicationController
     
     #set header menu active
     def set_header_menu_active
-      @diseases = true
+      @admin_active = "active"
     end
     
     #column sort

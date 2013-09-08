@@ -24,23 +24,16 @@
     <div class="control-group">
       <%= f.label :content, :class => 'control-label' %><span class="redStart">*</span>
       <div class="controls">
-        <%= f.text_area :content, :class => 'wysihtml5', :placeholder => "Enter text ..." %>
+        <%= f.text_area :content, :class => 'wysihtml5 textArea', :placeholder => "Enter text ..." %>
       </div>
     </div>    
  
-    <div class="control-group">
-      <%= f.label :is_certificate, :class => 'control-label' %>
+     <div class="control-group">
+      <%= f.label :letter_type, :class => 'control-label' %>
       <div class="controls">
-        <%= f.check_box :is_certificate, :class => 'check_box' %>
+       <%= f.select :letter_type, options_for_select(letter_type_data, (@o_single.letter_type if @o_single.letter_type))  %>
       </div>
     </div>  
- 
-    <div class="control-group">
-      <%= f.label :is_active, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.check_box :is_active, :class => 'check_box' %>
-      </div>
-    </div> 
  
     <div class="form-actions">
       <%= f.submit nil, :class => 'btn btn-primary' %>

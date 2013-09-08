@@ -89,7 +89,7 @@ class PlotsController < ApplicationController
     
     #set header menu active
     def set_header_menu_active
-      @plots = true
+      @cemetery_active = "active"
     end
     
     #column sort

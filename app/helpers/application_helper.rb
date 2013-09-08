@@ -25,6 +25,10 @@ module ApplicationHelper
     [["Select Option", ""]] + [["Mail", "Mail"]] + [["In Person", "In Person"]] + [["Faxed", "Faxed"]] + [["Online", "Online"]]
   end  
 
+  def letter_type_data
+    [["Select Option", ""]] + [["Interment", "Interment"]] + [["Grave Care", "Grave Care"]] + [["Permit", "Permit"]]
+  end  
+
   def super_admin_access_roles
     Role.all.collect {|r| [r.role_type, r.id]} 
   end

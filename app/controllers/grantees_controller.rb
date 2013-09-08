@@ -95,7 +95,7 @@ class GranteesController < ApplicationController
     
     #set header menu active
     def set_header_menu_active
-      @grantees = true
+      @cemetery_active = "active"
     end
     
     #column sort

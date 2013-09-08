@@ -81,7 +81,7 @@ class StaticPagesController < ApplicationController
 	  end    
     
 	  def set_header_menu_active
-	    @static_pages = true
+      @admin_active = "active"
 	  end
 	  
 	  def sort_column

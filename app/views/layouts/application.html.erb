@@ -17,8 +17,12 @@
       current_controller_name = controller.controller_name
       current_action = controller.action_name
       
-      cem_contollers_arr = %w(users areas sections rows plots graves grantees chapels rooms cemeteries monuments catalogs bookings grantee_graves 
-      												grantee_graves letters facilities maintenances maintenance_companies permits permit_charges)
+      cem_contollers_arr = %w(users areas sections rows plots graves grantees cemeteries grantee_graves 
+      												grantee_graves letters letter_variables)
+      												
+			booking_contollers_arr = %w(bookings facilities chapels rooms monuments catalogs)
+      												
+      maintenance_contollers_arr = %w(maintenances maintenance_companies permits permit_charges)      												
       
       admin_contollers_arr = %w(countries denominations diseases grave_statuses identities service_types unit_types coffins payment_statuses 
       													stone_mason_work_types charges)
@@ -43,10 +47,6 @@
 								<li class="<%= 'active' if ((current_controller_name == 'bookings' and session[:bookings]) or params[:bookings]) %>"><%= link_to t("general.bookings"), bookings_path(:bookings => true) %></li>
 							<% else %>	
 							<li class="<%= 'active' if current_controller_name == 'users' %>"><%= link_to t("general.users"), users_path %></li>
-							<li class="<%= 'active' if ((current_controller_name == 'bookings' and session[:bookings]) or params[:bookings]) %>"><%= link_to t("general.bookings"), bookings_path(:bookings => true) %></li>
-							<li class="<%= 'active' if ((current_controller_name == 'bookings' and session[:interments]) or params[:interments]) %>"><%= link_to t("general.interments"), bookings_path(:interments => true) %></li>
-							<li class="<%= 'active' if current_controller_name == 'facilities' %>"><%= link_to t("general.facilities"), facilities_path %></li>
-							<li class="<%= 'active' if current_controller_name == 'letters' %>"><%= link_to t("general.letters"), letters_path %></li>
 							<li class="<%= 'active' if current_controller_name == 'areas' %>"><%= link_to t("general.areas"), areas_path %></li>
 							<li class="<%= 'active' if current_controller_name == 'sections' %>"><%= link_to t("general.sections"), sections_path %></li>
 							<li class="<%= 'active' if current_controller_name == 'rows' %>"><%= link_to t("general.rows"), rows_path %></li>
@@ -54,21 +54,48 @@
 							<li class="<%= 'active' if current_controller_name == 'graves' %>"><%= link_to t("general.graves"), graves_path %></li>
 							<li class="<%= 'active' if current_controller_name == 'grantees' %>"><%= link_to t("general.entities"), grantees_path %></li>
 							<li class="<%= 'active' if current_controller_name == 'grantee_graves' %>"><%= link_to t("general.purchase_grave"), new_grantee_grafe_path(:new_purchase => true) %></li>
-							<li class="<%= 'active' if current_controller_name == 'chapels' %>"><%= link_to t("general.chapels"), chapels_path %></li>
-							<li class="<%= 'active' if current_controller_name == 'rooms' %>"><%= link_to t("general.rooms"), rooms_path %></li>
+							<li class="<%= 'active' if current_controller_name == 'letters' %>"><%= link_to t("general.letters"), letters_path %></li>
+							<li class="<%= 'active' if current_controller_name == 'letter_variables' %>"><%= link_to t("general.letter_variables"), letter_variables_path %></li>
+						<% end %>	
+						</ul>  
+					</div>  
+					<div class="span11">
+						<%= yield %>
+					</div>
+				
+				<% elsif booking_contollers_arr.include?(current_controller_name) and current_user %>
+					<div class="span2">
+						<ul class="nav nav-pills nav-stacked">
+							<% if is_funeral_director? or is_stone_mason? or is_normal_staff? %>
+								<li class="<%= 'active' if ((current_controller_name == 'bookings' and session[:bookings]) or params[:bookings]) %>"><%= link_to t("general.bookings"), bookings_path(:bookings => true) %></li>
+							<% else %>												
+								<li class="<%= 'active' if ((current_controller_name == 'bookings' and session[:bookings]) or params[:bookings]) %>"><%= link_to t("general.bookings"), bookings_path(:bookings => true) %></li>
+								<li class="<%= 'active' if ((current_controller_name == 'bookings' and session[:interments]) or params[:interments]) %>"><%= link_to t("general.interments"), bookings_path(:interments => true) %></li>
+								<li class="<%= 'active' if current_controller_name == 'facilities' %>"><%= link_to t("general.facilities"), facilities_path %></li>
+								<li class="<%= 'active' if current_controller_name == 'chapels' %>"><%= link_to t("general.chapels"), chapels_path %></li>
+								<li class="<%= 'active' if current_controller_name == 'rooms' %>"><%= link_to t("general.rooms"), rooms_path %></li>
+								<li class="<%= 'active' if current_controller_name == 'monuments' %>"><%= link_to t("general.monuments"), monuments_path %></li>
+								<li class="<%= 'active' if current_controller_name == 'catalogs' %>"><%= link_to t("general.catalogs"), catalogs_path %></li>							
+							<% end %>	
+						</ul>  
+					</div>  
+					<div class="span11">
+						<%= yield %>
+					</div>					
+				
+				<% elsif maintenance_contollers_arr.include?(current_controller_name) and current_user %>
+					<div class="span2">
+						<ul class="nav nav-pills nav-stacked">				
 							<li class="<%= 'active' if current_controller_name == 'maintenances' %>"><%= link_to t("general.maintenances"), maintenances_path %></li>
 							<li class="<%= 'active' if current_controller_name == 'maintenance_companies' %>"><%= link_to t("general.maintenance_companies"), maintenance_companies_path %></li>
 							<li class="<%= 'active' if current_controller_name == 'permits' %>"><%= link_to t("general.permits"), permits_path %></li>
 							<li class="<%= 'active' if current_controller_name == 'permit_charges' %>"><%= link_to t("general.permit_charges"), permit_charges_path %></li>
-							<li class="<%= 'active' if current_controller_name == 'monuments' %>"><%= link_to t("general.monuments"), monuments_path %></li>
-							<li class="<%= 'active' if current_controller_name == 'catalogs' %>"><%= link_to t("general.catalogs"), catalogs_path %></li>
-						<% end %>	
 						</ul>  
 					</div>  
-					<div class="span12">
+					<div class="span11">
 						<%= yield %>
 					</div>
-					
+																					
 				<% elsif admin_contollers_arr.include?(current_controller_name) and current_user %>	
 					<div class="span2">
 						<ul class="nav nav-pills nav-stacked">
@@ -85,7 +112,7 @@
 							<li class="<%= 'active' if current_controller_name == 'charges' %>"><%= link_to t("general.charges"), charges_path %></li>
 						</ul>  
 					</div>  
-					<div class="span12">
+					<div class="span11">
 						<%= yield %>
 					</div>					
 				<% else %>	

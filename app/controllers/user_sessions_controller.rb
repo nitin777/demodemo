@@ -1,5 +1,5 @@
 class UserSessionsController < ApplicationController
-
+  layout "cemetery"
   #before_filter :require_user, :except => [:new, :create]
   # GET /user_sessions/new
   # GET /user_sessions/new.xml

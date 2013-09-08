@@ -4,6 +4,11 @@ class FrontsController < ApplicationController
   before_filter :set_header_menu_active
   
   #dashboard
+  
+  def index
+    render :layout => "cemetery"
+  end
+  
   def dashboard
     @o_booking = Booking.new
     @today_date = (params[:booking] and params[:booking][:service_date]) ? params[:booking][:service_date] : Date.today
@@ -241,13 +246,12 @@ class FrontsController < ApplicationController
           @user_session.destroy
         end
         session[:user_id] = nil
-        flash[:notice] = t("general.password_has_been_sent_to_your_email_address")
-        redirect_to root_path 
+        flash[:forgot_pass_success] = t("general.password_has_been_sent_to_your_email_address")
       else
         flash[:forgot_pass_error] = t("general.no_user_exists_for_provided_email_address")
-        redirect_to :action => "forgot_password"
       end
     end 
+    render :layout => "cemetery"
   end
 
   #change password
@@ -294,7 +298,7 @@ class FrontsController < ApplicationController
 	private
  	
   def set_header_menu_active
-    @dashboard = true
+    @dashboard_active = "active"
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

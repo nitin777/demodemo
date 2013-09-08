@@ -97,7 +97,7 @@ class UsersController < ApplicationController
 	  end    
     
 	  def set_header_menu_active
-	    @users = true
+	    @cemetery_active = "active"
 	  end
 	  
 	  def sort_column

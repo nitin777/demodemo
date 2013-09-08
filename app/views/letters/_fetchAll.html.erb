@@ -2,8 +2,7 @@
  <thead> 
   <tr>
     <th width="70%"><%= sortable "subject", t("general.subject") %></th>
-    <th width="10%"><%= sortable "is_certificate", t("general.certificate") %></th>
-    <th width="5%"><%= sortable "is_active", t("general.is_active") %></th>
+    <th width="10%"><%= sortable "letter_type", t("general.type") %></th>
     <th width="15%"><%= t("general.actions") %></th>
   </tr>
  </thead> 
@@ -13,8 +12,7 @@
       <% @o_all.each do |o_row| %>
         <tr>
           <td><%= o_row.subject %></td>
-          <td><%= o_row.is_certificate ? image_tag("Yes.gif") : image_tag("No.gif") %></td>
-          <td><%= o_row.is_active ? image_tag("Yes.gif") : image_tag("No.gif") %></td>
+          <td><%= o_row.letter_type %></td>
           <td> 
 			      <%= link_to t('.edit', :default => t("helpers.links.edit")),
 			                  edit_letter_path(o_row), :class => 'btn btn-mini' %>

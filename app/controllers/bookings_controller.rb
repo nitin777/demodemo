@@ -53,6 +53,20 @@ class BookingsController < ApplicationController
     subject = subject.gsub(" ", "_")
     subject = subject.to_s + ".pdf"
     
+    #content = content.gsub(/\{(.*?)\}/) { |e| puts e }
+    content = content.scan(/\{(.*?)\}/)
+    arr = []
+    content.each do |e|
+      arr << e
+    end
+    has = Hash[arr.map {|key, value| [key, key]}]
+
+    render :text => has["APPLICANT_SALUTATION"].inspect
+    
+    return false
+    
+    
+    
     #content to pdf
     kit = PDFKit.new(content)
     pdf = kit.to_pdf
@@ -80,8 +94,8 @@ class BookingsController < ApplicationController
   # POST /bookings.json
   def create
     @o_single = Booking.new(booking_params)
-    chapel_ids = params[:chapel_ids].join(",").to_s
-    room_ids = params[:room_ids].join(",").to_s
+    chapel_ids = params[:chapel_ids] ? params[:chapel_ids].join(",").to_s : ''
+    room_ids = params[:room_ids] ? params[:room_ids].join(",").to_s : ''
     respond_to do |format|
       if @o_single.save
         @o_single.chapel_ids = chapel_ids
@@ -100,8 +114,8 @@ class BookingsController < ApplicationController
   # PATCH/PUT /bookings/1.json
   def update
     respond_to do |format|
-    chapel_ids = params[:chapel_ids].join(",").to_s
-    room_ids = params[:room_ids].join(",").to_s  
+    chapel_ids = params[:chapel_ids] ? params[:chapel_ids].join(",").to_s : ''
+    room_ids = params[:room_ids] ? params[:room_ids].join(",").to_s : ''  
       if @o_single.update(booking_params)
         @o_single.chapel_ids = chapel_ids
         @o_single.room_ids = room_ids
@@ -151,7 +165,7 @@ class BookingsController < ApplicationController
     
     #set header menu active
     def set_header_menu_active
-      @bookings = true
+      @booking_active = "active"
     end
     
     #column sort

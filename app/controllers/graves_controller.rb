@@ -89,7 +89,7 @@ class GravesController < ApplicationController
     
     #set header menu active
     def set_header_menu_active
-      @graves = true
+      @cemetery_active = "active"
     end
     
     #column sort
