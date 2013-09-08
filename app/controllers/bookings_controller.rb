@@ -45,7 +45,9 @@ class BookingsController < ApplicationController
   end
   
   def print_letter
-    letter = Letter.find(params[:id])
+    letter = Letter.find(params[:letter_id])
+    booking_obj = Booking.find(params[:booking_id])
+    booking = booking_obj.as_json
     
     content = letter.content.html_safe
     
@@ -53,20 +55,32 @@ class BookingsController < ApplicationController
     subject = subject.gsub(" ", "_")
     subject = subject.to_s + ".pdf"
     
-    #content = content.gsub(/\{(.*?)\}/) { |e| puts e }
-    content = content.scan(/\{(.*?)\}/)
-    arr = []
-    content.each do |e|
-      arr << e
+    booking.each do |k, v|
+      content = content.gsub(k.to_s, v.to_s)
     end
-    has = Hash[arr.map {|key, value| [key, key]}]
-
-    render :text => has["APPLICANT_SALUTATION"].inspect
     
-    return false
+    grantee = booking_obj.grantee
+    if grantee
+      grantee.as_json.each do |k, v|
+        content = content.gsub("entity_" + k.to_s, v.to_s)
+      end
+    end 
     
-    
-    
+    content = content.gsub("today_date", Date.today.to_s)
+    content = content.gsub("staff_name", booking_obj.user.username.to_s)
+    grafe = booking_obj.grafe
+    if grafe
+      content = content.gsub("grave_number", grafe.grave_number.to_s)
+    end
+    area = booking_obj.area
+    if area
+      content = content.gsub("area_name", area.name.to_s)
+    end  
+    section = booking_obj.section
+    if section
+      content = content.gsub("section_code", section.code.to_s)
+    end  
+                
     #content to pdf
     kit = PDFKit.new(content)
     pdf = kit.to_pdf

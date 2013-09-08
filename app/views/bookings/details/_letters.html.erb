@@ -1,4 +1,4 @@
-<% @letters = @cemetery.letters.all_letters %>
+<% @letters = @cemetery.letters.all_booking_letters %>
 <table class="table table-striped">  
   <tbody>
     <% if @letters.size > 0 %>
@@ -6,7 +6,7 @@
         <tr>
           <td><%= o_row.subject %></td>
           <td> 
-			      <%= link_to t('general.print'), print_letter_path(o_row.id), :class => 'defaultBtn btn-mini' %>
+			      <%= link_to t('general.print'), print_letter_path(o_row.id, @o_single.id), :class => 'defaultBtn btn-mini' %>
           </td>
         </tr>
       <% end %>

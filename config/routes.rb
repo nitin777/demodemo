@@ -73,7 +73,7 @@ Ocms::Application.routes.draw do
   get '/search/:toggle' => 'users#search', :as => :search
   
   
-  get 'print_letter/:id' => 'bookings#print_letter', :as => :print_letter
+  get 'print_letter/:letter_id/:booking_id' => 'bookings#print_letter', :as => :print_letter
   
   root 'fronts#index'    
     

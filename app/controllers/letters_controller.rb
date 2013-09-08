@@ -6,9 +6,9 @@ class LettersController < ApplicationController
   # GET /letters
   # GET /letters.json
   def index
+    session[:letters] = params[:letters] if params[:letters]
     @o_all = get_records(params[:letter], params[:page])
     @search_fields = ['subject']
-    session[:letter] = params[:letter] if params[:letter]
   end
 
   def show_letter_search
@@ -83,7 +83,11 @@ class LettersController < ApplicationController
     
     #fetch search records
     def get_records(search, page)
-      letter_query = @cemetery.letters.search(search)
+      if session[:letters] == 'true'
+        letter_query = @cemetery.letters.all_letters.search(search)
+      else
+        letter_query = @cemetery.letters.all_certificates.search(search)
+      end  
       letter_query.order(sort_column + " " + sort_direction).paginate(:per_page => 10, :page => page)
     end    
     

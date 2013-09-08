@@ -6,7 +6,9 @@ class LetterVariablesController < ApplicationController
   # GET /letter_variables
   # GET /letter_variables.json
   def index
-    @o_all = get_records(params[:letter_variable], params[:page])
+    #@o_all = get_records(params[:letter_variable], params[:page])
+    @certificate = LetterVariable.certificate_variables.first
+    @letter = LetterVariable.letter_variables.first
     session[:letter_variable] = params[:letter_variable] if params[:letter_variable]
   end
 
