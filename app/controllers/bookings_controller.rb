@@ -71,14 +71,20 @@ class BookingsController < ApplicationController
     grafe = booking_obj.grafe
     if grafe
       content = content.gsub("grave_number", grafe.grave_number.to_s)
+    else
+      content = content.gsub("grave_number", " ")  
     end
     area = booking_obj.area
     if area
       content = content.gsub("area_name", area.name.to_s)
+    else
+      content = content.gsub("area_name", " ")  
     end  
     section = booking_obj.section
     if section
       content = content.gsub("section_code", section.code.to_s)
+    else
+      content = content.gsub("section_code", " ")  
     end  
                 
     #content to pdf

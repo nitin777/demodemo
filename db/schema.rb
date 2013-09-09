@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130908075322) do
+ActiveRecord::Schema.define(version: 20130909122616) do
 
   create_table "areas", force: true do |t|
     t.integer  "cemetery_id"
@@ -323,6 +323,20 @@ ActiveRecord::Schema.define(version: 20130908075322) do
     t.date     "date_of_birth"
     t.string   "remarks_1"
     t.string   "remarks_2"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "grave_histories", force: true do |t|
+    t.integer  "grantee_id"
+    t.integer  "grantee_trasfer_id"
+    t.integer  "grafe_id"
+    t.integer  "catalog_id"
+    t.integer  "identity_id"
+    t.integer  "payment_status_id"
+    t.date     "surrender_date"
+    t.string   "identity_number"
+    t.string   "receipt_number"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

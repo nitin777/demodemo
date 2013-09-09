@@ -18,6 +18,7 @@ Ocms::Application.routes.draw do
   resources :grantees
   resources :grantee_graves
   resources :graves
+  resources :grave_histories
   resources :grave_statuses
   resources :monuments
   resources :letters

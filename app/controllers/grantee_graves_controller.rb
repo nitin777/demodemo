@@ -36,6 +36,7 @@ class GranteeGravesController < ApplicationController
 
   # GET /grantee_graves/1/edit
   def edit
+    @grave = Grafe.find(session[:grave_id]) if session[:grave_id] 
   end
 
   # POST /grantee_graves

@@ -1,0 +1,18 @@
+<% interment_certificate = Letter.interment_certificate.where(:cemetery_id => @cemetery.id).first %>
+<% burial_certificate = Letter.burial_certificate.where(:cemetery_id => @cemetery.id).first %>
+<table class="table table-striped">  
+  <tbody>
+    <tr>
+      <td><%= interment_certificate.subject %></td>
+      <td> 
+	      <%= link_to t('general.print'), print_letter_path(interment_certificate.id, @o_single.id), :class => 'defaultBtn btn-mini' %>
+      </td>
+    </tr>     
+    <tr>
+      <td><%= burial_certificate.subject %></td>
+      <td> 
+	      <%= link_to t('general.print'), print_letter_path(burial_certificate.id, @o_single.id), :class => 'defaultBtn btn-mini' %>
+      </td>
+    </tr>    
+  </tbody>
+</table>

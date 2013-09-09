@@ -1,16 +1,18 @@
 <%= form_for @o_single, :html => { :class => 'form-horizontal' } do |f| %>
   <fieldset>
     <legend></legend>
-		<%= f.hidden_field :cemetery_id, :value => session[:cemetery_id] %> 
-    <div class="control-group">
-      <%= f.label :subject, :class => 'control-label' %><span class="redStart">*</span>
-      <div class="controls">
-        <%= f.text_field :subject, :class => 'text_field' %>
-       	<% if @o_single.errors[:subject].any? %>
-        	<span class="text-error text-message"><%= @o_single.errors[:subject].first %></span>
-      	<% end %> 
-      </div>
-    </div>
+		<%= f.hidden_field :cemetery_id, :value => session[:cemetery_id] %>
+		<% if session[:letters] == "true" %> 
+	    <div class="control-group">
+	      <%= f.label :subject, :class => 'control-label' %><span class="redStart">*</span>
+	      <div class="controls">
+	        <%= f.text_field :subject, :class => 'text_field' %>
+	       	<% if @o_single.errors[:subject].any? %>
+	        	<span class="text-error text-message"><%= @o_single.errors[:subject].first %></span>
+	      	<% end %> 
+	      </div>
+	    </div>
+	  <% end %>  
     
     <% if @o_single.errors[:content].any? %>
 	  	<div class="control-group">

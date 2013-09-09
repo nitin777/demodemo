@@ -12,6 +12,7 @@
 			<li><a href="#other"><%= t("general.other") %></a></li>
 			<% unless @o_single.new_record? %>
 				<li><a href="#letters"><%= t("general.letters") %></a></li>
+				<li><a href="#certificates"><%= t("general.certificates") %></a></li>
 			<% end %>	
 			
 		</ul>    
@@ -26,6 +27,7 @@
 			<div class="tab-pane" id="other"><%= render "bookings/details/others", :f => f %></div>
 			<% unless @o_single.new_record? %>
 				<div class="tab-pane" id="letters"><%= render "bookings/details/letters", :f => f %></div>
+				<div class="tab-pane" id="certificates"><%= render "bookings/details/certificates", :f => f %></div>
 			<% end %>	
 		</div>    
     
@@ -79,8 +81,7 @@ $(function() {
   });    
   $('#interment_date').datetimepicker({
     language: 'en',
-    pickTime: false,
-    format: "yyyy-MM-dd"
+    format: "yyyy-MM-dd hh:mm:ss"
   });
   $('#deceased_date_death').datetimepicker({
     language: 'en',

@@ -19,7 +19,11 @@
           <td><%= o_row.user.username %></td>
           <td> 
 			      <%= link_to t('.edit', :default => t("helpers.links.edit")),
-			                  edit_grantee_grafe_path(o_row), :class => 'btn btn-mini' %>
+			                  edit_grantee_grafe_path(o_row), :class => 'btn btn-mini' %>						            
+						<%= link_to t("general.transfer"),
+						            new_grave_history_path(:grave_transfer_id => o_row.grafe.id, :grantee_id => session[:grantee_id]),
+						            :class => 'btn btn-primary btn-mini' %>						            				                  
+			                  
 			      <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
 			                  grantee_grafe_path(o_row),
 			                  :method => :delete,

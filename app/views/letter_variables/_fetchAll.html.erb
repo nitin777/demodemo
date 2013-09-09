@@ -16,7 +16,7 @@
 	<div class="tab-pane" id="certificate">
 		<% if is_admin? %>
 			<%= link_to t('.edit', :default => t("helpers.links.edit")),
-	              edit_letter_variable_path(@letter), :class => 'btn btn-mini' %>
+	              edit_letter_variable_path(@certificate), :class => 'btn btn-mini' %>
 	  <% end %>              			
 		<%= @certificate.content.html_safe %>
 	</div>

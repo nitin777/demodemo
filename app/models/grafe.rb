@@ -13,6 +13,7 @@ class Grafe < ActiveRecord::Base
   has_many :maintenances, :dependent => :destroy
   has_many :permits, :dependent => :destroy      
   belongs_to :stone_mason, class_name: 'User'
+  has_many :grave_histories, :dependent => :destroy
   
   validates :grave_number, :presence => true
   
