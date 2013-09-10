@@ -1,0 +1,53 @@
+<h3><%= @cem.name %></h3>
+<div class="searchRight">
+	<table>
+		<tr>
+			
+			<%= form_for @booking_form, :url => interment_search_url, :method => "get", :remote => true, :html => { :class => 'form-horizontal' } do |f| %>
+				<td>
+					<%= f.text_field :deceased_first_name, :class => 'text_field', :placeholder => "Deceased name" %>
+					<%= f.hidden_field :cemetery_id, :value => session[:front_cemetery_id] %>
+				</td>
+				<td>	
+					<%= f.submit t("general.search"), :class => 'btn', :id => 'search_button_id' %>
+				</td>	
+			<% end %>
+			<td>
+				<%= link_to t('general.back'), root_path, :class => 'btn' %>
+			</td>	
+		</tr>
+	</table>
+</div>
+
+<div id="div_update_search">
+	<table id="box-table">
+	  <tbody>
+	  	<tr>
+	    	<td colspan="4" width="50%"><%= @cem.description %></td>
+	    </tr>
+	    <tr>
+	  		<td width="50%"><strong>URL:</strong>&nbsp;<%= @cem.url %></td>
+	      <td width="50%"><strong>Address:</strong>&nbsp;<%= @cem.address %></td>
+	    </tr>
+	    <tr>
+	  		<td><strong>Town:</strong>&nbsp;<%= @cem.suburb_town %></td>
+	  		<td><strong>State:</strong>&nbsp;<%= @cem.state %></td>
+	    </tr>
+	    <tr>
+	  		<td><strong>Country:</strong>&nbsp;<%= @cem.country.name %></td>
+	      <td><strong>Postal Code:</strong>&nbsp;<%= @cem.postal_code %></td>
+	    </tr>      
+	    <tr>
+	    	<td><strong>Phone Number:</strong>&nbsp;<%= @cem.phone_area_code %>-<%= @cem.phone %></td>
+	  		<td><strong>Fax Number:</strong>&nbsp;<%= @cem.fax_area_code %>-<%= @cem.fax %></td>
+	    </tr>
+	  </tbody>
+	</table>
+</div>
+<script type="text/javascript">
+	$(document).ready(function() {
+	  $('#search_button_id').click (function() {
+	    $("#spinner").show();
+	  });
+	});
+</script>

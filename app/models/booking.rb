@@ -59,6 +59,14 @@ class Booking < ActiveRecord::Base
     else
       scoped
     end
-  end 
+  end
+  
+  def self.search_booking(search)
+    unless search.blank?
+      where('bookings.deceased_surname LIKE ? OR bookings.deceased_first_name LIKE ? OR bookings.deceased_middle_name LIKE ?', "%#{search}%", "%#{search}%", "%#{search}%")
+    else
+      where("bookings.id < 1")
+    end
+  end   
     
 end

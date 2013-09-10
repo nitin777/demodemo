@@ -46,6 +46,10 @@ Ocms::Application.routes.draw do
   
   match 'dashboard' => 'fronts#dashboard', :as => :dashboard, via: [:get, :post]
   get '/other/:page_id' => 'fronts#other', :as => :other
+  get '/cemetery/show/:id' => 'fronts#show_cem', :as => :show_cem
+  match '/interment_search' => 'fronts#interment_search', :as => :interment_search, via: [:get, :post]
+  
+  
   get '/get_section_from_area' => 'fronts#get_section_from_area', :as => :get_section_from_area
   get '/get_section_row_from_area' => 'fronts#get_section_row_from_area', :as => :get_section_row_from_area  
   get '/get_row_from_section' => 'fronts#get_row_from_section', :as => :get_row_from_section
@@ -53,6 +57,9 @@ Ocms::Application.routes.draw do
   get '/get_row_plot_from_section' => 'fronts#get_row_plot_from_section', :as => :get_row_plot_from_section
   get '/get_plot_from_row' => 'fronts#get_plot_from_row', :as => :get_plot_from_row
   get '/get_cemetery_from_country' => 'fronts#get_cemetery_from_country', :as => :get_cemetery_from_country
+  
+  
+  
   
   get '/get_section_row_plot_grave_from_area' => 'fronts#get_section_row_plot_grave_from_area', :as => :get_section_row_plot_grave_from_area
   get '/get_row_plot_grave_from_section' => 'fronts#get_row_plot_grave_from_section', :as => :get_row_plot_grave_from_section

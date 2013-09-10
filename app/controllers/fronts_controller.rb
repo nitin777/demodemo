@@ -1,12 +1,23 @@
 class FrontsController < ApplicationController
 	require 'builder'
+	layout "cemetery", :only => [:index, :show_cem, :interment_search]
   before_filter :require_user, :only => [:change_password]
   before_filter :set_header_menu_active
   
   #dashboard
   
   def index
-    render :layout => "cemetery"
+  end
+  
+  def show_cem
+    @booking_form = Booking.new 
+    @cem = Cemetery.find(params[:id])
+    session[:front_cemetery_id] = @cem.id  
+  end
+  
+  def interment_search
+    @cem = Cemetery.find(params[:booking][:cemetery_id])
+    @interments = @cem.bookings.finalize.search_booking(params[:booking][:deceased_first_name])    
   end
   
   def dashboard

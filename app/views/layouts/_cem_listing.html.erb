@@ -1,0 +1,8 @@
+<% cemeteries = Cemetery.active %>
+<% cemeteries.each do |c| %>
+	<div class="col">
+		<h3><a href="#"><%= c.name %></a></h3>
+		<p><%= c.description %></p>
+		<p>&not; <%= link_to t("general.read_more"), show_cem_path(c.id) %></p>
+	</div>
+<% end %>	
