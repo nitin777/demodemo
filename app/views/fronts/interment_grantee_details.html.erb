@@ -1,0 +1,27 @@
+<link type="text/css" href="/css/main.css" rel="stylesheet">
+<h3><%= "Grantee Details" %></h3>
+
+<div id="div_update_search">
+	<table id="box-table">
+	  <tbody>
+	  	<tr>
+	    	<td colspan="4" width="50%"><strong>Grantee Name:</strong>&nbsp;<%= @o_single.name %></td>
+	    </tr>
+	    <tr>
+	  		<td width="50%"><strong>Email:</strong>&nbsp;<%= @o_single.email %></td>
+	      <td width="50%"><strong>Address:</strong>&nbsp;<%= @o_single.address %></td>
+	    </tr>
+	    <tr>
+	  		<td><strong>Town:</strong>&nbsp;<%= @o_single.town %></td>
+	  		<td><strong>State:</strong>&nbsp;<%= @o_single.state %></td>
+	    </tr>
+	    <tr>
+	      <td><strong>Postal Code:</strong>&nbsp;<%= @o_single.postal_code %></td>
+	    </tr>      
+	    <tr>
+	    	<td><strong>Phone Number:</strong>&nbsp;<%= @o_single.phone_area_code %>-<%= @o_single.phone %></td>
+	  		<td><strong>Fax Number:</strong>&nbsp;<%= @o_single.fax_area_code %>-<%= @o_single.fax %></td>
+	    </tr>
+	  </tbody>
+	</table>
+</div>

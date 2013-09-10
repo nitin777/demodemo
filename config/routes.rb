@@ -47,7 +47,12 @@ Ocms::Application.routes.draw do
   match 'dashboard' => 'fronts#dashboard', :as => :dashboard, via: [:get, :post]
   get '/other/:page_id' => 'fronts#other', :as => :other
   get '/cemetery/show/:id' => 'fronts#show_cem', :as => :show_cem
-  match '/interment_search' => 'fronts#interment_search', :as => :interment_search, via: [:get, :post]
+  get '/interment_search' => 'fronts#interment_search', :as => :interment_search
+  
+  get '/interment_details/:id' => 'fronts#interment_details', :as => :interment_details
+  get '/interment_grave_details/:id' => 'fronts#interment_grave_details', :as => :interment_grave_details
+  get '/interment_grantee_details/:id' => 'fronts#interment_grantee_details', :as => :interment_grantee_details
+  
   
   
   get '/get_section_from_area' => 'fronts#get_section_from_area', :as => :get_section_from_area

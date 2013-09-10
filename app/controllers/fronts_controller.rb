@@ -1,6 +1,6 @@
 class FrontsController < ApplicationController
 	require 'builder'
-	layout "cemetery", :only => [:index, :show_cem, :interment_search]
+	layout "cemetery", :only => [:index, :show_cem, :interment_search, :interment_details, :interment_grave_details, :interment_grantee_details]
   before_filter :require_user, :only => [:change_password]
   before_filter :set_header_menu_active
   
@@ -17,8 +17,23 @@ class FrontsController < ApplicationController
   
   def interment_search
     @cem = Cemetery.find(params[:booking][:cemetery_id])
-    @interments = @cem.bookings.finalize.search_booking(params[:booking][:deceased_first_name])    
+    @interments = @cem.bookings.includes(:area, :section, :plot, :row, :grafe, :grantee).search_booking(params[:booking][:deceased_first_name]).limit(50)    
   end
+  
+  def interment_details
+    @o_single = Booking.find(params[:id])
+    render :layout => false
+  end
+  
+  def interment_grave_details
+    @o_single = Grafe.find(params[:id])
+    render :layout => false    
+  end
+  
+  def interment_grantee_details
+    @o_single = Grantee.find(params[:id])
+    render :layout => false    
+  end  
   
   def dashboard
     @o_booking = Booking.new

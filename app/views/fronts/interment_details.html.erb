@@ -1,0 +1,27 @@
+<link type="text/css" href="/css/main.css" rel="stylesheet">
+<h3><%= "Interment Details" %></h3>
+
+<div id="div_update_search">
+	<table id="box-table">
+	  <tbody>
+	  	<tr>
+	    	<td colspan="4" width="50%"><strong>Deceased Name:</strong>&nbsp;<%= @o_single.deceased_name %></td>
+	    </tr>
+	    <tr>
+	  		<td width="50%"><strong>Age:</strong>&nbsp;<%= @o_single.deceased_age %></td>
+	      <td width="50%"><strong>Address:</strong>&nbsp;<%= @o_single.deceased_address %></td>
+	    </tr>
+	    <tr>
+	  		<td><strong>Town:</strong>&nbsp;<%= @o_single.deceased_suburb %></td>
+	  		<td><strong>State:</strong>&nbsp;<%= @o_single.deceased_state %></td>
+	    </tr>
+	    <tr>
+	  		<td><strong>Country:</strong>&nbsp;<%= @o_single.deceased_country.name if @o_single.deceased_country_id %></td>
+	      <td><strong>Postal Code:</strong>&nbsp;<%= @o_single.deceased_postal_code %></td>
+	    </tr>      
+	    <tr>
+	    	<td><strong>Marital Status:</strong>&nbsp;<%= @o_single.deceased_marital_status %></td>
+	    </tr>
+	  </tbody>
+	</table>
+</div>

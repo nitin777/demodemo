@@ -83,7 +83,7 @@ class PlotsController < ApplicationController
     
     #fetch search records
     def get_records(search, page)
-      plot_query = @cemetery.plots.search(search)
+      plot_query = @cemetery.plots.includes(:area, :section).search(search)
       plot_query.order(sort_column + " " + sort_direction).paginate(:per_page => 10, :page => page)
     end    
     

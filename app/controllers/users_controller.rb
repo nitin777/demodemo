@@ -89,9 +89,9 @@ class UsersController < ApplicationController
 	  def get_records(search, page)
 	    if current_user.is_admin?
 	     cemetery = Cemetery.find(session[:cemetery_id]) 
-			 user_query = cemetery.users.search(search)
+			 user_query = cemetery.users.includes(:role).search(search)
 			else
-			  user_query = current_user.cemetery.users.search(search)
+			  user_query = current_user.cemetery.users.includes(:role).search(search)
 			end 
 	  	user_query.order(sort_column + " " + sort_direction).paginate(:per_page => 10, :page => page)
 	  end    

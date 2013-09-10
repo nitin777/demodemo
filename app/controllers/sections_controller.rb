@@ -83,7 +83,7 @@ class SectionsController < ApplicationController
     
     #fetch search records
     def get_records(search, page)
-      section_query = @cemetery.sections.search(search)
+      section_query = @cemetery.sections.includes(:area).search(search)
       section_query.order(sort_column + " " + sort_direction).paginate(:per_page => 10, :page => page)
     end    
     

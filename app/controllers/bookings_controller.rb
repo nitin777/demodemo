@@ -173,13 +173,13 @@ class BookingsController < ApplicationController
     
     #fetch search records
     def get_bookings(search, page)
-      booking_query = @cemetery.bookings.unfinalize.search(search)
+      booking_query = @cemetery.bookings.includes(:user).unfinalize.search(search)
       booking_query.order(sort_column + " " + sort_direction).paginate(:per_page => 10, :page => page)
     end   
     
     #fetch search records
     def get_interments(search, page)
-      booking_query = @cemetery.bookings.finalize.search(search)
+      booking_query = @cemetery.bookings.includes(:user, :service_type).finalize.search(search)
       booking_query.order(sort_column + " " + sort_direction).paginate(:per_page => 10, :page => page)
     end     
     

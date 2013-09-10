@@ -83,7 +83,7 @@ class GravesController < ApplicationController
     
     #fetch search records
     def get_records(search, page)
-      grave_query = @cemetery.graves.search(search)
+      grave_query = @cemetery.graves.includes(:area, :section, :plot, :row, :grave_status).search(search)
       grave_query.order(sort_column + " " + sort_direction).paginate(:per_page => 10, :page => page)
     end    
     
