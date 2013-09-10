@@ -3,7 +3,7 @@
 <%= hidden_field_tag :sort, params[:sort] %>
     
 <div class="page-header">
-  <h4><%= t("general.purchase_graves") %> (<span id="count_records"><%= @o_all.count %></span>)&nbsp;&nbsp;&nbsp;<%= session[:grantee_id] ? @grantee.name : "" %></h4>
+  <h4><%= t("general.purchase_graves") %> (<span id="count_records"><%= @o_all.count %></span>)<% if session[:grantee_id] %> - <%= @grantee.name %><% end %></h4>
 </div>
 
 <div class="searchRight">

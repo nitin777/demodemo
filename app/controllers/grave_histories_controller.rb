@@ -1,5 +1,5 @@
 class GraveHistoriesController < ApplicationController
-  before_action :set_grave_history, only: [:edit, :update, :destroy]
+  before_action :set_grave_history, only: [:edit, :update, :destroy, :show]
   helper_method :sort_column, :sort_direction
   before_action :require_user
   before_action :set_header_menu_active
@@ -14,6 +14,61 @@ class GraveHistoriesController < ApplicationController
   # GET /grave_histories/1
   # GET /grave_histories/1.json
   def show
+    
+    grave_transfer = Letter.grave_transfer_certificate.where(:cemetery_id => @cemetery.id).first
+    
+    grave_history = @o_single.as_json
+    
+    content = grave_transfer.content.html_safe
+    
+    subject = grave_transfer.subject
+    subject = subject.gsub(" ", "_")
+    subject = subject.to_s + ".pdf"
+    
+    grave_history.each do |k, v|
+      content = content.gsub(k.to_s, v.to_s)
+    end  
+    
+    grantee = @o_single.grantee
+    if grantee
+      grantee.as_json.each do |k, v|
+        content = content.gsub("from_entity_" + k.to_s, v.to_s)
+      end
+    end
+    
+    grantee_transfer = @o_single.grantee_trasfer
+    if grantee_transfer
+      grantee_transfer.as_json.each do |k, v|
+        content = content.gsub("to_entity_" + k.to_s, v.to_s)
+      end
+    end             
+    
+    grafe = @o_single.grafe
+    if grafe
+      content = content.gsub("grave_number", grafe.grave_number.to_s)
+      area = grafe.area
+      if area
+        content = content.gsub("area_name", area.name.to_s)
+      else
+        content = content.gsub("area_name", " ")  
+      end  
+      section = grafe.section
+      if section
+        content = content.gsub("section_code", section.code.to_s)
+      else
+        content = content.gsub("section_code", " ")  
+      end
+    else
+      content = content.gsub("grave_number", " ")  
+    end   
+    
+    #content to pdf
+    kit = PDFKit.new(content)
+    pdf = kit.to_pdf
+    
+    #download pdf
+    send_data pdf, :filename => subject, :type => "application/pdf"    
+    
   end
 
   # GET /grave_histories/new
@@ -35,10 +90,15 @@ class GraveHistoriesController < ApplicationController
     @o_single = GraveHistory.new(grave_history_params)
     @grantee = Grantee.find(session[:grantee_id])
     @grave = Grafe.find(session[:grave_transfer_id])    
-    grantee_transfer = Grantee.find_by(:id => params[:grave_history][:entity_trasfer_id])
+    grantee_transfer = Grantee.find_by(:id => params[:grave_history][:grantee_trasfer_id])
     if grantee_transfer
       respond_to do |format|
         if @o_single.save
+          grantee_grave = @grantee.grantee_graves.where(:grafe_id => @grave.id).first
+          if grantee_grave
+            grantee_grave.grantee_id = grantee_transfer.id
+            grantee_grave.save 
+          end
           format.html { redirect_to grantee_grafe_url(@grantee), notice: t("general.successfully_created") }
           format.json { render action: 'show', status: :created, location: @o_single }
         else

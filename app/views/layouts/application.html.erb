@@ -18,7 +18,7 @@
       current_action = controller.action_name
       
       cem_contollers_arr = %w(users areas sections rows plots graves grantees cemeteries grantee_graves 
-      												grantee_graves letters letter_variables)
+      												grantee_graves grave_histories letters letter_variables)
       												
 			booking_contollers_arr = %w(bookings facilities chapels rooms monuments catalogs)
       												
@@ -51,8 +51,8 @@
 							<li class="<%= 'active' if current_controller_name == 'sections' %>"><%= link_to t("general.sections"), sections_path %></li>
 							<li class="<%= 'active' if current_controller_name == 'rows' %>"><%= link_to t("general.rows"), rows_path %></li>
 							<li class="<%= 'active' if current_controller_name == 'plots' %>"><%= link_to t("general.plots"), plots_path %></li>
-							<li class="<%= 'active' if current_controller_name == 'graves' %>"><%= link_to t("general.graves"), graves_path %></li>
-							<li class="<%= 'active' if current_controller_name == 'grantees' %>"><%= link_to t("general.entities"), grantees_path %></li>
+							<li class="<%= 'active' if current_controller_name == 'graves' or current_controller_name == 'grave_histories' %>"><%= link_to t("general.graves"), graves_path %></li>
+							<li class="<%= 'active' if current_controller_name == 'grantees' %>"><%= link_to t("general.entities"), grantees_path(:grave_id => false) %></li>
 							<li class="<%= 'active' if current_controller_name == 'grantee_graves' %>"><%= link_to t("general.purchase_grave"), new_grantee_grafe_path(:new_purchase => true) %></li>
 							<li class="<%= 'active' if (current_controller_name == 'letters' and session[:letters] == 'true')%>"><%= link_to t("general.letters"), letters_path(:letters => true) %></li>
 							<li class="<%= 'active' if (current_controller_name == 'letters' and session[:letters] == 'false') %>"><%= link_to t("general.certificates"), letters_path(:letters => false) %></li>

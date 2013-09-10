@@ -1,9 +1,14 @@
 <table class="table table-striped">
  <thead> 
   <tr>
-    <th width="30%"><%= sortable "grantee_id", t("general.transfer_from") %></th>
-    <th width="30%"><%= sortable "grantee_trasfer_id", t("general.transfer_to")%></th>
-    <th width="30%"><%= sortable "surrender_date", t("general.surrender_date")%></th>
+    <th width="15%"><%= sortable "grantee_id", t("general.from") %></th>
+    <th width="15%"><%= sortable "grantee_trasfer_id", t("general.to")%></th>
+    <th width="10%"><%= sortable "surrender_date", t("general.surrenderDate")%></th>
+    <th width="10%"><%= sortable "receipt_number", t("general.receiptNumber")%></th>
+    <th width="10%"><%= sortable "catalog_id", t("general.catalog")%></th>
+    <th width="10%"><%= sortable "payment_status_id", t("general.payment")%></th>
+    <th width="10%"><%= sortable "identity_id", t("general.identity")%></th>
+    <th width="10%"><%= sortable "identity_number", t("general.identityNumber")%></th>
     <th width="10%"><%= t("general.actions") %></th>
   </tr>
  </thead> 
@@ -15,12 +20,20 @@
           <td><%= o_row.grantee.name unless o_row.grantee.nil? %></td>
           <td><%= o_row.grantee_trasfer.name unless o_row.grantee_trasfer.nil? %></td>
           <td><%= o_row.surrender_date.to_s(:pretty) if o_row.surrender_date %></td>
+          <td><%= o_row.receipt_number %></td>
+          
+          <td><%= o_row.catalog.name unless o_row.catalog.nil? %></td>
+          <td><%= o_row.payment_status.name unless o_row.payment_status.nil? %></td>
+          
+          <td><%= o_row.identity.name unless o_row.identity.nil? %></td>
+          <td><%= o_row.identity_number %></td>
           <td>
 			      <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
 			                  grave_history_path(o_row),
 			                  :method => :delete,
 			                  :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
 			                  :class => 'btn btn-mini btn-danger' %>
+			      <%= link_to image_tag("pdf.jpg"), grave_history_path(o_row), :title => t('general.grave_transfer_certificate') %>			                  
           </td>
         </tr>
       <% end %>

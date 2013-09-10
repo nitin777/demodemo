@@ -29,7 +29,10 @@ class GranteeGravesController < ApplicationController
       session[:grantee_id] = nil
       session[:grave_id] = params[:grave_id]
       @grave = Grafe.find(session[:grave_id])
-    else
+    else    
+      if session[:grantee_id]
+        @grantee = Grantee.find(session[:grantee_id])
+      end  
       session[:grave_id] = nil
     end    
   end
@@ -53,6 +56,9 @@ class GranteeGravesController < ApplicationController
         if session[:grave_id]
           @grave = Grafe.find(session[:grave_id])
         end
+        if session[:grantee_id]
+          @grantee = Grantee.find(session[:grantee_id])
+        end          
         format.html { render action: 'new' }
         format.json { render json: @o_single.errors, status: :unprocessable_entity }
       end

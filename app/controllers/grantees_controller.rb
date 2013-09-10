@@ -6,7 +6,14 @@ class GranteesController < ApplicationController
   # GET /grantees
   # GET /grantees.json
   def index
-    @o_all = get_records(params[:grantee], params[:page], params[:grave_id])
+    session[:grave_id] = params[:grave_id] if params[:grave_id]
+    if params[:grave_id] == 'false'
+      session[:grave_id] = nil
+    end
+    if session[:grave_id]
+      @grave = Grafe.find(session[:grave_id])
+    end
+    @o_all = get_records(params[:grantee], params[:page], session[:grave_id])
     @search_fields = ['surname', 'first_name', 'middle_name']
     session[:grantee] = params[:grantee] if params[:grantee]
   end
@@ -86,7 +93,7 @@ class GranteesController < ApplicationController
     #fetch search records
     def get_records(search, page, grave)
       if grave
-        grantee_query = @cemetery.grantees.joins(:grantee_graves).where(:grantee_graves => { :grafe_id => params[:grave_id] }).search(search)
+        grantee_query = @cemetery.grantees.joins(:grantee_graves).where(:grantee_graves => { :grafe_id => grave }).search(search)
       else  
         grantee_query = @cemetery.grantees.search(search)
       end  

@@ -1,4 +1,4 @@
 <div class="page-header">
-  <h4><%= t("general.new_purchase") %></h4>
+  <h4><%= t("general.new_purchase") %><% if session[:grave_id] %> - <%= @grave.grave_number %> <% end %><% if session[:grantee_id] %> - <%= @grantee.name %> <% end %></h4>
 </div>
 <%= render :partial => 'form' %>
