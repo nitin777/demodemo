@@ -1,19 +1,103 @@
 <link type="text/css" href="/css/main.css" rel="stylesheet">
-<h3><%= "Grave Details" %></h3>
+<%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+<%= javascript_include_tag "application", "data-turbolinks-track" => true %>    
+<ul class="nav nav-tabs" id="myTab">
+	<li class="active"><a href="#grave"><%= t("general.grave_details") %></a></li>
+	<li><a href="#interments"><%= t("general.interments") %></a></li>
+	<li><a href="#entities"><%= t("general.entities") %></a></li>
+</ul>    
 
-<div id="div_update_search">
-	<table id="box-table">
-	  <tbody>
-	  	<tr>
-	    	<td colspan="4" width="50%"><strong>Grave Number:</strong>&nbsp;<%= @o_single.grave_number %></td>
-	    </tr>
-	    <tr>
-	  		<td width="50%"><strong>length:</strong>&nbsp;<%= @o_single.length %></td>
-	      <td width="50%"><strong>width:</strong>&nbsp;<%= @o_single.width %></td>
-	    </tr>
-	    <tr>
-	  		<td><strong>height:</strong>&nbsp;<%= @o_single.height %></td>
-	    </tr>
-	  </tbody>
-	</table>
-</div>
+<div class="tab-content">
+	<div class="tab-pane active" id="grave">
+		<table id="box-table">
+		  <tbody>
+		  	<tr>
+		    	<td colspan="4" width="50%"><strong>Grave Number:</strong>&nbsp;<%= @o_single.grave_number %></td>
+		    </tr>
+		    <tr>
+		  		<td width="50%"><strong>length:</strong>&nbsp;<%= @o_single.length %></td>
+		      <td width="50%"><strong>width:</strong>&nbsp;<%= @o_single.width %></td>
+		    </tr>
+		    <tr>
+		  		<td><strong>height:</strong>&nbsp;<%= @o_single.height %></td>
+		  		<td><strong>Unit Type:</strong>&nbsp;<%= @o_single.unit_type.name unless @o_single.unit_type_id.nil? %></td>
+		  		
+		    </tr>
+		  </tbody>
+		</table>		
+	</div>
+	<div class="tab-pane" id="interments">
+		
+		<table id="box-table">
+			 <thead> 
+			  <tr>
+			    <th width="20%"><%= t("general.deceased_name") %></th>
+			    <th width="20%"><%= t("general.interment_date") %></th>
+			    <th width="20%"><%= t("general.address") %></th>
+			    <th width="20%"><%= t("general.state") %></th>
+			    <th width="20%"><%= t("general.town") %></th>
+			  </tr>
+			 </thead> 
+		  
+			  <tbody>
+			  	<% bookings = @o_single.bookings %>
+			    <% if bookings.size > 0 %>
+			      <% bookings.each do |o_row| %>
+			        <tr>
+			          <td><%= o_row.deceased_name %></td>
+			          <td><%= o_row.interment_date.to_s(:default_date) if o_row.interment_date %></td>
+			          
+			          <td><%= o_row.deceased_address %></td>
+			          <td><%= o_row.deceased_state %></td>
+			          <td><%= o_row.deceased_suburb %></td>
+			        </tr>
+			      <% end %>
+			    <% else %>
+			      <tr><th colspan="8"><%= t("general.record_not_found") %></th></tr>
+			    <% end %>      
+			  </tbody>
+		</table>
+		
+	</div>
+	<div class="tab-pane" id="entities">
+		<table id="box-table">
+			 <thead> 
+			  <tr>
+			    <th width="20%"><%= t("general.entity_name") %></th>
+			    <th width="20%"><%= t("general.address") %></th>
+			    <th width="20%"><%= t("general.state") %></th>
+			    <th width="20%"><%= t("general.town") %></th>
+			    <th width="20%"><%= t("general.phone") %></th>
+			  </tr>
+			 </thead> 
+		  
+			  <tbody>
+			  	<% grantees = @o_single.grantees %>
+			    <% if grantees.size > 0 %>
+			      <% grantees.each do |o_row| %>
+			        <tr>
+			          <td><%= o_row.name %></td>
+			          <td><%= o_row.address %></td>
+			          <td><%= o_row.state %></td>
+			          <td><%= o_row.town %></td>
+			          <td><%= o_row.phone %></td>
+			        </tr>
+			      <% end %>
+			    <% else %>
+			      <tr><th colspan="8"><%= t("general.record_not_found") %></th></tr>
+			    <% end %>      
+			  </tbody>
+		</table>			
+	</div>
+</div>    
+
+<script>
+	$('#myTab a').click(function (e) {
+		e.preventDefault();
+		$(this).tab('show');
+	})
+    
+ 	$(function () {
+		$('#myTab a:first').tab('show');
+	})
+</script>  

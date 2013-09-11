@@ -1,7 +1,6 @@
 <link type="text/css" href="/css/main.css" rel="stylesheet">
 <h3><%= "Interment Details" %></h3>
 
-<div id="div_update_search">
 	<table id="box-table">
 	  <tbody>
 	  	<tr>
@@ -24,4 +23,26 @@
 	    </tr>
 	  </tbody>
 	</table>
-</div>
+	
+	<table id="box-table">
+	  <tbody>
+	  	<tr>
+	    	<td colspan="4" width="50%"><strong>Applicat Name:</strong>&nbsp;<%= @o_single.informant_name %></td>
+	    </tr>
+	    <tr>
+	  		<td width="50%"><strong>Phone:</strong>&nbsp;<%= @o_single.informant_mobile %></td>
+	      <td width="50%"><strong>Address:</strong>&nbsp;<%= @o_single.informant_address %></td>
+	    </tr>
+	    <tr>
+	  		<td><strong>Town:</strong>&nbsp;<%= @o_single.informant_suburb %></td>
+	  		<td><strong>State:</strong>&nbsp;<%= @o_single.informant_state %></td>
+	    </tr>
+	    <tr>
+	  		<td><strong>Country:</strong>&nbsp;<%= @o_single.informant_country.name if @o_single.informant_country_id %></td>
+	      <td><strong>Postal Code:</strong>&nbsp;<%= @o_single.informant_postal_code %></td>
+	    </tr>      
+	    <tr>
+	    	<td><strong>Relationship to deceased:</strong>&nbsp;<%= @o_single.relationship_to_deceased %></td>
+	    </tr>
+	  </tbody>
+	</table>	

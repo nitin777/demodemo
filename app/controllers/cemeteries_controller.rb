@@ -39,6 +39,7 @@ class CemeteriesController < ApplicationController
 
     respond_to do |format|
       if @o_single.save
+        add_certificates(@o_single)
         format.html { redirect_to cemeteries_url, notice: t("general.successfully_created") }
         format.json { render action: 'show', status: :created, location: @o_single }
       else
@@ -73,6 +74,12 @@ class CemeteriesController < ApplicationController
   end
 
   private
+  
+    def add_certificates(cemetery)
+      cemetery.letters.create(:subject => "Interment Certificate", :content => "Interment Certificate", :letter_type => "interment_certificate", :is_certificate => 1)
+      cemetery.letters.create(:subject => "Burial Licence", :content => "Burial Licence", :letter_type => "burial_certificate", :is_certificate => 1)
+      cemetery.letters.create(:subject => "Grave Transfer", :content => "Grave Transfer", :letter_type => "grave_transfer_certificate", :is_certificate => 1)
+    end  
   
     # Use callbacks to share common setup or constraints between actions.
     def set_cemetery

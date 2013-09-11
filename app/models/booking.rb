@@ -16,6 +16,9 @@ class Booking < ActiveRecord::Base
   belongs_to :payment_status
   belongs_to :funeral_director, class_name: 'User', foreign_key: "funeral_director_id"
   belongs_to :deceased_country, class_name: 'Country', foreign_key: "deceased_country_id"
+  belongs_to :informant_country, class_name: 'Country', foreign_key: "informant_country_id"
+  
+  
     
   has_one :booking_checklist, :dependent => :destroy
   has_many :permits
@@ -34,6 +37,12 @@ class Booking < ActiveRecord::Base
       [deceased_title, deceased_surname, deceased_first_name].join(" ")
     end
   end  
+  
+  def informant_name(shorten=true)
+    unless informant_first_name.nil? && informant_surname.nil? or informant_first_name.empty? && informant_surname.empty?
+      [informant_title, informant_surname, informant_first_name].join(" ")
+    end
+  end   
   
   scope :chapels, -> {where("chapel_id IS NOT NULL")}
   scope :rooms, -> {where("room_id IS NOT NULL")}

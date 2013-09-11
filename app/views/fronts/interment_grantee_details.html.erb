@@ -1,27 +1,111 @@
 <link type="text/css" href="/css/main.css" rel="stylesheet">
-<h3><%= "Grantee Details" %></h3>
+<%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    
+<ul class="nav nav-tabs" id="myTab">
+	<li class="active"><a href="#entity"><%= t("general.entity_details") %></a></li>
+	<li><a href="#graves"><%= t("general.graves") %></a></li>
+	<li><a href="#interments"><%= t("general.interments") %></a></li>
+</ul> 
 
-<div id="div_update_search">
-	<table id="box-table">
-	  <tbody>
-	  	<tr>
-	    	<td colspan="4" width="50%"><strong>Grantee Name:</strong>&nbsp;<%= @o_single.name %></td>
-	    </tr>
-	    <tr>
-	  		<td width="50%"><strong>Email:</strong>&nbsp;<%= @o_single.email %></td>
-	      <td width="50%"><strong>Address:</strong>&nbsp;<%= @o_single.address %></td>
-	    </tr>
-	    <tr>
-	  		<td><strong>Town:</strong>&nbsp;<%= @o_single.town %></td>
-	  		<td><strong>State:</strong>&nbsp;<%= @o_single.state %></td>
-	    </tr>
-	    <tr>
-	      <td><strong>Postal Code:</strong>&nbsp;<%= @o_single.postal_code %></td>
-	    </tr>      
-	    <tr>
-	    	<td><strong>Phone Number:</strong>&nbsp;<%= @o_single.phone_area_code %>-<%= @o_single.phone %></td>
-	  		<td><strong>Fax Number:</strong>&nbsp;<%= @o_single.fax_area_code %>-<%= @o_single.fax %></td>
-	    </tr>
-	  </tbody>
-	</table>
+
+<div class="tab-content">
+	<div class="tab-pane active" id="entity">
+		<table id="box-table">
+		  <tbody>
+		  	<tr>
+		    	<td colspan="4" width="50%"><strong>Grantee Name:</strong>&nbsp;<%= @o_single.name %></td>
+		    </tr>
+		    <tr>
+		  		<td width="50%"><strong>Email:</strong>&nbsp;<%= @o_single.email %></td>
+		      <td width="50%"><strong>Address:</strong>&nbsp;<%= @o_single.address %></td>
+		    </tr>
+		    <tr>
+		  		<td><strong>Town:</strong>&nbsp;<%= @o_single.town %></td>
+		  		<td><strong>State:</strong>&nbsp;<%= @o_single.state %></td>
+		    </tr>
+		    <tr>
+		      <td><strong>Postal Code:</strong>&nbsp;<%= @o_single.postal_code %></td>
+		    </tr>      
+		    <tr>
+		    	<td><strong>Phone Number:</strong>&nbsp;<%= @o_single.phone_area_code %>-<%= @o_single.phone %></td>
+		  		<td><strong>Fax Number:</strong>&nbsp;<%= @o_single.fax_area_code %>-<%= @o_single.fax %></td>
+		    </tr>
+		  </tbody>
+		</table>
+	</div>
+	
+	<div class="tab-pane" id="graves">
+		
+		<table id="box-table">
+			 <thead> 
+			  <tr>
+			    <th width="20%"><%= t("general.grave_number") %></th>
+			    <th width="20%"><%= t("general.area") %></th>
+			    <th width="20%"><%= t("general.section") %></th>
+			    <th width="20%"><%= t("general.row") %></th>
+			    <th width="20%"><%= t("general.plot") %></th>
+			  </tr>
+			 </thead> 
+		  
+			  <tbody>
+			  	<% graves = @o_single.grantee_graves %>
+			    <% if graves.size > 0 %>
+			      <% graves.each do |o_row| %>
+			        <tr>
+			          <td><%= o_row.grafe.grave_number unless o_row.grafe_id.nil? %></td>
+			          <td><%= o_row.area.code unless o_row.area_id.nil? %></td>
+			          <td><%= o_row.section.code unless o_row.section_id.nil? %></td>
+			          <td><%= o_row.row.name unless o_row.row_id.nil? %></td>
+			          <td><%= o_row.plot.name unless o_row.plot_id.nil? %></td>
+			        </tr>
+			      <% end %>
+			    <% else %>
+			      <tr><th colspan="8"><%= t("general.record_not_found") %></th></tr>
+			    <% end %>      
+			  </tbody>
+		</table>		
+	</div>
+		
+	<div class="tab-pane" id="interments">
+		<table id="box-table">
+			 <thead> 
+			  <tr>
+			    <th width="20%"><%= t("general.deceased_name") %></th>
+			    <th width="20%"><%= t("general.interment_date") %></th>
+			    <th width="20%"><%= t("general.address") %></th>
+			    <th width="20%"><%= t("general.state") %></th>
+			    <th width="20%"><%= t("general.town") %></th>
+			  </tr>
+			 </thead> 
+		  
+			  <tbody>
+			  	<% bookings = @o_single.bookings %>
+			    <% if bookings.size > 0 %>
+			      <% bookings.each do |o_row| %>
+			        <tr>
+			          <td><%= o_row.deceased_name %></td>
+			          <td><%= o_row.interment_date.to_s(:default_date) if o_row.interment_date %></td>
+			          
+			          <td><%= o_row.deceased_address %></td>
+			          <td><%= o_row.deceased_state %></td>
+			          <td><%= o_row.deceased_suburb %></td>
+			        </tr>
+			      <% end %>
+			    <% else %>
+			      <tr><th colspan="8"><%= t("general.record_not_found") %></th></tr>
+			    <% end %>      
+			  </tbody>
+		</table>						
+	</div>
 </div>
+<script>
+	$('#myTab a').click(function (e) {
+		e.preventDefault();
+		$(this).tab('show');
+	})
+    
+ 	$(function () {
+		$('#myTab a:first').tab('show');
+	})
+</script>

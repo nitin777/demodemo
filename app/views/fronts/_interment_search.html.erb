@@ -26,7 +26,6 @@
           <td><%= (link_to o_row.grantee.name, interment_grantee_details_url(o_row.grantee.id), :onclick=>"window.open(this.href,'interment_grantee_details', 'height=600, width=600');return false;") unless o_row.grantee_id.nil? %></td>
           <td><%= o_row.interment_date.to_s(:default_date) if o_row.interment_date %></td>
           <td><%= link_to t("general.details"), interment_details_url(o_row.id), :onclick=>"window.open(this.href,'interment_details', 'height=600, width=600');return false;" %>
-          <td></td>
         </tr>
       <% end %>
     <% else %>

@@ -6,6 +6,7 @@ class Grantee < ActiveRecord::Base
   has_many :grave_histories, :dependent => :destroy
   validates :first_name, :presence => true
   validates :surname, :presence => true
+  has_many :bookings
   include SearchHandler
   
   def name
