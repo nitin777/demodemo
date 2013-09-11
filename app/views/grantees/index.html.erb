@@ -8,7 +8,7 @@
  
 
 	<div class="searchRight">
-		<% unless params[:grave_id] %>
+		<% unless session[:grave_id] %>
 			<%= link_to 'Search', show_search_box_path(true, model_class, @search_fields.join(',')), :remote => true, :class => 'btn btn-primary btn-small' %>&nbsp;
 			
 			<%= link_to t('.new', :default => t("helpers.links.new")),

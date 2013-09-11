@@ -10,7 +10,7 @@
 	              edit_letter_variable_path(@letter), :class => 'btn btn-mini' %>
 	  <% end %>            
               			
-		<%= @letter.content.html_safe %>					
+		<%= @letter.content.html_safe unless @letter.content.blank? %>					
 	</div>
 	
 	<div class="tab-pane" id="certificate">

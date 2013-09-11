@@ -27,6 +27,44 @@ puts 'load counties'
 Country.create(:name => "Australia")
 Country.create(:name => "India")
 
+puts 'letter variables'
+
+LetterVariable.create(:content => "<h4 style='text-align:center;'> LETTER </h4>
+
+<p> <h6>INFORMAT/APPLICATN</h6>
+informant_title, informant_surname, informant_first_name, informant_middle_name, informant_address, informant_suburb, informant_state, informant_postal_code, relationship_to_deceased, grantee_relationship<br /><br />
+
+<h6> DECEASED </h6>
+deceased_title, deceased_surname, deceased_first_name, deceased_middle_name, deceased_address, deceased_suburb, deceased_state, deceased_postal_code, deceased_date_death, deceased_age, deceased_gender<br /><br />
+
+<h6> ENTITY </h6>
+entity_title, entity_surname, entity_first_name, entity_address, entity_suburb, entity_state<br /><br />
+
+<h6> GENERAL </h6>
+interment_date, service_date, staff_name, grave_number, area_name, section_code, today_date </p>", :is_certificate => false)
+
+
+LetterVariable.create(:content => "<h4 style='text-align:center;'>CERTIFICATE</h4>
+
+<h5> GRAVE TRASFER </h5>
+
+from_entity_title, from_entity_surname, from_entity_first_name, to_entity_title, to_entity_surname, to_entity_first_name, surrender_date, receipt_number, grave_number, area_name, section_code, row_code, plot_code  <br /><br />
+
+<h5>  RIGHT OF BURIAL  AND  BURIAL CERTICIFATE  </h5>
+
+<p><h6> INFORMAT/APPLICATN </h6>
+informant_title, informant_surname, informant_first_name, informant_middle_name, informant_address, informant_suburb, informant_state, relationship_to_deceased, grantee_relationship<br /><br />
+
+<h6> DECEASED </h6>
+deceased_title, deceased_surname, deceased_first_name, deceased_middle_name, deceased_address, deceased_suburb, deceased_state, deceased_date_death, deceased_age, deceased_gender<br /><br />
+
+<h6> ENTITY </h6>
+entity_title, entity_surname, entity_first_name, entity_address, entity_suburb, entity_state<br /><br />
+
+<h6> GENERAL </h6>
+interment_date, service_date, staff_name, grave_number, area_name, section_code, today_date 
+</p>", :is_certificate => true)
+
 puts 'load static pages'
 faq = StaticPage.create(:name => 'FAQ', 
 												:page_route => 'faq', 
