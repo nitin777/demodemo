@@ -7,6 +7,13 @@ class FrontsController < ApplicationController
   #dashboard
   
   def index
+    if current_user
+      if is_admin?
+        redirect_to cemeteries_url
+      else
+        redirect_to dashboard_url  
+      end
+    end
   end
   
   def show_cem

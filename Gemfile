@@ -80,6 +80,8 @@ gem "bootstrap-wysihtml5-rails"
 #pdf to html
 gem 'pdfkit'
 
+gem 'wkhtmltopdf-heroku'
+
 group :development do
   # only need this in dev, on production we use the file in the bin folder
   gem "wkhtmltopdf-binary"

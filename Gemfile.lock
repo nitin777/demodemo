@@ -153,6 +153,7 @@ GEM
     webget_ruby_secure_random (1.2.1)
     will_paginate (3.0.4)
     wkhtmltopdf-binary (0.9.9.1)
+    wkhtmltopdf-heroku (1.0.0)
 
 PLATFORMS
   ruby
@@ -187,3 +188,4 @@ DEPENDENCIES
   webget_ruby_secure_random
   will_paginate
   wkhtmltopdf-binary
+  wkhtmltopdf-heroku
