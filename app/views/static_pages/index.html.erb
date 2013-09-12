@@ -5,7 +5,13 @@
 <div class="page-header">
   <h4><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %> (<%= @o_all.size %>)</h4>
 </div>    
-    
+
+<div class="searchRight">
+	
+	<%= link_to t('.new', :default => t("helpers.links.new")),
+	            new_static_page_path,
+	            :class => 'btn btn-primary btn-small' %>
+</div>    
 <table class="table table-striped">
  <thead> 
   <tr>
@@ -42,6 +48,3 @@
   </tbody>
 </table>
 <%= will_paginate @o_all %>
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_static_page_path,
-            :class => 'btn btn-primary' %>

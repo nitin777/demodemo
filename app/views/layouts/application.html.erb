@@ -60,7 +60,7 @@
 						<% end %>	
 						</ul>  
 					</div>  
-					<div class="span11">
+					<div class="span10">
 						<%= yield %>
 					</div>
 				
@@ -80,7 +80,7 @@
 							<% end %>	
 						</ul>  
 					</div>  
-					<div class="span11">
+					<div class="span10">
 						<%= yield %>
 					</div>					
 				
@@ -93,7 +93,7 @@
 							<li class="<%= 'active' if current_controller_name == 'permit_charges' %>"><%= link_to t("general.permit_charges"), permit_charges_path %></li>
 						</ul>  
 					</div>  
-					<div class="span11">
+					<div class="span10">
 						<%= yield %>
 					</div>
 																					
@@ -113,7 +113,7 @@
 							<li class="<%= 'active' if current_controller_name == 'charges' %>"><%= link_to t("general.charges"), charges_path %></li>
 						</ul>  
 					</div>  
-					<div class="span11">
+					<div class="span10">
 						<%= yield %>
 					</div>					
 				<% else %>	
@@ -122,9 +122,10 @@
 					</div>				
 				<% end %>
 	  </div>
-	  <hr />
+	  
 	</div>  
-	 <footer style="text-align: center;">
+	 
+	 <footer class="footer" style="background-color:#c2c2c2">
 		<div class="container">
 			<%= render 'layouts/footer' %>
 		</div>
