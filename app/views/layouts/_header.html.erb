@@ -1,6 +1,6 @@
 <script type="text/javascript">
 	$(document).ready(function() {
-	  $('.btn').click (function() {
+	  $('.btn-primary, .btn-mini').click (function() {
 	    $("#spinner").show();
 	  });
 
@@ -11,6 +11,10 @@
 	  $('.selectField').change (function() {
 	    $("#spinner").show();
 	  });
+	  
+	  $('input.reset').click (function() {
+	    $("#spinner").hide();
+	  });	  
 	});
 </script> 
 <div class="navbar navbar-fixed-top">

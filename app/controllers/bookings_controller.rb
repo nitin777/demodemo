@@ -89,12 +89,21 @@ class BookingsController < ApplicationController
                 
     #content to pdf
     kit = PDFKit.new(content)
+    kit.stylesheets << get_stylesheet
     pdf = kit.to_pdf
     
     #download pdf
     send_data pdf, :filename => subject, :type => "application/pdf"
     
   end
+  
+  def get_stylesheet
+    if Rails.env.production?
+      "#{Rails.root}/public/assets/application.css"
+    else
+      "#{Rails.root}/public/css/letter.css"
+    end
+  end  
 
   # GET /bookings/1
   # GET /bookings/1.json

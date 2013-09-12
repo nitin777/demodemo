@@ -26,7 +26,7 @@
     <div class="control-group">
       <%= f.label :content, :class => 'control-label' %><span class="redStart">*</span>
       <div class="controls">
-        <%= f.text_area :content, :class => 'wysihtml5 textArea', :placeholder => "Enter text ..." %>
+        <%= f.text_area :content, :class => 'wysihtml5 textArea', :id => "textArea", :placeholder => "Enter text ..." %>
       </div>
     </div>    
  			<% if session[:letters] == "true" %>
@@ -47,8 +47,17 @@
      
 <% end %>
 
+
 <script type="text/javascript">
-  $('.wysihtml5').each(function(i, elem) {
-    $(elem).wysihtml5();
-  });
+
+$('#textArea').wysihtml5({
+	"font-styles": true, //Font styling, e.g. h1, h2, etc. Default true
+	"emphasis": true, //Italics, bold, etc. Default true
+	"lists": true, //(Un)ordered lists, e.g. Bullets, Numbers. Default true
+	"html": true, //Button which allows you to edit the generated HTML. Default false
+	"link": true, //Button to insert a link. Default true
+	"image": true, //Button to insert an image. Default true,
+	"color": true //Button to change color of font  
+});
+
 </script>
