@@ -64,12 +64,17 @@ class GraveHistoriesController < ApplicationController
     
     #content to pdf
     kit = PDFKit.new(content)
+    kit.stylesheets << get_stylesheet
     pdf = kit.to_pdf
     
     #download pdf
     send_data pdf, :filename => subject, :type => "application/pdf"    
     
   end
+  
+  def get_stylesheet
+    "#{Rails.root}/public/css/letter.css"
+  end    
 
   # GET /grave_histories/new
   def new

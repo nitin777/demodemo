@@ -98,11 +98,7 @@ class BookingsController < ApplicationController
   end
   
   def get_stylesheet
-    if Rails.env.production?
-      "#{Rails.root}/public/assets/application.css"
-    else
-      "#{Rails.root}/public/css/letter.css"
-    end
+    "#{Rails.root}/public/css/letter.css"
   end  
 
   # GET /bookings/1
