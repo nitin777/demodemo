@@ -28,7 +28,9 @@ class UserSessionsController < ApplicationController
     respond_to do |format|
       if @user_session.save
 				session[:user_id] = current_user.id
-				session[:user_role] = current_user.role.role_type
+				role = current_user.role
+				session[:user_role] = role.role_type
+				session[:role_id] = role.id 
 				unless current_user.is_admin?
 				  session[:cemetery_id] = current_user.cemetery_id
 				  session[:country_id] = current_user.country_id

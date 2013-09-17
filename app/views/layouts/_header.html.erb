@@ -34,21 +34,26 @@
          	  	<li class="<%= @cemeteties_active %>"><%= link_to t("general.cemeteries"), cemeteries_path %></li>
          	  	<% if session[:cemetery_id] %>
          	  		<li class=""><%= link_to "( " + @cemetery.name + " )", "#" %></li>
-         	  		<li class="<%= @cemetery_active %>"><%= link_to t("general.manage_cemetery"), users_path %></li>
+         	  		<li class="<%= @users %>"><%= link_to t("general.users"), users_path %></li>
+         	  		<li class="<%= @cemetery_active %>"><%= link_to t("general.manage_cemetery"), areas_path %></li>
        	  			<li class="<%= @maintenance_active %>"><%= link_to t("general.maintenance"), maintenances_path %></li>
        	  			<li class="<%= @booking_active %>"><%= link_to t("general.bookings"), bookings_path(:bookings => true) %></li>
        	  		<% end %>	         	  	
          	  <% else %>
          	  	<li class="<%= @dashboard_active %>"><%= link_to t("general.dashboard"), dashboard_path %></li>
-         	  	<% if is_funeral_director? %>
-         	  		<li class=""><%= link_to "( " + @cemetery.name + " )", "#" %></li>
-         	  		<li class="<%= @booking_active %>"><%= link_to t("general.booking"), bookings_path(:bookings => true) %></li>
-         	  	<% else %>
-         	  		<li class=""><%= link_to "( " + @cemetery.name + " )", "#" %></li>	
-         	  		<li class="<%= @cemetery_active %>"><%= link_to t("general.manage_cemetery"), users_path %></li>
-         	  		<li class="<%= @maintenance_active %>"><%= link_to t("general.maintenance"), maintenances_path %></li>
-         	  		<li class="<%= @booking_active %>"><%= link_to t("general.bookings"), bookings_path(:bookings => true) %></li>
-         	  	<% end %>	
+       	  		<li class=""><%= link_to "( " + @cemetery.name + " )", "#" %></li>
+       	  		<% if user_access? %>
+       	  			<li class="<%= @users %>"><%= link_to t("general.users"), users_path %></li>
+       	  		<% end %>		
+       	  		<% if cemetery_access? %>
+       	  			<li class="<%= @cemetery_active %>"><%= link_to t("general.manage_cemetery"), areas_path %></li>
+       	  		<% end %>		
+       	  		<% if maintenance_access? %>
+       	  			<li class="<%= @maintenance_active %>"><%= link_to t("general.maintenance"), maintenances_path %></li>
+       	  		<% end %>	
+       	  		<% if booking_access? %>	
+       	  			<li class="<%= @booking_active %>"><%= link_to t("general.bookings"), bookings_path(:bookings => true) %></li>
+       	  		<% end %>	
          	  <% end %>
           <% end %>
         </ul>

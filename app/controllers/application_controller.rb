@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  helper_method :current_user, :is_admin?, :is_manager?, :is_staff?, :is_funeral_director?, :is_admin_staff?, :is_stone_mason?, :is_normal_staff?
+  helper_method :current_user, :is_admin?, :is_manager?, :is_staff?, :is_funeral_director?, :is_admin_staff?, :is_stone_mason?, :is_normal_staff?, :user_access?, :cemetery_access?, :booking_access?, :maintenance_access?
   before_action :set_cemetery_record
   
 	SUPER_ADMIN = "SuperAdmin"
@@ -83,6 +83,42 @@ class ApplicationController < ActionController::Base
    session[:user_role] == NORMAL_STAFF
   end  
   
+  def user_access?
+    (@role and role_permission_user_access?) ? true : false
+  end
+  
+  def role_permission_user_access?
+    role_permission = @cemetery.role_permissions.where(:role_id => @role.id).first
+    (role_permission and role_permission.user_access) ? true : false 
+  end
+  
+  def cemetery_access?
+    (@role and role_permission_cemetery_access?) ? true : false
+  end
+  
+  def role_permission_cemetery_access?
+    role_permission = @cemetery.role_permissions.where(:role_id => @role.id).first
+    (role_permission and role_permission.cemetery_access) ? true : false 
+  end  
+  
+  def booking_access?
+    (@role and role_permission_booking_access?) ? true : false
+  end
+  
+  def role_permission_booking_access?
+    role_permission = @cemetery.role_permissions.where(:role_id => @role.id).first
+    (role_permission and role_permission.booking_access) ? true : false 
+  end
+  
+  def maintenance_access?
+    (@role and role_permission_maintenance_access?) ? true : false
+  end
+  
+  def role_permission_maintenance_access?
+    role_permission = @cemetery.role_permissions.where(:role_id => @role.id).first
+    (role_permission and role_permission.maintenance_access) ? true : false 
+  end
+  
   def get_host_name(email)
   	unless email.nil?
   		email_arr = []
@@ -96,6 +132,7 @@ class ApplicationController < ActionController::Base
   
   def set_cemetery_record
     @cemetery = session[:cemetery_id].nil? ? nil : (Cemetery.find(session[:cemetery_id]))
+    @role = session[:role_id].nil? ? nil : (Role.find(session[:role_id]))
   end
   
 end

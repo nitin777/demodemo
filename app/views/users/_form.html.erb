@@ -78,32 +78,10 @@
     <tr>
       <td>				
 				<% if current_user.is_admin? %>
-			   	<div class="control-group">
-			      <%= f.label :country_id, :class => 'control-label' %><span class="redStart">*</span>
-			      <div class="controls">
-			        <%= select_tag "user[country_id]", options_for_select(get_model_data("Country"), (@o_single.country.id unless @o_single.country.nil?)),
-			        							:data => { :remote => true, :url => url_for(:controller => "fronts", 
-			                                 :action => "get_cemetery_from_country"
-			                                 ) } %>
-					     	<% if @o_single.errors[:country_id].any? %>
-					      	<span class="text-error" style="font-weight:bold;margin-left: 5px;"><%= @o_single.errors[:country_id].first %></span>
-					    	<% end %>                                   
-			      </div>
-			    </div>
+					<%= f.hidden_field :country_id, :value => session[:country_id] %>
       </td>
       <td>			  
-			    <div id="div_update_cemetery">
-				   	<div class="control-group">
-				      <%= f.label :cemetery_id, :class => 'control-label' %><span class="redStart">*</span>
-				      <div class="controls">
-				      	<% country = @o_single.country.nil? ? nil : @o_single.country %>
-				        <%= f.select :cemetery_id, options_for_select(get_cemetery_data(country), (@o_single.cemetery.id unless @o_single.cemetery.nil?))  %>
-						   	<% if @o_single.errors[:cemetery_id].any? %>
-						    	<span class="text-error text-message"><%= @o_single.errors[:cemetery_id].first %></span>
-						  	<% end %> 	 	        
-				      </div>
-				    </div>
-				  </div>
+					<%= f.hidden_field :cemetery_id, :value => session[:cemetery_id] %>
       </td> 
     </tr> 
     <tr>
@@ -111,7 +89,7 @@
 			    <div class="control-group">
 			      <%= f.label :role_id, :class => 'control-label' %>
 			      <div class="controls">
-			        <%= select_tag "role_id", options_for_select(super_admin_access_roles, (@o_single.role.id unless @o_single.role.nil?))  %>
+			        <%= select_tag "role_id", options_for_select(manager_access_roles, (@o_single.role.id unless @o_single.role.nil?))  %>
 			      </div>
 			    </div>
       </td> 

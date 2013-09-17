@@ -190,7 +190,11 @@ class BookingsController < ApplicationController
     
     #set header menu active
     def set_header_menu_active
-      @booking_active = "active"
+      if session[:interments] or params[:interments] 
+        @cemetery_active = "active"
+      else
+        @booking_active = "active"  
+      end
     end
     
     #column sort

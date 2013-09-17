@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130909122616) do
+ActiveRecord::Schema.define(version: 20130917182904) do
 
   create_table "areas", force: true do |t|
     t.integer  "cemetery_id"
@@ -508,6 +508,17 @@ ActiveRecord::Schema.define(version: 20130909122616) do
     t.string   "depth"
     t.string   "map"
     t.boolean  "is_active",   default: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "role_permissions", force: true do |t|
+    t.integer  "cemetery_id"
+    t.integer  "role_id"
+    t.boolean  "user_access",        default: true
+    t.boolean  "cemetery_access",    default: true
+    t.boolean  "booking_access",     default: true
+    t.boolean  "maintenance_access", default: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end

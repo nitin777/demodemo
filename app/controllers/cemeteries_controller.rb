@@ -3,6 +3,9 @@ class CemeteriesController < ApplicationController
   helper_method :sort_column, :sort_direction
   before_action :require_user
   before_action :set_header_menu_active
+  
+  SUPER_ADMIN = "SuperAdmin"
+  
   # GET /cemeteries
   # GET /cemeteries.json
   def index
@@ -20,6 +23,9 @@ class CemeteriesController < ApplicationController
   # GET /cemeteries/1.json
   def show
     session[:cemetery_id] = params[:id] if params[:id]
+    cemetery = Cemetery.find(session[:cemetery_id])
+    session[:country_id] = cemetery.country_id if cemetery
+    
     redirect_to users_url
   end
 
@@ -40,6 +46,7 @@ class CemeteriesController < ApplicationController
     respond_to do |format|
       if @o_single.save
         add_certificates(@o_single)
+        create_role_permissions(@o_single)
         format.html { redirect_to cemeteries_url, notice: t("general.successfully_created") }
         format.json { render action: 'show', status: :created, location: @o_single }
       else
@@ -80,6 +87,12 @@ class CemeteriesController < ApplicationController
       cemetery.letters.create(:subject => "Burial Licence", :content => "Burial Licence", :letter_type => "burial_certificate", :is_certificate => 1)
       cemetery.letters.create(:subject => "Grave Transfer", :content => "Grave Transfer", :letter_type => "grave_transfer_certificate", :is_certificate => 1)
     end  
+    
+    def create_role_permissions(cemetery)
+      Role.where("role_type != ?", SUPER_ADMIN).each do |r|
+        cemetery.role_permissions.create(:role_id => r.id)
+      end
+    end    
   
     # Use callbacks to share common setup or constraints between actions.
     def set_cemetery

@@ -17,6 +17,7 @@ class Cemetery < ActiveRecord::Base
   has_many :permits, :dependent => :destroy
   has_many :maintenance_companies, :dependent => :destroy  
   has_many :users, :dependent => :destroy
+  has_many :role_permissions, :dependent => :destroy
   
   validates :name, :presence => true
   validates :country_id, :presence => true
