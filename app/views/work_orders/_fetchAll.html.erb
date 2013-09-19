@@ -1,0 +1,53 @@
+<table class="table table-striped">
+ <thead> 
+  <tr>
+    <th width="10%"><%= t("general.customer") %></th>
+    <th width="5%"><%= sortable "area_id", t("general.area") %></th>
+    <th width="5%"><%= sortable "section_id", t("general.section") %></th>    
+    <th width="5%"><%= sortable "row_id", t("general.row") %></th>    
+    <th width="5%"><%= sortable "plot_id", t("general.plot") %></th>
+    <th width="10%"><%= sortable "grafe_id", t("general.grave") %></th>
+    <th width="10%"><%= sortable "delegation_department_id", t("general.department") %></th>
+    <th width="5%"><%= sortable "work_date", t("general.workDate") %></th>
+    <th width="5%"><%= sortable "completion_date", t("general.completionDate") %></th>
+    <th width="10%"><%= sortable "completed_user_id", t("general.completedBy") %></th>
+    <th width="5%"><%= sortable "is_completed", t("general.completed") %></th>
+    <th width="15%"><%= t("general.actions") %></th>
+  </tr>
+ </thead> 
+  
+  <tbody>
+    <% if @o_all.size > 0 %>
+      <% @o_all.each do |o_row| %>
+        <tr>
+          <td><%= o_row.name %></td>
+          
+          <td><%= o_row.area.code unless o_row.area_id.nil? %></td>
+          <td><%= o_row.section.code unless o_row.section_id.nil? %></td>
+          <td><%= o_row.row.name unless o_row.row_id.nil? %></td>
+          <td><%= o_row.plot.name unless o_row.plot_id.nil? %></td>                    
+          <td><%= o_row.grafe.grave_number unless o_row.grafe_id.nil? %></td>
+          <td><%= o_row.delegation_department.name unless o_row.delegation_department.nil? %></td>
+          <td><%= o_row.work_date.to_s(:year_month_day) unless o_row.work_date.nil? %></td>
+          <td><%= o_row.completion_date.to_s(:year_month_day) unless o_row.completion_date.nil? %></td>
+          <td><%= o_row.completed_by.name unless o_row.completed_user_id.nil? %></td>
+          <td><%= o_row.is_completed ? image_tag("Yes.gif") : image_tag("No.gif") %></td>
+          <td> 
+			      <%= link_to t('.edit', :default => t("helpers.links.edit")),
+			                  edit_work_order_path(o_row), :class => 'btn btn-mini' %>
+			      <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+			                  work_order_path(o_row),
+			                  :method => :delete,
+			                  :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+			                  :class => 'btn btn-mini btn-danger' %>
+          </td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr><th colspan="12"><%= t("general.record_not_found") %></th></tr>
+    <% end %>      
+  </tbody>
+</table>
+<div class="fRight">
+	<%= will_paginate @o_all %>
+</div>	

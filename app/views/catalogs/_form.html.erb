@@ -4,7 +4,7 @@
 		<%= f.hidden_field :cemetery_id, :value => session[:cemetery_id] %> 
 		
     <div class="control-group">
-      <%= f.label :name, :class => 'control-label' %><span class="redStart">*</span>
+      <%= f.label :product_name, :class => 'control-label' %><span class="redStart">*</span>
       <div class="controls">
         <%= f.text_field :name, :class => 'text_field' %>
        	<% if @o_single.errors[:name].any? %>
@@ -12,6 +12,13 @@
       	<% end %> 
       </div>
     </div>
+    
+   	<div class="control-group">
+      <%= f.label :category_id, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.select :category_id, options_for_select(get_category_data, (@o_single.category_id unless @o_single.category.nil?)) %>
+      </div>
+    </div>    
     
     <div class="control-group">
       <%= f.label :description, :class => 'control-label' %>

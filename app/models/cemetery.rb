@@ -19,6 +19,11 @@ class Cemetery < ActiveRecord::Base
   has_many :users, :dependent => :destroy
   has_many :role_permissions, :dependent => :destroy
   
+  has_many :work_orders, :dependent => :destroy
+  has_many :work_types, :dependent => :destroy
+  has_many :delegation_departments, :dependent => :destroy
+  has_many :categories, :dependent => :destroy
+  
   validates :name, :presence => true
   validates :country_id, :presence => true
   

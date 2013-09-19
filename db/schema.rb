@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130917182904) do
+ActiveRecord::Schema.define(version: 20130919200320) do
 
   create_table "areas", force: true do |t|
     t.integer  "cemetery_id"
@@ -172,10 +172,20 @@ ActiveRecord::Schema.define(version: 20130917182904) do
 
   create_table "catalogs", force: true do |t|
     t.integer  "cemetery_id"
+    t.integer  "category_id"
     t.string   "name"
     t.text     "description"
     t.float    "cost_price"
     t.float    "special_cost_price"
+    t.boolean  "is_active",          default: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "categories", force: true do |t|
+    t.integer  "cemetery_id"
+    t.string   "name"
+    t.integer  "parent_category_id"
     t.boolean  "is_active",          default: true
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -231,6 +241,15 @@ ActiveRecord::Schema.define(version: 20130917182904) do
   create_table "countries", force: true do |t|
     t.string   "name"
     t.boolean  "is_active",  default: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "delegation_departments", force: true do |t|
+    t.integer  "cemetery_id"
+    t.string   "name"
+    t.string   "contact_number"
+    t.boolean  "is_active",      default: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -474,7 +493,7 @@ ActiveRecord::Schema.define(version: 20130917182904) do
     t.integer  "stonemason_id"
     t.string   "permit_number"
     t.string   "phone_number"
-    t.datetime "received_date"
+    t.date     "received_date"
     t.string   "received_by"
     t.integer  "area_id"
     t.integer  "section_id"
@@ -648,6 +667,48 @@ ActiveRecord::Schema.define(version: 20130917182904) do
     t.string   "current_login_ip"
     t.string   "last_login_ip"
     t.boolean  "is_active",          default: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "work_orders", force: true do |t|
+    t.integer  "cemetery_id"
+    t.integer  "area_id"
+    t.integer  "section_id"
+    t.integer  "row_id"
+    t.integer  "plot_id"
+    t.integer  "grafe_id"
+    t.string   "title"
+    t.string   "first_name"
+    t.string   "middle_name"
+    t.string   "surname"
+    t.text     "address"
+    t.string   "email"
+    t.string   "state"
+    t.string   "town"
+    t.string   "postal_code"
+    t.string   "phone_area_code"
+    t.string   "phone"
+    t.string   "fax_area_code"
+    t.string   "fax"
+    t.text     "customer_notes"
+    t.integer  "delegation_department_id"
+    t.text     "description"
+    t.integer  "work_type_id"
+    t.date     "work_date"
+    t.date     "completion_date"
+    t.integer  "completed_user_id"
+    t.integer  "catalog_id"
+    t.string   "receipt_number"
+    t.boolean  "is_completed",             default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "work_types", force: true do |t|
+    t.integer  "cemetery_id"
+    t.string   "name"
+    t.boolean  "is_active",   default: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end

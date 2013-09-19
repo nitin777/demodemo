@@ -143,7 +143,9 @@ class FrontsController < ApplicationController
     elsif params[:maintenance] and params[:maintenance][:area_id] != ''
       area_id = params[:maintenance][:area_id]
     elsif params[:permit] and params[:permit][:area_id] != ''
-      area_id = params[:permit][:area_id]      
+      area_id = params[:permit][:area_id]
+    elsif params[:work_order] and params[:work_order][:area_id] != ''
+      area_id = params[:work_order][:area_id]                  
     end
     
     unless area_id.blank?
@@ -170,6 +172,8 @@ class FrontsController < ApplicationController
       section_id = params[:maintenance][:section_id]
     elsif params[:permit] and params[:permit][:section_id] != ''
       section_id = params[:permit][:section_id]      
+    elsif params[:work_order] and params[:work_order][:section_id] != ''
+      section_id = params[:work_order][:section_id]      
     end
     
     unless section_id.blank?
@@ -194,6 +198,8 @@ class FrontsController < ApplicationController
       row_id = params[:maintenance][:row_id]
     elsif params[:permit] and params[:permit][:row_id] != ''
       row_id = params[:permit][:row_id]      
+    elsif params[:work_order] and params[:work_order][:row_id] != ''
+      row_id = params[:work_order][:row_id]      
     end
     
     unless row_id.blank?
@@ -216,6 +222,8 @@ class FrontsController < ApplicationController
       plot_id =  params[:maintenance][:plot_id]
     elsif params[:permit] and params[:permit][:plot_id] != ''
       plot_id =  params[:permit][:plot_id]      
+    elsif params[:work_order] and params[:work_order][:plot_id] != ''
+      plot_id =  params[:work_order][:plot_id]      
     end
     
     unless plot_id.blank?

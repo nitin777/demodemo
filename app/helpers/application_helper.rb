@@ -9,6 +9,10 @@ module ApplicationHelper
     link_to title, params.merge(:sort => column, :direction => direction, :page => nil), :class => direction, :remote => true
   end
 
+  def get_normal_staff
+    [["Select", ""]] + @cemetery.users.all_normal_staff.collect {|r| [r.name, r.id]} 
+  end
+  
   def get_all_pages
 		StaticPage.footer	
   end
@@ -33,8 +37,28 @@ module ApplicationHelper
     Role.all.collect {|r| [r.role_type, r.id]} 
   end
   
+  def get_parent_category
+    [["Select", ""]] + Category.parent_categories.active.collect {|r| [r.name, r.id]} 
+  end  
+  
   def get_permit_data
-    [["Select", ""]] + Permit.all.collect {|r| [r.permit_number, r.id]}
+    [["Select", ""]] + @cemetery.permits.collect {|r| [r.permit_number, r.id]}
+  end
+  
+  def get_catalog_data
+    [["Select", ""]] + @cemetery.catalogs.collect {|r| [r.name, r.id]}
+  end
+  
+  def get_delegation_department_data
+    [["Select", ""]] + @cemetery.delegation_departments.collect {|r| [r.name, r.id]}
+  end    
+    
+  def get_work_type_data
+    [["Select", ""]] + @cemetery.work_types.collect {|r| [r.name, r.id]}
+  end  
+  
+  def get_category_data
+    [["Select", ""]] + @cemetery.categories.collect {|r| [r.name, r.id]}
   end
   
   def get_charge_data

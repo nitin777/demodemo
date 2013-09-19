@@ -9,6 +9,11 @@ Ocms::Application.routes.draw do
   resources :countries
   resources :cemeteries
   
+  resources :categories
+  resources :work_orders
+  resources :work_types
+  resources :delegation_departments
+  
   resources :areas
   resources :bookings
   resources :catalogs

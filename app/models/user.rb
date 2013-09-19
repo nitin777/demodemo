@@ -40,6 +40,7 @@ class User < ActiveRecord::Base
 	
 	scope :all_stone_masons, joins(:role).where(:roles => { :role_type => "StoneMason" })
 	scope :all_funeral_directors, joins(:role).where(:roles => { :role_type => "FuneralDirector" })
+	scope :all_normal_staff, joins(:role).where(:roles => { :role_type => "NormalStaff" })
 	
 	scope :active, -> {where(:is_active => true)}
 	

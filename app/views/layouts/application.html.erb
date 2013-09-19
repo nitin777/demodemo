@@ -18,13 +18,13 @@
       current_action = controller.action_name
       
       cem_contollers_arr = %w(areas sections rows plots graves grantees cemeteries grantee_graves 
-      												grantee_graves grave_histories letters letter_variables chapels rooms monuments catalogs)
+      												grantee_graves grave_histories letters letter_variables chapels rooms monuments catalogs categories)
       												
 			booking_contollers_arr = %w(bookings facilities)
 			
 			user_contollers_arr = %w(users role_permissions)
       												
-      maintenance_contollers_arr = %w(maintenances maintenance_companies permits permit_charges)      												
+      maintenance_contollers_arr = %w(maintenances maintenance_companies permits permit_charges work_types delegation_departments work_orders)      												
       
       admin_contollers_arr = %w(countries denominations diseases grave_statuses identities service_types unit_types coffins payment_statuses 
       													stone_mason_work_types charges)
@@ -56,6 +56,7 @@
 							<li class="<%= 'active' if current_controller_name == 'chapels' %>"><%= link_to t("general.chapels"), chapels_path %></li>
 							<li class="<%= 'active' if current_controller_name == 'rooms' %>"><%= link_to t("general.rooms"), rooms_path %></li>
 							<li class="<%= 'active' if current_controller_name == 'monuments' %>"><%= link_to t("general.monuments"), monuments_path %></li>
+							<li class="<%= 'active' if current_controller_name == 'categories' %>"><%= link_to t("general.categories"), categories_path %></li>
 							<li class="<%= 'active' if current_controller_name == 'catalogs' %>"><%= link_to t("general.catalogs"), catalogs_path %></li>							
 							<li class="<%= 'active' if (current_controller_name == 'letters' and session[:letters] == 'true')%>"><%= link_to t("general.letters"), letters_path(:letters => true) %></li>
 							<li class="<%= 'active' if (current_controller_name == 'letters' and session[:letters] == 'false') %>"><%= link_to t("general.certificates"), letters_path(:letters => false) %></li>
@@ -79,9 +80,14 @@
 				
 				<% elsif maintenance_contollers_arr.include?(current_controller_name) and current_user %>
 					<div class="span2">
-						<ul class="nav nav-pills nav-stacked">				
+						<ul class="nav nav-pills nav-stacked">
+							<li class="<%= 'active' if current_controller_name == 'maintenance_companies' %>"><%= link_to t("general.maintenance_companies"), maintenance_companies_path %></li>				
 							<li class="<%= 'active' if current_controller_name == 'maintenances' %>"><%= link_to t("general.maintenances"), maintenances_path %></li>
-							<li class="<%= 'active' if current_controller_name == 'maintenance_companies' %>"><%= link_to t("general.maintenance_companies"), maintenance_companies_path %></li>
+							
+							<li class="<%= 'active' if current_controller_name == 'delegation_departments' %>"><%= link_to t("general.delegation_departments"), delegation_departments_path %></li>				
+							<li class="<%= 'active' if current_controller_name == 'work_types' %>"><%= link_to t("general.work_types"), work_types_path %></li>
+							<li class="<%= 'active' if current_controller_name == 'work_orders' %>"><%= link_to t("general.work_orders"), work_orders_path %></li>
+							
 							<li class="<%= 'active' if current_controller_name == 'permits' %>"><%= link_to t("general.permits"), permits_path %></li>
 							<li class="<%= 'active' if current_controller_name == 'permit_charges' %>"><%= link_to t("general.permit_charges"), permit_charges_path %></li>
 						</ul>  
