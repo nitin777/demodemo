@@ -24,10 +24,10 @@
 			
 			user_contollers_arr = %w(users role_permissions)
       												
-      maintenance_contollers_arr = %w(maintenances maintenance_companies permits permit_charges work_types delegation_departments work_orders)      												
+      maintenance_contollers_arr = %w(maintenances maintenance_companies permits work_types delegation_departments work_orders)      												
       
       admin_contollers_arr = %w(countries denominations diseases grave_statuses identities service_types unit_types coffins payment_statuses 
-      													stone_mason_work_types charges)
+      													stone_mason_work_types)
       
       #unless cem_contollers_arr.include?(current_controller_name)
       	#session[:cemetery_id] = nil
@@ -89,7 +89,6 @@
 							<li class="<%= 'active' if current_controller_name == 'work_orders' %>"><%= link_to t("general.work_orders"), work_orders_path %></li>
 							
 							<li class="<%= 'active' if current_controller_name == 'permits' %>"><%= link_to t("general.permits"), permits_path %></li>
-							<li class="<%= 'active' if current_controller_name == 'permit_charges' %>"><%= link_to t("general.permit_charges"), permit_charges_path %></li>
 						</ul>  
 					</div>  
 					<div class="span10">
@@ -109,7 +108,6 @@
 							<li class="<%= 'active' if current_controller_name == 'coffins' %>"><%= link_to t("general.coffins"), coffins_path %></li>
 							<li class="<%= 'active' if current_controller_name == 'payment_statuses' %>"><%= link_to t("general.payment_status"), payment_statuses_path %></li>
 							<li class="<%= 'active' if current_controller_name == 'stone_mason_work_types' %>"><%= link_to t("general.work_types"), stone_mason_work_types_path %></li>
-							<li class="<%= 'active' if current_controller_name == 'charges' %>"><%= link_to t("general.charges"), charges_path %></li>
 						</ul>  
 					</div>  
 					<div class="span10">

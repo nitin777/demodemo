@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130919200320) do
+ActiveRecord::Schema.define(version: 20130920130637) do
 
   create_table "areas", force: true do |t|
     t.integer  "cemetery_id"
@@ -268,6 +268,13 @@ ActiveRecord::Schema.define(version: 20130919200320) do
     t.datetime "updated_at"
   end
 
+  create_table "document_shares", force: true do |t|
+    t.integer  "document_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "facilities", force: true do |t|
     t.integer  "cemetery_id"
     t.integer  "user_id"
@@ -296,6 +303,20 @@ ActiveRecord::Schema.define(version: 20130919200320) do
     t.string   "special_instruction"
     t.string   "receipt_number"
     t.boolean  "is_finalized",        default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "folders", force: true do |t|
+    t.integer  "cemetery_id"
+    t.integer  "user_id"
+    t.integer  "folder_id"
+    t.string   "name"
+    t.string   "document_type"
+    t.string   "file_path"
+    t.string   "file_content_type"
+    t.float    "file_size",         default: 0.0
+    t.boolean  "is_folder",         default: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -506,6 +527,9 @@ ActiveRecord::Schema.define(version: 20130919200320) do
     t.date     "deceased_date_death"
     t.integer  "deceased_age"
     t.integer  "grantee_id"
+    t.integer  "catalog_id"
+    t.string   "quantity"
+    t.integer  "total_charge",        default: 0
     t.text     "comment"
     t.boolean  "checklist_received",  default: false
     t.boolean  "paperwork_correct",   default: false

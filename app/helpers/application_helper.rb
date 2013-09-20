@@ -9,9 +9,7 @@ module ApplicationHelper
     link_to title, params.merge(:sort => column, :direction => direction, :page => nil), :class => direction, :remote => true
   end
 
-  def get_normal_staff
-    [["Select", ""]] + @cemetery.users.all_normal_staff.collect {|r| [r.name, r.id]} 
-  end
+
   
   def get_all_pages
 		StaticPage.footer	
@@ -58,7 +56,7 @@ module ApplicationHelper
   end  
   
   def get_category_data
-    [["Select", ""]] + @cemetery.categories.collect {|r| [r.name, r.id]}
+    [["Select", ["Select1", ["Select2", ""]]]]
   end
   
   def get_charge_data
@@ -77,19 +75,27 @@ module ApplicationHelper
     Role.where("role_type != ?", SUPER_ADMIN).collect {|r| [r.role_type, r.id]} 
   end  
       
+  def get_normal_staff 
+    if @cemetery
+      [["Select", ""]] + User.all_normal_staff(@cemetery.id).active.collect {|r| [r.username, r.id]}
+    else
+      [["Select", ""]]
+    end     
+  end      
+      
   def get_stone_masons
     if @cemetery
-      [["Select", ""]] + @cemetery.users.all_stone_masons.active.collect {|r| [r.username, r.id]}
+      [["Select", ""]] + User.all_stone_masons(@cemetery.id).active.collect {|r| [r.username, r.id]}
     else
-      [["Select", ""]] + User.all_stone_masons.active.collect {|r| [r.username, r.id]}
+      [["Select", ""]]
     end     
   end
 
   def get_funeral_directors
     if @cemetery
-      [["Select", ""]] + @cemetery.users.all_funeral_directors.active.collect {|r| [r.username, r.id]}
+      [["Select", ""]] + User.all_funeral_directors(@cemetery.id).active.collect {|r| [r.username, r.id]}
     else
-      [["Select", ""]] + User.all_funeral_directors.active.collect {|r| [r.username, r.id]}
+      [["Select", ""]]
     end     
   end
   

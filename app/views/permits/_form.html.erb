@@ -137,11 +137,39 @@
     </tr> 
     
     <tr>
-      <td colspan="2">	 
+		  <td>
+			 	<div class="control-group">
+			    <%= f.label :catalog_id, :class => 'control-label' %>
+			    <div class="controls">
+			      <%= f.select :catalog_id, options_for_select(get_catalog_data, (@o_single.catalog.id unless @o_single.catalog.nil?)) %>
+			    </div>
+			  </div>
+		  </td>    	
+		  
+		  <td>
+			 	<div class="control-group">
+			    <%= f.label :quantity, :class => 'control-label' %>
+			    <div class="controls">
+			      <%= f.text_field :quantity, :class => 'text_field' %>
+			    </div>
+			  </div>
+		  </td>
+		</tr>
+		  
+		<tr>	 
+		  <td>
+			 	<div class="control-group">
+			    <label class = 'control-label'><%= t("general.total_charge") %></label>
+			    <div class="controls">
+			      <%= f.text_field :total_charge, :class => 'text_field' %>
+			    </div>
+			  </div>
+		  </td>			 
+      <td>	 
 		    <div class="control-group">
 		      <%= f.label :comment, :class => 'control-label' %>
 		      <div class="controls">
-		        <%= f.text_area :comment, :class => 'text_field textAreaMedium' %>
+		        <%= f.text_area :comment, :class => 'text_field' %>
 		      </div>
 		    </div>
       </td>

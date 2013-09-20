@@ -38,9 +38,9 @@ class User < ActiveRecord::Base
   has_many :permits, :dependent => :destroy	
 	has_many :facilities
 	
-	scope :all_stone_masons, joins(:role).where(:roles => { :role_type => "StoneMason" })
-	scope :all_funeral_directors, joins(:role).where(:roles => { :role_type => "FuneralDirector" })
-	scope :all_normal_staff, joins(:role).where(:roles => { :role_type => "NormalStaff" })
+	scope :all_stone_masons, lambda { |cemetery_id| joins(:role, :cemetery).where(:roles => { :role_type => "StoneMason" }, :cemeteries => {:id => cemetery_id}) }
+	scope :all_funeral_directors, lambda { |cemetery_id| joins(:role, :cemetery).where(:roles => { :role_type => "FuneralDirector" }, :cemeteries => {:id => cemetery_id}) }
+	scope :all_normal_staff, lambda { |cemetery_id| joins(:role, :cemetery).where(:roles => { :role_type => "NormalStaff" }, :cemeteries => {:id => cemetery_id}) }
 	
 	scope :active, -> {where(:is_active => true)}
 	

@@ -47,6 +47,11 @@ Ocms::Application.routes.draw do
   resources :permit_charges
   resources :charges
   
+  resources :folders
+  resources :document_shares
+  
+  get '/sub_folders/:parent_folder_id' => 'folders#sub_folders', :as => :sub_folders
+  
   get 'logout' => 'user_sessions#destroy', :as => :logout
   get 'login' => 'user_sessions#new', :as => :login
   

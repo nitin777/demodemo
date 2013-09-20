@@ -8,6 +8,7 @@ class Permit < ActiveRecord::Base
   belongs_to :grafe
   belongs_to :booking  
   belongs_to :grantee
+  belongs_to :catalog
   has_many :permit_charges
   include SearchHandler
   validates :permit_number, :presence => true
