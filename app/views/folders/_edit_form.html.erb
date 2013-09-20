@@ -11,25 +11,15 @@
       	<% end %> 
       </div>
     </div>
-    
-   	<div class="control-group">
-      <%= f.label :document_type, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.select :document_type, options_for_select(get_document_types, (@o_single.document_type unless @o_single.document_type.blank?)) %>
-      </div>
-    </div>    
 
-	    <div class="control-group">
-	      <%= f.label :document, :class => 'control-label' %>
+		<% unless @o_single.is_folder %>    
+	   	<div class="control-group">
+	      <%= f.label :document_type, :class => 'control-label' %>
 	      <div class="controls">
-	        <%= f.file_field :file_path, :class => 'text_field' %>
+	        <%= f.select :document_type, options_for_select(get_document_types, (@o_single.document_type unless @o_single.document_type.blank?)) %>
 	      </div>
-	    </div>
-	    
-			<%= f.hidden_field :cemetery_id, :value => session[:cemetery_id] %> 
-			<%= f.hidden_field :user_id, :value => current_user.id %>
-			<%= f.hidden_field :folder_id, :value => (session[:parent_folder_id] ? session[:parent_folder_id] : nil) %>
-			<%= f.hidden_field :is_folder, :value => false %>   
+	    </div>    
+	   <% end %> 
     
     <div class="control-group">
       <%= f.label :description, :class => 'control-label' %>

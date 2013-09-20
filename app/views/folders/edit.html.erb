@@ -1,5 +1,4 @@
-<%- model_class = Document -%>
 <div class="page-header">
-  <h4><%=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize %></h4>
+  <h4><%= t("general.edit_document") %></h4>
 </div>
-<%= render :partial => 'form' %>
+<%= render :partial => 'edit_form' %>

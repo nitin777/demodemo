@@ -1,0 +1,22 @@
+<%= form_for @o_single, :html => { :class => 'form-horizontal' } do |f| %>
+  <fieldset>
+    <legend></legend>
+		<%= f.hidden_field :folder_id, :value => session[:document_share_id] %> 
+   	<div class="control-group">
+      <%= f.label :add_user, :class => 'control-label' %><span class="redStart">*</span>
+      <div class="controls">
+        <%= f.select :user_id, options_for_select(get_cemetery_users_data) %>
+       	<% if @o_single.errors[:user_id].any? %>
+        	<span class="text-error text-message"><%= @o_single.errors[:user_id].first %></span>
+      	<% end %>         
+      </div>
+    </div>
+ 
+    <div class="form-actions">
+      <%= f.submit t("general.add"), :class => 'btn btn-primary' %>
+      <%= link_to 'Cancel', folders_url, :class => 'btn' %>
+    </div>
+    
+  </fieldset>
+     
+<% end %>

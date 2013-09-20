@@ -1,80 +1,81 @@
-<div class="rightBlock width50">
-	<div class="profielView">
-	<% if @folder_tree %>
-		<%= image_tag("design_folder.png", :width => "22", :height => "17") %>&nbsp;&nbsp;<%= @folder_tree.join(" -> ") %>
-	<% end %>
-  <table width="100%" border="0" cellspacing="0" cellpadding="0">
-    <tr>
-      <td width="45%" class="darkBorder"><span>Name<%= link_to image_tag("add_folder.png", :width => "22"), "#", :class => 'titleIconImg', :id => "folder_new" %></span></td>
-      <td width="20%" class="darkBorder"><span><%= t("general.type") %></span></td>
-      <td width="20%" class="darkBorder"><span><%= t("general.date_modified")%></span></td>
-      <!--<td width="15%" class="darkBorder"><span><%#= t("general.actions")%></span></td>-->
-    </tr>
-    <% if session[:parent_folder_id] %>
-    	<% if @o_folder.parent_folder.nil? %>
-    		<tr><td><%= link_to "..", folders_path %></td></tr>
-    	<% else %>
-    		<tr><td><%= link_to "..", sub_folders_path(@o_folder.parent_folder.id) %></td></tr>
-    	<% end %>	
-    <% end %>
-    
-    <% @o_all.each do |o_row| %>
-      <tr>
-        <td>
-        	<% if o_row.is_folder %>
-        		<%= link_to image_tag("design_folder.png", :width => "22", :height => "17"), sub_folders_path(o_row.id) %>&nbsp;&nbsp;<%= o_row.name %>
-        	<% else %>
-        		<div data-no-turbolink><%= link_to o_row.name, download_path(o_row.name.gsub(".", ",")) %></div>
-        	<% end %>	
-        </td>
-        <td><%= o_row.file_content_type %></td>
-        <td><%= o_row.updated_at.to_s(:pretty) %></td>
-        <td>
-		      <%#= link_to t('.destroy', :default => t("helpers.links.destroy")),
-		                  #folder_path(o_row),
-		                  #:method => :delete,
-		                  #:data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-		                  #:class => 'btn btn-mini btn-danger' %>
-        </td>
-      </tr>
-    <% end %>
-  </table>
-  </div>
+<% if @folder_tree %>
+	<%= image_tag("design_folder.png", :width => "22", :height => "17") %>&nbsp;&nbsp;<%= @folder_tree.join(" -> ") %>
+<% end %>
+<table class="table table-striped">
+ <thead> 
+  <tr>
+    <th width="20%"><%= sortable "name", t("general.title") %><%= link_to image_tag("add_folder.png", :width => "22"), "#", :class => 'titleIconImg', :id => "folder_new", :title => t("general.create_new_folder") %></th>
+    <th width="20%"><%= t("general.document_name") %></th>
+    <th width="20%"><%= sortable "document_type", t("general.document_type") %></th>
+    <th width="20%"><%= sortable "user_id", t("general.created_by") %></th>
+    <th width="20%"><%= t("general.actions") %></th>
+  </tr>
+  <% if session[:parent_folder_id] %>
+  	<% if @o_folder.parent_folder.nil? %>
+  		<tr><td><%= link_to "..", folders_path %></td></tr>
+  	<% else %>
+  		<tr><td><%= link_to "..", sub_folders_path(@o_folder.parent_folder.id) %></td></tr>
+  	<% end %>	
+  <% end %>  
+ </thead> 
+  
+  <tbody>
+    <% if @o_all.size > 0 %>
+	    <% @o_all.each do |o_row| %>
+	      <tr>
+	      	<% if o_row.is_folder %>
+		        <td>
+		        		<%= link_to image_tag("design_folder.png", :width => "22", :height => "17"), sub_folders_path(o_row.id) %>&nbsp;&nbsp;<%= o_row.name %>
+		        </td>
+		        <td>
+		        	<%= "-" %>
+		        </td>			
+	       	<% else %>
+	       		<td>
+	        		<%= o_row.name %>
+	        	</td>
+	        	<td>
+	        		<div data-no-turbolink><%= link_to o_row.file_name, download_path(o_row.file_name.gsub(".", ",")) %></div>
+	        	</td>	
+	        <% end %>	
+	        
+	        <td><%= o_row.document_type %></td>
+	        <td><%= o_row.user.name unless o_row.user.nil? %></td>
+	        
+	        <td>
+			      <%= link_to t('.edit', :default => t("helpers.links.edit")),
+			                  edit_folder_path(o_row), :class => 'btn btn-mini' %>	        	
+			      <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+			                  folder_path(o_row),
+			                  :method => :delete,
+			                  :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+			                  :class => 'btn btn-mini btn-danger' %>
+			      <% unless o_row.is_folder %>            
+				      <%= link_to t("general.collaborators"),
+				                  document_shares_path(:id => o_row.id), :class => 'btn btn-mini' %>			                  
+				    <% end %>              
+			                  
+	        </td>
+	      </tr>
+	    <% end %>
+    <% else %>
+      <tr><th colspan="6"><%= t("general.record_not_found") %></th></tr>
+    <% end %>      
+  </tbody>
+</table>
+<div class="fRight">
+	<%= will_paginate @o_all %>
 </div>	
-	
+
 <div id="myModal" class="reveal-modal">
-	<%= render 'form' %>
+	<%= render 'create_folder' %>
 </div>
-<div id="shareEmail" class="reveal-modal">
-	<%= render 'shares/form' %>
-</div>
+
 <script>
 	$(function() {
 		$("#folder_new").click(function () {
 			$('#myModal').reveal();
 		});			
-		
-		$("#share_email").click(function () {
-			$('#shareEmail').reveal();  
-		});
-
-		$("#facebook_connect").click(function() {
-            window.open('<%= facebook_connect_path %>', '', 'location=0,status=0,width=1000,height=580')
-        });
-
-        $("#twitter_connect").click(function() {
-            window.open('<%= twitter_connect_path %>', '', 'location=0,status=0,width=690,height=675')
-        });
-
-		$("#save_on_cloud").click(function () {
-			if ($("#folder_file_path").val() == "") {
-				alert("Please choose file");
-				return;
-			}else {
-				$('#spinner').show();
-				$('.attachmentsUpload').submit();
-			}
-		});
 		
 		$("#save_new").click(function () {
 			if ($("#folder_name").val() == "") {
@@ -86,8 +87,4 @@
 		});
 	});
 
-	function sharedMessage(bShared, message)
-    {
-        alert(message)
-    }
 </script>

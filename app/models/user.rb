@@ -37,6 +37,8 @@ class User < ActiveRecord::Base
   has_many :maintenance_companies, :dependent => :destroy  
   has_many :permits, :dependent => :destroy	
 	has_many :facilities
+	has_many :folders
+	has_many :document_shares, :dependent => :destroy
 	
 	scope :all_stone_masons, lambda { |cemetery_id| joins(:role, :cemetery).where(:roles => { :role_type => "StoneMason" }, :cemeteries => {:id => cemetery_id}) }
 	scope :all_funeral_directors, lambda { |cemetery_id| joins(:role, :cemetery).where(:roles => { :role_type => "FuneralDirector" }, :cemeteries => {:id => cemetery_id}) }

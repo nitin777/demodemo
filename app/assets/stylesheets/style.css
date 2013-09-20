@@ -52,7 +52,7 @@ img { border:0; outline:0;}
 .titleIconImg { margin:0 0 -5px 10px; }
 
 /*Style for Popup Block*/
-.popupBox { margin:0 auto; padding:15px; width:520px; background:#fff; border:#0cae81 solid 15px; border-radius:5px; -web-border-radius:5px; -moz-border-radius:5px; font-size:12px; color:#565656;}
+.popupBox { margin:0 auto; padding:15px; width:520px; background:#fff; border:#777 solid 15px; border-radius:5px; -web-border-radius:5px; -moz-border-radius:5px; font-size:12px; color:#565656;}
 .popupBox h2 { margin:0; padding:0 0 12px 142px; font-family:'CalibriRegular'; font-size:18px; font-weight:normal; color:#0cae81;}
 .popupBox p { margin:0; padding:0 0 10px 0; }
 .inputLabel { padding:0; margin:0 0 17px 0; float:left; width:100% }
@@ -137,7 +137,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0cb788', end
     padding: 19px 10px 10px 35px;
 }
 a.defaultBtn{
-	background: #0CAE81;
+	background: #777;
 	color: #FFFFFF;
 	border-radius: 5px;
 	text-decoration: none;

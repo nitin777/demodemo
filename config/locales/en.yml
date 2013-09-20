@@ -199,3 +199,7 @@ en:
     grave_transfer_certificate: "Grave transfer certificate"
     read_more: "read more"
     total_charge: "Total Charge ($)"
+    document_name: "Document Name"
+    create_document: "Create document"
+    update_document: "Update document"
+    create_new_folder: "Create new folder"

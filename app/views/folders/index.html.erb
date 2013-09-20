@@ -1,3 +1,17 @@
+<%= hidden_field_tag :direction, params[:direction] %>
+<%= hidden_field_tag :sort, params[:sort] %>
+    
+<div class="page-header">
+  <h4><%= t("general.documents") %></h4>
+</div>
+
+<div class="searchRight">
+
+	<%= link_to t("general.add_document"),
+	            new_folder_path,
+	            :class => 'btn btn-primary btn-small' %>
+</div>	
+
 <div id="div_update">
 	<%= render "fetchAll" %>
 </div>

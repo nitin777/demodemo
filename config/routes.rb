@@ -64,8 +64,6 @@ Ocms::Application.routes.draw do
   get '/interment_grave_details/:id' => 'fronts#interment_grave_details', :as => :interment_grave_details
   get '/interment_grantee_details/:id' => 'fronts#interment_grantee_details', :as => :interment_grantee_details
   
-  
-  
   get '/get_section_from_area' => 'fronts#get_section_from_area', :as => :get_section_from_area
   get '/get_section_row_from_area' => 'fronts#get_section_row_from_area', :as => :get_section_row_from_area  
   get '/get_row_from_section' => 'fronts#get_row_from_section', :as => :get_row_from_section
@@ -75,11 +73,6 @@ Ocms::Application.routes.draw do
   get '/get_cemetery_from_country' => 'fronts#get_cemetery_from_country', :as => :get_cemetery_from_country
   
   get '/set_permission/:id/:access' => 'role_permissions#set_permission', :as => :set_permission
-  
-  
-  
-  
-  
   
   get '/get_section_row_plot_grave_from_area' => 'fronts#get_section_row_plot_grave_from_area', :as => :get_section_row_plot_grave_from_area
   get '/get_row_plot_grave_from_section' => 'fronts#get_row_plot_grave_from_section', :as => :get_row_plot_grave_from_section
@@ -102,6 +95,8 @@ Ocms::Application.routes.draw do
   
   
   get 'print_letter/:letter_id/:booking_id' => 'bookings#print_letter', :as => :print_letter
+  
+  get '/OCMS/:name' => 'folders#download', :as => :download
   
   root 'fronts#index'    
     

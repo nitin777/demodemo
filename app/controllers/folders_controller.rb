@@ -1,5 +1,6 @@
 class FoldersController < ApplicationController
-  require 'crypt/blowfish' 
+  #require 'crypt/blowfish'
+  require 'open-uri' 
   before_action :set_folder, only: [:show, :edit, :update, :destroy]
   helper_method :sort_column, :sort_direction
   before_action :require_user
@@ -9,10 +10,9 @@ class FoldersController < ApplicationController
   # GET /folders.json
   def index
     session[:parent_folder_id] = nil
-    @o_all = current_user.folders.parent_folders.order("is_folder desc")
+    @o_all = current_user.folders.parent_folders.order("is_folder desc").paginate(:per_page => 10, :page => params[:page])
     @o_single = Folder.new
     @folder = session[:folder_temp_id] ? (Folder.find(session[:folder_temp_id])) : nil
-    @o_share = Share.new
   end
   
   def sub_folders
@@ -20,17 +20,11 @@ class FoldersController < ApplicationController
     @folder = session[:folder_temp_id] ? (Folder.find(session[:folder_temp_id])) : nil
     @o_single = Folder.new
     
-    @o_share = Share.new
-    
     if session[:parent_folder_id]
       @o_folder = Folder.find(params[:parent_folder_id])
-      if @o_folder.parent_folder.nil?
-        @o_all = @o_folder.folders
-      else
-        @o_all = @o_folder.folders
-      end  
+      @o_all = @o_folder.folders.paginate(:per_page => 10, :page => params[:page]) 
     else
-      @o_all = current_user.folders.parent_folders
+      @o_all = current_user.folders.parent_folders.paginate(:per_page => 10, :page => params[:page])
     end
     
     @folder_tree = []
@@ -45,6 +39,20 @@ class FoldersController < ApplicationController
     
     render action: 'index'
   end
+  
+  def download 
+    file = Folder.find_by_file_name(params[:name].gsub(",", "."))
+    if file and file.file_path
+      data = open(file.file_path.to_s)
+      send_data  data.read,
+                  :filename => file.file_name,
+                  :type => "application/force-download",
+                  :disposition => 'attachment'
+    else
+      flash[:notice] = t("general.file_does_not_exist")
+      redirect_to folders_path              
+    end                  
+  end  
   
   # GET /folders/1
   # GET /folders/1.json
@@ -70,8 +78,8 @@ class FoldersController < ApplicationController
         if params[:folder] and params[:folder][:file_path]
           @o_single.file_size = @o_single.file_path.size.to_f          
           @o_single.file_content_type = params[:folder][:file_path].content_type
-          @o_single.name = @o_single.file_path.filename
-          @o_single.is_folder = false
+          @o_single.file_name = @o_single.file_path.filename
+          
           @o_single.save
           session[:folder_temp_id] = @o_single.id
           notice = t("general.successfully_created")

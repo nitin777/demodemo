@@ -30,6 +30,10 @@ module ApplicationHelper
   def letter_type_data
     [["Select Option", ""]] + [["Interment", "Interment"]] + [["Grave Care", "Grave Care"]] + [["Permit", "Permit"]]
   end  
+  
+  def get_document_types
+    [["Select Type", ""]] + [["Interment", "Interment"]] + [["Permit", "Permit"]] + [["Work Order", "Work Order"]] + [["Personal", "Personal"]]
+  end
 
   def super_admin_access_roles
     Role.all.collect {|r| [r.role_type, r.id]} 
@@ -81,7 +85,15 @@ module ApplicationHelper
     else
       [["Select", ""]]
     end     
-  end      
+  end    
+  
+  def get_cemetery_users_data 
+    if @cemetery
+      [["Select", ""]] + @cemetery.users.active.collect {|r| [r.username, r.id]}
+    else
+      [["Select", ""]]
+    end     
+  end     
       
   def get_stone_masons
     if @cemetery

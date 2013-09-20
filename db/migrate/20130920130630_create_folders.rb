@@ -5,8 +5,10 @@ class CreateFolders < ActiveRecord::Migration
       t.references :user
       t.references :folder
       t.string :name
+      t.text :description
       t.string :document_type
       t.string :file_path
+      t.string :file_name
       t.string :file_content_type
       t.float :file_size, :default => 0
       t.boolean :is_folder, :default => true

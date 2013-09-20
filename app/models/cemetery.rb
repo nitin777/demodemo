@@ -24,6 +24,8 @@ class Cemetery < ActiveRecord::Base
   has_many :delegation_departments, :dependent => :destroy
   has_many :categories, :dependent => :destroy
   
+  has_many :folders, :dependent => :destroy
+  
   validates :name, :presence => true
   validates :country_id, :presence => true
   

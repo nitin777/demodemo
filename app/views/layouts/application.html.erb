@@ -18,7 +18,7 @@
       current_action = controller.action_name
       
       cem_contollers_arr = %w(areas sections rows plots graves grantees cemeteries grantee_graves 
-      												grantee_graves grave_histories letters letter_variables chapels rooms monuments catalogs categories)
+      												grantee_graves grave_histories letters letter_variables chapels rooms monuments catalogs categories folders document_shares)
       												
 			booking_contollers_arr = %w(bookings facilities)
 			
@@ -61,6 +61,7 @@
 							<li class="<%= 'active' if (current_controller_name == 'letters' and session[:letters] == 'true')%>"><%= link_to t("general.letters"), letters_path(:letters => true) %></li>
 							<li class="<%= 'active' if (current_controller_name == 'letters' and session[:letters] == 'false') %>"><%= link_to t("general.certificates"), letters_path(:letters => false) %></li>
 							<li class="<%= 'active' if current_controller_name == 'letter_variables' %>"><%= link_to t("general.letter_variables"), letter_variables_path %></li>
+							<li class="<%= 'active' if current_controller_name == 'folders' %>"><%= link_to t("general.documents"), folders_path %></li>
 						</ul>  
 					</div>  
 					<div class="span10">

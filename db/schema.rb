@@ -269,7 +269,7 @@ ActiveRecord::Schema.define(version: 20130920130637) do
   end
 
   create_table "document_shares", force: true do |t|
-    t.integer  "document_id"
+    t.integer  "folder_id"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -312,8 +312,10 @@ ActiveRecord::Schema.define(version: 20130920130637) do
     t.integer  "user_id"
     t.integer  "folder_id"
     t.string   "name"
+    t.text     "description"
     t.string   "document_type"
     t.string   "file_path"
+    t.string   "file_name"
     t.string   "file_content_type"
     t.float    "file_size",         default: 0.0
     t.boolean  "is_folder",         default: true

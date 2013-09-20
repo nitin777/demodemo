@@ -1,0 +1,28 @@
+<table class="table table-striped">
+ <thead> 
+  <tr>
+    <th width="80%"><%= sortable "name", t("general.name") %></th>
+    <th width="20%"><%= t("general.actions") %></th>
+  </tr>
+ </thead> 
+  
+  <tbody>
+    <% if @o_all.size > 0 %>
+      <% @o_all.each do |o_row| %>
+        <tr>
+          <td><%= o_row.user.username unless o_row.user.nil? %></td>
+          <td> 
+			      <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+			                  document_share_path(o_row),
+			                  :method => :delete,
+			                  :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+			                  :class => 'btn btn-mini btn-danger' %>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>      
+  </tbody>
+</table>
+<div class="fRight">
+	<%= will_paginate @o_all %>
+</div>	
