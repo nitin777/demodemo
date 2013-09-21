@@ -109,6 +109,7 @@ class BookingsController < ApplicationController
   # GET /bookings/new
   def new
     @o_single = Booking.new
+    #@o_interment_documents = @cemetery.interment_documents.paginate(:per_page => 10, :page => params[:page])
   end
 
   # GET /bookings/1/edit

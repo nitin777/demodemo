@@ -1,0 +1,35 @@
+<table class="table table-striped">
+ <thead> 
+  <tr>
+    <th width="20%"><%= sortable "name", t("general.title") %></th>
+    <th width="20%"><%= t("general.document_name") %></th>
+    <th width="20%"><%= sortable "user_id", t("general.created_by") %></th>
+    <th width="20%"><%= t("general.download") %></th>
+  </tr>
+
+ </thead> 
+  
+  <tbody>
+    <% if @o_interment_documents.size > 0 %>
+	    <% @o_interment_documents.each do |o_row| %>
+	      <tr>
+       		<td>
+        		<%= o_row.name %>
+        	</td>
+        	<td>
+        		<%= o_row.file_name %>
+        	</td>
+	        <td><%= o_row.user.name unless o_row.user.nil? %></td>
+	        <td>
+						<div data-no-turbolink><%= link_to t("general.download"), download_path(o_row.file_name.gsub(".", ",")) %></div>   
+	        </td>
+	      </tr>
+	    <% end %>
+    <% else %>
+      <tr><th colspan="6"><%= t("general.record_not_found") %></th></tr>
+    <% end %>      
+  </tbody>
+</table>
+<div class="fRight">
+	<%= will_paginate @o_interment_documents %>
+</div>

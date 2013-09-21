@@ -6,10 +6,13 @@
 </div>
 
 <div class="searchRight">
-
+<%= link_to t("general.shared_with_you"),
+	            shared_documents_with_you_path,
+	            :class => 'btn btn-primary btn-small' %>	
 	<%= link_to t("general.add_document"),
 	            new_folder_path,
 	            :class => 'btn btn-primary btn-small' %>
+            
 </div>	
 
 <div id="div_update">

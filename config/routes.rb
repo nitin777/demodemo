@@ -51,6 +51,8 @@ Ocms::Application.routes.draw do
   resources :document_shares
   
   get '/sub_folders/:parent_folder_id' => 'folders#sub_folders', :as => :sub_folders
+  get '/shared_documents_with_you' => 'folders#shared_documents_with_you', :as => :shared_documents_with_you
+  
   
   get 'logout' => 'user_sessions#destroy', :as => :logout
   get 'login' => 'user_sessions#new', :as => :login

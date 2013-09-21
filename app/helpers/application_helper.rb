@@ -89,7 +89,7 @@ module ApplicationHelper
   
   def get_cemetery_users_data 
     if @cemetery
-      [["Select", ""]] + @cemetery.users.active.collect {|r| [r.username, r.id]}
+      [["Select", ""]] + @cemetery.users.active.where("id != ?", current_user.id).collect {|r| [r.username, r.id]}
     else
       [["Select", ""]]
     end     

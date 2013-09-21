@@ -4,10 +4,9 @@
 <table class="table table-striped">
  <thead> 
   <tr>
-    <th width="20%"><%= sortable "name", t("general.title") %><%= link_to image_tag("add_folder.png", :width => "22"), "#", :class => 'titleIconImg', :id => "folder_new", :title => t("general.create_new_folder") %></th>
-    <th width="20%"><%= t("general.document_name") %></th>
+    <th width="30%"><%= sortable "name", t("general.title") %><%= link_to image_tag("add_folder.png", :width => "22"), "#", :class => 'titleIconImg', :id => "folder_new", :title => t("general.create_new_folder") %></th>
+    <th width="30%"><%= t("general.document_name") %></th>
     <th width="20%"><%= sortable "document_type", t("general.document_type") %></th>
-    <th width="20%"><%= sortable "user_id", t("general.created_by") %></th>
     <th width="20%"><%= t("general.actions") %></th>
   </tr>
   <% if session[:parent_folder_id] %>
@@ -39,8 +38,7 @@
 	        	</td>	
 	        <% end %>	
 	        
-	        <td><%= o_row.document_type %></td>
-	        <td><%= o_row.user.name unless o_row.user.nil? %></td>
+        <td><%= o_row.document_type %></td>
 	        
 	        <td>
 			      <%= link_to t('.edit', :default => t("helpers.links.edit")),

@@ -9,13 +9,19 @@
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
- 
+  <%-
+      current_controller_name = controller.controller_name
+      current_action = controller.action_name
+  %>    
+  <% if current_controller_name == 'folders' %>
+  	<script src="/js/jquery-1.4.4.min.js" data-turbolinks-track="true"></script>
+  	<script src="/js/jquery.reveal.js" data-turbolinks-track="true"></script>
+  <% end %>
 </head>
 <body>
 	
   <%-
-      current_controller_name = controller.controller_name
-      current_action = controller.action_name
+
       
       cem_contollers_arr = %w(areas sections rows plots graves grantees cemeteries grantee_graves 
       												grantee_graves grave_histories letters letter_variables chapels rooms monuments catalogs categories folders document_shares)
@@ -89,7 +95,7 @@
 							<li class="<%= 'active' if current_controller_name == 'work_types' %>"><%= link_to t("general.work_types"), work_types_path %></li>
 							<li class="<%= 'active' if current_controller_name == 'work_orders' %>"><%= link_to t("general.work_orders"), work_orders_path %></li>
 							
-							<li class="<%= 'active' if current_controller_name == 'permits' %>"><%= link_to t("general.permits"), permits_path %></li>
+							<li class="<%= 'active' if current_controller_name == 'permits' %>"><%= link_to t("general.monument_permits"), permits_path %></li>
 						</ul>  
 					</div>  
 					<div class="span10">

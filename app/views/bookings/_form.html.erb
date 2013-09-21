@@ -10,6 +10,7 @@
 			<li><a href="#checklist"><%= t("general.checklist") %></a></li>			
 			<li><a href="#coffin"><%= t("general.coffin") %></a></li>
 			<li><a href="#other"><%= t("general.other") %></a></li>
+			<!--<li><a href="#documents"><%#= t("general.documents") %></a></li>-->
 			<% unless @o_single.new_record? %>
 				<li><a href="#letters"><%= t("general.letters") %></a></li>
 				<li><a href="#certificates"><%= t("general.certificates") %></a></li>
@@ -25,6 +26,7 @@
 			<div class="tab-pane" id="checklist"><%= render "bookings/details/checklist", :f => f %></div>			
 			<div class="tab-pane" id="coffin"><%= render "bookings/details/coffin", :f => f %></div>
 			<div class="tab-pane" id="other"><%= render "bookings/details/others", :f => f %></div>
+			<!--<div class="tab-pane" id="documents"><%#= render "bookings/details/documents", :f => f %></div>-->
 			<% unless @o_single.new_record? %>
 				<div class="tab-pane" id="letters"><%= render "bookings/details/letters", :f => f %></div>
 				<div class="tab-pane" id="certificates"><%= render "bookings/details/certificates", :f => f %></div>

@@ -10,6 +10,7 @@ class FoldersController < ApplicationController
   # GET /folders.json
   def index
     session[:parent_folder_id] = nil
+    #@o_all = Folder.joins("LEFT OUTER JOIN document_shares ON folders.id = document_shares.folder_id LEFT OUTER JOIN users ON folders.user_id = users.id").where("folders.folder_id IS NULL and users.id = ?", current_user.id).order("folders.is_folder desc").paginate(:per_page => 10, :page => params[:page])
     @o_all = current_user.folders.parent_folders.order("is_folder desc").paginate(:per_page => 10, :page => params[:page])
     @o_single = Folder.new
     @folder = session[:folder_temp_id] ? (Folder.find(session[:folder_temp_id])) : nil
@@ -38,6 +39,10 @@ class FoldersController < ApplicationController
     end
     
     render action: 'index'
+  end
+  
+  def shared_documents_with_you
+    @shared_documents = current_user.document_shares.includes(:folder).paginate(:per_page => 10, :page => params[:page])    
   end
   
   def download 

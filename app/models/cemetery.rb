@@ -26,6 +26,11 @@ class Cemetery < ActiveRecord::Base
   
   has_many :folders, :dependent => :destroy
   
+  has_many :interment_documents, class_name: 'Folder', conditions: {document_type: "Interment"}
+  has_many :permit_documents, class_name: 'Folder', conditions: {document_type: "Permit"}
+  has_many :work_order_documents, class_name: 'Folder', conditions: {document_type: "Work Order"}
+  has_many :personal_documents, class_name: 'Folder', conditions: {document_type: "Personal"}
+  
   validates :name, :presence => true
   validates :country_id, :presence => true
   

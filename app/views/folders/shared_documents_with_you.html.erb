@@ -1,0 +1,38 @@
+<div class="page-header">
+  <h4><%= t("general.shared_documents_with_you") %></h4>
+</div>
+<div class="searchRight">
+	<%= link_to 'Back', folders_url, :class => 'btn btn-primary btn-small' %>
+</div>	
+<table class="table table-striped">
+ <thead> 
+  <tr>
+  	<th width="30%"><%= sortable "created_by", t("general.user") %></th>
+    <th width="30%"><%= sortable "name", t("general.title") %></th>
+    <th width="20%"><%= sortable "name", t("general.name") %></th>
+    <th width="20%"><%= t("general.actions") %></th>
+  </tr>
+ </thead> 
+  
+  <tbody>
+    <% if @shared_documents.size > 0 %>
+      <% @shared_documents.each do |o_row| %>
+        <tr>
+          <td><%= o_row.folder.user.username unless o_row.folder.nil? %></td>
+          <td><%= o_row.folder.name unless o_row.folder.nil? %></td>
+          <td><%= o_row.folder.file_name unless o_row.folder.nil? %></td>
+          <td> 
+          	<% unless o_row.folder.nil? %>
+          		<%= link_to t("general.download"), download_path(o_row.folder.file_name.gsub(".", ",")) %>
+          	<% end %>	
+          </td>
+        </tr>
+      <% end %>
+		<div class="fRight">
+			<%= will_paginate @shared_documents %>
+		</div>	      
+    <% else %>
+      <tr><th colspan="6"><%= t("general.record_not_found") %></th></tr>
+    <% end %>      
+  </tbody>
+</table>
