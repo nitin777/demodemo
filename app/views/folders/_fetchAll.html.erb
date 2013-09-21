@@ -34,7 +34,9 @@
 	        		<%= o_row.name %>
 	        	</td>
 	        	<td>
-	        		<div data-no-turbolink><%= link_to o_row.file_name, download_path(o_row.file_name.gsub(".", ",")) %></div>
+	        		<% unless o_row.file_name.blank? %>
+	        			<div data-no-turbolink><%= link_to o_row.file_name, download_path(o_row.file_name.gsub(".", ",")) %></div>
+	        		<% end %>	
 	        	</td>	
 	        <% end %>	
 	        

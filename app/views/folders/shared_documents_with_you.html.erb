@@ -23,7 +23,9 @@
           <td><%= o_row.folder.file_name unless o_row.folder.nil? %></td>
           <td> 
           	<% unless o_row.folder.nil? %>
-          		<%= link_to t("general.download"), download_path(o_row.folder.file_name.gsub(".", ",")) %>
+          		<% unless o_row.folder.file_name.blank? %>
+          			<%= link_to t("general.download"), download_path(o_row.folder.file_name.gsub(".", ",")) %>
+          		<% end %>	
           	<% end %>	
           </td>
         </tr>
