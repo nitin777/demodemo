@@ -6,7 +6,7 @@ class RolePermissionsController < ApplicationController
   # GET /role_permissions
   # GET /role_permissions.json
   def index
-    @o_all = @cemetery.role_permissions.includes(:role)
+    @o_all = @cemetery.role_permissions.includes(:role).order("role_permissions.role_id asc")
   end
 
   def set_permission
@@ -29,7 +29,7 @@ class RolePermissionsController < ApplicationController
       @o_single.save
     else  
     end
-    @o_all = @cemetery.role_permissions.includes(:role)
+    @o_all = @cemetery.role_permissions.includes(:role).order("role_permissions.role_id asc")
   end
   
   private

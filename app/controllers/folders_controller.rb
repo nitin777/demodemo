@@ -48,7 +48,7 @@ class FoldersController < ApplicationController
   def download 
     file = Folder.find_by_file_name(params[:name].gsub(",", "."))
     if file and file.file_path
-      data = open(file.file_path.to_s)
+      data = open("#{Rails.root}/public#{file.file_path.to_s}")
       send_data  data.read,
                   :filename => file.file_name,
                   :type => "application/force-download",
