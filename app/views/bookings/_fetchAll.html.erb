@@ -24,6 +24,9 @@
           <td><%= o_row.consultant %></td>
           <td><%= o_row.user.name unless o_row.user.nil? %></td>
           <td> 
+          	<% if o_row.is_finalized %>
+          		<%= link_to t("general.docs"), folders_path(:type_id => o_row.id, :type => "Interment"), :class => 'btn btn-mini', :title => t("general.documents") %>
+          	<% end %>	
 			      <%= link_to t('.edit', :default => t("helpers.links.edit")),
 			                  edit_booking_path(o_row), :class => 'btn btn-mini' %>
 			      <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
@@ -33,8 +36,8 @@
 			                  :class => 'btn btn-mini btn-danger' %>
 			      <span data-no-turbolink>
 			      	<% if o_row.is_finalized %>
-				      	<%= link_to t("general.finalize"),
-				                  bookings_path(:id => o_row.id), :class => 'btn btn-mini', data: { confirm: t("general.are_you_sure_to_unfinalize") } %>
+				      	<%= link_to t("general.definitize"),
+				                  bookings_path(:id => o_row.id), :class => 'btn btn-mini', data: { confirm: t("general.are_you_sure_to_definitize") } %>
 				      <% else %>
 				      	<%= link_to t("general.finalize"),
 				                  bookings_path(:id => o_row.id), :class => 'btn btn-mini', data: { confirm: t("general.are_you_sure_to_finalize") } %>				      

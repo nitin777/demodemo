@@ -6,7 +6,9 @@
   <tr>
     <th width="30%"><%= sortable "name", t("general.title") %><%= link_to image_tag("add_folder.png", :width => "22"), "#", :class => 'titleIconImg', :id => "folder_new", :title => t("general.create_new_folder") %></th>
     <th width="30%"><%= t("general.document_name") %></th>
-    <th width="20%"><%= sortable "document_type", t("general.document_type") %></th>
+    <% unless session[:type] %>
+    	<th width="20%"><%= sortable "document_type", t("general.document_type") %></th>
+    <% end %>	
     <th width="20%"><%= t("general.actions") %></th>
   </tr>
   <% if session[:parent_folder_id] %>
@@ -39,8 +41,9 @@
 	        		<% end %>	
 	        	</td>	
 	        <% end %>	
-	        
-        <td><%= o_row.document_type %></td>
+	      <% unless session[:type] %>  
+        	<td><%= o_row.document_type %></td>
+        <% end %>	
 	        
 	        <td>
 			      <%= link_to t('.edit', :default => t("helpers.links.edit")),
@@ -50,9 +53,11 @@
 			                  :method => :delete,
 			                  :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
 			                  :class => 'btn btn-mini btn-danger' %>
-			      <% unless o_row.is_folder %>            
-				      <%= link_to t("general.collaborators"),
-				                  document_shares_path(:id => o_row.id), :class => 'btn btn-mini' %>			                  
+			      <% unless o_row.is_folder %>
+							<% unless session[:type] %>					      	            
+					      <%= link_to t("general.collaborators"),
+					                  document_shares_path(:id => o_row.id), :class => 'btn btn-mini' %>			                  
+					  	<% end %>                
 				    <% end %>              
 			                  
 	        </td>

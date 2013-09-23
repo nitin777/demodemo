@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130920130637) do
+ActiveRecord::Schema.define(version: 20130923175202) do
 
   create_table "areas", force: true do |t|
     t.integer  "cemetery_id"
@@ -321,6 +321,7 @@ ActiveRecord::Schema.define(version: 20130920130637) do
     t.boolean  "is_folder",         default: true
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "document_type_id"
   end
 
   create_table "grantee_graves", force: true do |t|

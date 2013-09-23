@@ -17,6 +17,7 @@
         	<td><%= o_row.surname %></td>
           <td><%= o_row.first_name %></td>
           <td>
+          	<%= link_to t("general.docs"), folders_path(:type_id => o_row.id, :type => "Grantee"), :class => 'btn btn-mini', :title => t("general.documents") %>
 			      <%= link_to t('.edit', :default => t("helpers.links.edit")),
 			                  edit_grantee_path(o_row), :class => 'btn btn-mini' %>
 			      <%= link_to t('.destroy', :default => t("helpers.links.destroy")),

@@ -14,7 +14,12 @@
 		  <%= f.hidden_field :cemetery_id, :value => @cemetery.id %>
 		  <%= f.hidden_field :is_folder, :value => true %>
 		  
-		  <%= f.hidden_field :folder_id, :value => (session[:parent_folder_id] ? session[:parent_folder_id] : nil) %>	    
+		  <%= f.hidden_field :folder_id, :value => (session[:parent_folder_id] ? session[:parent_folder_id] : nil) %>
+		  
+    <% if session[:type] %>
+    	<%= f.hidden_field :document_type, :value => session[:type] %>
+    	<%= f.hidden_field :document_type_id, :value => session[:type_id] %>
+    <% end %>			  	    
 	    <div class="clearBoth"></div>
     </div>
 

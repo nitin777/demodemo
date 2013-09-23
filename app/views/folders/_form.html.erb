@@ -12,12 +12,17 @@
       </div>
     </div>
     
-   	<div class="control-group">
-      <%= f.label :document_type, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.select :document_type, options_for_select(get_document_types, (@o_single.document_type unless @o_single.document_type.blank?)) %>
-      </div>
-    </div>    
+    <% if session[:type] %>
+    	<%= f.hidden_field :document_type, :value => session[:type] %>
+    	<%= f.hidden_field :document_type_id, :value => session[:type_id] %>
+	  <% else %>      
+	   	<div class="control-group">
+	      <%= f.label :document_type, :class => 'control-label' %>
+	      <div class="controls">
+	        <%= f.select :document_type, options_for_select(get_document_types, (@o_single.document_type unless @o_single.document_type.blank?)) %>
+	      </div>
+	    </div>	  
+	  <% end %>
 
 	    <div class="control-group">
 	      <%= f.label :document, :class => 'control-label' %>

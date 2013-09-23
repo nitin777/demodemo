@@ -6,9 +6,26 @@
 </div>
 
 <div class="searchRight">
-<%= link_to t("general.shared_with_you"),
-	            shared_documents_with_you_path,
-	            :class => 'btn btn-primary btn-small' %>	
+	<% unless session[:type] %>
+		<%= link_to t("general.shared_with_you"),
+			            shared_documents_with_you_path,
+			            :class => 'btn btn-primary btn-small' %>	
+  <% else %>
+		<% if session[:type] == "Interment" %>
+			<% lnk = bookings_path %>
+		<% elsif session[:type] == "Work Order" %>
+			<% lnk = work_orders_path %>  				            
+		<% elsif session[:type] == "Permit" %>
+			<% lnk = permits_path %>
+		<% elsif session[:type] == "Grantee" %>
+			<% lnk = grantees_path %>			
+		<% else %>
+			<% lnk = "#" %>
+		<% end %>
+			<%= link_to t("general.back"),
+			            lnk,
+			            :class => 'btn btn-primary btn-small' %>				
+  <% end %>
 	<%= link_to t("general.add_document"),
 	            new_folder_path,
 	            :class => 'btn btn-primary btn-small' %>

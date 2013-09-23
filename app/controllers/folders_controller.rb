@@ -11,7 +11,23 @@ class FoldersController < ApplicationController
   def index
     session[:parent_folder_id] = nil
     #@o_all = Folder.joins("LEFT OUTER JOIN document_shares ON folders.id = document_shares.folder_id LEFT OUTER JOIN users ON folders.user_id = users.id").where("folders.folder_id IS NULL and users.id = ?", current_user.id).order("folders.is_folder desc").paginate(:per_page => 10, :page => params[:page])
-    @o_all = current_user.folders.parent_folders.order("is_folder desc").paginate(:per_page => 10, :page => params[:page])
+    session[:type] = params[:type] if params[:type]
+    session[:type_id] = params[:type_id] if params[:type_id]
+    if params[:type] == "general"
+      session[:type] = session[:type_id] = nil
+    end    
+    if session[:type] == "Interment" and session[:type_id]
+      @o_all = Folder.interment_documents(session[:type_id]).order("is_folder desc").paginate(:per_page => 10, :page => params[:page])
+    elsif session[:type] == "Permit" and session[:type_id]
+      @o_all = Folder.permit_documents(session[:type_id]).order("is_folder desc").paginate(:per_page => 10, :page => params[:page])
+    elsif session[:type] == "Work Order" and session[:type_id]
+        @o_all = Folder.work_order_documents(session[:type_id]).order("is_folder desc").paginate(:per_page => 10, :page => params[:page])
+    elsif session[:type] == "Grantee" and session[:type_id]
+        @o_all = Folder.grantees_documents(session[:type_id]).order("is_folder desc").paginate(:per_page => 10, :page => params[:page])        
+    else  
+      @o_all = current_user.folders.parent_folders.where("document_type_id IS NULL").order("is_folder desc").paginate(:per_page => 10, :page => params[:page])  
+    end
+    
     @o_single = Folder.new
     @folder = session[:folder_temp_id] ? (Folder.find(session[:folder_temp_id])) : nil
   end
@@ -25,7 +41,11 @@ class FoldersController < ApplicationController
       @o_folder = Folder.find(params[:parent_folder_id])
       @o_all = @o_folder.folders.paginate(:per_page => 10, :page => params[:page]) 
     else
-      @o_all = current_user.folders.parent_folders.paginate(:per_page => 10, :page => params[:page])
+      if session[:type] == "Interment" and session[:type_id]
+        @o_all = Folder.interment_documents(session[:type_id]).parent_folders.order("is_folder desc").paginate(:per_page => 10, :page => params[:page])
+      else
+        @o_all = current_user.folders.parent_folders.order("is_folder desc").paginate(:per_page => 10, :page => params[:page])  
+      end
     end
     
     @folder_tree = []

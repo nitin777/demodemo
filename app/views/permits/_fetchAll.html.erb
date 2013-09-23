@@ -25,7 +25,8 @@
           <td><%= o_row.permit_number %></td>
           <td><%= o_row.received_date.to_s(:pretty) if o_row.received_date %></td>
           <td><%= o_row.received_by %></td>
-          <td> 
+          <td>
+          	<%= link_to t("general.docs"), folders_path(:type_id => o_row.id, :type => "Permit"), :class => 'btn btn-mini', :title => t("general.documents") %> 
 			      <%= link_to t('.edit', :default => t("helpers.links.edit")),
 			                  edit_permit_path(o_row), :class => 'btn btn-mini' %>
 			      <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
