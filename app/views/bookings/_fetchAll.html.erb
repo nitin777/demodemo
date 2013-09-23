@@ -24,9 +24,9 @@
           <td><%= o_row.consultant %></td>
           <td><%= o_row.user.name unless o_row.user.nil? %></td>
           <td> 
-          	<% if o_row.is_finalized %>
-          		<%= link_to t("general.docs"), folders_path(:type_id => o_row.id, :type => "Interment"), :class => 'btn btn-mini', :title => t("general.documents") %>
-          	<% end %>	
+          	
+          	<%= link_to t("general.docs"), folders_path(:type_id => o_row.id, :type => "Interment"), :class => 'btn btn-mini', :title => t("general.documents") %>
+          		
 			      <%= link_to t('.edit', :default => t("helpers.links.edit")),
 			                  edit_booking_path(o_row), :class => 'btn btn-mini' %>
 			      <%= link_to t('.destroy', :default => t("helpers.links.destroy")),

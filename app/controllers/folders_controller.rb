@@ -15,18 +15,9 @@ class FoldersController < ApplicationController
     session[:type_id] = params[:type_id] if params[:type_id]
     if params[:type] == "general"
       session[:type] = session[:type_id] = nil
-    end    
-    if session[:type] == "Interment" and session[:type_id]
-      @o_all = Folder.interment_documents(session[:type_id]).order("is_folder desc").paginate(:per_page => 10, :page => params[:page])
-    elsif session[:type] == "Permit" and session[:type_id]
-      @o_all = Folder.permit_documents(session[:type_id]).order("is_folder desc").paginate(:per_page => 10, :page => params[:page])
-    elsif session[:type] == "Work Order" and session[:type_id]
-        @o_all = Folder.work_order_documents(session[:type_id]).order("is_folder desc").paginate(:per_page => 10, :page => params[:page])
-    elsif session[:type] == "Grantee" and session[:type_id]
-        @o_all = Folder.grantees_documents(session[:type_id]).order("is_folder desc").paginate(:per_page => 10, :page => params[:page])        
-    else  
-      @o_all = current_user.folders.parent_folders.where("document_type_id IS NULL").order("is_folder desc").paginate(:per_page => 10, :page => params[:page])  
-    end
+    end   
+    
+    document_data
     
     @o_single = Folder.new
     @folder = session[:folder_temp_id] ? (Folder.find(session[:folder_temp_id])) : nil
@@ -41,11 +32,7 @@ class FoldersController < ApplicationController
       @o_folder = Folder.find(params[:parent_folder_id])
       @o_all = @o_folder.folders.paginate(:per_page => 10, :page => params[:page]) 
     else
-      if session[:type] == "Interment" and session[:type_id]
-        @o_all = Folder.interment_documents(session[:type_id]).parent_folders.order("is_folder desc").paginate(:per_page => 10, :page => params[:page])
-      else
-        @o_all = current_user.folders.parent_folders.order("is_folder desc").paginate(:per_page => 10, :page => params[:page])  
-      end
+      document_data
     end
     
     @folder_tree = []
@@ -59,6 +46,25 @@ class FoldersController < ApplicationController
     end
     
     render action: 'index'
+  end
+  
+  def document_data
+    if session[:type] == "Interment" and session[:type_id]
+      @o_all = Folder.interment_documents(session[:type_id]).order("is_folder desc").paginate(:per_page => 10, :page => params[:page])
+      @header_text = Booking.find(session[:type_id]).deceased_name
+    elsif session[:type] == "Permit" and session[:type_id]
+      @o_all = Folder.permit_documents(session[:type_id]).order("is_folder desc").paginate(:per_page => 10, :page => params[:page])
+      @header_text = Permit.find(session[:type_id]).permit_number
+    elsif session[:type] == "Work Order" and session[:type_id]
+        @o_all = Folder.work_order_documents(session[:type_id]).order("is_folder desc").paginate(:per_page => 10, :page => params[:page])
+        @header_text = WorkOrder.find(session[:type_id]).name
+    elsif session[:type] == "Grantee" and session[:type_id]
+        @o_all = Folder.grantees_documents(session[:type_id]).order("is_folder desc").paginate(:per_page => 10, :page => params[:page])
+        @header_text = Grantee.find(session[:type_id]).name        
+    else  
+      @header_text = ""
+      @o_all = current_user.folders.parent_folders.where("document_type_id IS NULL").order("is_folder desc").paginate(:per_page => 10, :page => params[:page])  
+    end    
   end
   
   def shared_documents_with_you
