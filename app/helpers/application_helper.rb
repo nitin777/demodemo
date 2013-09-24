@@ -28,7 +28,7 @@ module ApplicationHelper
   end  
 
   def letter_type_data
-    [["Select Option", ""]] + [["Interment", "Interment"]] + [["Grave Care", "Grave Care"]] + [["Permit", "Permit"]]
+    [["Select Option", ""]] + [["Interment", "Interment"]] + [["Maintenance", "Maintenance"]] + [["Work Order", "Work Order"]] + [["Permit", "Permit"]]
   end  
   
   def get_document_types
@@ -45,6 +45,10 @@ module ApplicationHelper
   
   def get_permit_data
     [["Select", ""]] + @cemetery.permits.collect {|r| [r.permit_number, r.id]}
+  end
+  
+  def get_maintenance_company_data
+    [["Select", ""]] + @cemetery.maintenance_companies.collect {|r| [r.name, r.id]}
   end
   
   def get_catalog_data

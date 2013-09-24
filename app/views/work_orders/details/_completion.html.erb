@@ -1,0 +1,37 @@
+<div class="control-group">
+  <%= f.label :is_completed, :class => 'control-label' %>
+  <div class="controls">
+    <%= f.check_box :is_completed, :class => 'check_box' %>
+  </div>
+</div> 
+<div class="control-group">
+  <%= f.label :completed_by, :class => 'control-label' %>
+  <div class="controls">
+    <%= f.select :completed_user_id, options_for_select(get_normal_staff, (@o_single.completed_by.id unless @o_single.completed_by.nil?)) %>
+  </div>
+</div>
+<div class="control-group">
+  <%= f.label :completion_date, :class => 'control-label' %>
+  <div class="controls">
+		<div id="completion_date" class="input-append">
+			<%= f.text_field :completion_date, :class => 'text_field' %>
+	    <span class="add-on">
+	      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+	      </i>
+	    </span> 				
+		</div>	
+  </div>
+</div>
+<div class="control-group">
+  <%= f.label :notified_customer, :class => 'control-label' %>
+  <div class="controls">
+    <%= f.check_box :notified_customer, :class => 'check_box' %>
+  </div>
+</div> 
+<div class="control-group"><%= f.label :work_order_notes, :class => 'control-label' %><div class="controls"><%= f.text_area :work_order_notes, :class => 'text_field' %></div></div>
+<div class="control-group">
+  <%= f.label :cancelled, :class => 'control-label' %>
+  <div class="controls">
+    <%= f.check_box :cancelled, :class => 'check_box' %>
+  </div>
+</div> 

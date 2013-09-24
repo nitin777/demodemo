@@ -1,0 +1,49 @@
+<table>
+	<tr>
+      <td>	 
+		    <div class="control-group">
+		      <%= f.label :notes, :class => 'control-label' %>
+		      <div class="controls">
+		        <%= f.text_area :notes, :class => 'text_field' %>
+		      </div>
+		    </div>
+      </td>
+    </tr> 
+    
+    <tr>
+      <td>	 	
+		    <div class="control-group">
+		      <%= f.label :cancelled_date, :class => 'control-label' %>
+		      <div class="controls">
+			 			<div id="cancelled_date" class="input-append">
+			 				<%= f.text_field :cancelled_date, :class => 'text_field' %>
+					    <span class="add-on">
+					      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+					      </i>
+					    </span> 				
+			 			</div>	
+		      </div>
+		    </div>
+      </td>
+     
+    </tr>    
+       
+    <tr>
+      <td>
+		    <div class="control-group">
+		      <%= f.label :cancelled, :class => 'control-label' %>
+		      <div class="controls">
+		        <%= f.check_box :cancelled, :class => 'check_box' %>
+		      </div>
+		    </div> 
+		    <div class="control-group">
+		      <%= f.label :send_invoice, :class => 'control-label' %>
+		      <div class="controls">
+		        <%= f.check_box :send_invoice, :class => 'check_box' %>
+		      </div>
+		    </div>		    
+      </td>       	
+
+    </tr> 
+ 		    
+</table>

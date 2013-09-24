@@ -1,0 +1,17 @@
+<% @letters = @cemetery.letters.all_work_order_letters %>
+<table class="table table-striped">  
+  <tbody>
+    <% if @letters.size > 0 %>
+      <% @letters.each do |o_row| %>
+        <tr>
+          <td><%= o_row.subject %></td>
+          <td> 
+			      <%= link_to t('general.print'), print_letter_path(o_row.id, @o_single.id), :class => 'defaultBtn btn-mini' %>
+          </td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr><th colspan="2"><%= t("general.record_not_found") %></th></tr>
+    <% end %>      
+  </tbody>
+</table>

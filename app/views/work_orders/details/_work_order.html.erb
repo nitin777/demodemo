@@ -1,0 +1,97 @@
+<div class="control-group"><%= f.label :work_order_number, :class => 'control-label' %><div class="controls"><%= f.text_field :work_order_number, :class => 'text_field' %></div></div>
+
+<div class="control-group">
+  <%= f.label :work_type_id, :class => 'control-label' %>
+  <div class="controls">
+    <%= f.select :work_type_id, options_for_select(get_work_type_data, (@o_single.work_type.id unless @o_single.work_type.nil?)) %>
+  </div>
+</div>
+
+<div class="control-group">
+  <%= f.label :requested_date, :class => 'control-label' %>
+  <div class="controls">
+		<div id="requested_date" class="input-append">
+			<%= f.text_field :requested_date, :class => 'text_field' %>
+	    <span class="add-on">
+	      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+	      </i>
+	    </span> 				
+		</div>	
+  </div>
+</div>
+
+<div class="control-group">
+  <%= f.label :area_id, :class => 'control-label' %>
+  <div class="controls">
+    <%= select_tag "work_order[area_id]", options_for_select(get_area_data, (@o_single.area.id unless @o_single.area.nil?)),
+    							:data => { :remote => true, :url => url_for(:controller => "fronts", 
+                             :action => "get_section_row_plot_grave_from_area",
+                             :class => 'selectField'
+                             ) } %>
+  </div>
+</div>
+
+<div id="div_update_section_row_plot_grave">
+	
+ 	<div class="control-group">
+    <%= f.label :section_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= select_tag "work_order[section_id]", options_for_select(get_section_data(@o_single), (@o_single.section.id unless @o_single.section.nil?)),
+      							:data => { :remote => true, :url => url_for(:controller => "fronts", 
+                               :action => "get_row_plot_grave_from_section",
+                                 	 :class => 'selectField'
+                               ) } %>
+    </div>                           
+ 	</div>	      
+
+	<div id="div_update_row_plot_grave">
+		
+   	<div class="control-group">
+      <%= f.label :row_id, :class => 'control-label' %>
+      <div class="controls">
+        <%= select_tag "work_order[row_id]", options_for_select(get_row_data(@o_single), (@o_single.row.id unless @o_single.row.nil?)), 
+      							:data => { :remote => true, :url => url_for(:controller => "fronts", 
+                               :action => "get_plot_grave_from_row",
+                                 	 :class => 'selectField'
+                               ) } %>
+      </div>
+    </div>
+  	
+  	<div id="div_update_plot_grave">
+  		
+	   	<div class="control-group">
+	      <%= f.label :plot_id, :class => 'control-label' %>
+	      <div class="controls">
+	        <%= select_tag "work_order[plot_id]", options_for_select(get_plot_data(@o_single), (@o_single.plot.id unless @o_single.plot.nil?)), 
+        							:data => { :remote => true, :url => url_for(:controller => "fronts", 
+                                 :action => "get_grave_from_plot",
+                                 	 :class => 'selectField'
+                                 ) } %>
+	      </div>
+	    </div>
+	  	
+	  	<div id="div_update_grave">
+		   	<div class="control-group">
+		      <label class="control-label"><%= "Grave" %></label>
+		      <div class="controls">
+		        <%= f.select :grafe_id, options_for_select(get_grave_data(@o_single), (@o_single.grafe.id unless @o_single.grafe.nil?)) %>
+		      </div>
+		    </div>
+		  </div>  	    
+    
+  	</div>
+	</div>      		
+</div>   
+<div class="control-group">
+  <%= f.label :delegation_department_id, :class => 'control-label' %>
+  <div class="controls">
+    <%= f.select :delegation_department_id, options_for_select(get_delegation_department_data, (@o_single.delegation_department.id unless @o_single.delegation_department.nil?)) %>
+  </div>
+</div>
+<div class="control-group">
+  <%= f.label :requested_by, :class => 'control-label' %>
+  <div class="controls">
+    <%= f.select :requested_user_id, options_for_select(get_normal_staff, (@o_single.requested_by.id unless @o_single.requested_by.nil?)) %>
+  </div>
+</div>
+<div class="control-group"><%= f.label :description, :class => 'control-label' %><div class="controls"><%= f.text_area :description, :class => 'text_field' %></div></div>

@@ -10,9 +10,11 @@ class WorkOrder < ActiveRecord::Base
   belongs_to :work_type
   belongs_to :catalog
   
-  validates :first_name, :surname, :presence => true
+  #validates :first_name, :surname, :presence => true
   
   belongs_to :completed_by, class_name: "User", foreign_key: :completed_user_id
+  belongs_to :requested_by, class_name: "User", foreign_key: :requested_user_id
+  belongs_to :approved_by, class_name: "User", foreign_key: :approved_user_id
   include SearchHandler
   
   def name

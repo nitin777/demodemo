@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130923175202) do
+ActiveRecord::Schema.define(version: 20130924180206) do
 
   create_table "areas", force: true do |t|
     t.integer  "cemetery_id"
@@ -473,9 +473,10 @@ ActiveRecord::Schema.define(version: 20130923175202) do
     t.string   "interred_surname"
     t.text     "operational_notes"
     t.text     "notes"
-    t.boolean  "cancelled",         default: false
+    t.integer  "maintenance_company_id"
+    t.boolean  "cancelled",              default: false
     t.date     "cancelled_date"
-    t.boolean  "send_invoice",      default: false
+    t.boolean  "send_invoice",           default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -727,7 +728,20 @@ ActiveRecord::Schema.define(version: 20130923175202) do
     t.integer  "completed_user_id"
     t.integer  "catalog_id"
     t.string   "receipt_number"
-    t.boolean  "is_completed",             default: false
+    t.boolean  "is_completed",                default: false
+    t.boolean  "cancelled",                   default: false
+    t.text     "work_order_notes"
+    t.integer  "notified_by"
+    t.boolean  "notified_customer",           default: false
+    t.string   "unique_id"
+    t.boolean  "customer_requested_callback", default: false
+    t.text     "operation_notes"
+    t.boolean  "approved",                    default: true
+    t.integer  "approved_user_id"
+    t.date     "approved_date"
+    t.integer  "requested_user_id"
+    t.date     "requested_date"
+    t.string   "work_order_number"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

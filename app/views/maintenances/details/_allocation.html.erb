@@ -1,0 +1,73 @@
+<div class="control-group">
+  <%= f.label :area_id, :class => 'control-label' %>
+  <div class="controls">
+    <%= select_tag "maintenance[area_id]", options_for_select(get_area_data, (@o_single.area.id unless @o_single.area.nil?)),
+    							:data => { :remote => true, :url => url_for(:controller => "fronts", 
+                             :action => "get_section_row_plot_grave_from_area",
+                             :class => 'selectField'
+                             ) } %>
+  </div>
+</div>
+
+<div id="div_update_section_row_plot_grave">
+	
+ 	<div class="control-group">
+    <%= f.label :section_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= select_tag "maintenance[section_id]", options_for_select(get_section_data(@o_single), (@o_single.section.id unless @o_single.section.nil?)),
+      							:data => { :remote => true, :url => url_for(:controller => "fronts", 
+                               :action => "get_row_plot_grave_from_section",
+                                 	 :class => 'selectField'
+                               ) } %>
+    </div>                           
+ 	</div>	      
+
+	<div id="div_update_row_plot_grave">
+		
+   	<div class="control-group">
+      <%= f.label :row_id, :class => 'control-label' %>
+      <div class="controls">
+        <%= select_tag "maintenance[row_id]", options_for_select(get_row_data(@o_single), (@o_single.row.id unless @o_single.row.nil?)), 
+      							:data => { :remote => true, :url => url_for(:controller => "fronts", 
+                               :action => "get_plot_grave_from_row",
+                                 	 :class => 'selectField'
+                               ) } %>
+      </div>
+    </div>
+  	
+  	<div id="div_update_plot_grave">
+  		
+	   	<div class="control-group">
+	      <%= f.label :plot_id, :class => 'control-label' %>
+	      <div class="controls">
+	        <%= select_tag "maintenance[plot_id]", options_for_select(get_plot_data(@o_single), (@o_single.plot.id unless @o_single.plot.nil?)), 
+        							:data => { :remote => true, :url => url_for(:controller => "fronts", 
+                                 :action => "get_grave_from_plot",
+                                 	 :class => 'selectField'
+                                 ) } %>
+	      </div>
+	    </div>
+	  	
+	  	<div id="div_update_grave">
+		   	<div class="control-group">
+		      <label class="control-label"><%= "Grave" %></label>
+		      <div class="controls">
+		        <%= f.select :grafe_id, options_for_select(get_grave_data(@o_single), (@o_single.grafe.id unless @o_single.grafe.nil?)), 
+        							:data => { :remote => true, :url => url_for(:controller => "fronts", 
+                                 :action => "get_grantee_from_grave",
+                                 	 :class => 'selectField'
+                                 ) }   %>
+		      </div>
+		    </div>
+		  </div>  	    
+    
+  	</div>
+	</div>      		
+</div>
+
+<div class="control-group">
+  <%= f.label :maintenance_company, :class => 'control-label' %>
+  <div class="controls">
+    <%= f.select :maintenance_company_id, options_for_select(get_maintenance_company_data, (@o_single.maintenance_company.id unless @o_single.maintenance_company.nil?)) %>
+  </div>
+</div>

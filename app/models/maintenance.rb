@@ -6,6 +6,7 @@ class Maintenance < ActiveRecord::Base
   belongs_to :row
   belongs_to :plot
   belongs_to :grafe  
+  belongs_to :maintenance_company
   
   include SearchHandler
 end
