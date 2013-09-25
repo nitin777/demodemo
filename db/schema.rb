@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130924180206) do
+ActiveRecord::Schema.define(version: 20130925185226) do
 
   create_table "areas", force: true do |t|
     t.integer  "cemetery_id"
@@ -499,6 +499,17 @@ ActiveRecord::Schema.define(version: 20130924180206) do
   create_table "payment_statuses", force: true do |t|
     t.string   "name"
     t.boolean  "is_active",  default: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "payments", force: true do |t|
+    t.integer  "paymentable_id"
+    t.string   "paymentable_type"
+    t.integer  "catalog_id"
+    t.integer  "quantity",         default: 1
+    t.integer  "amount",           default: 0
+    t.integer  "total_amount",     default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end

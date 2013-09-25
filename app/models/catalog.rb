@@ -3,7 +3,7 @@ class Catalog < ActiveRecord::Base
   has_many :bookings
   has_many :work_orders
   belongs_to :category
-  validates :name, :presence => true
+  validates :name, :category_id, :presence => true
   include SearchHandler
   scope :active, -> {where(:is_active => true)}  
 end

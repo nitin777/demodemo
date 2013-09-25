@@ -1,0 +1,220 @@
+<div class="control-group">
+  <%= f.label :area_id, :class => 'control-label' %>
+  <div class="controls">
+    <%= select_tag "permit[area_id]", options_for_select(get_area_data, (@o_single.area.id unless @o_single.area.nil?)),
+    							:data => { :remote => true, :url => url_for(:controller => "fronts", 
+                             :action => "get_section_row_plot_grave_from_area",
+                             :class => 'selectField'
+                             ) } %>
+  </div>
+</div>
+
+<div id="div_update_section_row_plot_grave">
+	
+ 	<div class="control-group">
+    <%= f.label :section_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= select_tag "permit[section_id]", options_for_select(get_section_data(@o_single), (@o_single.section.id unless @o_single.section.nil?)),
+      							:data => { :remote => true, :url => url_for(:controller => "fronts", 
+                               :action => "get_row_plot_grave_from_section",
+                                 	 :class => 'selectField'
+                               ) } %>
+    </div>                           
+ 	</div>	      
+
+	<div id="div_update_row_plot_grave">
+		
+   	<div class="control-group">
+      <%= f.label :row_id, :class => 'control-label' %>
+      <div class="controls">
+        <%= select_tag "permit[row_id]", options_for_select(get_row_data(@o_single), (@o_single.row.id unless @o_single.row.nil?)), 
+      							:data => { :remote => true, :url => url_for(:controller => "fronts", 
+                               :action => "get_plot_grave_from_row",
+                                 	 :class => 'selectField'
+                               ) } %>
+      </div>
+    </div>
+  	
+  	<div id="div_update_plot_grave">
+  		
+	   	<div class="control-group">
+	      <%= f.label :plot_id, :class => 'control-label' %>
+	      <div class="controls">
+	        <%= select_tag "permit[plot_id]", options_for_select(get_plot_data(@o_single), (@o_single.plot.id unless @o_single.plot.nil?)), 
+        							:data => { :remote => true, :url => url_for(:controller => "fronts", 
+                                 :action => "get_grave_from_plot",
+                                 	 :class => 'selectField'
+                                 ) } %>
+	      </div>
+	    </div>
+	  	
+	  	<div id="div_update_grave">
+		   	<div class="control-group">
+		      <label class="control-label"><%= "Grave" %></label>
+		      <div class="controls">
+		        <%= f.select :grafe_id, options_for_select(get_grave_data(@o_single), (@o_single.grafe.id unless @o_single.grafe.nil?)), 
+        							:data => { :remote => true, :url => url_for(:controller => "fronts", 
+                                 :action => "get_grantee_booking_from_grave",
+                                 :class => 'selectField'
+                                 ) }   %>
+		      </div>
+		    </div>
+		  </div>  	    
+    
+  	</div>
+	</div>      		
+</div>
+
+<div id="div_update_grantee_booking">
+ 	<div class="control-group">
+    <label class="control-label"><%= "Entity" %></label>
+    <div class="controls">
+      <%= f.select :grantee_id, options_for_select(get_grantees_of_grave(@o_single.grafe), (@o_single.grantee.id unless @o_single.grantee.nil?)) %>
+    </div>
+  </div>	
+ 	<div class="control-group">
+    <label class="control-label"><%= "Booking" %></label>
+    <div class="controls">
+      <%= f.select :booking_id, options_for_select(get_bookings_of_grave(@o_single.grafe), (@o_single.booking.id unless @o_single.booking.nil?)) %>
+    </div>
+  </div>
+</div> 
+
+
+
+<table>		
+    <tr>
+      <td>	
+			 	<div class="control-group">
+			    <label class="control-label"><%= "Entity" %></label>
+			    <div class="controls">
+			      <%= f.select :stonemason_id, options_for_select(get_stone_masons, (@o_single.stonemason.id unless @o_single.stonemason.nil?)) %>
+			    </div>
+			  </div>	
+			</td>
+		</tr>		  	
+    <tr>
+      <td>	 
+		    <div class="control-group">
+		      <%= f.label :permit_number, :class => 'control-label' %><span class="redStart">*</span>
+		      <div class="controls">
+		        <%= f.text_field :permit_number, :class => 'text_field' %>
+		       	<% if @o_single.errors[:permit_number].any? %>
+		        	<span class="text-error text-message"><%= @o_single.errors[:permit_number].first %></span>
+		      	<% end %>        
+		      </div>
+		    </div>
+      </td>
+      
+      <td>	 
+		    <div class="control-group">
+		      <%= f.label :phone_number, :class => 'control-label' %>
+		      <div class="controls">
+		        <%= f.text_field :phone_number, :class => 'text_field' %>
+		      </div>
+		    </div>
+      </td>      
+    </tr>
+    <tr>
+      <td>	 
+		    <div class="control-group">
+		      <%= f.label :received_date, :class => 'control-label' %>
+		      <div class="controls">
+			 			<div id="received_date" class="input-append">
+			 				<%= f.text_field :received_date, :class => 'text_field' %>
+					    <span class="add-on">
+					      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+					      </i>
+					    </span> 				
+			 			</div>	
+		      </div>
+		    </div>
+      </td>
+      <td>	 
+		    <div class="control-group">
+		      <%= f.label :received_by, :class => 'control-label' %>
+		      <div class="controls">
+		        <%= f.select :received_by, options_for_select(get_permit_received_by, @o_single.received_by) %>
+		      </div>
+		    </div>
+      </td>
+    </tr> 
+    
+    <tr>
+		  <td>
+			 	<div class="control-group">
+			    <%= f.label :catalog_id, :class => 'control-label' %>
+			    <div class="controls">
+			      <%= f.select :catalog_id, options_for_select(get_catalog_data, (@o_single.catalog.id unless @o_single.catalog.nil?)) %>
+			    </div>
+			  </div>
+		  </td>    	
+		  
+		  <td>
+			 	<div class="control-group">
+			    <%= f.label :quantity, :class => 'control-label' %>
+			    <div class="controls">
+			      <%= f.text_field :quantity, :class => 'text_field' %>
+			    </div>
+			  </div>
+		  </td>
+		</tr>
+		  
+		<tr>	 
+		  <td>
+			 	<div class="control-group">
+			    <label class = 'control-label'><%= t("general.total_charge") %></label>
+			    <div class="controls">
+			      <%= f.text_field :total_charge, :class => 'text_field' %>
+			    </div>
+			  </div>
+		  </td>			 
+      <td>	 
+		    <div class="control-group">
+		      <%= f.label :comment, :class => 'control-label' %>
+		      <div class="controls">
+		        <%= f.text_area :comment, :class => 'text_field' %>
+		      </div>
+		    </div>
+      </td>
+    </tr>     
+    
+    <tr>
+      <td>	 	
+		    <div class="control-group">
+		      <%= f.label :checklist_received, :class => 'control-label' %>
+		      <div class="controls">
+		        <%= f.check_box :checklist_received, :class => 'check_box' %>
+		      </div>
+		    </div> 
+      </td>
+      <td>
+		    <div class="control-group">
+		      <%= f.label :paperwork_correct, :class => 'control-label' %>
+		      <div class="controls">
+		        <%= f.check_box :paperwork_correct, :class => 'check_box' %>
+		      </div>
+		    </div> 
+      </td>        
+    </tr>
+    
+    <tr>
+      <td>	 	
+		    <div class="control-group">
+		      <%= f.label :paperwork_return, :class => 'control-label' %>
+		      <div class="controls">
+		        <%= f.check_box :paperwork_return, :class => 'check_box' %>
+		      </div>
+		    </div> 
+      </td>
+      <td>
+		    <div class="control-group">
+		      <%= f.label :is_active, :class => 'control-label' %>
+		      <div class="controls">
+		        <%= f.check_box :is_active, :class => 'check_box' %>
+		      </div>
+		    </div> 
+      </td>        
+    </tr>    
+ 		    
+</table>

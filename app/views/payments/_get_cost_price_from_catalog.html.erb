@@ -1,0 +1,11 @@
+<div class="control-group">
+  <label class = 'control-label'><%= t("general.price") %></label>
+  <div class="controls">
+    <%= select_tag "price", options_for_select([["Select", ""]] + [["Cost Price", @catalog.cost_price]] + [["Special Cost Price", @catalog.special_cost_price]]),
+        							:data => { :remote => true, :url => url_for(:controller => "payments", 
+                                 :action => "get_amount_from_price",
+                                 :class => 'selectField'
+                                 ) } %>	    
+  </div>
+</div>
+<div id="div_update_amount"></div>

@@ -207,3 +207,5 @@ en:
     create_document: "Create document"
     update_document: "Update document"
     create_new_folder: "Create new folder"
+    payments: "Payments"
+    add_payment: "Add Payment"

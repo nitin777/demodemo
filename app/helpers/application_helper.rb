@@ -19,6 +19,14 @@ module ApplicationHelper
     [["Select", ""]] + [["Never Married", "Never Married"]] + [["Married", "Married"]] + [["Widow/Widower", "Widow/Widower"]] + [["Separated but not divorced", "Separated but not divorced"]] + [["Divorced", "Divorced"]] + [["De facto", "De facto"]] + [["Unknow", "Unknow"]] 
   end
   
+  def get_quantity_data
+    temp_quantity = [[1, 1]]
+    24.times.each do |n|
+      temp_quantity = temp_quantity + [[n+2, n+2]] 
+    end
+    temp_quantity
+  end
+  
   def get_finageuom
     [["Select Option", ""]] + [["Year", "Year"]] + [["Month", "Month"]] + [["Weeks", "Weeks"]] + [["Days", "Days"]] + [["Hours", "Hours"]] + [["Adault", "Adault"]] + [["Child", "Child"]] + [["Unborn", "Unborn"]]
   end
@@ -40,7 +48,7 @@ module ApplicationHelper
   end
   
   def get_parent_category
-    [["Select", ""]] + Category.parent_categories.active.collect {|r| [r.name, r.id]} 
+    [["Select", ""]] + @cemetery.categories.parent_categories.active.collect {|r| [r.name, r.id]} 
   end  
   
   def get_permit_data
@@ -64,7 +72,7 @@ module ApplicationHelper
   end  
   
   def get_category_data
-    [["Select", ["Select1", ["Select2", ""]]]]
+    [["Select", ""]] + @cemetery.categories.active.collect {|r| [r.name, r.id]}
   end
   
   def get_charge_data

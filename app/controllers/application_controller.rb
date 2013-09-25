@@ -134,5 +134,5 @@ class ApplicationController < ActionController::Base
     @cemetery = session[:cemetery_id].nil? ? nil : (Cemetery.find(session[:cemetery_id]))
     @role = session[:role_id].nil? ? nil : (Role.find(session[:role_id]))
   end
-  
+
 end

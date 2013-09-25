@@ -1,0 +1,77 @@
+<%- model_class = Payment -%>
+<div class="page-header">
+  <h4><%=t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human.titleize %></h4>
+</div>
+
+<%= form_for [@paymetable, Payment.new] do |f| %>
+	<div class="control-group">
+	  <label class = 'control-label'><%= t("general.category") %></label>
+	  <div class="controls">
+	        <%= select_tag "category", options_for_select(get_category_data),
+	        							:data => { :remote => true, :url => url_for(:controller => "payments", 
+                                   :action => "get_catalogs_from_category",
+                                   :class => 'selectField'
+                                   ) } %>	    
+	  </div>
+	</div>
+	
+  <div id="div_update_catalog">
+   	<div class="control-group">
+      <label class="control-label"><%= t("general.catalog") %></label>
+      <div class="controls">
+        <%= f.select :catalog_id, options_for_select(get_catalog_data)  %>
+      </div>
+    </div>
+  </div> 	
+  
+	<div class="control-group">
+	  <label class = 'control-label'><%= t("general.quantity") %></label>
+	  <div class="controls">
+	        <%= select_tag "payment[quantity]", options_for_select(get_quantity_data),
+	        							:data => { :remote => true, :url => url_for(:controller => "payments", 
+                                   :action => "get_total_amount_from_quantity",
+                                   :class => 'selectField'
+                                   ) } %>	    
+	  </div>
+	</div>  
+  
+	<div id="div_update_total_amount"></div>
+	
+  <div class="actions">
+    <%= submit_tag t("general.add_payment"), :class => 'btn btn-primary' %>
+  </div>
+<% end %>
+
+<table class="table table-striped">
+ <thead> 
+  <tr>
+    <th width="10%"><%= t("general.catalog") %></th>
+    <th width="10%"><%= t("general.quantity") %></th>    
+    <th width="10%"><%= t("general.total_amount") %></th>    
+    <th width="10%"><%= t("general.date") %></th>
+    <th width="15%"><%= t("general.actions") %></th>
+  </tr>
+ </thead> 
+  
+  <tbody>
+    <% if @payments.size > 0 %>
+      <% @payments.each do |o_row| %>
+        <tr>
+          <td><%= o_row.catalog.name unless o_row.catalog.nil? %></td>
+          <td><%= o_row.quantity %></td>
+          <td><%= o_row.total_amount %></td>
+          <td><%= o_row.created_at.to_s(:pretty) if o_row.created_at %></td>
+          <td>
+			      <%#= link_to t('.destroy', :default => t("helpers.links.destroy")),
+			         #         payment_path(o_row),
+			          #        :method => :delete,
+			           #       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+			            #      :class => 'btn btn-mini btn-danger' %>
+          </td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr><th colspan="10"><%= t("general.record_not_found") %></th></tr>
+    <% end %>      
+  </tbody>
+</table>

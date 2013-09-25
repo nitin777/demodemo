@@ -1,8 +1,8 @@
 <table class="table table-striped">
  <thead> 
   <tr>
-    <th width="40%"><%= sortable "name", t("general.name") %></th>
-    <th width="40%"><%= sortable "parent_category_id", t("general.parent_category") %></th>    
+    <th width="80%"><%= sortable "name", t("general.name") %></th>
+    <!--<th width="40%"><%#= sortable "parent_category_id", t("general.parent_category") %></th>-->    
     <th width="5%"><%= sortable "is_active", t("general.is_active") %></th>
     <th width="15%"><%= t("general.actions") %></th>
   </tr>
@@ -13,7 +13,7 @@
       <% @o_all.each do |o_row| %>
         <tr>
           <td><%= o_row.name %></td>
-          <td><%= o_row.parent_category.name if o_row.parent_category %></td>
+          <!--<td><%#= o_row.parent_category.name if o_row.parent_category %></td>-->
           <td><%= o_row.is_active ? image_tag("Yes.gif") : image_tag("No.gif") %></td>
           <td> 
 			      <%= link_to t('.edit', :default => t("helpers.links.edit")),

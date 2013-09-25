@@ -43,7 +43,18 @@ Ocms::Application.routes.draw do
   
   resources :maintenances
   resources :maintenance_companies
-  resources :permits
+  
+  resources :permits do
+    resources :payments
+  end
+  get '/get_catalogs_from_category' => 'payments#get_catalogs_from_category', :as => :get_catalogs_from_category
+  get '/get_cost_price_from_catalog' => 'payments#get_cost_price_from_catalog', :as => :get_cost_price_from_catalog
+  get '/get_amount_from_price' => 'payments#get_amount_from_price', :as => :get_amount_from_price
+  get '/get_total_amount_from_quantity' => 'payments#get_total_amount_from_quantity', :as => :get_total_amount_from_quantity
+  
+  
+  
+    
   resources :permit_charges
   resources :charges
   

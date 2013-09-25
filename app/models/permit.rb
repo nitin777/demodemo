@@ -9,7 +9,11 @@ class Permit < ActiveRecord::Base
   belongs_to :booking  
   belongs_to :grantee
   belongs_to :catalog
+  belongs_to :stonemason, class_name: "User", foreign_key: :stonemason_id
   has_many :permit_charges
+  
+  has_many :payments, :as => :paymentable
+  
   include SearchHandler
   validates :permit_number, :presence => true
   scope :active, -> {where(:is_active => true)}  
