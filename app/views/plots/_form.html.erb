@@ -9,7 +9,7 @@
         <%= select_tag "plot[area_id]", options_for_select(get_area_data, (@o_single.area.id unless @o_single.area.nil?)),
         							:data => { :remote => true, :url => url_for(:controller => "fronts", 
                                  :action => "get_section_row_from_area"
-                                 ) }, :class => 'selectField' %>
+                                 ) }, :class => 'selectFieldAjax' %>
       </div>
     </div>
     
@@ -19,9 +19,7 @@
 	      <div class="controls">
 	        <%= select_tag "plot[section_id]", options_for_select(get_section_data(@o_single), (@o_single.section.id unless @o_single.section.nil?)),
 	        							:data => { :remote => true, :url => url_for(:controller => "fronts", 
-	                                 :action => "get_row_from_section",
-                                 	 :class => 'selectField'
-	                                 ) } %>
+	                                 :action => "get_row_from_section") }, :class => 'selectFieldAjax' %>
 	      </div>                           
      	</div>	      
 	  

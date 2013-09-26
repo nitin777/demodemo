@@ -7,9 +7,7 @@
   <div class="controls">
     <%= select_tag plot_param, options_for_select([["Select", ""]] + @plots.collect {|r| [r.name, r.id]}), 
   							:data => { :remote => true, :url => url_for(:controller => "fronts", 
-                           :action => "get_grave_from_plot",
-                                 	 :class => 'selectField'
-                           ) } %>
+                           :action => "get_grave_from_plot") }, :class => 'selectFieldAjax' %>
   </div>
 </div>
 
@@ -19,9 +17,17 @@
     <div class="controls">
       <%= select_tag grave_param, options_for_select([["Select", ""]] + @graves.collect {|r| [r.grave_number, r.id]}), 
         							:data => { :remote => true, :url => url_for(:controller => "fronts", 
-                                 :action => (params[:permit] ? "get_grantee_booking_from_grave" : "get_grantee_from_grave"),
-                                 	 :class => 'selectField'
-                                 ) }  %>
+                                 :action => (params[:permit] ? "get_grantee_booking_from_grave" : "get_grantee_from_grave")) }, :class => 'selectFieldAjax' %>
     </div>
   </div>
 </div> 
+<div id="spinner" style="margin: 0px; left: 0px; display: none;" class="loaderimgText">
+  <%= image_tag "loader.gif" %><br><div class="backTransparant"></div>
+</div>  
+<script type="text/javascript">
+	$(document).ready(function() {
+	  $('.selectFieldAjax').change (function() {
+	    $("#spinner").show();
+	  });	 
+	});	  
+</script>	 

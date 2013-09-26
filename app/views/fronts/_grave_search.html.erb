@@ -14,9 +14,7 @@
       <div class="controls">
         <%= select_tag "grafe[area_id]", options_for_select(get_area_data, (@o_single.area.id unless @o_single.area.nil?)),
         							:data => { :remote => true, :url => url_for(:controller => "fronts", 
-                                 :action => "get_section_row_plot_from_area",
-                                 	 :class => 'selectField'
-                                 ) } %>
+                                 :action => "get_section_row_plot_from_area") }, :class => 'selectFieldAjax' %>
       </div>
     </div>
     
@@ -27,9 +25,7 @@
 	      <div class="controls">
 	        <%= select_tag "grafe[section_id]", options_for_select(get_section_data(@o_single), (@o_single.section.id unless @o_single.section.nil?)),
 	        							:data => { :remote => true, :url => url_for(:controller => "fronts", 
-	                                 :action => "get_row_plot_from_section",
-                                 	 :class => 'selectField'
-	                                 ) } %>
+	                                 :action => "get_row_plot_from_section") }, :class => 'selectFieldAjax' %>
 	      </div>                           
      	</div>	      
 	  
@@ -40,9 +36,7 @@
 		      <div class="controls">
 		        <%= select_tag "grafe[row_id]", options_for_select(get_row_data(@o_single), (@o_single.row.id unless @o_single.row.nil?)), 
 	        							:data => { :remote => true, :url => url_for(:controller => "fronts", 
-	                                 :action => "get_plot_from_row",
-                                 	 :class => 'selectField'
-	                                 ) } %>
+	                                 :action => "get_plot_from_row") }, :class => 'selectFieldAjax' %>
 		      </div>
 		    </div>
 		  	
@@ -79,3 +73,13 @@
   </fieldset>
      
 <% end %>
+<div id="spinner" style="margin: 0px; left: 0px; display: none;" class="loaderimgText">
+  <%= image_tag "loader.gif" %><br><div class="backTransparant"></div>
+</div>  
+<script type="text/javascript">
+	$(document).ready(function() {
+	  $('.selectFieldAjax').change (function() {
+	    $("#spinner").show();
+	  });	 
+	});	  
+</script>	 

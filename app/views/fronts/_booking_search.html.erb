@@ -24,9 +24,7 @@
       <div class="controls">
         <%= select_tag "booking[area_id]", options_for_select(get_area_data, (@o_single.area.id unless @o_single.area.nil?)),
         							:data => { :remote => true, :url => url_for(:controller => "fronts", 
-                                 :action => "get_section_row_plot_grave_from_area",
-                                 	 :class => 'selectField'
-                                 ) } %>
+                                 :action => "get_section_row_plot_grave_from_area") }, :class => 'selectFieldAjax' %>
       </div>
     </div>  	 
   	 
@@ -36,9 +34,7 @@
     <div class="controls">
       <%= select_tag "booking[section_id]", options_for_select(get_section_data(@o_single), (@o_single.section.id unless @o_single.section.nil?)),
       							:data => { :remote => true, :url => url_for(:controller => "fronts", 
-                               :action => "get_row_plot_grave_from_section",
-                                 	 :class => 'selectField'
-                               ) } %>
+                               :action => "get_row_plot_grave_from_section") }, :class => 'selectFieldAjax' %>
     </div>                           
  	</div>	      
 
@@ -49,9 +45,7 @@
       <div class="controls">
         <%= select_tag "booking[row_id]", options_for_select(get_row_data(@o_single), (@o_single.row.id unless @o_single.row.nil?)), 
       							:data => { :remote => true, :url => url_for(:controller => "fronts", 
-                               :action => "get_plot_grave_from_row",
-                                 	 :class => 'selectField'
-                               ) } %>
+                               :action => "get_plot_grave_from_row") }, :class => 'selectFieldAjax' %>
       </div>
     </div>
   	
@@ -62,9 +56,7 @@
 	      <div class="controls">
 	        <%= select_tag "booking[plot_id]", options_for_select(get_plot_data(@o_single), (@o_single.plot.id unless @o_single.plot.nil?)), 
         							:data => { :remote => true, :url => url_for(:controller => "fronts", 
-                                 :action => "get_grave_from_plot",
-                                 	 :class => 'selectField'
-                                 ) } %>
+                                 :action => "get_grave_from_plot") }, :class => 'selectFieldAjax' %>
 	      </div>
 	    </div>
 	  	
@@ -90,3 +82,13 @@
      
 <% end %>
 
+<div id="spinner" style="margin: 0px; left: 0px; display: none;" class="loaderimgText">
+  <%= image_tag "loader.gif" %><br><div class="backTransparant"></div>
+</div>  
+<script type="text/javascript">
+	$(document).ready(function() {
+	  $('.selectFieldAjax').change (function() {
+	    $("#spinner").show();
+	  });	 
+	});	  
+</script>	 
