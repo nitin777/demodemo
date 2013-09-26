@@ -10,12 +10,12 @@ Ocms::Application.routes.draw do
   resources :cemeteries
   
   resources :categories
-  resources :work_orders
+
   resources :work_types
   resources :delegation_departments
   
   resources :areas
-  resources :bookings
+
   resources :catalogs
   resources :chapels
   resources :coffins
@@ -40,13 +40,24 @@ Ocms::Application.routes.draw do
   resources :service_types
   resources :stone_mason_work_types
   resources :unit_types
-  
-  resources :maintenances
   resources :maintenance_companies
+  
+  resources :bookings do
+    resources :payments
+  end
+    
+  resources :maintenances do
+    resources :payments
+  end
   
   resources :permits do
     resources :payments
   end
+  
+  resources :work_orders do
+    resources :payments
+  end
+    
   get '/get_catalogs_from_category' => 'payments#get_catalogs_from_category', :as => :get_catalogs_from_category
   get '/get_cost_price_from_catalog' => 'payments#get_cost_price_from_catalog', :as => :get_cost_price_from_catalog
   get '/get_amount_from_price' => 'payments#get_amount_from_price', :as => :get_amount_from_price

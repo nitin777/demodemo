@@ -7,8 +7,8 @@
     <th width="5%"><%= sortable "service_time_from", t("general.from") %></th>
     <th width="5%"><%= sortable "service_time_to", t("general.to") %></th>
     <th width="15%"><%= sortable "consultant", t("general.consultant") %></th>
-    <th width="15%"><%= sortable "user_id", t("general.taken_by") %></th>
-    <th width="20%"><%= t("general.actions") %></th>
+    <th width="10%"><%= sortable "user_id", t("general.taken_by") %></th>
+    <th width="25%"><%= t("general.actions") %></th>
   </tr>
  </thead> 
   
@@ -24,6 +24,8 @@
           <td><%= o_row.consultant %></td>
           <td><%= o_row.user.name unless o_row.user.nil? %></td>
           <td> 
+          	
+          	<%= link_to t("general.payments"), booking_payments_path(o_row.id), :class => 'btn btn-mini', :title => t("general.payments") %>
           	
           	<%= link_to t("general.docs"), folders_path(:type_id => o_row.id, :type => "Interment"), :class => 'btn btn-mini', :title => t("general.documents") %>
           		

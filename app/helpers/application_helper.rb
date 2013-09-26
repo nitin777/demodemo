@@ -20,9 +20,9 @@ module ApplicationHelper
   end
   
   def get_quantity_data
-    temp_quantity = [[1, 1]]
+    temp_quantity = [["Select Quantity", ""]]
     24.times.each do |n|
-      temp_quantity = temp_quantity + [[n+2, n+2]] 
+      temp_quantity = temp_quantity + [[n+1, n+1]] 
     end
     temp_quantity
   end
@@ -213,6 +213,20 @@ module ApplicationHelper
     else
       [["Select", ""]] + @cemetery.graves.in_cemetery.active.collect {|r| [r.grave_number, r.id]}
     end  
-  end  
+  end
+  
+  def destroy_payment_url(paymetable, payment)
+    if paymetable.class.name == "Permit"
+      permit_payment_path(:permit_id => paymetable.id, :id => payment)
+    elsif paymetable.class.name == "WorkOrder"  
+     work_order_payment_path(:work_order_id => paymetable.id, :id => payment)       
+    elsif paymetable.class.name == "Maintenance"  
+      maintenance_payment_path(paymetable.id, :id => payment)
+    elsif paymetable.class.name == "Booking"  
+      booking_payment_path(:booking_id => paymetable.id, :id => payment)
+    else
+      "/"
+    end   
+  end    
   
 end

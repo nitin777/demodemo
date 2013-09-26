@@ -9,7 +9,7 @@ class WorkOrder < ActiveRecord::Base
   belongs_to :delegation_department
   belongs_to :work_type
   belongs_to :catalog
-  
+  has_many :payments, :as => :paymentable, :dependent => :destroy
   #validates :first_name, :surname, :presence => true
   
   belongs_to :completed_by, class_name: "User", foreign_key: :completed_user_id

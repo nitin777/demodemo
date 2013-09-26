@@ -12,7 +12,7 @@ class Permit < ActiveRecord::Base
   belongs_to :stonemason, class_name: "User", foreign_key: :stonemason_id
   has_many :permit_charges
   
-  has_many :payments, :as => :paymentable
+  has_many :payments, :as => :paymentable, :dependent => :destroy
   
   include SearchHandler
   validates :permit_number, :presence => true

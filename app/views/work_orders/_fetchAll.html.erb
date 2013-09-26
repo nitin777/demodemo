@@ -2,8 +2,6 @@
  <thead> 
   <tr>
     <th width="10%"><%= t("general.customer") %></th>
-    <th width="5%"><%= sortable "area_id", t("general.area") %></th>
-    <th width="5%"><%= sortable "section_id", t("general.section") %></th>    
     <th width="5%"><%= sortable "grafe_id", t("general.grave") %></th>
     <th width="10%"><%= sortable "delegation_department_id", t("general.department") %></th>
     <th width="7%"><%= sortable "work_date", t("general.workDate") %></th>
@@ -19,9 +17,6 @@
       <% @o_all.each do |o_row| %>
         <tr>
           <td><%= o_row.name %></td>
-          
-          <td><%= o_row.area.code unless o_row.area_id.nil? %></td>
-          <td><%= o_row.section.code unless o_row.section_id.nil? %></td>
           <td><%= o_row.grafe.grave_number unless o_row.grafe_id.nil? %></td>
           <td><%= o_row.delegation_department.name unless o_row.delegation_department.nil? %></td>
           <td><%= o_row.work_date.to_s(:year_month_day) unless o_row.work_date.nil? %></td>
@@ -29,6 +24,7 @@
           <td><%= o_row.completed_by.name unless o_row.completed_user_id.nil? %></td>
           <td><%= o_row.is_completed ? image_tag("Yes.gif") : image_tag("No.gif") %></td>
           <td> 
+          	<%= link_to t("general.payments"), work_order_payments_path(o_row.id), :class => 'btn btn-mini', :title => t("general.payments") %>
 						<%= link_to t("general.docs"), folders_path(:type_id => o_row.id, :type => "Work Order"), :class => 'btn btn-mini', :title => t("general.documents") %>          	
 			      <%= link_to t('.edit', :default => t("helpers.links.edit")),
 			                  edit_work_order_path(o_row), :class => 'btn btn-mini' %>

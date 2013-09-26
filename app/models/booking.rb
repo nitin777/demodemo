@@ -18,7 +18,7 @@ class Booking < ActiveRecord::Base
   belongs_to :deceased_country, class_name: 'Country', foreign_key: "deceased_country_id"
   belongs_to :informant_country, class_name: 'Country', foreign_key: "informant_country_id"
   
-  
+  has_many :payments, :as => :paymentable, :dependent => :destroy
     
   has_one :booking_checklist, :dependent => :destroy
   has_many :permits

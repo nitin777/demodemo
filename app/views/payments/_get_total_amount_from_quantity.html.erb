@@ -1,7 +1,4 @@
 <div class="control-group">
-  <label class = 'control-label'><%= t("general.total_amount") %></label>
-  <div class="controls">
-    $ <%= @total_amount %>	    
-  </div>
+  <label class = 'control-label'><h4><%= t("general.total_amount") %>&nbsp; - &nbsp;$<%= @total_amount %></h4></label>
 </div>
 <%= hidden_field_tag "payment[total_amount]", @total_amount.to_i %>

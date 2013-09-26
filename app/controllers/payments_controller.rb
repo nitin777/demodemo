@@ -6,9 +6,27 @@ class PaymentsController < ApplicationController
   # GET /permits.json
   def index
     session[:amount] = nil
-    @paymetable = find_paymetable
+    @paymetable = find_paymetable 
     @payments = @paymetable.payments
+    @payment_total = @payments.sum("total_amount") 
+    set_redirect_url_and_header
   end
+  
+  def set_redirect_url_and_header
+    if @paymetable.class.name == "Permit"
+      @r_url = permits_url
+      @header_name = @paymetable.permit_number
+    elsif @paymetable.class.name == "WorkOrder"  
+      @r_url = work_orders_url
+      @header_name = @paymetable.name      
+    elsif @paymetable.class.name == "Maintenance"  
+      @r_url = maintenances_url
+      @header_name = @paymetable.name
+    elsif @paymetable.class.name == "Booking"  
+      @r_url = bookings_url
+      @header_name = @paymetable.deceased_name            
+    end         
+  end  
 
   # POST /permits
   # POST /permits.json
@@ -16,10 +34,12 @@ class PaymentsController < ApplicationController
     @paymetable = find_paymetable
     @payment = @paymetable.payments.build(payment_params)
     if @payment.save
-      flash[:notice] = "Successfully created comment."
-      redirect_to :id => nil
-    else
-      render :action => 'new'
+      flash[:notice] = t("general.successfully_created")
+      session[:amount] = nil
+      @payments = @paymetable.payments
+      @payment_total = @payments.sum("total_amount")
+      return      
+      #redirect_to :id => nil
     end
   end
   
@@ -48,11 +68,16 @@ class PaymentsController < ApplicationController
   # DELETE /permits/1
   # DELETE /permits/1.json
   def destroy
-    @o_single.destroy
-    respond_to do |format|
-      format.html { redirect_to permits_url, notice: t("general.successfully_destroyed") }
-      format.json { head :no_content }
-    end
+    @paymetable = find_paymetable
+    @payment = Payment.find(params[:id])
+    @payment.destroy
+    
+    @payments = @paymetable.payments
+    @payment_total = @payments.sum("total_amount")
+        
+    flash[:notice] = t("general.successfully_destroyed")
+    return
+    #redirect_to set_redirect_url
   end
 
   private
