@@ -2,3 +2,23 @@
   <label class = 'control-label'><h4><%= t("general.amount") %>&nbsp; - &nbsp;$<%= @amount %></h4></label>
 </div>
 <%= hidden_field_tag "payment[amount]", @amount.to_i %>
+
+	<div class="control-group">
+	  <label class = 'control-label'><%= t("general.quantity") %></label>
+	  <div class="controls">
+	        <%= select_tag "payment[quantity]", options_for_select(get_quantity_data),
+	        							:data => { :remote => true, :url => url_for(:controller => "payments", 
+                                   :action => "get_total_amount_from_quantity",
+                                   :class => 'selectField'
+                                   ) } %>	    
+	  </div>
+	</div>
+	
+<div id="spinner" style="margin: 0px; left: 0px; display: none;" class="loaderimgText">
+  <%= image_tag "loader.gif" %><br><div class="backTransparant"></div>
+</div>
+<script type="text/javascript">
+$('#payment_quantity').change(function() {
+	$("#spinner").show();
+});
+</script>	

@@ -15,16 +15,7 @@
 	
   <div id="div_update_catalog">  </div> 	
   
-	<div class="control-group">
-	  <label class = 'control-label'><%= t("general.quantity") %></label>
-	  <div class="controls">
-	        <%= select_tag "payment[quantity]", options_for_select(get_quantity_data),
-	        							:data => { :remote => true, :url => url_for(:controller => "payments", 
-                                   :action => "get_total_amount_from_quantity",
-                                   :class => 'selectField'
-                                   ) } %>	    
-	  </div>
-	</div>  
+  
   
 	<div id="div_update_total_amount"></div>
 	
@@ -36,6 +27,7 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
+
 	$('#submit_item').click(function() {
 		if ($("#category").val() == "") {
 			$("#notice_item").html("<%= t("general.please_select_category") %>");

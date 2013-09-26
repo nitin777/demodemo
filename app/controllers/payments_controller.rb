@@ -44,12 +44,20 @@ class PaymentsController < ApplicationController
   end
   
   def get_catalogs_from_category
-    category = Category.find(params[:category])
-    @catalogs = category.catalogs
+    unless params[:category].blank?
+      category = Category.find(params[:category])
+      @catalogs = category.catalogs
+    else
+      @catalogs = nil  
+    end  
   end
   
   def get_cost_price_from_catalog
-    @catalog = Catalog.find(params[:payment][:catalog_id])
+    unless params[:payment][:catalog_id].blank?
+      @catalog = Catalog.find(params[:payment][:catalog_id])
+    else
+      @catalog = nil
+    end     
   end
   
   def get_amount_from_price

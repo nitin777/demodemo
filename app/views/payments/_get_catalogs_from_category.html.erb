@@ -1,3 +1,4 @@
+<% unless @catalogs.nil? %>
 <div class="control-group">
   <label class="control-label"><%= t("general.select_item") %></label>
   <div class="controls">
@@ -8,4 +9,14 @@
                                    ) }  %>
   </div>
 </div>
+<% end %>
 <div id="div_update_cost_price"></div>
+
+<div id="spinner" style="margin: 0px; left: 0px; display: none;" class="loaderimgText">
+  <%= image_tag "loader.gif" %><br><div class="backTransparant"></div>
+</div>
+<script type="text/javascript">
+$('#payment_catalog_id').change(function() {
+	$("#spinner").show();
+});
+</script>
