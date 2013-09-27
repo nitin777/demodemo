@@ -28,6 +28,9 @@ class PaymentsController < ApplicationController
     elsif @paymetable.class.name == "GranteeGrafe"  
       @r_url = grantee_graves_url
       @header_name = @paymetable.grantee.name if @paymetable.grantee            
+    elsif @paymetable.class.name == "Facility"  
+      @r_url = facilities_url
+      @header_name = @paymetable.name      
     end                      
   end  
 

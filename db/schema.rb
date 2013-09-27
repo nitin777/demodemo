@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130925185226) do
+ActiveRecord::Schema.define(version: 20130927181243) do
 
   create_table "areas", force: true do |t|
     t.integer  "cemetery_id"
@@ -168,6 +168,7 @@ ActiveRecord::Schema.define(version: 20130925185226) do
     t.date     "service_date"
     t.time     "service_time_from"
     t.time     "service_time_to"
+    t.integer  "stonemason_id"
   end
 
   create_table "catalogs", force: true do |t|
@@ -418,6 +419,16 @@ ActiveRecord::Schema.define(version: 20130925185226) do
   create_table "identities", force: true do |t|
     t.string   "name"
     t.boolean  "is_active",  default: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "languages", force: true do |t|
+    t.string   "name"
+    t.string   "code"
+    t.text     "content"
+    t.boolean  "is_active",  default: true
+    t.boolean  "is_default", default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

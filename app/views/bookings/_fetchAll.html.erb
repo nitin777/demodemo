@@ -1,14 +1,14 @@
 <table class="table table-striped">
  <thead> 
   <tr>
-    <th width="15%"><%= sortable "surname", t("general.name") %></th>
-    <th width="10%"><%= sortable "service_type", t("general.service") %></th>
+    <th width="25%"><%= sortable "surname", t("general.name") %></th>
+    <th width="20%"><%= sortable "service_type", t("general.service") %></th>
     <th width="10%"><%= sortable "service_date", t("general.date") %></th>
     <th width="5%"><%= sortable "service_time_from", t("general.from") %></th>
     <th width="5%"><%= sortable "service_time_to", t("general.to") %></th>
-    <th width="15%"><%= sortable "consultant", t("general.consultant") %></th>
-    <th width="10%"><%= sortable "user_id", t("general.taken_by") %></th>
-    <th width="25%"><%= t("general.actions") %></th>
+    <!--<th width="15%"><%#= sortable "consultant", t("general.consultant") %></th>
+    <th width="10%"><%#= sortable "user_id", t("general.taken_by") %></th>-->
+    <th width="30%"><%= t("general.actions") %></th>
   </tr>
  </thead> 
   
@@ -21,8 +21,8 @@
           <td><%= o_row.service_date.to_s(:pretty) if o_row.service_date %></td>
           <td><%= o_row.service_time_from.to_s(:pretty_time) if o_row.service_time_from %></td>
           <td><%= o_row.service_time_to.to_s(:pretty_time) if o_row.service_time_to %></td>
-          <td><%= o_row.consultant %></td>
-          <td><%= o_row.user.name unless o_row.user.nil? %></td>
+          <!--<td><%#= o_row.cosultant %></td>
+          <td><%#= o_row.user.name unless o_row.user.nil? %></td>-->
           <td> 
           	
           	<%= link_to t("general.payments"), booking_payments_path(o_row.id), :class => 'btn btn-mini', :title => t("general.payments") %>

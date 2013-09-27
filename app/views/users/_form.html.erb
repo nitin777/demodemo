@@ -48,6 +48,14 @@
 		      </div>
 		    </div>	
       </td> 
+      <td>				  
+			    <div class="control-group">
+			      <%= f.label :role_id, :class => 'control-label' %>
+			      <div class="controls">
+			        <%= select_tag "role_id", options_for_select(manager_access_roles, (@o_single.role.id unless @o_single.role.nil?))  %>
+			      </div>
+			    </div>
+      </td>       
     </tr> 		    
 				<% if @o_single.new_record? %>
 		    <tr>
@@ -84,27 +92,12 @@
 					<%= f.hidden_field :cemetery_id, :value => session[:cemetery_id] %>
       </td> 
     </tr> 
-    <tr>
-      <td>				  
-			    <div class="control-group">
-			      <%= f.label :role_id, :class => 'control-label' %>
-			      <div class="controls">
-			        <%= select_tag "role_id", options_for_select(manager_access_roles, (@o_single.role.id unless @o_single.role.nil?))  %>
-			      </div>
-			    </div>
-      </td> 
-    </tr> 			    		  
+		    		  
 				<% else %>
     <tr>
       <td>				
 					<%= f.hidden_field :cemetery_id, :value => session[:cemetery_id] %>  
 					<%= f.hidden_field :country_id, :value => session[:country_id] %>
-			    <div class="control-group">
-			      <%= f.label :role_id, :class => 'control-label' %>
-			      <div class="controls">
-			        <%= select_tag "role_id", options_for_select(manager_access_roles, (@o_single.role.id unless @o_single.role.nil?))  %>
-			      </div>
-			    </div>
       </td> 
     </tr> 			    			
 				<% end %>  

@@ -15,6 +15,7 @@ class Booking < ActiveRecord::Base
   belongs_to :catalog
   belongs_to :payment_status
   belongs_to :funeral_director, class_name: 'User', foreign_key: "funeral_director_id"
+  belongs_to :stonemason, class_name: 'User', foreign_key: "stonemason_id"
   belongs_to :deceased_country, class_name: 'Country', foreign_key: "deceased_country_id"
   belongs_to :informant_country, class_name: 'Country', foreign_key: "informant_country_id"
   

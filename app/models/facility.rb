@@ -4,6 +4,9 @@ class Facility < ActiveRecord::Base
   validates :surname, :presence => true
   validates :first_name, :presence => true
   scope :finalized, -> {where(:is_finalized => true)}
-  
-  include SearchHandler 
+  has_many :payments, :as => :paymentable, :dependent => :destroy  
+  include SearchHandler
+  def name
+    self.title + " " + self.surname + " " + self.first_name
+  end     
 end

@@ -33,7 +33,7 @@
       maintenance_contollers_arr = %w(maintenances maintenance_companies permits work_types delegation_departments work_orders)      												
       
       admin_contollers_arr = %w(countries denominations diseases grave_statuses identities service_types unit_types coffins payment_statuses 
-      													stone_mason_work_types)
+      													stone_mason_work_types languages)
       
       #unless cem_contollers_arr.include?(current_controller_name)
       	#session[:cemetery_id] = nil
@@ -81,6 +81,7 @@
 					<div class="span2">
 						<ul class="nav nav-pills nav-stacked">
 							<li class="<%= 'active' if current_controller_name == 'countries' %>"><%= link_to t("general.countries"), countries_path %></li>
+							<li class="<%= 'active' if current_controller_name == 'languages' %>"><%= link_to t("general.languages"), languages_path %></li>
 							<li class="<%= 'active' if current_controller_name == 'denominations' %>"><%= link_to t("general.denominations"), denominations_path %></li>
 							<li class="<%= 'active' if current_controller_name == 'diseases' %>"><%= link_to t("general.diseases"), diseases_path %></li>
 							<li class="<%= 'active' if current_controller_name == 'grave_statuses' %>"><%= link_to t("general.grave_status"), grave_statuses_path %></li>

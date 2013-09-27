@@ -1,12 +1,10 @@
 <table class="table table-striped">
  <thead> 
   <tr>
-  	<th width="20%"><%= sortable "surname", t("general.surname") %></th>
-    <th width="20%"><%= sortable "first_name", t("general.first_name") %></th>
+  	<th width="25%"><%= sortable "surname", t("general.name") %></th>
     <th width="15%"><%= sortable "phone", t("general.phone") %></th>
-    <th width="10%"><%= t("general.total") %></th>
     <th width="15%"><%= sortable "is_finalized", t("general.is_finalized") %></th>
-		<th width="20%"><%= t("general.actions") %></th>	
+		<th width="25%"><%= t("general.actions") %></th>	
   </tr>
  </thead> 
   
@@ -14,12 +12,11 @@
     <% if @o_all.size > 0 %>
       <% @o_all.each do |o_row| %>
         <tr>
-        	<td><%= o_row.surname %></td>
-          <td><%= o_row.first_name %></td>
+          <td><%= o_row.name %></td>
           <td><%= o_row.phone %></td>
-          <td>$<%= o_row.room_cost.to_i + o_row.chapel_cost.to_i  %></td>
           <td><%= o_row.is_finalized ? image_tag("Yes.gif") : image_tag("No.gif") %></td>
           <td>
+          	<%= link_to t("general.payments"), facility_payments_path(o_row.id), :class => 'btn btn-mini', :title => t("general.payments") %>          	
 			      <%= link_to t('.edit', :default => t("helpers.links.edit")),
 			                  edit_facility_path(o_row), :class => 'btn btn-mini' %>
 			      <%= link_to t('.destroy', :default => t("helpers.links.destroy")),

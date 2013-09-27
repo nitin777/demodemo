@@ -8,7 +8,7 @@ Ocms::Application.routes.draw do
   resources :static_pages
   resources :countries
   resources :cemeteries
-  
+  resources :languages
   resources :categories
 
   resources :work_types
@@ -29,7 +29,7 @@ Ocms::Application.routes.draw do
   resources :monuments
   resources :letters
   resources :letter_variables
-  resources :facilities
+  
   
   resources :identities
   resources :payment_statuses
@@ -41,6 +41,10 @@ Ocms::Application.routes.draw do
   resources :stone_mason_work_types
   resources :unit_types
   resources :maintenance_companies
+  
+  resources :facilities do
+    resources :payments
+  end
   
   resources :grantee_graves do
     resources :payments

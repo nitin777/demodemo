@@ -1,5 +1,23 @@
 <table>
     <tr>
+      <td>		    
+		    <div class="control-group">
+		      <%= f.label :monument_id, :class => 'control-label' %>
+		      <div class="controls">
+		        <%= f.select :monument_id, options_for_select(get_model_data("Monument", true), (@o_single.monument.id unless @o_single.monument.nil?))  %>
+		      </div>
+		    </div>     
+      </td>
+      <td>		    
+		    <div class="control-group">
+		      <%= f.label :stonemason_id, :class => 'control-label' %>
+		      <div class="controls">
+		        <%= f.select :stonemason_id, options_for_select(get_stone_masons, (@o_single.stonemason.id unless @o_single.stonemason.nil?))  %>
+		      </div>
+		    </div>     
+      </td>
+    </tr>        	
+    <tr>
       <td>	
 		    <div class="control-group">
 		      <%= f.label :death_certificate, :class => 'control-label' %>
@@ -194,16 +212,7 @@
 		      </div>
 		    </div>
       </td>
-      <td>		    
-		    <div class="control-group">
-		      <%= f.label :cost, :class => 'control-label' %>
-		      <div class="controls">
-		        <%= f.text_field :cost, :class => 'text_field' %>
-		      </div>
-		    </div>
-      </td> 
-    </tr> 
-    <tr>
+		    
       <td>		    
 		    <div class="control-group">
 		      <%= f.label :notes, :class => 'control-label' %>
@@ -211,6 +220,7 @@
 		        <%= f.text_area :notes, :class => 'text_field', :style => "width:256px; height:119px;" %>
 		      </div>
 		    </div>
-      </td> 
-    </tr> 		                  
+      </td>
+    </tr> 
+  		                  
 </table>    

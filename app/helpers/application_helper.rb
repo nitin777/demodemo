@@ -226,7 +226,9 @@ module ApplicationHelper
       booking_payment_path(:booking_id => paymetable.id, :id => payment)
     elsif paymetable.class.name == "GranteeGrafe"  
       grantee_grafe_payment_path(:grantee_grafe_id => paymetable.id, :id => payment)      
-    else
+    elsif paymetable.class.name == "Facility"  
+      facility_payment_path(:facility_id => paymetable.id, :id => payment)      
+    else      
       "/"
     end   
   end    

@@ -83,8 +83,12 @@
 					</div>
 				</div>
       </td>
-      <td>						
-				<div class="control-group"><%= f.label :chapel_cost, :class => 'control-label' %><div class="controls"><%= f.text_field :chapel_cost, :class => 'text_field' %></div></div>
+      <td>		    
+				<div class="control-group">
+										<label class = 'control-label'><%= t("general.rooms")%></label>
+					<div class="controls">
+					<%= select_tag "room_ids", options_for_select(get_room_data, (@o_single.room_ids.split(",") unless @o_single.room_ids.blank?)), :include_blank => true, :multiple => true  %>
+					</div></div>
       </td> 
     </tr>
    
@@ -118,18 +122,6 @@
 			 	</div>
       </td> 
     </tr>  
-    
-    
-    <tr>
-      <td>		    
-				<div class="control-group"><%= f.label :room_ids, :class => 'control-label' %><div class="controls">
-					<%= select_tag "room_ids", options_for_select(get_room_data, (@o_single.room_ids.split(",") unless @o_single.room_ids.blank?)), :include_blank => true, :multiple => true  %>
-					</div></div>
-      </td>
-      <td>						
-				<div class="control-group"><%= f.label :room_cost, :class => 'control-label' %><div class="controls"><%= f.text_field :room_cost, :class => 'text_field' %></div></div>
-      </td> 
-    </tr>
    
     <tr>
       <td>		 		
@@ -164,7 +156,7 @@
        
     <tr>
       <td>		    
-				<div class="control-group"><%= f.label :no_of_rooms, :class => 'control-label' %><div class="controls"><%= f.text_field :no_of_rooms, :class => 'text_field' %></div></div>
+				<div class="control-group"><%= f.label :receipt_number, :class => 'control-label' %><div class="controls"><%= f.text_field :receipt_number, :class => 'text_field' %></div></div>
       </td>
       <td>						
 				<div class="control-group"><%= f.label :special_instruction, :class => 'control-label' %><div class="controls"><%= f.text_field :special_instruction, :class => 'text_field' %></div></div>
@@ -172,9 +164,6 @@
     </tr>   
     
     <tr>
-      <td>		    
-				<div class="control-group"><%= f.label :receipt_number, :class => 'control-label' %><div class="controls"><%= f.text_field :receipt_number, :class => 'text_field' %></div></div>
-      </td>
       <td>						
 		    <div class="control-group">
 		      <%= f.label :is_finalized, :class => 'control-label' %>
