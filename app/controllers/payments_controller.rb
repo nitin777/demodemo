@@ -24,8 +24,11 @@ class PaymentsController < ApplicationController
       @header_name = @paymetable.name
     elsif @paymetable.class.name == "Booking"  
       @r_url = bookings_url
-      @header_name = @paymetable.deceased_name            
-    end         
+      @header_name = @paymetable.deceased_name
+    elsif @paymetable.class.name == "GranteeGrafe"  
+      @r_url = grantee_graves_url
+      @header_name = @paymetable.grantee.name if @paymetable.grantee            
+    end                      
   end  
 
   # POST /permits

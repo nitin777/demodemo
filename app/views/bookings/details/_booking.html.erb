@@ -38,14 +38,6 @@
       </td> 
     </tr>
     <tr>
-      <td>        
-		    <div class="control-group">
-		      <%= f.label :catalog_id, :class => 'control-label' %>
-		      <div class="controls">
-		        <%= f.select :catalog_id, options_for_select(get_catalog_data, (@o_single.catalog.id unless @o_single.catalog.nil?))  %>
-		      </div>
-		    </div> 
-      </td>
       <td>		    
 		    <div class="control-group">
 		      <%= f.label :payment_status_id, :class => 'control-label' %>

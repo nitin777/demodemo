@@ -1,11 +1,11 @@
 <table class="table table-striped">
  <thead> 
   <tr>
-    <th width="25%"><%= sortable "grave_number", t("general.grave_number") %></th>
+    <th width="15%"><%= sortable "grave_number", t("general.grave_number") %></th>
     <th width="20%"><%= sortable "date_of_purchase", t("general.date_of_purchase")%></th>
     <th width="20%"><%= sortable "tenure_expiry_date", t("general.tenure_expiry_date")%></th>
     <th width="20%"><%= sortable "user_id", t("general.created_by")%></th>
-    <th width="15%"><%= t("general.actions") %></th>
+    <th width="25%"><%= t("general.actions") %></th>
   </tr>
  </thead> 
   
@@ -18,6 +18,7 @@
           <td><%= o_row.tenure_expiry_date.to_s(:pretty) if o_row.tenure_expiry_date %></td>
           <td><%= o_row.user.username %></td>
           <td> 
+          	<%= link_to t("general.payments"), grantee_grafe_payments_path(o_row.id), :class => 'btn btn-mini', :title => t("general.payments") %>
 			      <%= link_to t('.edit', :default => t("helpers.links.edit")),
 			                  edit_grantee_grafe_path(o_row), :class => 'btn btn-mini' %>						            
 						<%= link_to t("general.transfer"),

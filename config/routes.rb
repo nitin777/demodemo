@@ -22,7 +22,7 @@ Ocms::Application.routes.draw do
   resources :denominations
   resources :diseases
   resources :grantees
-  resources :grantee_graves
+  
   resources :graves
   resources :grave_histories
   resources :grave_statuses
@@ -41,6 +41,10 @@ Ocms::Application.routes.draw do
   resources :stone_mason_work_types
   resources :unit_types
   resources :maintenance_companies
+  
+  resources :grantee_graves do
+    resources :payments
+  end
   
   resources :bookings do
     resources :payments

@@ -9,6 +9,7 @@ class GranteeGrafe < ActiveRecord::Base
   belongs_to :identity  
   belongs_to :catalog
   belongs_to :payment_status
+  has_many :payments, :as => :paymentable, :dependent => :destroy
   include SearchHandler
   
   validates :grantee_id, :presence => true  
