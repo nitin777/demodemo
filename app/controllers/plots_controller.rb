@@ -7,8 +7,9 @@ class PlotsController < ApplicationController
   # GET /plots.json
   def index
     @o_all = get_records(params[:plot], params[:page])
-    @search_fields = ['name']
-    session[:plot] = params[:plot] if params[:plot]
+    @params_arr = ['name']
+    @o_single = controller_name.classify.constantize.new
+    session[:search_params] = params[:plot] ? params[:plot] : nil
   end
 
   def show_plot_search

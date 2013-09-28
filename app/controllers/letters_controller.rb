@@ -8,7 +8,9 @@ class LettersController < ApplicationController
   def index
     session[:letters] = params[:letters] if params[:letters]
     @o_all = get_records(params[:letter], params[:page])
-    @search_fields = ['subject']
+    @params_arr = ['subject']
+    @o_single = controller_name.classify.constantize.new
+    session[:search_params] = params[:letter] ? params[:letter] : nil
   end
 
   def show_letter_search

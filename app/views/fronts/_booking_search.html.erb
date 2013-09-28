@@ -74,8 +74,7 @@
 </div>  
     <div class="controls">
       <%= f.submit t("general.search"), :class => 'btn btn-primary', :id => 'search_button_id' %>
-      <input type="reset" value="<%= t("general.reset") %>" class="btn btn-primary"/>
-      <span data-no-turbolink><%= link_to 'Cancel', booking_search_box_path(false, params[:model], true), :class => 'btn', :remote => true %></span>
+      <span data-no-turbolink><%= link_to 'Cancel', bookings_path(false, params[:model], true), :class => 'btn' %></span>
     </div>
     
   </fieldset>

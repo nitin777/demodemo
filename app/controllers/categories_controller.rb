@@ -7,8 +7,9 @@ class CategoriesController < ApplicationController
   # GET /categories.json
   def index
     @o_all = get_records(params[:category], params[:page])
-    @search_fields = ['name']
-    session[:category] = params[:category] if params[:category]
+    @params_arr = ['name']
+    @o_single = controller_name.classify.constantize.new
+    session[:search_params] = params[:category] ? params[:category] : nil
   end
 
   def show_category_search

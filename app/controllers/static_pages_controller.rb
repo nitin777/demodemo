@@ -7,7 +7,9 @@ class StaticPagesController < ApplicationController
   # GET /static_pages.json
   def index
     @o_all = get_records(params[:search], params[:page])
-    @search_fields = ['name']
+    @params_arr = ['name']
+    @o_single = controller_name.classify.constantize.new
+    session[:search_params] = params[:static_page] ? params[:static_page] : nil
   end
 
   # GET /static_pages/1

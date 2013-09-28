@@ -7,8 +7,9 @@ class StoneMasonWorkTypesController < ApplicationController
   # GET /stone_mason_work_types.json
   def index
     @o_all = get_records(params[:stone_mason_work_type], params[:page])
-    @search_fields = ['name']
-    session[:stone_mason_work_type] = params[:stone_mason_work_type] if params[:stone_mason_work_type]
+    @params_arr = ['name']
+    @o_single = controller_name.classify.constantize.new
+    session[:search_params] = params[:stone_mason_work_type] ? params[:stone_mason_work_type] : nil
   end
 
   def show_stone_mason_work_type_search

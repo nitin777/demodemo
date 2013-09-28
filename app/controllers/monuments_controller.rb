@@ -7,8 +7,9 @@ class MonumentsController < ApplicationController
   # GET /monuments.json
   def index
     @o_all = get_records(params[:monument], params[:page])
-    @search_fields = ['name']
-    session[:monument] = params[:monument] if params[:monument]
+    @params_arr = ['name']
+    @o_single = controller_name.classify.constantize.new
+    session[:search_params] = params[:monument] ? params[:monument] : nil
   end
 
   def show_monument_search

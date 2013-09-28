@@ -7,8 +7,9 @@ class IdentitiesController < ApplicationController
   # GET /identities.json
   def index
     @o_all = get_records(params[:identity], params[:page])
-    @search_fields = ['name']
-    session[:identity] = params[:identity] if params[:identity]
+    @params_arr = ['name']
+    @o_single = controller_name.classify.constantize.new
+    session[:search_params] = params[:identity] ? params[:identity] : nil
   end
 
   def show_identity_search

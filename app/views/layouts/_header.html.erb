@@ -40,7 +40,7 @@
          	  		<li class=""><%= link_to "( " + @cemetery.name + " )", "#" %></li>
          	  		<li class="<%= @users %>"><%= link_to t("general.users"), users_path %></li>
          	  		<li class="<%= @cemetery_active %>"><%= link_to t("general.manage_cemetery"), areas_path %></li>
-       	  			<li class="<%= @maintenance_active %>"><%= link_to t("general.maintenance"), maintenances_path %></li>
+       	  			<li class="<%= @maintenance_active %>"><%= link_to t("general.maintenance_companies"), maintenance_companies_path %></li>
        	  			<li class="<%= @booking_active %>"><%= link_to t("general.bookings"), bookings_path(:bookings => true) %></li>
        	  		<% end %>	         	  	
          	  <% else %>
@@ -53,7 +53,7 @@
        	  			<li class="<%= @cemetery_active %>"><%= link_to t("general.manage_cemetery"), areas_path %></li>
        	  		<% end %>		
        	  		<% if maintenance_access? %>
-       	  			<li class="<%= @maintenance_active %>"><%= link_to t("general.maintenance"), maintenances_path %></li>
+       	  			<li class="<%= @maintenance_active %>"><%= link_to t("general.maintenance"), maintenance_companies_path %></li>
        	  		<% end %>	
        	  		<% if booking_access? %>	
        	  			<li class="<%= @booking_active %>"><%= link_to t("general.bookings"), bookings_path(:bookings => true) %></li>

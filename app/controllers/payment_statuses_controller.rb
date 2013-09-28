@@ -7,8 +7,9 @@ class PaymentStatusesController < ApplicationController
   # GET /payment_statuses.json
   def index
     @o_all = get_records(params[:payment_status], params[:page])
-    @search_fields = ['name']
-    session[:payment_status] = params[:payment_status] if params[:payment_status]
+    @params_arr = ['name']
+    @o_single = controller_name.classify.constantize.new
+    session[:search_params] = params[:payment_status] ? params[:payment_status] : nil
   end
 
   def show_payment_status_search

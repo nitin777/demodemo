@@ -7,8 +7,9 @@ class FacilitiesController < ApplicationController
   # GET /facilities.json
   def index
     @o_all = get_records(params[:facility], params[:page])
-    @search_fields = ['surname', 'first_name', 'middle_name']
-    session[:facility] = params[:facility] if params[:facility]
+    @params_arr = ['surname', 'first_name', 'middle_name']
+    @o_single = controller_name.classify.constantize.new
+    session[:search_params] = params[:facility] ? params[:facility] : nil
   end
 
   def show_facility_search

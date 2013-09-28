@@ -7,8 +7,9 @@ class CatalogsController < ApplicationController
   # GET /catalogs.json
   def index
     @o_all = get_records(params[:catalog], params[:page])
-    @search_fields = ['name']
-    session[:catalog] = params[:catalog] if params[:catalog]
+    @params_arr = ['name']
+    @o_single = controller_name.classify.constantize.new
+    session[:search_params] = params[:catalog] ? params[:catalog] : nil
   end
 
   def show_catalog_search

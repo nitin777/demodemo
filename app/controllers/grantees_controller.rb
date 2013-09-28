@@ -14,8 +14,9 @@ class GranteesController < ApplicationController
       @grave = Grafe.find(session[:grave_id])
     end
     @o_all = get_records(params[:grantee], params[:page], session[:grave_id])
-    @search_fields = ['surname', 'first_name', 'middle_name']
-    session[:grantee] = params[:grantee] if params[:grantee]
+    @params_arr = ['surname', 'first_name', 'middle_name']
+    @o_single = controller_name.classify.constantize.new
+    session[:search_params] = params[:grantee] ? params[:grantee] : nil
   end
 
   def show_grantee_search

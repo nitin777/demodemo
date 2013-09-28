@@ -7,8 +7,9 @@ class DiseasesController < ApplicationController
   # GET /diseases.json
   def index
     @o_all = get_records(params[:disease], params[:page])
-    @search_fields = ['name']
-    session[:disease] = params[:disease] if params[:disease]
+    @params_arr = ['name']
+    @o_single = controller_name.classify.constantize.new
+    session[:search_params] = params[:disease] ? params[:disease] : nil
   end
 
   def show_disease_search

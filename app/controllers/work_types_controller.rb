@@ -7,8 +7,9 @@ class WorkTypesController < ApplicationController
   # GET /work_types.json
   def index
     @o_all = get_records(params[:work_type], params[:page])
-    @search_fields = ['name']
-    session[:work_type] = params[:work_type] if params[:work_type]
+    @params_arr = ['name']
+    @o_single = controller_name.classify.constantize.new
+    session[:search_params] = params[:work_type] ? params[:work_type] : nil
   end
 
   def show_work_type_search

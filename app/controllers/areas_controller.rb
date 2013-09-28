@@ -7,8 +7,9 @@ class AreasController < ApplicationController
   # GET /areas.json
   def index
     @o_all = get_records(params[:area], params[:page])
-    @search_fields = ['name', 'code']
-    session[:area] = params[:area] if params[:area]
+    @params_arr = ['name', 'code']
+    @o_single = controller_name.classify.constantize.new
+    session[:search_params] = params[:area] ? params[:area] : nil
   end
 
   def show_area_search

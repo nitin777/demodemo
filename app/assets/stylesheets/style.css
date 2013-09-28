@@ -166,3 +166,6 @@ a.link {
 	padding: 10px;
 	color:#fff;
 } 
+.textArea {width: 250px; height: 110px;}
+.textAreaMidium {width: 560px; height: 205px;} 
+.textAreaLarge {width: 750px; height: 250px;}

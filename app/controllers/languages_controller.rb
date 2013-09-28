@@ -8,6 +8,9 @@ class LanguagesController < ApplicationController
   # GET /languages.json
   def index
     @o_all = get_records(params[:language], params[:page])
+    @params_arr = ['name']
+    @o_single = controller_name.classify.constantize.new
+    session[:search_params] = params[:language] ? params[:language] : nil    
   end
   
   # GET /languages/1

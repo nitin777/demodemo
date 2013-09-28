@@ -7,8 +7,9 @@ class UnitTypesController < ApplicationController
   # GET /unit_types.json
   def index
     @o_all = get_records(params[:unit_type], params[:page])
-    @search_fields = ['name']
-    session[:unit_type] = params[:unit_type] if params[:unit_type]
+    @params_arr = ['name']
+    @o_single = controller_name.classify.constantize.new
+    session[:search_params] = params[:unit_type] ? params[:unit_type] : nil
   end
 
   def show_unit_type_search

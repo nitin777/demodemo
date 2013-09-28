@@ -7,8 +7,9 @@ class DenominationsController < ApplicationController
   # GET /denominations.json
   def index
     @o_all = get_records(params[:denomination], params[:page])
-    @search_fields = ['name']
-    session[:denomination] = params[:denomination] if params[:denomination]
+    @params_arr = ['name']
+    @o_single = controller_name.classify.constantize.new
+    session[:search_params] = params[:denomination] ? params[:denomination] : nil
   end
 
   def show_denomination_search

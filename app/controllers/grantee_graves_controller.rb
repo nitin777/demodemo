@@ -7,7 +7,9 @@ class GranteeGravesController < ApplicationController
   # GET /grantee_graves.json
   def index
     @o_all = get_records(params[:grantee_grafe], params[:page])
-    @search_fields = ['grave_id']
+    @params_arr = ['grave_id']
+    @o_single = controller_name.classify.constantize.new
+    session[:search_params] = params[:grantee_grafe] ? params[:grantee_grafe] : nil
   end
 
   # GET /grantee_graves/1

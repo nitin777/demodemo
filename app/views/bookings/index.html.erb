@@ -7,7 +7,7 @@
 </div>
 
 <div class="searchRight">
-	<%= link_to 'Search', booking_search_box_path(true, model_class, @search_fields.join(',')), :remote => true, :class => 'btn btn-primary btn-small' %>&nbsp;
+	<%= link_to 'Search', booking_search_box_path(true, model_class, @params_arr.join(',')), :remote => true, :class => 'btn btn-primary btn-small' %>&nbsp;
 
 	<% if session[:bookings] %>
 		<%= link_to t('.new', :default => t("helpers.links.new")),
@@ -16,7 +16,12 @@
 	<% end %>
 </div>
 
-<div id="div_update_search"></div>
+<div id="div_update_search">
+	<% if session[:search_params] %> 
+		<% params[:model] = controller_name.classify %>
+		<%= render "fronts/booking_search" %>
+	<% end %>
+</div>
 
 <div id="div_update">
 	<%= render "fetchAll" %>

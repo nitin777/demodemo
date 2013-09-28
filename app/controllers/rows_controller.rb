@@ -7,8 +7,9 @@ class RowsController < ApplicationController
   # GET /rows.json
   def index
     @o_all = get_records(params[:row], params[:page])
-    @search_fields = ['name']
-    session[:row] = params[:row] if params[:row]
+    @params_arr = ['name']
+    @o_single = controller_name.classify.constantize.new
+    session[:search_params] = params[:row] ? params[:row] : nil
   end
 
   def show_row_search

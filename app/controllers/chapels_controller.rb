@@ -7,8 +7,9 @@ class ChapelsController < ApplicationController
   # GET /chapels.json
   def index
     @o_all = get_records(params[:chapel], params[:page])
-    @search_fields = ['name']
-    session[:chapel] = params[:chapel] if params[:chapel]
+    @params_arr = ['name']
+    @o_single = controller_name.classify.constantize.new
+    session[:search_params] = params[:chapel] ? params[:chapel] : nil
   end
 
   def show_chapel_search

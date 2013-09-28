@@ -7,8 +7,9 @@ class PermitChargesController < ApplicationController
   # GET /permit_charges.json
   def index
     @o_all = get_records(params[:permit_charge], params[:page])
-    @search_fields = ['name']
-    session[:permit_charge] = params[:permit_charge] if params[:permit_charge]
+    @params_arr = ['name']
+    @o_single = controller_name.classify.constantize.new
+    session[:search_params] = params[:permit_charge] ? params[:permit_charge] : nil
   end
 
   def show_permit_charge_search

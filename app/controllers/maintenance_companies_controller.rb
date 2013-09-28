@@ -7,8 +7,9 @@ class MaintenanceCompaniesController < ApplicationController
   # GET /maintenance_companies.json
   def index
     @o_all = get_records(params[:maintenance_company], params[:page])
-    @search_fields = ['name, email']
-    session[:maintenance_company] = params[:maintenance_company] if params[:maintenance_company]
+    @params_arr = ['name', 'email']
+    @o_single = controller_name.classify.constantize.new
+    session[:search_params] = params[:maintenance_company] ? params[:maintenance_company] : nil
   end
 
   def show_grave_search

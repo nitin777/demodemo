@@ -7,8 +7,9 @@ class PermitsController < ApplicationController
   # GET /permits.json
   def index
     @o_all = get_records(params[:permit], params[:page])
-    @search_fields = ['interred_name']
-    session[:permit] = params[:permit] if params[:permit]
+    @params_arr = ['interred_name']
+    @o_single = controller_name.classify.constantize.new
+    session[:search_params] = params[:permit] ? params[:permit] : nil
   end
 
   def show_grave_search

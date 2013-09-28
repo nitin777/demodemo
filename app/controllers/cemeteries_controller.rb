@@ -11,8 +11,9 @@ class CemeteriesController < ApplicationController
   def index
     session[:cemetery_id] = nil
     @o_all = get_records(params[:cemetery], params[:page])
-    @search_fields = ['name']
-    session[:cemetery] = params[:cemetery] if params[:cemetery]
+    @params_arr = ['name']
+    @o_single = controller_name.classify.constantize.new
+    session[:search_params] = params[:cemetery] ? params[:cemetery] : nil
   end
 
   def show_cemetery_search

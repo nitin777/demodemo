@@ -7,8 +7,9 @@ class DelegationDepartmentsController < ApplicationController
   # GET /delegation_departments.json
   def index
     @o_all = get_records(params[:delegation_department], params[:page])
-    @search_fields = ['name']
-    session[:delegation_department] = params[:delegation_department] if params[:delegation_department]
+    @params_arr = ['name']
+    @o_single = controller_name.classify.constantize.new
+    session[:search_params] = params[:delegation_department] ? params[:delegation_department] : nil
   end
 
   def show_delegation_department_search

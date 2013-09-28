@@ -8,7 +8,9 @@ class DocumentSharesController < ApplicationController
   def index
     session[:document_share_id] = params[:id] if params[:id]
     @o_all = get_records(params[:document_share], params[:page])
-    @o_single = DocumentShare.new
+    @params_arr = ['name']
+    @o_single = controller_name.classify.constantize.new
+    session[:search_params] = params[:document_share] ? params[:document_share] : nil
   end
 
   def show_document_share_search

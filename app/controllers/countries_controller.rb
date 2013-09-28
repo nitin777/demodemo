@@ -7,8 +7,9 @@ class CountriesController < ApplicationController
   # GET /countries.json
   def index
     @o_all = get_records(params[:country], params[:page])
-    @search_fields = ['name']
-    session[:country] = params[:country] if params[:country]
+    @params_arr = ['name']
+    @o_single = controller_name.classify.constantize.new
+    session[:search_params] = params[:country] ? params[:country] : nil
   end
 
   def show_country_search

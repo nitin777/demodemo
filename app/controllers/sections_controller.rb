@@ -7,8 +7,9 @@ class SectionsController < ApplicationController
   # GET /sections.json
   def index
     @o_all = get_records(params[:section], params[:page])
-    @search_fields = ['name', 'code']
-    session[:section] = params[:section] if params[:section]
+    @params_arr = ['name', 'code']
+    @o_single = controller_name.classify.constantize.new
+    session[:search_params] = params[:section] ? params[:section] : nil
   end
 
   def show_section_search

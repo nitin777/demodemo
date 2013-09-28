@@ -7,8 +7,9 @@ class GravesController < ApplicationController
   # GET /graves.json
   def index
     @o_all = get_records(params[:grafe], params[:page])
-    @search_fields = ['grave_number', 'area_id', 'section_id', 'row_id', 'plot_id']
-    session[:grafe] = params[:grafe] if params[:grafe]
+    @params_arr = ['grave_number', 'area_id', 'section_id', 'row_id', 'plot_id']
+    @o_single = controller_name.classify.constantize.new
+    session[:search_params] = params[:grafe] ? params[:grafe] : nil
   end
 
   def show_grave_search

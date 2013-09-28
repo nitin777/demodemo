@@ -7,8 +7,9 @@ class WorkOrdersController < ApplicationController
   # GET /work_orders.json
   def index
     @o_all = get_records(params[:work_order], params[:page])
-    @search_fields = ['first_name, last_name, middle_name']
-    session[:work_order] = params[:work_order] if params[:work_order]
+    @params_arr = ['first_name, last_name, middle_name']
+    @o_single = controller_name.classify.constantize.new
+    session[:search_params] = params[:work_order] ? params[:work_order] : nil
   end
 
   def show_work_order_search

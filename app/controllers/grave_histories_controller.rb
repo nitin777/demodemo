@@ -8,7 +8,9 @@ class GraveHistoriesController < ApplicationController
   def index
     session[:grave_id] = params[:grave_id] if params[:grave_id]
     @o_all = get_records(params[:grave_history], params[:page])
-    @search_fields = ['receipt_number']
+    @params_arr = ['receipt_number']
+    @o_single = controller_name.classify.constantize.new
+    session[:search_params] = params[:grave_history] ? params[:grave_history] : nil    
   end
 
   # GET /grave_histories/1

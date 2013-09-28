@@ -7,8 +7,9 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     @o_all = get_records(params[:user], params[:page])
-    @search_fields = ['username, email']
-    session[:user] = params[:user] if params[:user]
+    @params_arr = ['username', 'email']
+    @o_single = controller_name.classify.constantize.new
+    session[:search_params] = params[:user] ? params[:user] : nil
   end
   
   def search
@@ -93,7 +94,7 @@ class UsersController < ApplicationController
 			else
 			  user_query = current_user.cemetery.users.includes(:role).search(search)
 			end 
-	  	user_query.order(sort_column + " " + sort_direction).paginate(:per_page => 10, :page => page)
+	  	user_query.order(sort_column + " " + sort_direction).paginate(:per_page => 2, :page => page)
 	  end    
     
 	  def set_header_menu_active
