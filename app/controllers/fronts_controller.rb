@@ -44,7 +44,7 @@ class FrontsController < ApplicationController
   
   def dashboard
     @o_booking = Booking.new
-    @today_date = (params[:booking] and params[:booking][:service_date]) ? params[:booking][:service_date] : Date.today
+    @today_date = (params[:booking] and params[:booking][:service_date]) ? params[:booking][:service_date].to_datetime.to_s(:system_date) : Date.today
     @service_types = ServiceType.all
     #@chapels = Booking.chapels.where(:service_date => @today_date)
     #@rooms = Booking.rooms.where(:service_date => @today_date)

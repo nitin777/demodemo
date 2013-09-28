@@ -18,9 +18,9 @@
         <tr>
           <td><%= o_row.deceased_name %></td>
           <td><%= o_row.service_type.name unless o_row.service_type.nil? %></td>
-          <td><%= o_row.service_date.to_s(:pretty) if o_row.service_date %></td>
-          <td><%= o_row.service_time_from.to_s(:pretty_time) if o_row.service_time_from %></td>
-          <td><%= o_row.service_time_to.to_s(:pretty_time) if o_row.service_time_to %></td>
+          <td><%= o_row.service_date.to_datetime.to_s(:default_date) if o_row.service_date %></td>
+          <td><%= o_row.service_time_from.to_s(:default_time) if o_row.service_time_from %></td>
+          <td><%= o_row.service_time_to.to_s(:default_time) if o_row.service_time_to %></td>
           <!--<td><%#= o_row.cosultant %></td>
           <td><%#= o_row.user.name unless o_row.user.nil? %></td>-->
           <td> 

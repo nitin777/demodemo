@@ -168,7 +168,7 @@
 		      <%= f.label :date_of_purchase, :class => 'control-label' %>
 		      <div class="controls">
 			 			<div id="date_of_purchase" class="input-append">
-			 				<%= f.text_field :date_of_purchase, :class => 'text_field' %>
+			 				<%= f.text_field :date_of_purchase, :value => (@o_single.date_of_purchase.to_datetime.to_s(:default_date) if @o_single.date_of_purchase), :class => 'text_field' %>
 					    <span class="add-on">
 					      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
 					      </i>
@@ -182,7 +182,7 @@
 		      <%= f.label :tenure_expiry_date, :class => 'control-label' %>
 		      <div class="controls">
 			 			<div id="tenure_expiry_date" class="input-append">
-			 				<%= f.text_field :tenure_expiry_date, :class => 'text_field' %>
+			 				<%= f.text_field :tenure_expiry_date, :value => (@o_single.tenure_expiry_date.to_datetime.to_s(:default_date) if @o_single.tenure_expiry_date), :class => 'text_field' %>
 					    <span class="add-on">
 					      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
 					      </i>
@@ -207,12 +207,12 @@ $(function() {
   $('#date_of_purchase').datetimepicker({
     language: 'en',
     pickTime: false,
-    format: "yyyy-MM-dd"
+    format: "dd/MM/yyyy"
   });	
   $('#tenure_expiry_date').datetimepicker({
     language: 'en',
     pickTime: false,
-    format: "yyyy-MM-dd"
+    format: "dd/MM/yyyy"
   });
 });
 </script>

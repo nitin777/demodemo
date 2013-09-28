@@ -41,7 +41,7 @@
 		 			<%= f.label :date_of_birth, :class => 'control-label' %>
 		 			<div class="controls">
 			 			<div id="datepicker2" class="input-append">
-			 				<%= f.text_field :date_of_birth, :class => 'text_field' %>
+			 				<%= f.text_field :date_of_birth, :value => (@o_single.date_of_birth.to_datetime.to_s(:default_date) if @o_single.date_of_birth), :class => 'text_field' %>
 					    <span class="add-on">
 					      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
 					      </i>
@@ -108,7 +108,7 @@ $(function() {
   $('#datepicker2').datetimepicker({
     language: 'en',
     pickTime: false,
-    format: "yyyy-MM-dd"
+    format: "dd/MM/yyyy"
   });
 });
 </script>

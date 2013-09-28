@@ -48,8 +48,11 @@
 	    <% flash[:notice] = nil %>
 	  <% end %>				
 	  <div class="row">
-					
-				<% if user_contollers_arr.include?(current_controller_name) and current_user %>
+				<% if current_controller_name == "fronts" %>
+					<div class="span12">
+						<%= yield %>
+					</div>					
+				<% elsif user_contollers_arr.include?(current_controller_name) and current_user %>
 					<div class="span2">
 						<ul class="nav nav-pills nav-stacked">
 								<li class="<%= 'active' if current_controller_name == 'users' %>"><%= link_to t("general.users"), users_path %></li>

@@ -5,7 +5,7 @@
 		      <%= f.label :interment_date, :class => 'control-label' %>
 		      <div class="controls">
 			 			<div id="interment_date" class="input-append">
-			 				<%= f.text_field :interment_date, :value => (@o_single.interment_date.to_s(:default_date_time) if @o_single.interment_date), :class => 'text_field' %>
+			 				<%= f.text_field :interment_date, :value => (@o_single.interment_date.to_s(:default_date) if @o_single.interment_date), :class => 'text_field' %>
 					    <span class="add-on">
 					      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
 					      </i>
@@ -57,7 +57,7 @@
 		      <lable class='control-label'><%= t("general.date_of_death") %></lable>
 		      <div class="controls">
 			 			<div id="deceased_date_death" class="input-append">
-			 				<%= f.text_field :deceased_date_death, :class => 'text_field' %>
+			 				<%= f.text_field :deceased_date_death, :value => (@o_single.deceased_date_death.to_datetime.to_s(:default_date) if @o_single.deceased_date_death), :class => 'text_field' %>
 					    <span class="add-on">
 					      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
 					      </i>
@@ -81,7 +81,7 @@
 		      <lable class='control-label'><%= t("general.date_of_birth") %></lable>
 		      <div class="controls">
 			 			<div id="deceased_date_birth" class="input-append">
-			 				<%= f.text_field :deceased_date_birth, :class => 'text_field' %>
+			 				<%= f.text_field :deceased_date_birth, :value => (@o_single.deceased_date_birth.to_datetime.to_s(:default_date) if @o_single.deceased_date_birth), :class => 'text_field' %>
 					    <span class="add-on">
 					      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
 					      </i>

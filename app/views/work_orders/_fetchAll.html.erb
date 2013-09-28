@@ -4,7 +4,6 @@
     <th width="10%"><%= t("general.customer") %></th>
     <th width="5%"><%= sortable "grafe_id", t("general.grave") %></th>
     <th width="10%"><%= sortable "delegation_department_id", t("general.department") %></th>
-    <th width="7%"><%= sortable "work_date", t("general.workDate") %></th>
     <th width="8%"><%= sortable "completion_date", t("general.completionDate") %></th>
     <th width="10%"><%= sortable "completed_user_id", t("general.completedBy") %></th>
     <th width="5%"><%= sortable "is_completed", t("general.completed") %></th>
@@ -19,8 +18,7 @@
           <td><%= o_row.name %></td>
           <td><%= o_row.grafe.grave_number unless o_row.grafe_id.nil? %></td>
           <td><%= o_row.delegation_department.name unless o_row.delegation_department.nil? %></td>
-          <td><%= o_row.work_date.to_s(:year_month_day) unless o_row.work_date.nil? %></td>
-          <td><%= o_row.completion_date.to_s(:year_month_day) unless o_row.completion_date.nil? %></td>
+          <td><%= o_row.completion_date.to_datetime.to_s(:default_date) unless o_row.completion_date.nil? %></td>
           <td><%= o_row.completed_by.name unless o_row.completed_user_id.nil? %></td>
           <td><%= o_row.is_completed ? image_tag("Yes.gif") : image_tag("No.gif") %></td>
           <td> 

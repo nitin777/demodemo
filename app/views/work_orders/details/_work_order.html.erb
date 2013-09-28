@@ -11,7 +11,7 @@
   <%= f.label :requested_date, :class => 'control-label' %>
   <div class="controls">
 		<div id="requested_date" class="input-append">
-			<%= f.text_field :requested_date, :class => 'text_field' %>
+			<%= f.text_field :requested_date, :value => (@o_single.requested_date.to_datetime.to_s(:default_date) if @o_single.requested_date), :class => 'text_field' %>
 	    <span class="add-on">
 	      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
 	      </i>
