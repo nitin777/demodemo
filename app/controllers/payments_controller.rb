@@ -68,13 +68,13 @@ class PaymentsController < ApplicationController
   
   def get_amount_from_price
     @amount = params[:price].blank? ? 0 : params[:price] 
-    session[:amount] = @amount.to_i 
+    session[:amount] = @amount
   end
   
   def get_total_amount_from_quantity
     @total_amount = 0 
     unless session[:amount].nil?
-      @total_amount = params[:payment][:quantity].to_i * session[:amount].to_i
+      @total_amount = params[:payment][:quantity].to_f * (session[:amount].to_s.gsub(",", "").to_f) 
     end    
   end
   

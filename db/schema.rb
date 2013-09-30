@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130927181243) do
+ActiveRecord::Schema.define(version: 20130929181826) do
 
   create_table "areas", force: true do |t|
     t.integer  "cemetery_id"
@@ -176,8 +176,8 @@ ActiveRecord::Schema.define(version: 20130927181243) do
     t.integer  "category_id"
     t.string   "name"
     t.text     "description"
-    t.float    "cost_price"
-    t.float    "special_cost_price"
+    t.string   "cost_price"
+    t.string   "special_cost_price"
     t.boolean  "is_active",          default: true
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -295,12 +295,12 @@ ActiveRecord::Schema.define(version: 20130927181243) do
     t.string   "chapel_ids"
     t.datetime "chapel_time_from"
     t.datetime "chapel_time_to"
-    t.integer  "chapel_cost"
+    t.string   "chapel_cost"
     t.string   "room_ids"
     t.datetime "room_time_from"
     t.datetime "room_time_to"
     t.integer  "no_of_rooms"
-    t.integer  "room_cost"
+    t.string   "room_cost"
     t.string   "special_instruction"
     t.string   "receipt_number"
     t.boolean  "is_finalized",        default: false
@@ -519,8 +519,8 @@ ActiveRecord::Schema.define(version: 20130927181243) do
     t.string   "paymentable_type"
     t.integer  "catalog_id"
     t.integer  "quantity",         default: 1
-    t.integer  "amount",           default: 0
-    t.integer  "total_amount",     default: 0
+    t.string   "amount",           default: "0"
+    t.string   "total_amount",     default: "0"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
